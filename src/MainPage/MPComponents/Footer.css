@@ -1,0 +1,43 @@
+.frame-wrapper {
+  background-color: var(--variable-collection-sub-black);
+  height: 122px;
+  left: 0;
+  position: absolute;
+  top: 1754px;
+  width: 1920px;
+}
+
+.frame-17 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  left: 310px;
+  position: relative;
+  top: 32px;
+}
+
+.text-wrapper-16 {
+  color: #ffffff;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 21px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.text-wrapper-17 {
+  color: #ffffff;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 21px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
