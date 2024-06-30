@@ -1,0 +1,14 @@
+:root {
+  --variable-collection-asdfasdfa: rgba(0, 16, 101, 1);
+  --variable-collection-blue: rgba(58, 152, 255, 1);
+  --variable-collection-button-navy: rgba(2, 51, 65, 1);
+  --variable-collection-gray-1: rgba(108, 108, 108, 1);
+  --variable-collection-gray-2: rgba(167, 167, 167, 1);
+  --variable-collection-gray-3: rgba(229, 229, 229, 1);
+  --variable-collection-gray4: rgba(242, 242, 242, 1);
+  --variable-collection-main-black: rgba(0, 0, 0, 1);
+  --variable-collection-mint: rgba(234, 255, 246, 1);
+  --variable-collection-safasdfafasdf: rgba(12, 128, 255, 1);
+  --variable-collection-sub-black: rgba(51, 51, 51, 1);
+  --variable-collection-WHITE: rgba(255, 255, 255, 1);
+}
