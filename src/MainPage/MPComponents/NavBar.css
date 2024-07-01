@@ -29,6 +29,10 @@
 }
 
 .NavBar-text-wrapper {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 20px;
@@ -68,6 +72,10 @@
 }
 
 .NavBar-view-3 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
   background-image: url(https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/--@2x.png);
   background-position: 50% 50%;
   background-size: cover;
