@@ -1,4 +1,4 @@
-.frame-wrapper {
+.Footer-frame-wrapper {
   background-color: var(--variable-collection-sub-black);
   height: 122px;
   left: 0;
@@ -7,7 +7,7 @@
   width: 1920px;
 }
 
-.frame-17 {
+.Footer-frame {
   align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   top: 32px;
 }
 
-.text-wrapper-16 {
+.Footer-text-wrapper {
   color: #ffffff;
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 14px;
@@ -30,7 +30,7 @@
   width: fit-content;
 }
 
-.text-wrapper-17 {
+.Footer-text-wrapper-2 {
   color: #ffffff;
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 14px;

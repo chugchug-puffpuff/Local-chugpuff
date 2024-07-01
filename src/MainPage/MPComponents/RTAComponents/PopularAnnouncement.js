@@ -4,23 +4,23 @@ import './PopularAnnouncement.css';
 const PopularAnnouncement = ({ imageSrc, companyName, jobTitle, gradeSrc, grade, daysLeft }) => {
   return (
     <div>
-    <img className="image-2" alt="Image" src={imageSrc} />
-      <div className="frame-11">
-        <div className="text-wrapper-12">{companyName}</div>
-        <div className="frame-12">
-          <div className="frame-13">
-            <p className="text-wrapper-13">{jobTitle}</p>
+    <img className="PopularAnnouncement-image" alt="Image" src={imageSrc} />
+      <div className="PopularAnnouncement-frame">
+        <div className="PopularAnnouncement-text-wrapper">{companyName}</div>
+        <div className="PopularAnnouncement-frame-2">
+          <div className="PopularAnnouncement-frame-3">
+            <p className="PopularAnnouncement-text-wrapper-2">{jobTitle}</p>
           </div>
-          <div className="frame-14">
-            <div className="frame-15">
-              <div className="grade-wrapper">
-                <img className="grade" alt="Grade" src={gradeSrc} />
+          <div className="PopularAnnouncement-frame-4">
+            <div className="PopularAnnouncement-frame-5">
+              <div className="PopularAnnouncement-grade-wrapper">
+                <img className="PopularAnnouncement-grade" alt="Grade" src={gradeSrc} />
               </div>
-              <div className="frame-16">
-                <div className="text-wrapper-14">{grade}</div>
+              <div className="PopularAnnouncement-frame-6">
+                <div className="PopularAnnouncement-text-wrapper-3">{grade}</div>
               </div>
             </div>
-            <div className="text-wrapper-15">D-{daysLeft}</div>
+            <div className="PopularAnnouncement-text-wrapper-4">D-{daysLeft}</div>
           </div>
         </div>
       </div>

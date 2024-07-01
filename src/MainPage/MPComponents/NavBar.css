@@ -1,4 +1,4 @@
-.view-wrapper {
+.NavBar-view-wrapper {
   background-color: #ffffff;
   box-shadow: 0px 4px 10px #0000000d;
   height: 88px;
@@ -8,14 +8,14 @@
   width: 1920px;
 }
 
-.view-5 {
+.NavBar-view {
   height: 88px;
   left: 310px;
   position: relative;
   width: 1300px;
 }
 
-.element {
+.NavBar-element {
   align-items: center;
   display: flex;
   gap: 27px;
@@ -28,7 +28,7 @@
   width: 200px;
 }
 
-.text-wrapper-18 {
+.NavBar-text-wrapper {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 20px;
@@ -40,7 +40,7 @@
   width: fit-content;
 }
 
-.navbar {
+.NavBar-frame {
   align-items: center;
   display: flex;
   gap: 32px;
@@ -53,7 +53,7 @@
   width: 527px;
 }
 
-.view-6 {
+.NavBar-view-2 {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -67,7 +67,7 @@
   width: 152px;
 }
 
-.view-7 {
+.NavBar-view-3 {
   background-image: url(https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/--@2x.png);
   background-position: 50% 50%;
   background-size: cover;

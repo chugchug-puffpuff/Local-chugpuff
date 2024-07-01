@@ -16,11 +16,11 @@ const jobData = [
 const RTAnnouncements = () => {
   return (
     <div>
-      <div className="frame-9">
-        <div className="text-wrapper">실시간 인기 공고</div>
-        <div className="text-wrapper-9">더보기</div>
+      <div className="RTAnnouncements-frame">
+        <div className="RTAnnouncements-text-wrapper">실시간 인기 공고</div>
+        <div className="RTAnnouncements-text-wrapper-2">더보기</div>
       </div>
-      <div className="overlap">
+      <div className="RTAnnouncements-overlap">
         {jobData.map((job, index) => (
           <PopularAnnouncement
             key={index}
@@ -33,7 +33,7 @@ const RTAnnouncements = () => {
           />
         ))}
       </div>
-      <div className="overlap-2">
+      <div className="RTAnnouncements-overlap-2">
         {jobData.map((job, index) => (
           <PopularAnnouncement
             key={index}
@@ -46,7 +46,7 @@ const RTAnnouncements = () => {
           />
         ))}
       </div>
-      <div className="overlap-3">
+      <div className="RTAnnouncements-overlap-3">
         {jobData.map((job, index) => (
           <PopularAnnouncement
             key={index}
@@ -59,7 +59,7 @@ const RTAnnouncements = () => {
           />
         ))}
       </div>
-      <div className="overlap-4">
+      <div className="RTAnnouncements-overlap-4">
         {jobData.map((job, index) => (
           <PopularAnnouncement
             key={index}

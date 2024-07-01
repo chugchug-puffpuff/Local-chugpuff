@@ -5,11 +5,11 @@ import PopularPost from './RTPComponents/PopularPost';
 const RTPosts = () => {
   return (
     <div>
-      <div className="frame">
-        <div className="text-wrapper">실시간 인기글</div>
-        <div className="div">더보기</div>
+      <div className="RTPosts-frame">
+        <div className="RTPosts-text-wrapper">실시간 인기글</div>
+        <div className="RTPosts-div">더보기</div>
       </div>
-      <div className="frame-2">
+      <div className="RTPosts-frame-2">
         <PopularPost
           category="정보 공유"
           date="2024.05.07"

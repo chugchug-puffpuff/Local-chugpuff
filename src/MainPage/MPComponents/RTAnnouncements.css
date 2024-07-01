@@ -1,4 +1,4 @@
-.frame-9 {
+.RTAnnouncements-frame {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,7 @@
   width: 615px;
 }
 
-.text-wrapper {
+.RTAnnouncements-text-wrapper {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 24px;
@@ -20,7 +20,7 @@
   width: fit-content;
 }
 
-.text-wrapper-9 {
+.RTAnnouncements-text-wrapper-2 {
   color: var(--variable-collection-gray-2);
   font-family: "Pretendard Variable-Medium", Helvetica;
   font-size: 20px;
@@ -32,7 +32,7 @@
   width: fit-content;
 }
 
-.overlap {
+.RTAnnouncements-overlap {
   height: 361px;
   left: 995px;
   position: absolute;
@@ -40,7 +40,7 @@
   width: 300px;
 }
 
-.overlap-2 {
+.RTAnnouncements-overlap-2 {
   height: 361px;
   left: 995px;
   position: absolute;
@@ -48,7 +48,7 @@
   width: 300px;
 }
 
-.overlap-3 {
+.RTAnnouncements-overlap-3 {
   height: 361px;
   left: 1310px;
   position: absolute;
@@ -56,7 +56,7 @@
   width: 300px;
 }
 
-.overlap-4 {
+.RTAnnouncements-overlap-4 {
   height: 361px;
   left: 1310px;
   position: absolute;

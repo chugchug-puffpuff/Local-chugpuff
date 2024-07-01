@@ -1,4 +1,4 @@
-.image-2 {
+.PopularAnnouncement-image {
   height: 221px;
   left: 0;
   position: absolute;
@@ -6,7 +6,7 @@
   width: 300px;
 }
 
-.frame-11 {
+.PopularAnnouncement-frame {
   align-items: flex-start;
   background-color: #ffffff;
   border: 1px solid;
@@ -24,7 +24,7 @@
   width: 300px;
 }
 
-.text-wrapper-12 {
+.PopularAnnouncement-text-wrapper {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 14px;
@@ -36,7 +36,7 @@
   width: fit-content;
 }
 
-.frame-12 {
+.PopularAnnouncement-frame-2 {
   align-items: flex-start;
   display: flex;
   flex: 0 0 auto;
@@ -46,7 +46,7 @@
   width: 231px;
 }
 
-.frame-13 {
+.PopularAnnouncement-frame-3 {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -55,7 +55,7 @@
   position: relative;
 }
 
-.text-wrapper-13 {
+.PopularAnnouncement-text-wrapper-2 {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 20px;
@@ -67,7 +67,7 @@
   width: 242px;
 }
 
-.frame-14 {
+.PopularAnnouncement-frame-4 {
   align-items: center;
   display: flex;
   flex: 0 0 auto;
@@ -76,7 +76,7 @@
   width: 231px;
 }
 
-.frame-15 {
+.PopularAnnouncement-frame-5 {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -84,13 +84,13 @@
   position: relative;
 }
 
-.grade-wrapper {
+.PopularAnnouncement-grade-wrapper {
   height: 16px;
   position: relative;
   width: 16px;
 }
 
-.grade {
+.PopularAnnouncement-grade {
   height: 40px;
   left: -8px;
   position: absolute;
@@ -98,7 +98,7 @@
   width: 40px;
 }
 
-.frame-16 {
+.PopularAnnouncement-frame-6 {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -107,7 +107,7 @@
   position: relative;
 }
 
-.text-wrapper-14 {
+.PopularAnnouncement-text-wrapper-3 {
   color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 14px;
@@ -120,7 +120,7 @@
   width: fit-content;
 }
 
-.text-wrapper-15 {
+.PopularAnnouncement-text-wrapper-4 {
   color: var(--variable-collection-gray-2);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 14px;

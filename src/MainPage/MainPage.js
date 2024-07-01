@@ -8,7 +8,7 @@ import Footer from "./MPComponents/Footer";
 
 export const MainPage = () => {
   return (
-    <div className="screen">
+    <div className="MainPage">
       <MainBanner />
       <RTPosts />
       <RTAnnouncements />

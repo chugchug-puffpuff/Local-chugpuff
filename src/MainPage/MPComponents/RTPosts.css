@@ -1,4 +1,4 @@
-.frame {
+.RTPosts-frame {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,7 @@
   width: 607px;
 }
 
-.text-wrapper {
+.RTPosts-text-wrapper {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 24px;
@@ -20,7 +20,7 @@
   width: fit-content;
 }
 
-.div {
+.RTPosts-div {
   color: var(--variable-collection-gray-2);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 20px;
@@ -33,7 +33,7 @@
   width: fit-content;
 }
 
-.frame-2 {
+.RTPosts-frame-2 {
   align-items: flex-start;
   border: 1px solid;
   border-color: var(--variable-collection-gray-3);
