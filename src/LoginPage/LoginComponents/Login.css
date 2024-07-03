@@ -65,22 +65,25 @@
 }
 
 .Login-text-field-2 {
-  align-self: stretch;
-  border: 1.04px solid;
-  border-color: var(--variable-collection-gray-3);
-  border-radius: 12.5px;
-  height: 58.35px;
-  position: relative;
-  width: 100%;
-}
-
-.Login-text-field-3 {
+  font-size: 22px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding: 10px;
   align-self: stretch;
   border: 1.04px solid;
   border-color: var(--variable-collection-gray-3);
   border-radius: 12.5px;
   height: 58.35px;
   overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.Login-text-field-invalid {
+  align-self: stretch;
+  border: 2px solid;
+  border-color: #ff0000;
+  border-radius: 12.5px;
+  height: 58.35px;
   position: relative;
   width: 100%;
 }
@@ -119,6 +122,20 @@
   width: fit-content;
 }
 
+.Login-error-message {
+  color: #ff0000;
+  font-family: "Poppins", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+  text-align: center; /* 가운데 정렬 */
+  display: block; /* 블록 요소로 설정 */
+  margin: 0 auto; /* 좌우 마진을 자동으로 설정하여 가운데 정렬 */
+}
+
 .Login-frame-3 {
   align-items: center;
   align-self: stretch;
@@ -131,6 +148,7 @@
 }
 
 .Login-frame-4 {
+  cursor: pointer;
   align-items: center;
   align-self: stretch;
   background-color: var(--variable-collection-sub-black);

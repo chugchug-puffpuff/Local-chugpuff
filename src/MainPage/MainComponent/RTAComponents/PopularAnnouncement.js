@@ -4,7 +4,7 @@ import './PopularAnnouncement.css';
 const PopularAnnouncement = ({ imageSrc, companyName, jobTitle, gradeSrc, grade, daysLeft }) => {
   return (
     <div>
-    <img className="PopularAnnouncement-image" alt="Image" src={imageSrc} />
+    <img className="PopularAnnouncement-image" alt="기업 이미지" src={imageSrc} />
       <div className="PopularAnnouncement-frame">
         <div className="PopularAnnouncement-text-wrapper">{companyName}</div>
         <div className="PopularAnnouncement-frame-2">
@@ -14,7 +14,7 @@ const PopularAnnouncement = ({ imageSrc, companyName, jobTitle, gradeSrc, grade,
           <div className="PopularAnnouncement-frame-4">
             <div className="PopularAnnouncement-frame-5">
               <div className="PopularAnnouncement-grade-wrapper">
-                <img className="PopularAnnouncement-grade" alt="Grade" src={gradeSrc} />
+                <img className="PopularAnnouncement-grade" alt="스크랩 아이콘" src={gradeSrc} />
               </div>
               <div className="PopularAnnouncement-frame-6">
                 <div className="PopularAnnouncement-text-wrapper-3">{grade}</div>

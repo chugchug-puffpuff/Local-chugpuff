@@ -11,6 +11,9 @@ const NavBar = () => {
   const goToLogin = () => {
     navigate('/login')
   }
+  const goToAIInterview = () => {
+    navigate('/aiinterview')
+  }
 
   return (
     <div>
@@ -21,7 +24,7 @@ const NavBar = () => {
             <div className="NavBar-text-wrapper">회원가입</div>
           </div>
           <div className="NavBar-frame">
-            <div className="NavBar-text-wrapper">AI 모의면접</div>
+            <button className="NavBar-text-wrapper" onClick={goToAIInterview}>AI 모의면접</button>
             <div className="NavBar-text-wrapper">자기소개서 첨삭</div>
             <div className="NavBar-text-wrapper">취업공고</div>
             <div className="NavBar-text-wrapper">커뮤니티</div>

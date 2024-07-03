@@ -1,14 +1,20 @@
 import React from 'react';
 import './MainBanner.css';
+import { useNavigate } from 'react-router-dom';
 
 const MainBanner = () => {
+  const navigate = useNavigate();
+  const goToAIInterview = () => {
+    navigate('/aiinterview')
+  }
+
   return (
     <div>
       <div className="MainBanner-view">
         <div className="MainBanner-overlap-group">
           <img
             className="MainBanner-image"
-            alt="Image"
+            alt=""
             src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/---.png"
           />
           <div className="MainBanner-view-2">
@@ -25,7 +31,7 @@ const MainBanner = () => {
               </div>
             </div>
             <div className="MainBanner-view-4">
-              <div className="MainBanner-text-wrapper-2">AI 모의면접 시작하기</div>
+              <button className="MainBanner-text-wrapper-2" onClick={goToAIInterview}>AI 모의면접 시작하기</button>
             </div>
           </div>
         </div>

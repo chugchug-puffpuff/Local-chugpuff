@@ -1,10 +1,10 @@
 import React from "react";
 import "./MainPage.css";
-import NavBar from "./MPComponents/NavBar";
-import MainBanner from "./MPComponents/MainBanner";
-import RTPosts from "./MPComponents/RTPosts";
-import RTAnnouncements from "./MPComponents/RTAnnouncements";
-import Footer from "./MPComponents/Footer";
+import NavBar from "./MainComponent/NavBar";
+import MainBanner from "./MainComponent/MainBanner";
+import RTPosts from "./MainComponent/RTPosts";
+import RTAnnouncements from "./MainComponent/RTAnnouncements";
+import Footer from "./MainComponent/Footer";
 
 export const MainPage = () => {
   return (

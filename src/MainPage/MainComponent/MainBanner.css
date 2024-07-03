@@ -92,6 +92,10 @@
 }
 
 .MainBanner-text-wrapper-2 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
   color: #ffffff;
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 24px;

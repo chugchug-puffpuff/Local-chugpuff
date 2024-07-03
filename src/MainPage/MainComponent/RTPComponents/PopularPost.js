@@ -19,7 +19,7 @@ const PopularPost = ({ category, comments, favorites, date, title }) => {
             <div className="PopularPost-frame-5">
               <img
                 className="PopularPost-img"
-                alt="Sms"
+                alt="댓글 아이콘"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/sms@2x.png"
               />
               <div className="PopularPost-text-wrapper-2">{comments}</div>
@@ -27,7 +27,7 @@ const PopularPost = ({ category, comments, favorites, date, title }) => {
             <div className="PopularPost-frame-5">
               <img
                 className="PopularPost-img"
-                alt="Favorite"
+                alt="좋아요 아이콘"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/favorite@2x.png"
               />
               <div className="PopularPost-text-wrapper-2">{favorites}</div>
