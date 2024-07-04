@@ -1,9 +1,9 @@
 import './App.css';
 import MainPage from './MainPage/MainPage.js';
 import LoginPage from './LoginPage/LoginPage.js';
-import AIInterviewPage from './AIInterviewPage/AIInterviewPage.js';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import PrivateRoute from './Route/PrivateRoute';
 
 function App() {
   const[authenticate, setAuthenticate] = useState(false); //true면 로그인 false면 로그인x
@@ -14,9 +14,9 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/login" element={<LoginPage setAuthenticate={setAuthenticate}/>} />
-        <Route path="/aiinterview" element={<AIInterviewPage />} />
+        <Route path="/" element={<MainPage authenticate={authenticate} setAuthenticate={setAuthenticate} />} />
+        <Route path="/login" element={<LoginPage setAuthenticate={setAuthenticate} authenticate={authenticate}/>} />
+        <Route path="/aiinterview" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} />} />
       </Routes>
     </div>
   );

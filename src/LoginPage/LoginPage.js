@@ -4,12 +4,12 @@ import Login from "./LoginComponents/Login.js";
 import LoginImage from "./LoginComponents/LoginImage.js";
 import NavBar from "../MainPage/MainComponent/NavBar.js";
 
-const LoginPage = ({setAuthenticate}) => {
+const LoginPage = ({setAuthenticate, authenticate }) => {
   return (
     <div className="LoginPage">
       <Login setAuthenticate={setAuthenticate} />
       <LoginImage />
-      <NavBar />
+      <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} />
     </div>
   );
 };

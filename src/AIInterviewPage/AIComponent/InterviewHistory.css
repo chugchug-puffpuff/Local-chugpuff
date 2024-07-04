@@ -1,0 +1,64 @@
+.InterviewHistory-frame {
+  background-color: #ffffff;
+  border-color: var(--variable-collection-gray-3);
+  border-right-style: solid;
+  border-right-width: 1px;
+  height: 992px;
+  left: 0;
+  position: fixed;
+  top: 88px;
+  width: 310px;
+}
+
+.InterviewHistory-frame-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 16px;
+  left: 40px;
+  position: relative;
+  top: 36px;
+}
+
+.InterviewHistory-frame-3 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 120px;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  padding: 8px 50px;
+  position: relative;
+  width: 238px;
+}
+
+.InterviewHistory-text-wrapper {
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  margin-top: -0.5px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.InterviewHistory-add {
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+.InterviewHistory-text-wrapper-2 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}

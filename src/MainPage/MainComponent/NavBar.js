@@ -2,7 +2,7 @@ import React from 'react'
 import './NavBar.css'
 import { useNavigate } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBar = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate()
 
   const goToMain = () => {
@@ -20,8 +20,14 @@ const NavBar = () => {
       <div className="NavBar-view-wrapper">
         <div className="NavBar-view">
           <div className="NavBar-element">
-            <button className="NavBar-text-wrapper" onClick={goToLogin}>로그인</button>
-            <div className="NavBar-text-wrapper">회원가입</div>
+            {authenticate ? (
+              <button className="NavBar-text-wrapper" onClick={() => { setAuthenticate(false); navigate('/'); }}>로그아웃</button>
+            ) : (
+              <>
+                <button className="NavBar-text-wrapper" onClick={goToLogin}>로그인</button>
+                <div className="NavBar-text-wrapper">회원가입</div>
+              </>
+            )}
           </div>
           <div className="NavBar-frame">
             <button className="NavBar-text-wrapper" onClick={goToAIInterview}>AI 모의면접</button>

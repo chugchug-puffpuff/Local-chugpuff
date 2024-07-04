@@ -1,9 +1,10 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom';
+import AIInterviewPage from '../AIInterviewPage/AIInterviewPage';
 
-const PrivateRoute = ({ authenticate }) => {
-  return authenticate === true ? <Outlet /> : <Navigate to="/login" />;
-}
+const PrivateRoute = ({ authenticate, setAuthenticate }) => {
+  return authenticate === true ? <AIInterviewPage authenticate={authenticate} setAuthenticate={setAuthenticate} /> : <Navigate to="/login" />
+};
 
 export default PrivateRoute
 

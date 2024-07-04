@@ -13,6 +13,7 @@ const Login = ({setAuthenticate}) => {
 
   // 테스트하기 위한 임시 유저 정보
   const dummyUser = {
+    name: '아무개',
     id: 'asdf',
     password: '1234'
   };
