@@ -1,75 +1,35 @@
 import React from 'react';
 import './RTAnnouncements.css';
 import PopularAnnouncement from './RTAComponents/PopularAnnouncement';
-
-const jobData = [
-  {
-    imageSrc: 'https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-1@2x.png',
-    companyName: '(주)그레이고',
-    jobTitle: '패션 마케터 과/차장급 (5-12년) 경력직',
-    gradeSrc: 'https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/grade@2x.png',
-    grade: '50',
-    daysLeft: '12'
-  }
-];
+import jobData from '../../TestData/jobData.json';
+import { useState, useEffect } from 'react';
 
 const RTAnnouncements = () => {
+  const [sortedJobData, setSortedJobData] = useState([]);
+
+  useEffect(() => {
+    const sortedData = jobData.sort((a, b) => b.grade - a.grade).slice(0, 4);
+    setSortedJobData(sortedData);
+  }, []);
+
   return (
     <div>
       <div className="RTAnnouncements-frame">
         <div className="RTAnnouncements-text-wrapper">실시간 인기 공고</div>
         <div className="RTAnnouncements-text-wrapper-2">더보기</div>
       </div>
-      <div className="RTAnnouncements-overlap">
-        {jobData.map((job, index) => (
-          <PopularAnnouncement
-            key={index}
-            imageSrc={job.imageSrc}
-            companyName={job.companyName}
-            jobTitle={job.jobTitle}
-            gradeSrc={job.gradeSrc}
-            grade={job.grade}
-            daysLeft={job.daysLeft}
-          />
-        ))}
-      </div>
-      <div className="RTAnnouncements-overlap-2">
-        {jobData.map((job, index) => (
-          <PopularAnnouncement
-            key={index}
-            imageSrc={job.imageSrc}
-            companyName={job.companyName}
-            jobTitle={job.jobTitle}
-            gradeSrc={job.gradeSrc}
-            grade={job.grade}
-            daysLeft={job.daysLeft}
-          />
-        ))}
-      </div>
-      <div className="RTAnnouncements-overlap-3">
-        {jobData.map((job, index) => (
-          <PopularAnnouncement
-            key={index}
-            imageSrc={job.imageSrc}
-            companyName={job.companyName}
-            jobTitle={job.jobTitle}
-            gradeSrc={job.gradeSrc}
-            grade={job.grade}
-            daysLeft={job.daysLeft}
-          />
-        ))}
-      </div>
-      <div className="RTAnnouncements-overlap-4">
-        {jobData.map((job, index) => (
-          <PopularAnnouncement
-            key={index}
-            imageSrc={job.imageSrc}
-            companyName={job.companyName}
-            jobTitle={job.jobTitle}
-            gradeSrc={job.gradeSrc}
-            grade={job.grade}
-            daysLeft={job.daysLeft}
-          />
+      <div className="RTAnnouncements-overlap-container">
+        {sortedJobData.map((job, index) => (
+          <div key={index} className={`RTAnnouncements-overlap RTAnnouncements-overlap-${index + 1}`}>
+            <PopularAnnouncement
+              imageSrc={job.imageSrc}
+              companyName={job.companyName}
+              jobTitle={job.jobTitle}
+              gradeSrc={"https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/grade@2x.png"}
+              grade={job.grade}
+              daysLeft={job.daysLeft}
+            />
+          </div>
         ))}
       </div>
     </div>

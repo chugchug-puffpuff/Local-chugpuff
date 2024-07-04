@@ -28,38 +28,40 @@
   letter-spacing: -0.6px;
   line-height: normal;
   position: relative;
-  white-space: nowrap;
   width: fit-content;
 }
 
+.RTAnnouncements-overlap-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 .RTAnnouncements-overlap {
+  width: 300px;
   height: 361px;
-  left: 995px;
+}
+
+.RTAnnouncements-overlap-1 {
   position: absolute;
   top: 933px;
-  width: 300px;
+  left: 995px;
 }
 
 .RTAnnouncements-overlap-2 {
-  height: 361px;
-  left: 995px;
   position: absolute;
-  top: 1314px;
-  width: 300px;
+  top: 933px;
+  left: 1310px;
 }
 
 .RTAnnouncements-overlap-3 {
-  height: 361px;
-  left: 1310px;
   position: absolute;
   top: 1314px;
-  width: 300px;
+  left: 995px;
 }
 
 .RTAnnouncements-overlap-4 {
-  height: 361px;
-  left: 1310px;
   position: absolute;
-  top: 933px;
-  width: 300px;
+  top: 1314px;
+  left: 1310px;
 }
