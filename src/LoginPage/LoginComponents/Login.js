@@ -2,26 +2,27 @@ import React from 'react'
 import './Login.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import userData from '../../TestData/userData.json';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const Login = ({setAuthenticate}) => {
+const Login = ({setAuthenticate, setUserName}) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
+  const [users, setUsers] = useState([]);
 
-  // 테스트하기 위한 임시 유저 정보
-  const dummyUser = {
-    name: '아무개',
-    id: 'asdf',
-    password: '1234'
-  };
+  useEffect(() => {
+    setUsers(userData);
+  }, []);
 
   const loginUser = (event) => {
     event.preventDefault(); // 기본 이벤트 방지
-    if (userId === dummyUser.id && password === dummyUser.password) {
+    const user = users.find(user => user.id === userId && user.password === password);
+    if (user) {
       setAuthenticate(true); // 로그인 성공 시 인증 상태를 true로 변경
+      setUserName(user.name);
       navigate('/'); // 메인 페이지로 이동
     } else {
       setIsInvalid(true);
@@ -37,6 +38,10 @@ const Login = ({setAuthenticate}) => {
     setPassword(e.target.value);
     setIsInvalid(false);
   };
+
+  const goToSignUp = () => {
+    navigate('/signup')
+  }
 
   return (
     <Form onSubmit={(event)=>loginUser(event)} className="Login-content-wrapper">
@@ -89,7 +94,7 @@ const Login = ({setAuthenticate}) => {
           </Button>
           <p className="Login-div">
             <span className="Login-text-wrapper">아직 치치폭폭 회원이 아니신가요? </span>
-            <span className="Login-text-wrapper-2">회원가입</span>
+            <button className="Login-text-wrapper-2" onClick={goToSignUp}>회원가입</button>
           </p>
         </div>
       </div>

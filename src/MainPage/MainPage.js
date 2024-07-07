@@ -6,14 +6,14 @@ import RTPosts from "./MainComponent/RTPosts";
 import RTAnnouncements from "./MainComponent/RTAnnouncements";
 import Footer from "./MainComponent/Footer";
 
-const MainPage = ({ authenticate, setAuthenticate }) => {
+const MainPage = ({ authenticate, setAuthenticate, userName }) => {
   return (
     <div className="MainPage">
       <MainBanner />
       <RTPosts />
       <RTAnnouncements />
       <Footer />
-      <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} />
+      <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
   );
 };

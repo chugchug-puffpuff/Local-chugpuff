@@ -5,7 +5,7 @@ import InterviewStart from "./AIComponent/InterviewStart.js";
 import InterviewSelect from "./AIComponent/InterviewSelect.js";
 import NavBar from "../MainPage/MainComponent/NavBar.js";
 
-const AIInterviewPage = ({ authenticate, setAuthenticate }) => {
+const AIInterviewPage = ({ authenticate, setAuthenticate, userName }) => {
   return (
     <div className="AIInterviewPage">
       <div className="AIInterviewPage-view">
@@ -13,7 +13,7 @@ const AIInterviewPage = ({ authenticate, setAuthenticate }) => {
         <InterviewSelect />
       </div>
       <InterviewHistory />
-      <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} />
+      <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
   );
 };

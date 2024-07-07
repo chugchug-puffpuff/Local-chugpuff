@@ -193,6 +193,11 @@
 }
 
 .Login-text-wrapper-2 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
   color: #333333;
   text-decoration: underline;
 }
