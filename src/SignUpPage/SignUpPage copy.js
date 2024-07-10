@@ -28,8 +28,6 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   const [showJobKeyword, setShowJobKeyword] = useState(false);
   const [jobKeywordList, setJobKeywordList] = useState([]);
   const [selectedJobKeyword, setSelectedJobKeyword] = useState('직무 키워드');
-  const [errors, setErrors] = useState({});
-  const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
     const uniqueJobs = [...new Set(jobCode.map(job => job.jobName))];
@@ -39,73 +37,22 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
-
-    if (name === 'id') {
-      if (value.length === 0 || !/^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/.test(value)) {
-        setErrors({ ...errors, id: '조합이 일치하지 않습니다' });
-      } else {
-        setErrors({ ...errors, id: '' });
-        setIdCheckMessage('');
-      }
-    }
-
-    if (name === 'password') {
-      if (!/^(?=.*[a-zA-Z])(?=.*[?!@#$%^*+=-])(?=.*[0-9]).{8,16}$/.test(value)) {
-        setErrors({ ...errors, password: '조합이 일치하지 않습니다' });
-      } else {
-        setErrors({ ...errors, password: '' });
-      }
-    }
-
-    if (name === 'email') {
-      if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value)) {
-        setErrors({ ...errors, email: '이메일 형식이 아닙니다' });
-      } else {
-        setErrors({ ...errors, email: '' });
-      }
-    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newErrors = {};
-
-    if (!formData.name) newErrors.name = '이름을 입력해주세요';
-    if (!formData.id) newErrors.id = '아이디를 입력해주세요';
-    if (!formData.password) newErrors.password = '비밀번호를 입력해주세요';
-    if (selectedJob === '희망 직무') newErrors.job = '희망 직무를 선택해주세요';
-    if (selectedJobKeyword === '직무 키워드') newErrors.keyword = '직무 키워드를 선택해주세요';
-    if (!formData.email) newErrors.email = '이메일을 입력해주세요';
-    if (!formData.emailCode) newErrors.emailCode = '인증번호를 입력해주세요';
-    if (!formData.isAdult) newErrors.isAdult = '만 15세 이상임을 확인해주세요';
-    if (!formData.isTerms) newErrors.isTerms = '이용약관에 동의해주세요';
-    if (!formData.isPrivacy) newErrors.isPrivacy = '개인정보 수집 및 이용에 동의해주세요';
-    if (!formData.isVoice) newErrors.isVoice = 'AI모의면접 진행 시 목소리 녹음에 동의해주세요';
-    if (!idCheckMessage || isDuplicate) newErrors.idCheck = '아이디 중복 확인을 해주세요';
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      console.log('회원가입 정보', formData);
-      setShowConfirmation(true);
-    }
+    console.log('회원가입 정보', formData);
   };
 
   const checkDuplicateId = () => {
-    if (!/^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/.test(formData.id)) {
-      setIdCheckMessage('올바른 형식으로 ID를 입력해주세요');
+    const userExists = userData.some(user => user.id === formData.id);
+    if (userExists) {
+      setIdCheckMessage('이미 등록된 아이디입니다');
       setIsDuplicate(true);
     } else {
-      const userExists = userData.some(user => user.id === formData.id);
-      if (userExists) {
-        setIdCheckMessage('이미 등록된 아이디입니다');
-        setIsDuplicate(true);
-      } else {
-        setIdCheckMessage('사용가능한 아이디입니다');
-        setIsDuplicate(false);
-      }
+      setIdCheckMessage('사용가능한 아이디입니다');
+      setIsDuplicate(false);
     }
-    setErrors({ ...errors, idCheck: '' });
   };
 
   const navigate = useNavigate();
@@ -115,36 +62,22 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
 
   const toggleJob = () => {
     setShowJob(!showJob);
-    if (errors.job) {
-      setErrors({ ...errors, job: '' });
-    }
   };
 
   const selectJob = (job) => {
     setSelectedJob(job);
-    setFormData({ ...formData, job });
     setShowJob(false);
     const keywords = jobCode.filter(item => item.jobName === job).map(item => item.jobKeywordName);
     setJobKeywordList(keywords);
-    if (errors.job) {
-      setErrors({ ...errors, job: '' });
-    }
   };
 
-  const toggleJobKeyword = () => {
+  const toggleKeyword = () => {
     setShowJobKeyword(!showJobKeyword);
-    if (errors.keyword) {
-      setErrors({ ...errors, keyword: '' });
-    }
   };
 
   const selectJobKeyword = (keyword) => {
     setSelectedJobKeyword(keyword);
-    setFormData({ ...formData, keyword });
     setShowJobKeyword(false);
-    if (errors.keyword) {
-      setErrors({ ...errors, keyword: '' });
-    }
   };
 
   return (
@@ -158,47 +91,43 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   <div className="label-wrapper">
                     <div className="label">이름(실명)</div>
                   </div>
-                  <input className={`text-field-2 ${errors.name ? 'error' : ''}`}
+                  <input className="text-field-2"
                     type="text"
                     name="name" 
-                    value={formData.name}
-                    placeholder='이름 입력' 
+                    value={formData.name} 
                     onChange={handleChange}
+                    required
                   />
-                  {errors.name && <p className="error-message">{errors.name}</p>}
                 </div>
                 <div className="text-field">
                   <div className="label-wrapper">
                     <div className="label">아이디</div>
                   </div>
                   <div className="frame-3">
-                    <input className={`text-field-3 ${isDuplicate ? 'duplicate' : ''} ${errors.id ? 'error' : ''}`}
+                    <input className={`text-field-3 ${isDuplicate ? 'duplicate' : ''}`}
                       type="text"
                       name="id"
                       value={formData.id}
-                      placeholder='4~20자리 / 영문, 숫자 조합'
                       onChange={handleChange}
+                      required
                     />
                     <div className="div-wrapper">
                       <button type="button" onClick={checkDuplicateId} className="text-wrapper">중복 확인</button>
                     </div>
                   </div>
                   {idCheckMessage && <p className={`id-check-message ${isDuplicate ? 'duplicate' : 'available'}`}>{idCheckMessage}</p>}
-                  {errors.id && <p className="error-message">{errors.id}</p>}
-                  {errors.idCheck && <p className="error-message">{errors.idCheck}</p>}
                 </div>
                 <div className="text-field">
                   <div className="label-wrapper">
                     <div className="label">비밀번호</div>
                   </div>
-                  <input className={`text-field-2 ${errors.password ? 'error' : ''}`}
+                  <input className="text-field-2"
                     type="password"
                     name="password"
                     value={formData.password}
-                    placeholder='8~16자리 / 대소문자, 숫자, 특수문자 조합'
                     onChange={handleChange}
+                    required
                   />
-                  {errors.password && <p className="error-message">{errors.password}</p>}
                 </div>
               </div>
               <img
@@ -210,7 +139,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 <div className="A-text-field">
                   <div className="A-frame-4">
                     <div className="A-text-field-wrapper">
-                      <div className={`A-text-field-3 ${errors.job ? 'error' : ''}`} onClick={toggleJob}>
+                      <div className="A-text-field-3" onClick={toggleJob}>
                         <div className="A-text-wrapper">{selectedJob}</div>
                         <img
                           className={showJob ? "A-arrow-drop-up" : "arrow-drop-down"}
@@ -227,10 +156,9 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                           ))}
                         </div>
                       )}
-                    {errors.job && <p className="error-message">{errors.job}</p>}
                     </div>
                     <div className="A-text-field-wrapper">
-                      <div className={`A-text-field-3 ${errors.keyword ? 'error' : ''}`} onClick={toggleJobKeyword}>
+                      <div className="A-text-field-3" onClick={toggleKeyword}>
                         <div className="A-text-wrapper">{selectedJobKeyword}</div>
                         <img
                           className={showJobKeyword ? "A-arrow-drop-up" : "arrow-drop-down"}
@@ -247,7 +175,6 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                           ))}
                         </div>
                       )}
-                      {errors.keyword && <p className="error-message">{errors.keyword}</p>}
                     </div>
                   </div>
                 </div>
@@ -263,35 +190,34 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                     <div className="label">이메일 인증</div>
                   </div>
                   <div className="frame-3">
-                    <input className={`text-field-5 ${errors.email ? 'error' : ''}`}
+                    <input className="text-field-5"
                       type="email"
                       name="email"
                       value={formData.email}
-                      placeholder='chichipokpok@gmail.com'
                       onChange={handleChange}
+                      required
                     />
                     <div className="div-wrapper">
                       <button type="button" className="text-wrapper">인증번호 전송</button>
                     </div>
                   </div>
-                  {errors.email && <p className="error-message">{errors.email}</p>}
                 </div>
                 <div className="text-field">
                   <div className="label-wrapper">
                     <div className="label">인증번호 입력</div>
                   </div>
                   <div className="frame-3">
-                    <input className={`text-field-5 ${errors.emailCode ? 'error' : ''}`}
+                    <input className="text-field-5"
                       type="text"
                       name="emailCode"
                       value={formData.emailCode}
                       onChange={handleChange}
+                      required
                     />
                     <div className="div-wrapper">
                       <button type="button" className="text-wrapper">확인</button>
                     </div>
                   </div>
-                  {errors.emailCode && <p className="error-message">{errors.emailCode}</p>}
                 </div>
               </div>
             </div>
@@ -306,9 +232,9 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   name="isAdult"
                   checked={formData.isAdult}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              {errors.isAdult && <p className="error-message-2">{errors.isAdult}</p>}
               <div className="check-box">
                 <p className="p">
                   <span className="span">[필수]</span>
@@ -319,9 +245,9 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   name="isTerms"
                   checked={formData.isTerms}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              {errors.isTerms && <p className="error-message-2">{errors.isTerms}</p>}
               <div className="check-box">
                 <p className="p">
                   <span className="span">[필수]</span>
@@ -332,9 +258,9 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   name="isPrivacy"
                   checked={formData.isPrivacy}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              {errors.isPrivacy && <p className="error-message-2">{errors.isPrivacy}</p>}
               <div className="check-box">
                 <p className="p">
                   <span className="span">[필수]</span>
@@ -345,9 +271,9 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   name="isVoice"
                   checked={formData.isVoice}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              {errors.isVoice && <p className="error-message-2">{errors.isVoice}</p>}
             </div>
             <div className="frame-6">
               <div className="frame-7">
@@ -362,25 +288,6 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
         </div>
       </div>
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} />
-      {showConfirmation && (
-        <div className="confirmation-overlay">
-          <div className="confirmation-box">
-            <div className="B-frame-17">
-              <div className="B-text-wrapper-12">회원가입 완료</div>
-              <p className="B-text-wrapper-13">
-                치치폭폭 회원이 되셨습니다!
-                <br />
-                환영합니다^^
-              </p>
-              <div className="B-frame-18">
-                <div className="B-frame-19" onClick={() => setShowConfirmation(false)}>
-                  <div className="B-text-wrapper-14" onClick={goToLogin}>로그인 이동</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </form>
   );
 };

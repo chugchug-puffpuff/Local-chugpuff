@@ -37,9 +37,9 @@ const NavBar = ({ authenticate, setAuthenticate, userName }) => {
                     <span className="NavBar-text-wrapper"> 님</span>
                   </p>
                   <img
-                    className="NavBar-img"
-                    alt="Arrow drop down"
-                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"
+                    className="NavBar-arrow-drop"
+                    alt={showUserInfo ? "Arrow drop up" : "Arrow drop down"}
+                    src={showUserInfo ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668ccfaca48cce45c95d9d30/img/arrow-drop-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"}
                   />
                 </button>
                 {showUserInfo && (

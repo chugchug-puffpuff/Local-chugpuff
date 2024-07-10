@@ -81,6 +81,9 @@
 }
 
 .a .text-field-2 {
+  font-size: 22px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding: 10px;
   align-self: stretch;
   border: 1.04px solid;
   border-color: var(--variable-collection-gray-3);
@@ -101,12 +104,16 @@
 }
 
 .a .text-field-3 {
+  font-size: 22px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding: 10px;
   border: 1.04px solid;
-  border-color: #ff0000;
+  border-color: var(--variable-collection-gray-3);
   border-radius: 12.5px;
   flex: 1;
   flex-grow: 1;
   height: 58.35px;
+  overflow: hidden;
   position: relative;
 }
 
@@ -123,6 +130,10 @@
 }
 
 .a .text-wrapper {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
   color: #000000;
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 20px;
@@ -134,8 +145,8 @@
   width: fit-content;
 }
 
-.a .line {
-  height: 1px;
+.SignUpPage-line {
+  height: 2px;
   object-fit: cover;
   position: relative;
   width: 493px;
@@ -189,6 +200,8 @@
 }
 
 .a .text-field-5 {
+  font-size: 22px;
+  padding: 10px;
   border: 1.04px solid;
   border-color: var(--variable-collection-gray-3);
   border-radius: 12.5px;
@@ -271,6 +284,10 @@
 }
 
 .a .text-wrapper-3 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
   color: #ffffff;
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 24px;
@@ -296,84 +313,280 @@
 }
 
 .a .text-wrapper-4 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
   color: #333333;
   text-decoration: underline;
 }
 
-.a .view {
+.text-field-3.duplicate {
+  border: 2px solid red;
+}
+
+.id-check-message.duplicate {
+  color: red;
+  font-size: 16px;
+  font-weight: 450;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+.id-check-message.available {
+  color: green;
+  font-size: 16px;
+  font-weight: 450;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+
+.A-frame-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.A-text-field {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4.17px;
+  position: relative;
+  width: 492.87px;
+}
+
+.A-frame-4 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.A-text-field-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.A-text-field-3 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border: 1.04px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12.5px;
+  height: 58.35px;
+  overflow: hidden;
+  position: relative;
+  width: 244.44px;
+}
+
+.A-text-wrapper {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 22px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+}
+
+.A-arrow-drop-up {
+  height: 24px;
+  left: 204px;
+  position: absolute;
+  top: 18px;
+  width: 24px;
+}
+
+.A-frame-5 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.A-frame-6 {
+  align-items: flex-start;
   background-color: #ffffff;
-  box-shadow: 0px 4px 10px #0000000d;
-  height: 88px;
-  left: 0;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px #0000000d;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 64px 16px 20px;
+  position: relative;
+  width: 244px;
+  height: 130px;
+  overflow-y: scroll;
+}
+
+.A-frame-6::-webkit-scrollbar {
+  width: 8px;
+}
+.A-frame-6::-webkit-scrollbar-thumb {
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 10px;
+}
+.A-frame-6::-webkit-scrollbar-track {
+  background-color: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.A-frame-6::-webkit-scrollbar-thumb:hover {
+  background: #666666; /* hover 시 thumb 배경색 */
+}
+
+.A-text-wrapper-2 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 21px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.error {
+  border: 2px solid red !important;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  font-weight: 450;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+.error-message-2 {
+  color: red;
+  font-size: 16px;
+  font-weight: 450;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.confirmation-overlay {
   position: fixed;
   top: 0;
-  width: 1920px;
-}
-
-.a .view-2 {
-  height: 88px;
-  left: 310px;
-  position: relative;
-  width: 1300px;
-}
-
-.a .element-2 {
-  align-items: center;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  gap: 27px;
-  height: 88px;
-  justify-content: flex-end;
-  left: 1100px;
-  padding: 8px 4px;
-  position: absolute;
-  top: 0;
-  width: 200px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.a .text-wrapper-5 {
+.confirmation-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1001;
+}
+
+.B-frame-17 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+}
+
+.B-text-wrapper-12 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.B-text-wrapper-13 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  position: relative;
+  text-align: center;
+  width: fit-content;
+}
+
+.B-frame-18 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.B-frame-19 {
+  align-items: center;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 80px;
+  position: relative;
+}
+
+.B-text-wrapper-14 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.6px;
   line-height: normal;
+  margin-top: -1px;
   position: relative;
   white-space: nowrap;
   width: fit-content;
-}
-
-.a .navbar {
-  align-items: center;
-  display: flex;
-  gap: 32px;
-  height: 88px;
-  justify-content: center;
-  left: 221px;
-  padding: 3px 0px;
-  position: absolute;
-  top: 0;
-  width: 527px;
-}
-
-.a .view-wrapper {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: 88px;
-  justify-content: center;
-  left: 0;
-  padding: 22px 0px;
-  position: absolute;
-  top: 0;
-  width: 152px;
-}
-
-.a .view-3 {
-  background-image: url(https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/--@2x.png);
-  background-position: 50% 50%;
-  background-size: cover;
-  height: 38px;
-  position: relative;
-  width: 145px;
 }
