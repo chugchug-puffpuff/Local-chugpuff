@@ -21,7 +21,7 @@ const Login = ({ setAuthenticate, setUserName }) => {
     if (user) {
       setAuthenticate(true); // 로그인 성공 시 인증 상태를 true로 변경
       setUserName(user.name);
-      navigate('/'); // 메인 페이지로 이동
+      navigate(`/${user.id}`); // 메인 페이지로 이동
     } else {
       setIsInvalid(true);
     }
