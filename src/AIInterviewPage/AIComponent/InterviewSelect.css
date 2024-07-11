@@ -54,6 +54,8 @@
 }
 
 .InterviewSelect-frame-4 {
+  cursor: pointer;
+  padding: 0;
   align-items: center;
   background-color: #ffffff;
   border: 1px solid;
@@ -66,6 +68,10 @@
   justify-content: center;
   padding: 4px 16px;
   position: relative;
+}
+
+.InterviewSelect-frame-4.selected {
+  background-color: var(--variable-collection-gray-3);
 }
 
 .InterviewSelect-text-wrapper-2 {
@@ -98,6 +104,8 @@
 }
 
 .InterviewSelect-frame-wrapper {
+  cursor: pointer;
+  padding: 0;
   align-items: center;
   background-color: #ffffff;
   border: 1px solid;
@@ -110,6 +118,10 @@
   padding: 4px 16px;
   position: relative;
   width: 220px;
+}
+
+.InterviewSelect-frame-wrapper.selected {
+  background-color: var(--variable-collection-gray-3);
 }
 
 .InterviewSelect-frame-7 {

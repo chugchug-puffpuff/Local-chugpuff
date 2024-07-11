@@ -95,6 +95,10 @@
   width: 100%;
 }
 
+.InterviewStart-div-wrapper.active {
+  background-color: var(--variable-collection-button-navy);
+}
+
 .InterviewStart-text-wrapper-4 {
   color: #ffffff;
   font-family: "Pretendard Variable-SemiBold", Helvetica;

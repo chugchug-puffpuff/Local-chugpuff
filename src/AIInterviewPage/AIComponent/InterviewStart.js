@@ -1,7 +1,7 @@
-import React from 'react'
-import './InterviewStart.css'
+import React from 'react';
+import './InterviewStart.css';
 
-const InterviewStart = () => {
+const InterviewStart = ({ canStartInterview }) => {
   return (
     <div className="InterviewStart-frame">
       <div className="InterviewStart-div">
@@ -13,13 +13,13 @@ const InterviewStart = () => {
         </div>
       </div>
       <div className="InterviewStart-frame-3">
-        <div className="InterviewStart-div-wrapper">
+        <div className={`InterviewStart-div-wrapper ${canStartInterview ? 'active' : ''}`}>
           <div className="InterviewStart-text-wrapper-4">면접 시작하기</div>
         </div>
         <p className="InterviewStart-text-wrapper-5">면접 유형과 피드백 방식을 선택해주세요.</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InterviewStart
+export default InterviewStart;
