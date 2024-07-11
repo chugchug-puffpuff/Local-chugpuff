@@ -1,11 +1,11 @@
-.a {
+.SignUpPage {
   background-color: #ffffff;
   height: 1469px;
   position: relative;
   width: 1920px;
 }
 
-.a .sign-up {
+.SignUpPage-sign-up {
   background-color: #ffffff;
   height: 992px;
   left: 617px;
@@ -14,7 +14,7 @@
   width: 687px;
 }
 
-.a .content {
+.SignUpPage-content {
   align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
   top: 9px;
 }
 
-.a .frame {
+.SignUpPage-frame {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -33,7 +33,7 @@
   position: relative;
 }
 
-.a .div {
+.SignUpPage-div {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -42,7 +42,7 @@
   position: relative;
 }
 
-.a .frame-2 {
+.SignUpPage-frame-2 {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -51,7 +51,7 @@
   position: relative;
 }
 
-.a .text-field {
+.SignUpPage-text-field {
   align-items: flex-start;
   display: flex;
   flex: 0 0 auto;
@@ -61,14 +61,14 @@
   width: 492.87px;
 }
 
-.a .label-wrapper {
+.SignUpPage-label-wrapper {
   align-self: stretch;
   height: 28.13px;
   position: relative;
   width: 100%;
 }
 
-.a .label {
+.SignUpPage-label {
   color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 20px;
@@ -80,7 +80,7 @@
   top: -1px;
 }
 
-.a .text-field-2 {
+.SignUpPage-text-field-2 {
   font-size: 22px;
   font-family: "Pretendard Variable-Regular", Helvetica;
   padding: 10px;
@@ -93,7 +93,21 @@
   width: 100%;
 }
 
-.a .frame-3 {
+.SignUpPage-error {
+  border: 2px solid red !important;
+}
+
+.SignUpPage-error-message {
+  color: red;
+  font-size: 16px;
+  font-weight: 450;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+.SignUpPage-frame-3 {
   align-items: flex-start;
   align-self: stretch;
   display: flex;
@@ -103,7 +117,7 @@
   width: 100%;
 }
 
-.a .text-field-3 {
+.SignUpPage-text-field-3 {
   font-size: 22px;
   font-family: "Pretendard Variable-Regular", Helvetica;
   padding: 10px;
@@ -117,7 +131,11 @@
   position: relative;
 }
 
-.a .div-wrapper {
+.SignUpPage-text-field-3.SignUpPage-duplicate {
+  border: 2px solid red;
+}
+
+.SignUpPage-div-wrapper {
   align-items: flex-start;
   background-color: var(--variable-collection-gray-3);
   border-radius: 12.5px;
@@ -129,7 +147,7 @@
   position: relative;
 }
 
-.a .text-wrapper {
+.SignUpPage-text-wrapper {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -145,189 +163,7 @@
   width: fit-content;
 }
 
-.SignUpPage-line {
-  height: 2px;
-  object-fit: cover;
-  position: relative;
-  width: 493px;
-}
-
-.a .frame-4 {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 4px;
-  position: relative;
-}
-
-.a .text-field-wrapper {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 4px;
-  position: relative;
-}
-
-.a .text-field-4 {
-  border: 1.04px solid;
-  border-color: var(--variable-collection-gray-3);
-  border-radius: 12.5px;
-  height: 58.35px;
-  overflow: hidden;
-  position: relative;
-  width: 244.44px;
-}
-
-.a .label-2 {
-  color: var(--variable-collection-gray-1);
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  left: 22px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 18px;
-}
-
-.a .arrow-drop-down {
-  height: 24px;
-  left: 204px;
-  position: absolute;
-  top: 17px;
-  width: 24px;
-}
-
-.a .text-field-5 {
-  font-size: 22px;
-  padding: 10px;
-  border: 1.04px solid;
-  border-color: var(--variable-collection-gray-3);
-  border-radius: 12.5px;
-  flex: 1;
-  flex-grow: 1;
-  height: 58.35px;
-  position: relative;
-}
-
-.a .frame-5 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-  width: 100%;
-}
-
-.a .check-box {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-}
-
-.a .p {
-  color: var(--variable-collection-sub-black);
-  flex: 1;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 16.7px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
-  position: relative;
-}
-
-.a .span {
-  color: #ff0000;
-}
-
-.a .text-wrapper-2 {
-  color: #333333;
-}
-
-.a .img {
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.a .frame-6 {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  width: 100%;
-}
-
-.a .frame-7 {
-  align-items: center;
-  align-self: stretch;
-  background-color: var(--variable-collection-sub-black);
-  border-radius: 500px;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  padding: 16px 0px;
-  position: relative;
-  width: 100%;
-}
-
-.a .text-wrapper-3 {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  color: #ffffff;
-  font-family: "Pretendard Variable-SemiBold", Helvetica;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-top: -1px;
-  position: relative;
-  text-align: center;
-  width: fit-content;
-}
-
-.a .div-2 {
-  color: #666666;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.a .text-wrapper-4 {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-size: 16px;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  color: #333333;
-  text-decoration: underline;
-}
-
-.text-field-3.duplicate {
-  border: 2px solid red;
-}
-
-.id-check-message.duplicate {
+.SignUpPage-id-check-message.SignUpPage-duplicate {
   color: red;
   font-size: 16px;
   font-weight: 450;
@@ -337,7 +173,7 @@
   padding-bottom: 5px;
 }
 
-.id-check-message.available {
+.SignUpPage-id-check-message.SignUpPage-available {
   color: green;
   font-size: 16px;
   font-weight: 450;
@@ -347,8 +183,14 @@
   padding-bottom: 5px;
 }
 
+.SignUpPage-line {
+  height: 2px;
+  object-fit: cover;
+  position: relative;
+  width: 493px;
+}
 
-.A-frame-3 {
+.SignUpPage-frame-4 {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -356,7 +198,7 @@
   position: relative;
 }
 
-.A-text-field {
+.SignUpPage-text-field-4 {
   align-items: flex-start;
   display: flex;
   flex: 0 0 auto;
@@ -366,7 +208,7 @@
   width: 492.87px;
 }
 
-.A-frame-4 {
+.SignUpPage-frame-5 {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -374,7 +216,7 @@
   position: relative;
 }
 
-.A-text-field-wrapper {
+.SignUpPage-text-field-wrapper {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -383,7 +225,7 @@
   position: relative;
 }
 
-.A-text-field-3 {
+.SignUpPage-text-field-5 {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -397,7 +239,7 @@
   width: 244.44px;
 }
 
-.A-text-wrapper {
+.SignUpPage-text-wrapper-2 {
   color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 20px;
@@ -409,7 +251,7 @@
   top: 18px;
 }
 
-.A-arrow-drop-up {
+.SignUpPage-arrow-drop-up {
   height: 24px;
   left: 204px;
   position: absolute;
@@ -417,16 +259,15 @@
   width: 24px;
 }
 
-.A-frame-5 {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 4px;
-  margin-top: -1px;
-  position: relative;
+.SignUpPage-arrow-drop-down {
+  height: 24px;
+  left: 204px;
+  position: absolute;
+  top: 17px;
+  width: 24px;
 }
 
-.A-frame-6 {
+.SignUpPage-frame-6 {
   align-items: flex-start;
   background-color: #ffffff;
   border: 1px solid;
@@ -443,23 +284,23 @@
   overflow-y: scroll;
 }
 
-.A-frame-6::-webkit-scrollbar {
+.SignUpPage-frame-6::-webkit-scrollbar {
   width: 8px;
 }
-.A-frame-6::-webkit-scrollbar-thumb {
+.SignUpPage-frame-6::-webkit-scrollbar-thumb {
   background-color: var(--variable-collection-gray-3);
   border-radius: 10px;
 }
-.A-frame-6::-webkit-scrollbar-track {
+.SignUpPage-frame-6::-webkit-scrollbar-track {
   background-color: none;
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.A-frame-6::-webkit-scrollbar-thumb:hover {
+.SignUpPage-frame-6::-webkit-scrollbar-thumb:hover {
   background: #666666; /* hover 시 thumb 배경색 */
 }
 
-.A-text-wrapper-2 {
+.SignUpPage-text-wrapper-3 {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -475,30 +316,134 @@
   width: fit-content;
 }
 
-.error {
-  border: 2px solid red !important;
+.SignUpPage-text-field-6 {
+  font-size: 22px;
+  padding: 10px;
+  border: 1.04px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12.5px;
+  flex: 1;
+  flex-grow: 1;
+  height: 58.35px;
+  position: relative;
 }
 
-.error-message {
+.SignUpPage-frame-7 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.SignUpPage-check-box {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.SignUpPage-p {
+  color: var(--variable-collection-sub-black);
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16.7px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+}
+
+.SignUpPage-span {
+  color: #ff0000;
+}
+
+.SignUpPage-text-wrapper-4 {
+  color: #333333;
+}
+
+.SignUpPage-error-message-2 {
   color: red;
   font-size: 16px;
   font-weight: 450;
   font-family: "Pretendard Variable-Regular", Helvetica;
   padding-top: 5px;
-  padding-left: 10px;
   padding-bottom: 5px;
 }
 
-.error-message-2 {
-  color: red;
-  font-size: 16px;
-  font-weight: 450;
+.SignUpPage-frame-8 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.SignUpPage-frame-9 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--variable-collection-sub-black);
+  border-radius: 500px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  padding: 16px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.SignUpPage-text-wrapper-5 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  width: fit-content;
+}
+
+.SignUpPage-div-2 {
+  color: #666666;
   font-family: "Pretendard Variable-Regular", Helvetica;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
 }
 
-.confirmation-overlay {
+.SignUpPage-text-wrapper-6 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  color: #333333;
+  text-decoration: underline;
+}
+
+.SignUpPage-confirmation-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -511,7 +456,7 @@
   z-index: 1000;
 }
 
-.confirmation-box {
+.SignUpPage-confirmation-box {
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -519,7 +464,7 @@
   z-index: 1001;
 }
 
-.B-frame-17 {
+.SignUpPage-frame-10 {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -529,7 +474,7 @@
   position: relative;
 }
 
-.B-text-wrapper-12 {
+.SignUpPage-text-wrapper-7 {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 24px;
@@ -541,7 +486,7 @@
   width: fit-content;
 }
 
-.B-text-wrapper-13 {
+.SignUpPage-text-wrapper-8 {
   color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 16px;
@@ -553,7 +498,7 @@
   width: fit-content;
 }
 
-.B-frame-18 {
+.SignUpPage-frame-11 {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -562,7 +507,7 @@
   position: relative;
 }
 
-.B-frame-19 {
+.SignUpPage-frame-12 {
   align-items: center;
   background-color: var(--variable-collection-gray-3);
   border-radius: 8px;
@@ -574,7 +519,7 @@
   position: relative;
 }
 
-.B-text-wrapper-14 {
+.SignUpPage-text-wrapper-9 {
   background-color: transparent;
   border: none;
   cursor: pointer;

@@ -148,57 +148,57 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   };
 
   return (
-    <form className="a" onSubmit={handleSubmit}>
-      <div className="sign-up">
-        <div className="content">
-          <div className="frame">
-            <div className="div">
-              <div className="frame-2">
-                <div className="text-field">
-                  <div className="label-wrapper">
-                    <div className="label">이름(실명)</div>
+    <form className="SignUpPage" onSubmit={handleSubmit}>
+      <div className="SignUpPage-sign-up">
+        <div className="SignUpPage-content">
+          <div className="SignUpPage-frame">
+            <div className="SignUpPage-div">
+              <div className="SignUpPage-frame-2">
+                <div className="SignUpPage-text-field">
+                  <div className="SignUpPage-label-wrapper">
+                    <div className="SignUpPage-label">이름(실명)</div>
                   </div>
-                  <input className={`text-field-2 ${errors.name ? 'error' : ''}`}
+                  <input className={`SignUpPage-text-field-2 ${errors.name ? 'SignUpPage-error' : ''}`}
                     type="text"
                     name="name" 
                     value={formData.name}
                     placeholder='이름 입력' 
                     onChange={handleChange}
                   />
-                  {errors.name && <p className="error-message">{errors.name}</p>}
+                  {errors.name && <p className="SignUpPage-error-message">{errors.name}</p>}
                 </div>
-                <div className="text-field">
-                  <div className="label-wrapper">
-                    <div className="label">아이디</div>
+                <div className="SignUpPage-text-field">
+                  <div className="SignUpPage-label-wrapper">
+                    <div className="SignUpPage-label">아이디</div>
                   </div>
-                  <div className="frame-3">
-                    <input className={`text-field-3 ${isDuplicate ? 'duplicate' : ''} ${errors.id ? 'error' : ''}`}
+                  <div className="SignUpPage-frame-3">
+                    <input className={`SignUpPage-text-field-3 ${isDuplicate ? 'SignUpPage-duplicate' : ''} ${errors.id ? 'SignUpPage-error' : ''}`}
                       type="text"
                       name="id"
                       value={formData.id}
                       placeholder='4~20자리 / 영문, 숫자 조합'
                       onChange={handleChange}
                     />
-                    <div className="div-wrapper">
-                      <button type="button" onClick={checkDuplicateId} className="text-wrapper">중복 확인</button>
+                    <div className="SignUpPage-div-wrapper">
+                      <button type="button" onClick={checkDuplicateId} className="SignUpPage-text-wrapper">중복 확인</button>
                     </div>
                   </div>
-                  {idCheckMessage && <p className={`id-check-message ${isDuplicate ? 'duplicate' : 'available'}`}>{idCheckMessage}</p>}
-                  {errors.id && <p className="error-message">{errors.id}</p>}
-                  {errors.idCheck && <p className="error-message">{errors.idCheck}</p>}
+                  {idCheckMessage && <p className={`SignUpPage-id-check-message ${isDuplicate ? 'SignUpPage-duplicate' : 'SignUpPage-available'}`}>{idCheckMessage}</p>}
+                  {errors.id && <p className="SignUpPage-error-message">{errors.id}</p>}
+                  {errors.idCheck && <p className="SignUpPage-error-message">{errors.idCheck}</p>}
                 </div>
-                <div className="text-field">
-                  <div className="label-wrapper">
-                    <div className="label">비밀번호</div>
+                <div className="SignUpPage-text-field">
+                  <div className="SignUpPage-label-wrapper">
+                    <div className="SignUpPage-label">비밀번호</div>
                   </div>
-                  <input className={`text-field-2 ${errors.password ? 'error' : ''}`}
+                  <input className={`SignUpPage-text-field-2 ${errors.password ? 'SignUpPage-error' : ''}`}
                     type="password"
                     name="password"
                     value={formData.password}
                     placeholder='8~16자리 / 대소문자, 숫자, 특수문자 조합'
                     onChange={handleChange}
                   />
-                  {errors.password && <p className="error-message">{errors.password}</p>}
+                  {errors.password && <p className="SignUpPage-error-message">{errors.password}</p>}
                 </div>
               </div>
               <img
@@ -206,48 +206,48 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 alt="Line"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/line-3.svg"
               />
-              <div className="A-frame-3">
-                <div className="A-text-field">
-                  <div className="A-frame-4">
-                    <div className="A-text-field-wrapper">
-                      <div className={`A-text-field-3 ${errors.job ? 'error' : ''}`} onClick={toggleJob}>
-                        <div className="A-text-wrapper">{selectedJob}</div>
+              <div className="SignUpPage-frame-4">
+                <div className="SignUpPage-text-field-4">
+                  <div className="SignUpPage-frame-5">
+                    <div className="SignUpPage-text-field-wrapper">
+                      <div className={`SignUpPage-text-field-5 ${errors.job ? 'SignUpPage-error' : ''}`} onClick={toggleJob}>
+                        <div className="SignUpPage-text-wrapper-2">{selectedJob}</div>
                         <img
-                          className={showJob ? "A-arrow-drop-up" : "arrow-drop-down"}
+                          className={showJob ? "SignUpPage-arrow-drop-up" : "SignUpPage-arrow-drop-down"}
                           alt={showJob ? "Arrow drop up" : "Arrow drop down"}
                           src={showJob ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668ccfaca48cce45c95d9d30/img/arrow-drop-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"}
                         />
                       </div>
                       {showJob && (
-                        <div className="A-frame-6">
+                        <div className="SignUpPage-frame-6">
                           {jobList.map((job, index) => (
-                            <div key={index} className="A-text-wrapper-2" onClick={() => selectJob(job)}>
+                            <div key={index} className="SignUpPage-text-wrapper-3" onClick={() => selectJob(job)}>
                               {job}
                             </div>
                           ))}
                         </div>
                       )}
-                    {errors.job && <p className="error-message">{errors.job}</p>}
+                      {errors.job && <p className="SignUpPage-error-message">{errors.job}</p>}
                     </div>
-                    <div className="A-text-field-wrapper">
-                      <div className={`A-text-field-3 ${errors.keyword ? 'error' : ''}`} onClick={toggleJobKeyword}>
-                        <div className="A-text-wrapper">{selectedJobKeyword}</div>
+                    <div className="SignUpPage-text-field-wrapper">
+                      <div className={`SignUpPage-text-field-5 ${errors.keyword ? 'SignUpPage-error' : ''}`} onClick={toggleJobKeyword}>
+                        <div className="SignUpPage-text-wrapper-2">{selectedJobKeyword}</div>
                         <img
-                          className={showJobKeyword ? "A-arrow-drop-up" : "arrow-drop-down"}
+                          className={showJobKeyword ? "SignUpPage-arrow-drop-up" : "SignUpPage-arrow-drop-down"}
                           alt={showJobKeyword ? "Arrow drop up" : "Arrow drop down"}
                           src={showJobKeyword ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668ccfaca48cce45c95d9d30/img/arrow-drop-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"}
                         />
                       </div>
                       {showJobKeyword && (
-                        <div className="A-frame-6">
+                        <div className="SignUpPage-frame-6">
                           {jobKeywordList.map((keyword, index) => (
-                            <div key={index} className="A-text-wrapper-2" onClick={() => selectJobKeyword(keyword)}>
+                            <div key={index} className="SignUpPage-text-wrapper-3" onClick={() => selectJobKeyword(keyword)}>
                               {keyword}
                             </div>
                           ))}
                         </div>
                       )}
-                      {errors.keyword && <p className="error-message">{errors.keyword}</p>}
+                      {errors.keyword && <p className="SignUpPage-error-message">{errors.keyword}</p>}
                     </div>
                   </div>
                 </div>
@@ -257,49 +257,49 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 alt="Line"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/line-3.svg"
               />
-              <div className="frame-2">
-                <div className="text-field">
-                  <div className="label-wrapper">
-                    <div className="label">이메일 인증</div>
+              <div className="SignUpPage-frame-2">
+                <div className="SignUpPage-text-field">
+                  <div className="SignUpPage-label-wrapper">
+                    <div className="SignUpPage-label">이메일 인증</div>
                   </div>
-                  <div className="frame-3">
-                    <input className={`text-field-5 ${errors.email ? 'error' : ''}`}
+                  <div className="SignUpPage-frame-3">
+                    <input className={`SignUpPage-text-field-6 ${errors.email ? 'SignUpPage-error' : ''}`}
                       type="email"
                       name="email"
                       value={formData.email}
                       placeholder='chichipokpok@gmail.com'
                       onChange={handleChange}
                     />
-                    <div className="div-wrapper">
-                      <button type="button" className="text-wrapper">인증번호 전송</button>
+                    <div className="SignUpPage-div-wrapper">
+                      <button type="button" className="SignUpPage-text-wrapper">인증번호 전송</button>
                     </div>
                   </div>
-                  {errors.email && <p className="error-message">{errors.email}</p>}
+                  {errors.email && <p className="SignUpPage-error-message">{errors.email}</p>}
                 </div>
-                <div className="text-field">
-                  <div className="label-wrapper">
-                    <div className="label">인증번호 입력</div>
+                <div className="SignUpPage-text-field">
+                  <div className="SignUpPage-label-wrapper">
+                    <div className="SignUpPage-label">인증번호 입력</div>
                   </div>
-                  <div className="frame-3">
-                    <input className={`text-field-5 ${errors.emailCode ? 'error' : ''}`}
+                  <div className="SignUpPage-frame-3">
+                    <input className={`SignUpPage-text-field-6 ${errors.emailCode ? 'SignUpPage-error' : ''}`}
                       type="text"
                       name="emailCode"
                       value={formData.emailCode}
                       onChange={handleChange}
                     />
-                    <div className="div-wrapper">
-                      <button type="button" className="text-wrapper">확인</button>
+                    <div className="SignUpPage-div-wrapper">
+                      <button type="button" className="SignUpPage-text-wrapper">확인</button>
                     </div>
                   </div>
-                  {errors.emailCode && <p className="error-message">{errors.emailCode}</p>}
+                  {errors.emailCode && <p className="SignUpPage-error-message">{errors.emailCode}</p>}
                 </div>
               </div>
             </div>
-            <div className="frame-5">
-              <div className="check-box">
-                <p className="p">
-                  <span className="span">[필수]</span>
-                  <span className="text-wrapper-2"> 만 15세 이상입니다</span>
+            <div className="SignUpPage-frame-7">
+              <div className="SignUpPage-check-box">
+                <p className="SignUpPage-p">
+                  <span className="SignUpPage-span">[필수]</span>
+                  <span className="SignUpPage-text-wrapper-4"> 만 15세 이상입니다</span>
                 </p>
                 <input
                   type="checkbox"
@@ -308,11 +308,11 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   onChange={handleChange}
                 />
               </div>
-              {errors.isAdult && <p className="error-message-2">{errors.isAdult}</p>}
-              <div className="check-box">
-                <p className="p">
-                  <span className="span">[필수]</span>
-                  <span className="text-wrapper-2"> 이용약관 동의</span>
+              {errors.isAdult && <p className="SignUpPage-error-message-2">{errors.isAdult}</p>}
+              <div className="SignUpPage-check-box">
+                <p className="SignUpPage-p">
+                  <span className="SignUpPage-span">[필수]</span>
+                  <span className="SignUpPage-text-wrapper-4"> 이용약관 동의</span>
                 </p>
                 <input
                   type="checkbox"
@@ -321,11 +321,11 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   onChange={handleChange}
                 />
               </div>
-              {errors.isTerms && <p className="error-message-2">{errors.isTerms}</p>}
-              <div className="check-box">
-                <p className="p">
-                  <span className="span">[필수]</span>
-                  <span className="text-wrapper-2"> 개인정보 수집 및 이용 동의</span>
+              {errors.isTerms && <p className="SignUpPage-error-message-2">{errors.isTerms}</p>}
+              <div className="SignUpPage-check-box">
+                <p className="SignUpPage-p">
+                  <span className="SignUpPage-span">[필수]</span>
+                  <span className="SignUpPage-text-wrapper-4"> 개인정보 수집 및 이용 동의</span>
                 </p>
                 <input
                   type="checkbox"
@@ -334,11 +334,11 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   onChange={handleChange}
                 />
               </div>
-              {errors.isPrivacy && <p className="error-message-2">{errors.isPrivacy}</p>}
-              <div className="check-box">
-                <p className="p">
-                  <span className="span">[필수]</span>
-                  <span className="text-wrapper-2"> AI모의면접 진행 시 귀하의 목소리가 녹음됩니다.</span>
+              {errors.isPrivacy && <p className="SignUpPage-error-message-2">{errors.isPrivacy}</p>}
+              <div className="SignUpPage-check-box">
+                <p className="SignUpPage-p">
+                  <span className="SignUpPage-span">[필수]</span>
+                  <span className="SignUpPage-text-wrapper-4"> AI모의면접 진행 시 귀하의 목소리가 녹음됩니다.</span>
                 </p>
                 <input
                   type="checkbox"
@@ -347,15 +347,15 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   onChange={handleChange}
                 />
               </div>
-              {errors.isVoice && <p className="error-message-2">{errors.isVoice}</p>}
+              {errors.isVoice && <p className="SignUpPage-error-message-2">{errors.isVoice}</p>}
             </div>
-            <div className="frame-6">
-              <div className="frame-7">
-                <button type="submit" className="text-wrapper-3">회원가입</button>
+            <div className="SignUpPage-frame-8">
+              <div className="SignUpPage-frame-9">
+                <button type="submit" className="SignUpPage-text-wrapper-5">회원가입</button>
               </div>
-              <p className="div-2">
-                <span className="text-wrapper-2">이미 가입된 회원이신가요? </span>
-                <button className="text-wrapper-4" onClick={goToLogin}>로그인</button>
+              <p className="SignUpPage-div-2">
+                <span className="SignUpPage-text-wrapper-4">이미 가입된 회원이신가요? </span>
+                <button className="SignUpPage-text-wrapper-6" onClick={goToLogin}>로그인</button>
               </p>
             </div>
           </div>
@@ -363,18 +363,18 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
       </div>
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} />
       {showConfirmation && (
-        <div className="confirmation-overlay">
-          <div className="confirmation-box">
-            <div className="B-frame-17">
-              <div className="B-text-wrapper-12">회원가입 완료</div>
-              <p className="B-text-wrapper-13">
+        <div className="SignUpPage-confirmation-overlay">
+          <div className="SignUpPage-confirmation-box">
+            <div className="SignUpPage-frame-10">
+              <div className="SignUpPage-text-wrapper-7">회원가입 완료</div>
+              <p className="SignUpPage-text-wrapper-8">
                 치치폭폭 회원이 되셨습니다!
                 <br />
                 환영합니다^^
               </p>
-              <div className="B-frame-18">
-                <div className="B-frame-19" onClick={() => setShowConfirmation(false)}>
-                  <div className="B-text-wrapper-14" onClick={goToLogin}>로그인 이동</div>
+              <div className="SignUpPage-frame-11">
+                <div className="SignUpPage-frame-12" onClick={() => setShowConfirmation(false)}>
+                  <div className="SignUpPage-text-wrapper-9" onClick={goToLogin}>로그인 이동</div>
                 </div>
               </div>
             </div>
