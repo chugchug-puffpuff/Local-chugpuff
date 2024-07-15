@@ -1,7 +1,7 @@
 import React from 'react';
 import './InterviewStart.css';
 
-const InterviewStart = ({ canStartInterview }) => {
+const InterviewStart = ({ canStartInterview, startInterview }) => {
   return (
     <div className="InterviewStart-frame">
       <div className="InterviewStart-div">
@@ -13,7 +13,7 @@ const InterviewStart = ({ canStartInterview }) => {
         </div>
       </div>
       <div className="InterviewStart-frame-3">
-        <div className={`InterviewStart-div-wrapper ${canStartInterview ? 'active' : ''}`}>
+        <div className={`InterviewStart-div-wrapper ${canStartInterview ? 'active' : ''}`} onClick={canStartInterview ? startInterview : null}>
           <div className="InterviewStart-text-wrapper-4">면접 시작하기</div>
         </div>
         <p className="InterviewStart-text-wrapper-5">면접 유형과 피드백 방식을 선택해주세요.</p>

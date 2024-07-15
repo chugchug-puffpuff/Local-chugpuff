@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './InterviewSelect.css';
 
-const InterviewSelect = ({ setCanStartInterview }) => {
-  const [selectedType, setSelectedType] = useState(null);
-  const [selectedFeedback, setSelectedFeedback] = useState(null);
+const InterviewSelect = ({ setCanStartInterview, setSelectedType, setSelectedFeedback }) => {
+  const [selectedType, setSelectedTypeState] = useState(null);
+  const [selectedFeedback, setSelectedFeedbackState] = useState(null);
 
   const handleSelectType = (type) => {
+    setSelectedTypeState(type);
     setSelectedType(type);
   };
 
   const handleSelectFeedback = (feedback) => {
+    setSelectedFeedbackState(feedback);
     setSelectedFeedback(feedback);
   };
 
@@ -34,26 +36,26 @@ const InterviewSelect = ({ setCanStartInterview }) => {
         </div>
         <div className="InterviewSelect-frame-3">
           <div
-            className={`InterviewSelect-frame-4 ${selectedType === 'noFormat' ? 'selected' : ''}`}
-            onClick={() => handleSelectType('noFormat')}
+            className={`InterviewSelect-frame-4 ${selectedType === '형식 없음' ? 'selected' : ''}`}
+            onClick={() => handleSelectType('형식 없음')}
           >
             <div className="InterviewSelect-text-wrapper-2">형식 없음</div>
           </div>
           <div
-            className={`InterviewSelect-frame-4 ${selectedType === 'selfIntro' ? 'selected' : ''}`}
-            onClick={() => handleSelectType('selfIntro')}
+            className={`InterviewSelect-frame-4 ${selectedType === '자기소개서 기반' ? 'selected' : ''}`}
+            onClick={() => handleSelectType('자기소개서 기반')}
           >
             <div className="InterviewSelect-text-wrapper-2">자기소개서 기반</div>
           </div>
           <div
-            className={`InterviewSelect-frame-4 ${selectedType === 'personality' ? 'selected' : ''}`}
-            onClick={() => handleSelectType('personality')}
+            className={`InterviewSelect-frame-4 ${selectedType === '인성 면접' ? 'selected' : ''}`}
+            onClick={() => handleSelectType('인성 면접')}
           >
             <div className="InterviewSelect-text-wrapper-2">인성 면접</div>
           </div>
           <div
-            className={`InterviewSelect-frame-4 ${selectedType === 'job' ? 'selected' : ''}`}
-            onClick={() => handleSelectType('job')}
+            className={`InterviewSelect-frame-4 ${selectedType === '직무 면접' ? 'selected' : ''}`}
+            onClick={() => handleSelectType('직무 면접')}
           >
             <div className="InterviewSelect-text-wrapper-2">직무 면접</div>
           </div>
@@ -70,8 +72,8 @@ const InterviewSelect = ({ setCanStartInterview }) => {
         </div>
         <div className="InterviewSelect-frame-6">
           <div
-            className={`InterviewSelect-frame-wrapper ${selectedFeedback === 'immediate' ? 'selected' : ''}`}
-            onClick={() => handleSelectFeedback('immediate')}
+            className={`InterviewSelect-frame-wrapper ${selectedFeedback === '즉시 피드백' ? 'selected' : ''}`}
+            onClick={() => handleSelectFeedback('즉시 피드백')}
           >
             <div className="InterviewSelect-frame-7">
               <img
@@ -89,8 +91,8 @@ const InterviewSelect = ({ setCanStartInterview }) => {
             </div>
           </div>
           <div
-            className={`InterviewSelect-frame-wrapper ${selectedFeedback === 'full' ? 'selected' : ''}`}
-            onClick={() => handleSelectFeedback('full')}
+            className={`InterviewSelect-frame-wrapper ${selectedFeedback === '전체 피드백' ? 'selected' : ''}`}
+            onClick={() => handleSelectFeedback('전체 피드백')}
           >
             <div className="InterviewSelect-frame-9">
               <img

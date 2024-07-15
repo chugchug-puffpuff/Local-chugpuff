@@ -97,6 +97,8 @@
 
 .InterviewStart-div-wrapper.active {
   background-color: var(--variable-collection-button-navy);
+  cursor: pointer;
+  padding: 0;
 }
 
 .InterviewStart-text-wrapper-4 {
