@@ -15,7 +15,6 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     email: '',
     emailCode: '',
     isAdult: false,
-    isTerms: false,
     isPrivacy: false,
     isVoice: false,
   });
@@ -36,9 +35,17 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     setJobList(uniqueJobs);
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { // 경고문구가 출력된 상태에서 입력란에 값을 입력 시 경고문구 사라짐 
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+
+    if (name === 'name') {
+      if (value.length === 0) {
+        setErrors({ ...errors, name: '이름을 입력해주세요' });
+      } else {
+        setErrors({ ...errors, name: '' });
+      }
+    }
 
     if (name === 'id') {
       if (value.length === 0 || !/^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/.test(value)) {
@@ -64,6 +71,18 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
         setErrors({ ...errors, email: '' });
       }
     }
+
+    if (name === 'emailCode') {
+      if (value.length === 0) {
+        setErrors({ ...errors, emailCode: '인증번호를 입력해주세요' });
+      } else {
+        setErrors({ ...errors, emailCode: '' });
+      }
+    }
+
+    if (type === 'checkbox') {
+      setErrors({ ...errors, [name]: '' });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -78,7 +97,6 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     if (!formData.email) newErrors.email = '이메일을 입력해주세요';
     if (!formData.emailCode) newErrors.emailCode = '인증번호를 입력해주세요';
     if (!formData.isAdult) newErrors.isAdult = '만 15세 이상임을 확인해주세요';
-    if (!formData.isTerms) newErrors.isTerms = '이용약관에 동의해주세요';
     if (!formData.isPrivacy) newErrors.isPrivacy = '개인정보 수집 및 이용에 동의해주세요';
     if (!formData.isVoice) newErrors.isVoice = 'AI모의면접 진행 시 목소리 녹음에 동의해주세요';
     if (!idCheckMessage || isDuplicate) newErrors.idCheck = '아이디 중복 확인을 해주세요';
@@ -309,19 +327,6 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 />
               </div>
               {errors.isAdult && <p className="SignUpPage-error-message-2">{errors.isAdult}</p>}
-              <div className="SignUpPage-check-box">
-                <p className="SignUpPage-p">
-                  <span className="SignUpPage-span">[필수]</span>
-                  <span className="SignUpPage-text-wrapper-4"> 이용약관 동의</span>
-                </p>
-                <input
-                  type="checkbox"
-                  name="isTerms"
-                  checked={formData.isTerms}
-                  onChange={handleChange}
-                />
-              </div>
-              {errors.isTerms && <p className="SignUpPage-error-message-2">{errors.isTerms}</p>}
               <div className="SignUpPage-check-box">
                 <p className="SignUpPage-p">
                   <span className="SignUpPage-span">[필수]</span>
