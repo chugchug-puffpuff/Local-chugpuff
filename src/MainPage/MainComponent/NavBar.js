@@ -3,7 +3,7 @@ import './NavBar.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NavBar = ({ authenticate, setAuthenticate, userName }) => {
+const NavBar = ({ authenticate, userName  }) => {
   const navigate = useNavigate()
   const [showUserInfo, setShowUserInfo] = useState(false)
 

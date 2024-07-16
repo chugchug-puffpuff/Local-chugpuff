@@ -150,7 +150,9 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   };
 
   const toggleJobKeyword = () => {
-    setShowJobKeyword(!showJobKeyword);
+    if (selectedJob !== '희망 직무') {
+      setShowJobKeyword(!showJobKeyword);
+    }
     if (errors.keyword) {
       setErrors({ ...errors, keyword: '' });
     }

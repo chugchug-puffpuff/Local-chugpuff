@@ -23,17 +23,14 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
   let oneLetter;
   if (selectedType === '형식 없음') {
     oneLetter = '없';
-  } else {
+  } else if (selectedType) {
     oneLetter = selectedType.charAt(0);
+  } else {
+    oneLetter = '';
   }
 
   return (
     <div className="InterviewPlay-overlap-group">
-      <img
-        className="InterviewPlay-ellipse"
-        alt="Ellipse"
-        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/ellipse-1.svg"
-      />
       <div className="InterviewPlay-frame">
         <div className="InterviewPlay-div">
           <div className="InterviewPlay-frame-2">
@@ -101,11 +98,18 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
           </div>
           <div className="InterviewPlay-frame-2">
             <div className="InterviewPlay-frame-3">
-              <img
-                className="InterviewPlay-account-circle"
-                alt="Account circle"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/account-circle-1.svg"
-              />
+              <div className="InterviewPlay-image-wrapper">
+                <img
+                  className="InterviewPlay-account-circle"
+                  alt="Account circle"
+                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/account-circle-1.svg"
+                />
+                <img
+                  className="InterviewPlay-ellipse"
+                  alt="Ellipse"
+                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/ellipse-1.svg"
+                />
+              </div>
               <div className="InterviewPlay-text-wrapper-2">{userName}</div>
             </div>
             <p className="InterviewPlay-p">
@@ -145,7 +149,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
                 <img
                   className="InterviewPlay-img"
                   alt="Pause circle"
-                  src={isPaused ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/play-circle.svg" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/pause-circle.svg"}
+                  src={isPaused ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66962e4acda28174913bd1a3/img/play-circle.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/pause-circle.svg"}
                 />
                 <div className="InterviewPlay-text-wrapper-6">{isPaused ? '다시시작' : '일시중지'}</div>
               </div>

@@ -1,0 +1,17 @@
+.AIInterviewPage {
+  background-color: #ffffff;
+  height: 1080px;
+  position: relative;
+  width: 1920px;
+}
+
+.AIInterviewPage-view {
+  align-items: flex-start;
+  display: flex;
+  gap: 56px;
+  height: 212px;
+  left: 528px;
+  position: absolute;
+  top: 176px;
+  width: 864px;
+}

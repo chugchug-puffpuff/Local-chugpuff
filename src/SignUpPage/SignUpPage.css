@@ -93,6 +93,12 @@
   width: 100%;
 }
 
+input::placeholder {
+  font-size: 18px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  color: var(--variable-collection-gray-2);
+}
+
 .SignUpPage-error {
   border: 2px solid red !important;
 }
@@ -347,6 +353,7 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
+  margin: 3px 0;
 }
 
 .SignUpPage-p {
