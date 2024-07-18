@@ -7,6 +7,7 @@ import LoginPage from './LoginPage/LoginPage.js';
 import SignUpPage from './SignUpPage/SignUpPage.js';
 import MyPage from './MyPage/MyPage.js';
 import PrivateRoute from './Route/PrivateRoute';
+import ScrollToTop from './Route/ScrollToTop.js';
 import AIInterviewExecution from './AIInterviewPage/AIInterviewStart.js';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/login" element={<LoginPage setAuthenticate={setAuthenticate} authenticate={authenticate} setUserName={setUserName} userName={userName}/>} />
