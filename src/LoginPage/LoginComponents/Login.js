@@ -1,32 +1,28 @@
-//import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
-import userData from '../../TestData/userData.json';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 const Login = ({ setAuthenticate, setUserName }) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
-  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    setUsers(userData);
-  }, []);
-
-  const loginUser = (event) => {
+  const loginUser = async (event) => {
     event.preventDefault(); // 기본 이벤트 방지
-    const user = users.find(user => user.id === userId && user.password === password);
-    if (user) {
+    try {
+      const response = await axios.post('http://localhost:4000/api/login', { userId, password });
+      const { token, name } = response.data;
+      localStorage.setItem('token', token);
       setAuthenticate(true); // 로그인 성공 시 인증 상태를 true로 변경
-      setUserName(user.name);
-      navigate(`/${user.id}`); // 메인 페이지로 이동
-    } else {
+      setUserName(name);
+      navigate(`/${userId}`); // 메인 페이지로 이동
+    } catch (error) {
+      console.error('로그인 중 오류 발생:', error);
       setIsInvalid(true);
     }
-  }
+  };
 
   const handleUserIdChange = (e) => { // 아이디 입력 시 경고문구 제거
     setUserId(e.target.value);
@@ -39,8 +35,8 @@ const Login = ({ setAuthenticate, setUserName }) => {
   };
 
   const goToSignUp = () => {
-    navigate('/signup')
-  }
+    navigate('/signup');
+  };
 
   return (
     <form onSubmit={loginUser} className="Login-content-wrapper">
@@ -85,7 +81,7 @@ const Login = ({ setAuthenticate, setUserName }) => {
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default Login;

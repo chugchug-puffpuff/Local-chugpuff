@@ -19,6 +19,9 @@ const NavBar = ({ authenticate, userName  }) => {
   const goToAIInterview = () => {
     navigate('/aiinterview')
   }
+  const goToMyActivities = () => {
+    navigate('/myactivities')
+  }
 
   const toggleUserInfo = () => {
     setShowUserInfo(!showUserInfo)
@@ -44,9 +47,9 @@ const NavBar = ({ authenticate, userName  }) => {
                 </button>
                 {showUserInfo && (
                   <div className="NavBar-view-2">
-                    <div className="NavBar-text-wrapper-2">내 정보 변경</div>
+                    <div className="NavBar-text-wrapper-3">내 정보 변경</div>
                     <div className="NavBar-text-wrapper-3">스크랩한 공고</div>
-                    <div className="NavBar-text-wrapper-3">내가 작성한 게시물</div>
+                    <div className="NavBar-text-wrapper-3" onClick={goToMyActivities}>내가 작성한 게시물</div>
                     <div className="NavBar-text-wrapper-3">내가 작성한 댓글</div>
                     <div className="NavBar-text-wrapper-3">좋아요 누른 게시물</div>
                   </div>

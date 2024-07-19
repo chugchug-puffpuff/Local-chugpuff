@@ -1,7 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./MyPage.css";
+import NavBar from "../MainPage/MainComponent/NavBar";
 
-export const MyPage = () => {
+export const MyPage = ({ authenticate, setAuthenticate, userName }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      // JWT 토큰 삭제
+      localStorage.removeItem("token");
+      setAuthenticate(false);
+      navigate("/"); // 메인 페이지로 이동
+    } catch (error) {
+      console.error("로그아웃 중 오류 발생:", error);
+    }
+  };
+
   return (
     <div className="element">
       <div className="frame">
@@ -107,8 +122,8 @@ export const MyPage = () => {
           />
           <div className="frame-17">
             <div className="frame-18">
-              <div className="text-wrapper-8">백기석</div>
-              <div className="text-wrapper-9">linsadfk0543</div>
+              <div className="text-wrapper-8">{userName}</div>
+              <div className="text-wrapper-9">aaaa1111</div>
             </div>
             <div className="frame-19">
               <div className="text-wrapper-10">내 정보 변경</div>
@@ -142,7 +157,7 @@ export const MyPage = () => {
             </div>
           </div>
         </div>
-        <div className="frame-24">
+        <div className="frame-24" onClick={handleLogout}>
           <img
             className="line-3"
             alt="Line"
@@ -151,45 +166,7 @@ export const MyPage = () => {
           <div className="text-wrapper-13">로그아웃</div>
         </div>
       </div>
-      <div className="view-wrapper">
-        <div className="view-2">
-          <div className="navbar">
-            <div className="text-wrapper-14">AI 모의면접</div>
-            <div className="text-wrapper-14">자기소개서 첨삭</div>
-            <div className="text-wrapper-14">취업공고</div>
-            <div className="text-wrapper-14">커뮤니티</div>
-            <div className="text-wrapper-14">캘린더</div>
-          </div>
-          <div className="view-3">
-            <div className="view-4" />
-          </div>
-          <div className="div-2">
-            <div className="frame-25">
-              <p className="div-3">
-                <span className="span">백기석</span>
-                <span className="text-wrapper-15"> 님</span>
-              </p>
-              <img
-                className="img"
-                alt="Arrow drop down"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"
-              />
-            </div>
-            <img
-              className="notifications"
-              alt="Notifications"
-              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/notifications@2x.png"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="view-5">
-        <div className="text-wrapper-16">내 정보 변경</div>
-        <div className="text-wrapper-17">스크랩한 공고</div>
-        <div className="text-wrapper-17">내가 작성한 게시물</div>
-        <div className="text-wrapper-17">내가 작성한 댓글</div>
-        <div className="text-wrapper-17">좋아요 누른 게시물</div>
-      </div>
+      <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
   );
 };

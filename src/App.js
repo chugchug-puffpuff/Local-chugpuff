@@ -27,7 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/aiinterview" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/aiinterview/start" element={<AIInterviewExecution authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/myactivities" element={<MyPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         {authenticate && <Route path="/:userId" element={<MainPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />}
       </Routes>
     </div>
