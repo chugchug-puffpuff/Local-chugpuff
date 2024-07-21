@@ -12,8 +12,8 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     password: '',
     job: '',
     keyword: '',
-    email: '',
-    emailCode: '',
+    // email: '',
+    // emailCode: '',
     isAdult: false,
     isPrivacy: false,
     isVoice: false,
@@ -64,21 +64,21 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
       }
     }
 
-    if (name === 'email') {
-      if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value)) {
-        setErrors({ ...errors, email: '이메일 형식이 아닙니다' });
-      } else {
-        setErrors({ ...errors, email: '' });
-      }
-    }
+    // if (name === 'email') {
+    //   if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value)) {
+    //     setErrors({ ...errors, email: '이메일 형식이 아닙니다' });
+    //   } else {
+    //     setErrors({ ...errors, email: '' });
+    //   }
+    // }
 
-    if (name === 'emailCode') {
-      if (value.length === 0) {
-        setErrors({ ...errors, emailCode: '인증번호를 입력해주세요' });
-      } else {
-        setErrors({ ...errors, emailCode: '' });
-      }
-    }
+    // if (name === 'emailCode') {
+    //   if (value.length === 0) {
+    //     setErrors({ ...errors, emailCode: '인증번호를 입력해주세요' });
+    //   } else {
+    //     setErrors({ ...errors, emailCode: '' });
+    //   }
+    // }
 
     if (type === 'checkbox') {
       setErrors({ ...errors, [name]: '' });
@@ -94,8 +94,8 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     if (!formData.password) newErrors.password = '비밀번호를 입력해주세요';
     if (selectedJob === '희망 직무') newErrors.job = '희망 직무를 선택해주세요';
     if (selectedJobKeyword === '직무 키워드') newErrors.keyword = '직무 키워드를 선택해주세요';
-    if (!formData.email) newErrors.email = '이메일을 입력해주세요';
-    if (!formData.emailCode) newErrors.emailCode = '인증번호를 입력해주세요';
+    // if (!formData.email) newErrors.email = '이메일을 입력해주세요';
+    // if (!formData.emailCode) newErrors.emailCode = '인증번호를 입력해주세요';
     if (!formData.isAdult) newErrors.isAdult = '만 15세 이상임을 확인해주세요';
     if (!formData.isPrivacy) newErrors.isPrivacy = '개인정보 수집 및 이용에 동의해주세요';
     if (!formData.isVoice) newErrors.isVoice = 'AI모의면접 진행 시 목소리 녹음에 동의해주세요';
@@ -277,7 +277,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 alt="Line"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/line-3.svg"
               />
-              <div className="SignUpPage-frame-2">
+              {/* <div className="SignUpPage-frame-2">
                 <div className="SignUpPage-text-field">
                   <div className="SignUpPage-label-wrapper">
                     <div className="SignUpPage-label">이메일 인증</div>
@@ -313,7 +313,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                   </div>
                   {errors.emailCode && <p className="SignUpPage-error-message">{errors.emailCode}</p>}
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="SignUpPage-frame-7">
               <div className="SignUpPage-check-box">
