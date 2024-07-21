@@ -15,6 +15,13 @@ function App() {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const storedUserId = localStorage.getItem('userId'); // 로컬 스토리지에서 사용자 ID 가져오기
+    const storedUserName = localStorage.getItem('userName'); // 로컬 스토리지에서 사용자 이름 가져오기
+    if (token && storedUserId && storedUserName) {
+      setAuthenticate(true);
+      setUserName(storedUserName); // 사용자 이름 설정
+    }
     console.log("로그인 여부", authenticate);
   }, [authenticate]);
 
