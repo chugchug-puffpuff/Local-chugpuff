@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InterviewPlay.css';
 import interviewData from '../../TestData/interviewData.json';
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
 
 const TypingEffect = ({ text = '', speed, onComplete }) => {
   const [displayedText, setDisplayedText] = useState('');
@@ -14,9 +17,7 @@ const TypingEffect = ({ text = '', speed, onComplete }) => {
 
         if (count >= text.length - 1) {
           clearInterval(intervalId);
-          setTimeout(() => {
-            if (onComplete) onComplete(); // setTimeout을 사용하여 상태 업데이트를 지연시킴
-          }, 0);
+          if (onComplete) onComplete();
         }
         return result;
       });
@@ -33,49 +34,9 @@ const TypingEffect = ({ text = '', speed, onComplete }) => {
 const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes in seconds
   const [isPaused, setIsPaused] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [transcript, setTranscript] = useState('');
   const [typingComplete, setTypingComplete] = useState(false);
-  const recognitionRef = useRef(null);
-  const silenceTimeoutRef = useRef(null);
-  const [userAnswer, setUserAnswer] = useState('');
-
-  useEffect(() => {
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = true;
-      recognitionRef.current.interimResults = true;
-
-      recognitionRef.current.onresult = (event) => {
-        clearTimeout(silenceTimeoutRef.current);
-        silenceTimeoutRef.current = setTimeout(() => {
-          recognitionRef.current.stop();
-        }, 3000);
-
-        const transcript = Array.from(event.results)
-          .map(result => result[0])
-          .map(result => result.transcript)
-          .join('');
-        setUserAnswer(transcript);
-      };
-
-      recognitionRef.current.onend = () => {
-        if (!isPaused) {
-          recognitionRef.current.start();
-        }
-      };
-    }
-  }, [isPaused]);
-
-  useEffect(() => {
-    if (typingComplete && recognitionRef.current) {
-      recognitionRef.current.start();
-    }
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-    };
-  }, [typingComplete]);
 
   useEffect(() => {
     if (timeLeft > 0 && !isPaused) {
@@ -85,6 +46,40 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
       return () => clearInterval(timerId);
     }
   }, [timeLeft, isPaused]);
+
+  useEffect(() => {
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'ko-KR'; // 한국어 설정
+
+    recognition.onresult = (event) => {
+      let interimTranscript = '';
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          setTranscript((prev) => prev + event.results[i][0].transcript);
+        } else {
+          interimTranscript += event.results[i][0].transcript;
+        }
+      }
+    };
+
+    recognition.onerror = (event) => {
+      console.error('Speech recognition error', event.error);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+  }, []);
+
+  const handleListen = () => {
+    if (isListening) {
+      recognition.stop();
+    } else {
+      recognition.start();
+    }
+    setIsListening(!isListening);
+  };
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -129,7 +124,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
                 />
                 <div className="InterviewPlay-text-wrapper-2">{userName}</div>
               </div>
-              <p className="InterviewPlay-p">{userAnswer}</p>
+              <p className="InterviewPlay-p">{transcript}</p>
             </div>
           )}
         </div>
@@ -160,7 +155,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
               <div className="InterviewPlay-text-wrapper-5">{formatTime(timeLeft)}</div>
             </div>
             <div className="InterviewPlay-div-2">
-              <div className="InterviewPlay-view" onClick={() => setIsPaused(!isPaused)}>
+              <div className="InterviewPlay-view" onClick={() => { setIsPaused(!isPaused); handleListen() }}>
                 <img
                   className="InterviewPlay-img"
                   alt="Pause circle"
