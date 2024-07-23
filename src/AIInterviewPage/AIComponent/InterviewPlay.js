@@ -37,6 +37,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
   const recognitionRef = useRef(null);
   const silenceTimeoutRef = useRef(null);
   const [userAnswer, setUserAnswer] = useState('');
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   useEffect(() => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -47,9 +48,11 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
 
       recognitionRef.current.onresult = (event) => {
         clearTimeout(silenceTimeoutRef.current);
+        setIsSpeaking(true);
         silenceTimeoutRef.current = setTimeout(() => {
           recognitionRef.current.stop();
-        }, 3000);
+          setIsSpeaking(false);
+        }, 5000);
 
         const transcript = Array.from(event.results)
           .map(result => result[0])
@@ -117,11 +120,13 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
           {typingComplete && (
             <div className="InterviewPlay-frame-2">
               <div className="InterviewPlay-frame-3">
-                <img
-                  className="InterviewPlay-ellipse"
-                  alt="Ellipse"
-                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/ellipse-1.svg"
-                />
+                {isSpeaking && (
+                  <img
+                    className="InterviewPlay-ellipse"
+                    alt="Ellipse"
+                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/ellipse-1.svg"
+                  />
+                )}
                 <img
                   className="InterviewPlay-account-circle"
                   alt="Account circle"
