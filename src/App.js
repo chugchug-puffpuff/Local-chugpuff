@@ -8,7 +8,9 @@ import SignUpPage from './SignUpPage/SignUpPage.js';
 import MyPage from './MyPage/MyPage.js';
 import PrivateRoute from './Route/PrivateRoute';
 import ScrollToTop from './Route/ScrollToTop.js';
+import AIInterviewPage from './AIInterviewPage/AIInterviewPage.js';
 import AIInterviewExecution from './AIInterviewPage/AIInterviewStart.js';
+import SelfIntroductionPage from './SelfIntroduction/SelfIntroductionPage.js';
 
 function App() {
   const [authenticate, setAuthenticate] = useState(false);
@@ -32,8 +34,13 @@ function App() {
         <Route path="/" element={<MainPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/login" element={<LoginPage setAuthenticate={setAuthenticate} authenticate={authenticate} setUserName={setUserName} userName={userName}/>} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/aiinterview" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/aiinterview" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName}>
+          <AIInterviewPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
+        </PrivateRoute>} />
         <Route path="/aiinterview/start" element={<AIInterviewExecution authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/selfintroduction" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName}>
+          <SelfIntroductionPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
+        </PrivateRoute>} />
         <Route path="/myactivities" element={<MyPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         {authenticate && <Route path="/:userId" element={<MainPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />}
       </Routes>

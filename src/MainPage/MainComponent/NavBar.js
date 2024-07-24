@@ -17,8 +17,19 @@ const NavBar = ({ authenticate, userName  }) => {
     navigate('/signup')
   }
   const goToAIInterview = () => {
-    navigate('/aiinterview')
+    if (authenticate) {
+      navigate('/aiinterview');
+    } else {
+      navigate('/login', { state: { from: '/aiinterview' } });
+    }
   }
+  const goToSelfIntroduction = () => {
+    if (authenticate) {
+      navigate('/selfintroduction');
+    } else {
+      navigate('/login', { state: { from: '/selfintroduction' } });
+    }
+  };
   const goToMyActivities = () => {
     navigate('/myactivities')
   }
@@ -69,7 +80,7 @@ const NavBar = ({ authenticate, userName  }) => {
           </div>
           <div className="NavBar-frame-2">
             <button className="NavBar-text-wrapper-4" onClick={goToAIInterview}>AI 모의면접</button>
-            <div className="NavBar-text-wrapper-4">자기소개서 첨삭</div>
+            <button className="NavBar-text-wrapper-4" onClick={goToSelfIntroduction}>자기소개서 첨삭</button>
             <div className="NavBar-text-wrapper-4">취업공고</div>
             <div className="NavBar-text-wrapper-4">커뮤니티</div>
             <div className="NavBar-text-wrapper-4">캘린더</div>
