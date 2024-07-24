@@ -93,6 +93,7 @@
   height: 48px;
   position: relative;
   width: 100%;
+  cursor: not-allowed;
 }
 
 .InterviewStart-div-wrapper.active {

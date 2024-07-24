@@ -101,6 +101,20 @@
   position: relative;
 }
 
+.InterviewPlay-complete {
+  background-color: var(--variable-collection-button-navy);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 .InterviewPlay-image-wrapper {
   position: relative;
 }

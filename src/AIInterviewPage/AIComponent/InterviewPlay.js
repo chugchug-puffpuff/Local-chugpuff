@@ -32,12 +32,11 @@ const TypingEffect = ({ text = '', speed, onComplete }) => {
 
 const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes in seconds
-  const [isPaused, setIsPaused] = useState(false);
   const [typingComplete, setTypingComplete] = useState(false);
   const recognitionRef = useRef(null);
-  const silenceTimeoutRef = useRef(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
 
   useEffect(() => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -47,13 +46,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
       recognitionRef.current.interimResults = true;
 
       recognitionRef.current.onresult = (event) => {
-        clearTimeout(silenceTimeoutRef.current);
         setIsSpeaking(true);
-        silenceTimeoutRef.current = setTimeout(() => {
-          recognitionRef.current.stop();
-          setIsSpeaking(false);
-        }, 5000);
-
         const transcript = Array.from(event.results)
           .map(result => result[0])
           .map(result => result.transcript)
@@ -62,15 +55,16 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
       };
 
       recognitionRef.current.onend = () => {
-        if (!isPaused) {
+        if (isRecording) {
           recognitionRef.current.start();
         }
       };
     }
-  }, [isPaused]);
+  }, [isRecording]);
 
   useEffect(() => {
     if (typingComplete && recognitionRef.current) {
+      setIsRecording(true);
       recognitionRef.current.start();
     }
     return () => {
@@ -80,14 +74,22 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
     };
   }, [typingComplete]);
 
+  const handleCompleteAnswer = () => {
+    setIsRecording(false);
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+    }
+    setIsSpeaking(false);
+  };
+
   useEffect(() => {
-    if (timeLeft > 0 && !isPaused) {
+    if (timeLeft > 0 ) {
       const timerId = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
       return () => clearInterval(timerId);
     }
-  }, [timeLeft, isPaused]);
+  }, [timeLeft]);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -135,6 +137,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
                 <div className="InterviewPlay-text-wrapper-2">{userName}</div>
               </div>
               <p className="InterviewPlay-p">{userAnswer}</p>
+              <button onClick={handleCompleteAnswer} className="InterviewPlay-complete">답변 완료</button>
             </div>
           )}
         </div>
@@ -165,14 +168,6 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
               <div className="InterviewPlay-text-wrapper-5">{formatTime(timeLeft)}</div>
             </div>
             <div className="InterviewPlay-div-2">
-              <div className="InterviewPlay-view" onClick={() => setIsPaused(!isPaused)}>
-                <img
-                  className="InterviewPlay-img"
-                  alt="Pause circle"
-                  src={isPaused ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66962e4acda28174913bd1a3/img/play-circle.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/pause-circle.svg"}
-                />
-                <div className="InterviewPlay-text-wrapper-6">{isPaused ? '다시시작' : '일시중지'}</div>
-              </div>
               <div className="InterviewPlay-view">
                 <img
                   className="InterviewPlay-img"
