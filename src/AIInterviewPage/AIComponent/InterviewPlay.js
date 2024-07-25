@@ -37,6 +37,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
   const [userAnswer, setUserAnswer] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [isAnswerCompleted, setIsAnswerCompleted] = useState(false);
 
   useEffect(() => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -80,6 +81,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
       recognitionRef.current.stop();
     }
     setIsSpeaking(false);
+    setIsAnswerCompleted(true);
   };
 
   useEffect(() => {
@@ -137,7 +139,31 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
                 <div className="InterviewPlay-text-wrapper-2">{userName}</div>
               </div>
               <p className="InterviewPlay-p">{userAnswer}</p>
-              <button onClick={handleCompleteAnswer} className="InterviewPlay-complete">답변 완료</button>
+              {!isAnswerCompleted ? (
+                <button onClick={handleCompleteAnswer} className="InterviewPlay-complete">답변 완료</button>
+              ) : (
+                <>
+                  <img
+                    className="line-3"
+                    alt="Line"
+                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
+                  />
+                  <div className="frame-72">
+                    <div className="frame-73">
+                      <div className="frame-75">
+                        <div className="text-wrapper-59">3</div>
+                      </div>
+                      <div className="text-wrapper-57">치치폭폭 피드백 AI</div>
+                    </div>
+                    <TypingEffect text={interviewData[0]?.feedback[0]} speed={100} onComplete={() => setTypingComplete(true)} />
+                  </div>
+                  <img
+                    className="line-3"
+                    alt="Line"
+                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
+                  />
+                </>
+              )}
             </div>
           )}
         </div>
