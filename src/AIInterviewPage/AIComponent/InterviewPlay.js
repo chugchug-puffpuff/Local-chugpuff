@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './InterviewPlay.css';
 import interviewData from '../../TestData/interviewData.json';
 
+// 타이핑 효과
 const TypingEffect = ({ text = '', speed, onComplete }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [count, setCount] = useState(0);
@@ -99,14 +100,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
     return `${minutes}분 ${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}초`;
   };
 
-  let oneLetter;
-  if (selectedType === '형식 없음') {
-    oneLetter = '없';
-  } else if (selectedType) {
-    oneLetter = selectedType.charAt(0);
-  } else {
-    oneLetter = '';
-  }
+  const oneLetter = selectedType === '형식 없음' ? '없' : selectedType.charAt(0);
 
   return (
     <div className="InterviewPlay-overlap-group">

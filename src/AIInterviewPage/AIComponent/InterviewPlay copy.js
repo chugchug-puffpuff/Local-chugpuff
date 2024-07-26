@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './InterviewPlay.css';
 import interviewData from '../../TestData/interviewData.json';
 
+// 타이핑 효과
 const TypingEffect = ({ text = '', speed, onComplete }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [count, setCount] = useState(0);
@@ -34,7 +35,6 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes in seconds
   const [typingComplete, setTypingComplete] = useState(false);
   const recognitionRef = useRef(null);
-  const speechTimeoutRef = useRef(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
@@ -54,15 +54,6 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
           .map(result => result.transcript)
           .join('');
         setUserAnswer(transcript);
-
-        // 음성이 감지될 때마다 isSpeaking을 true로 설정하고 타이머를 재설정
-        setIsSpeaking(true);
-        if (speechTimeoutRef.current) {
-          clearTimeout(speechTimeoutRef.current);
-        }
-        speechTimeoutRef.current = setTimeout(() => {
-          setIsSpeaking(false);
-        }, 1000); // 1초 동안 음성이 감지되지 않으면 isSpeaking을 false로 설정
       };
 
       recognitionRef.current.onend = () => {
@@ -71,12 +62,6 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
         }
       };
     }
-
-    return () => {
-      if (speechTimeoutRef.current) {
-        clearTimeout(speechTimeoutRef.current);
-      }
-    };
   }, [isRecording]);
 
   useEffect(() => {
@@ -115,14 +100,7 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
     return `${minutes}분 ${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}초`;
   };
 
-  let oneLetter;
-  if (selectedType === '형식 없음') {
-    oneLetter = '없';
-  } else if (selectedType) {
-    oneLetter = selectedType.charAt(0);
-  } else {
-    oneLetter = '';
-  }
+  const oneLetter = selectedType === '형식 없음' ? '없' : selectedType.charAt(0);
 
   return (
     <div className="InterviewPlay-overlap-group">
@@ -180,6 +158,17 @@ const InterviewPlay = ({ selectedType, selectedFeedback, userName }) => {
                   />
                 </>
               )}
+            </div>
+          )}
+          {typingComplete && (
+            <div className="InterviewPlay-frame-2">
+              <div className="InterviewPlay-frame-3">
+                <div className="InterviewPlay-frame-4">
+                  <div className="InterviewPlay-text-wrapper">{oneLetter}</div>
+                </div>
+                <div className="InterviewPlay-text-wrapper-2">AI 면접관</div>
+              </div>
+              <TypingEffect text={interviewData[0]?.questions[1]} speed={100} onComplete={() => setTypingComplete(true)} />
             </div>
           )}
         </div>
