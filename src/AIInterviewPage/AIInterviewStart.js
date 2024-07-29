@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./AIInterviewStart.css";
 import InterviewHistoryBar from "./AIComponent/InterviewHistoryBar.js";
-import InterviewPlay from "./AIComponent/InterviewPlay.js";
+import ImmInterview from "./AIComponent/ImmInterview.js";
 import NavBar from "../MainPage/MainComponent/NavBar.js";
 
 const AIInterviewStart = ({ authenticate, setAuthenticate, userName }) => {
@@ -12,7 +12,7 @@ const AIInterviewStart = ({ authenticate, setAuthenticate, userName }) => {
 
   return (
     <div className="AIInterviewStart">
-      <InterviewPlay selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} />
+      <ImmInterview selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} />
       <InterviewHistoryBar setShowDeleteConfirmation={setShowDeleteConfirmation}/>
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
       {showDeleteConfirmation && (
