@@ -4,8 +4,10 @@ import NavBar from '../MainPage/MainComponent/NavBar';
 import { useNavigate } from 'react-router-dom';
 import userData from '../TestData/userData.json';
 import jobCode from '../TestData/jobCode.json';
+import axios from 'axios';
 
 const SignUpPage = ({ authenticate, setAuthenticate }) => {
+  // 폼 데이터 상태 관리
   const [formData, setFormData] = useState({
     name: '',
     id: '',
@@ -30,15 +32,29 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   const [errors, setErrors] = useState({});
   const [showConfirmation, setShowConfirmation] = useState(false);
 
+  // 컴포넌트 마운트 시 직무 리스트 초기화
   useEffect(() => {
     const uniqueJobs = [...new Set(jobCode.map(job => job.jobName))];
     setJobList(uniqueJobs);
   }, []);
 
+  // 사용자 등록을 위한 API 호출
+  const registerUser = async (userData) => {
+    try {
+      const response = await axios.post('http://your-backend-url/api/register', userData);
+      return response.data;
+    } catch (error) {
+      console.error('회원가입 에러:', error);
+      throw error;
+    }
+  };
+
+  // 입력 필드 변경 처리
   const handleChange = (e) => { // 경고문구가 출력된 상태에서 입력란에 값을 입력 시 경고문구 사라짐 
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
 
+    // 각 필드별 유효성 검사
     if (name === 'name') {
       if (value.length === 0) {
         setErrors({ ...errors, name: '이름을 입력해주세요' });
@@ -85,7 +101,8 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  // 폼 제출 처리
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -104,8 +121,25 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log('회원가입 정보', formData);
-      setShowConfirmation(true);
+      try {
+        const userData = {
+          name: formData.name,
+          id: formData.id,
+          password: formData.password,
+          job: formData.job,
+          keyword: formData.keyword,
+          isAdult: formData.isAdult,
+          isPrivacy: formData.isPrivacy,
+          isVoice: formData.isVoice,
+        };
+        
+        const result = await registerUser(userData);
+        console.log('회원가입 성공:', result);
+        setShowConfirmation(true);
+      } catch (error) {
+        console.error('회원가입 실패:', error);
+        // 에러 처리 로직 추가 (예: 사용자에게 에러 메시지 표시)
+      }
     }
   };
 
@@ -127,6 +161,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   };
 
   const navigate = useNavigate();
+  
   const goToLogin = () => {
     navigate('/login');
   };

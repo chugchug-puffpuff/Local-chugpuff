@@ -116,21 +116,19 @@
 }
 
 .InterviewHistoryBar-text-wrapper-4 {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   color: var(--variable-collection-sub-black);
-  display: -webkit-box;
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 14px;
   font-weight: 600;
-  left: 0;
   letter-spacing: -0.42px;
   line-height: normal;
-  overflow: hidden;
-  position: absolute;
-  text-overflow: ellipsis;
-  top: 0;
   width: 195px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .InterviewHistoryBar-frame-13 {
@@ -159,4 +157,123 @@
 .InterviewHistoryBar-delete:hover {
   cursor: pointer;
   transform: scale(1.6);
+}
+
+.InterviewHistoryBar-frame-78 {
+  background-color: var(--variable-collection-main-black);
+  height: 1080px;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 1920px;
+}
+
+.InterviewHistoryBar-frame-79 {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  left: 737px;
+  padding: 32px 24px 24px;
+  position: fixed;
+  top: 333px;
+}
+
+.InterviewHistoryBar-frame-80 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+}
+
+.InterviewHistoryBar-text-wrapper-60 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.InterviewHistoryBar-text-wrapper-61 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  position: relative;
+  text-align: center;
+  width: fit-content;
+}
+
+.InterviewHistoryBar-frame-81 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.InterviewHistoryBar-frame-82 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 80px;
+  position: relative;
+}
+
+.InterviewHistoryBar-text-wrapper-62 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.InterviewHistoryBar-frame-83 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-main-black);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 80px;
+  position: relative;
+}
+
+.InterviewHistoryBar-text-wrapper-63 {
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
 }
