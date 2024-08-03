@@ -79,7 +79,8 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
         setErrors({ ...errors, password: '' });
       }
     }
-
+    
+    // 이메일 인증 추가 시 사용
     // if (name === 'email') {
     //   if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value)) {
     //     setErrors({ ...errors, email: '이메일 형식이 아닙니다' });
@@ -161,7 +162,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   };
 
   const navigate = useNavigate();
-  
+
   const goToLogin = () => {
     navigate('/login');
   };

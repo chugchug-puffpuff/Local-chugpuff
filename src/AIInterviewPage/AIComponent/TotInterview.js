@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import './ImmInterview.css';
+import './TotInterview.css';
 import interviewData from '../../TestData/interviewData.json';
 import axios from 'axios';
 
@@ -25,7 +25,7 @@ const TypingEffect = ({ text = '', speed, onComplete }) => {
   return <div className="InterviewPlay-p">{displayedText}</div>;
 };
 
-const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
+const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
   const [timeLeft, setTimeLeft] = useState(1800);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [typingComplete, setTypingComplete] = useState(false);
@@ -91,8 +91,6 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
     if (timeLeft > 0) {
       const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
       return () => clearInterval(timerId);
-    } else {
-      handleEndInterview(); // 시간이 0이 되면 handleEndInterview 실행
     }
   }, [timeLeft]);
 
@@ -107,23 +105,21 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
 
   // 피드백 완료 후 다음 질문으로 이동
   useEffect(() => {
-    if (isFeedbackComplete) {
+    if (isAnswerCompleted) {
       setInterviewHistory(prev => [
         ...prev,
         {
-          question: interviewData[0]?.questions[currentQuestionIndex],
-          answer: userAnswer,
-          feedback: interviewData[0]?.feedback[currentQuestionIndex]
+          question: interviewData[1]?.questions[currentQuestionIndex],
+          answer: userAnswer
         }
       ]);
       setCurrentQuestionIndex(prev => prev + 1);
       setTypingComplete(false);
       setUserAnswer('');
       setIsAnswerCompleted(false);
-      setIsFeedbackComplete(false);
       setIsQuestionTypingComplete(false);
     }
-  }, [isFeedbackComplete, currentQuestionIndex, userAnswer]);
+  }, [isAnswerCompleted, currentQuestionIndex, userAnswer]);
 
   // 스크롤을 최하단으로 이동
   const scrollToBottom = useCallback(() => {
@@ -246,7 +242,7 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
       </div>
       {!typingComplete ? (
         <TypingEffect 
-          text={interviewData[0]?.questions[currentQuestionIndex]} 
+          text={interviewData[1]?.questions[currentQuestionIndex]} 
           speed={100} 
           onComplete={() => {
             setTypingComplete(true);
@@ -254,7 +250,7 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
           }} 
         />
       ) : (
-        <p className="InterviewPlay-p">{interviewData[0]?.questions[currentQuestionIndex]}</p>
+        <p className="InterviewPlay-p">{interviewData[1]?.questions[currentQuestionIndex]}</p>
       )}
     </div>
   ), [currentQuestionIndex, oneLetter, typingComplete]);
@@ -282,31 +278,7 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
         <button onClick={handleCompleteAnswer} className="InterviewPlay-complete">답변 완료</button>
       ) : (
         <>
-          <img
-            className="line-3"
-            alt="Line"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
-          />
-          <div className="frame-72">
-            <div className="frame-73">
-              <div className="frame-75">
-                <div className="text-wrapper-59">3</div>
-              </div>
-              <div className="text-wrapper-57">치치폭폭 피드백 AI</div>
-            </div>
-            <TypingEffect 
-              text={interviewData[0]?.feedback[currentQuestionIndex]} 
-              speed={100} 
-              onComplete={() => {
-                setIsFeedbackComplete(true);
-              }} 
-            />
-          </div>
-          <img
-            className="line-3"
-            alt="Line"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
-          />
+          
         </>
       )}
     </div>
@@ -318,10 +290,35 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
       <div className="InterviewPlay-frame" ref={containerRef}>
         <div className="InterviewPlay-div">
           {interviewHistory.map(renderHistoryItem)}
-          {!isInterviewEnded && currentQuestionIndex < interviewData[0]?.questions.length && (
+          {!isInterviewEnded && currentQuestionIndex < interviewData[1]?.questions.length && (
             <>
               {renderCurrentQuestion()}
               {typingComplete && renderUserAnswer()}
+              <img
+                className="line-3"
+                  alt="Line"
+                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
+                />
+                <div className="frame-72">
+                  <div className="frame-73">
+                    <div className="frame-75">
+                      <div className="text-wrapper-59">3</div>
+                    </div>
+                    <div className="text-wrapper-57">치치폭폭 피드백 AI</div>
+                  </div>
+                  <TypingEffect 
+                    text={interviewData[1]?.feedback} 
+                    speed={100} 
+                    onComplete={() => {
+                      setIsFeedbackComplete(true);
+                  }} 
+                />
+              </div>
+              <img
+                className="line-3"
+                alt="Line"
+                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
+              />
             </>
           )}
         </div>
@@ -347,7 +344,7 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
         </div>
         {isInterviewEnded ? (
           <div className="frame-79">
-            <div className="text-wrapper-62">면접이 종료되었습니다.</div>
+            <div className="text-wrapper-62">모의면접이 종료되었습니다.</div>
           </div>
         ) : (
           <div className="InterviewPlay-frame-wrapper">
@@ -374,4 +371,4 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
   );
 };
 
-export default ImmInterview;
+export default TotInterview;

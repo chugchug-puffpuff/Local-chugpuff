@@ -26,12 +26,14 @@ const Login = ({ setAuthenticate, setUserName }) => {
     }
   };
 
-  const handleUserIdChange = (e) => { // 아이디 입력 시 경고문구 제거
+  // 아이디 입력 시 경고문구 제거
+  const handleUserIdChange = (e) => {
     setUserId(e.target.value);
     setIsInvalid(false);
   };
-
-  const handlePasswordChange = (e) => { // 비밀번호 입력 시 경고문구 제거
+  
+  // 비밀번호 입력 시 경고문구 제거
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setIsInvalid(false);
   };

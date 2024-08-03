@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./AIInterviewStart.css";
 import InterviewHistoryBar from "./AIComponent/InterviewHistoryBar.js";
 import ImmInterview from "./AIComponent/ImmInterview.js";
+import TotInterview from "./AIComponent/TotInterview.js";
 import NavBar from "../MainPage/MainComponent/NavBar.js";
 
 const AIInterviewStart = ({ authenticate, setAuthenticate, userName }) => {
@@ -12,6 +13,7 @@ const AIInterviewStart = ({ authenticate, setAuthenticate, userName }) => {
   return (
     <div className="AIInterviewStart">
       <ImmInterview selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} />
+      {/* <TotInterview selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} /> */}
       <InterviewHistoryBar />
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
