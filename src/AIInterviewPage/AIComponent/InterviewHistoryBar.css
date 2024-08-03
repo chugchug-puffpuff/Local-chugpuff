@@ -1,0 +1,279 @@
+.InterviewHistoryBar-frame {
+  background-color: #ffffff;
+  border-color: var(--variable-collection-gray-3);
+  border-right-style: solid;
+  border-right-width: 1px;
+  height: 992px;
+  left: 0;
+  position: fixed;
+  top: 88px;
+  width: 310px;
+}
+
+.InterviewHistoryBar-frame-2 {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  left: 27px;
+  position: relative;
+  top: 36px;
+}
+
+.InterviewHistoryBar-frame-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+}
+
+.InterviewHistoryBar-frame-4 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 120px;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  padding: 8px 50px;
+  position: relative;
+  width: 238px;
+}
+
+.InterviewHistoryBar-text-wrapper {
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  margin-top: -0.5px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.InterviewHistoryBar-add {
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+.InterviewHistoryBar-text-wrapper-2 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+  padding-bottom: 5px;
+}
+
+.InterviewHistoryBar-frame-5 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 48px 8px 12px;
+  position: relative;
+}
+
+.InterviewHistoryBar-frame-5:hover {
+  background-color: var(--variable-collection-gray-3);
+}
+
+.InterviewHistoryBar-date-and-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120%;
+}
+
+.InterviewHistoryBar-text-wrapper-3 {
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.InterviewHistoryBar-frame-6 {
+  cursor: pointer;
+  height: 20px;
+  position: relative;
+  width: 195px;
+}
+
+.InterviewHistoryBar-text-wrapper-4 {
+  color: var(--variable-collection-sub-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.42px;
+  line-height: normal;
+  width: 195px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.InterviewHistoryBar-frame-13 {
+  display: flex;
+  gap: 5px; 
+  margin-left: auto;
+}
+
+.InterviewHistoryBar-edit {
+  height: 20px;
+  position: relative;
+  width: 20px;
+}
+
+.InterviewHistoryBar-delete {
+  height: 20px;
+  position: relative;
+  width: 20px;
+}
+
+.InterviewHistoryBar-edit:hover {
+  cursor: pointer;
+  transform: scale(1.6);
+}
+
+.InterviewHistoryBar-delete:hover {
+  cursor: pointer;
+  transform: scale(1.6);
+}
+
+.InterviewHistoryBar-frame-78 {
+  background-color: var(--variable-collection-main-black);
+  height: 1080px;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 1920px;
+}
+
+.InterviewHistoryBar-frame-79 {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  left: 737px;
+  padding: 32px 24px 24px;
+  position: fixed;
+  top: 333px;
+}
+
+.InterviewHistoryBar-frame-80 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+}
+
+.InterviewHistoryBar-text-wrapper-60 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.InterviewHistoryBar-text-wrapper-61 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  position: relative;
+  text-align: center;
+  width: fit-content;
+}
+
+.InterviewHistoryBar-frame-81 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.InterviewHistoryBar-frame-82 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 80px;
+  position: relative;
+}
+
+.InterviewHistoryBar-text-wrapper-62 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.InterviewHistoryBar-frame-83 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-main-black);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 80px;
+  position: relative;
+}
+
+.InterviewHistoryBar-text-wrapper-63 {
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}

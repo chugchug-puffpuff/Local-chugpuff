@@ -1,0 +1,23 @@
+[
+  {
+    "name": "아무개",
+    "id": "asdf1111",
+    "password": "1234",
+    "job": "IT 개발/데이터",
+    "jobKeyword": "앱개발"
+  },
+  {
+    "name": "홍길동",
+    "id": "qwer1111",
+    "password": "1234",
+    "job": "IT 개발/데이터",
+    "jobKeyword": "머신러닝"
+  },
+  {
+    "name": "테스트",
+    "id": "abcd1111",
+    "password": "1234",
+    "job": "IT 개발/데이터",
+    "jobKeyword": "와이어샤크"
+  }
+]

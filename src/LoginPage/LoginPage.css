@@ -1,0 +1,15 @@
+/* .LoginPage {
+  background-color: #ffffff;
+  height: 1080px;
+  overflow: hidden;
+  position: relative;
+  width: 1920px;
+} */
+
+.LoginPage {
+  background-color: #ffffff;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
