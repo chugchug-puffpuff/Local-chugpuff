@@ -1,7 +1,7 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
+const jwt = require('../src/Backend/node_modules/jsonwebtoken');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+const cors = require('../src/Backend/node_modules/cors/lib');
 
 const app = express();
 const port = 4000;
