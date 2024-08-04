@@ -41,7 +41,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   // 사용자 등록을 위한 API 호출
   const registerUser = async (userData) => {
     try {
-      const response = await axios.post('http://your-backend-url/api/register', userData);
+      const response = await axios.post('http://8080/api/members', userData);
       return response.data;
     } catch (error) {
       console.error('회원가입 에러:', error);

@@ -12,7 +12,7 @@ const Login = ({ setAuthenticate, setUserName }) => {
   const loginUser = async (event) => {
     event.preventDefault(); // 기본 이벤트 방지
     try {
-      const response = await axios.post('http://localhost:4000/api/login', { userId, password });
+      const response = await axios.post('http://localhost:8080/api/login', { userId, password });
       const { token, name } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('userId', userId); // 사용자 ID를 로컬 스토리지에 저장
