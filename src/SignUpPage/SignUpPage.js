@@ -18,7 +18,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     // emailCode: '',
     isAbove15: false,
     privacyPolicyAccepted: false,
-    recordingAccepted: false,
+    recordingAccepted: false
   });
 
   const [idCheckMessage, setIdCheckMessage] = useState('');
