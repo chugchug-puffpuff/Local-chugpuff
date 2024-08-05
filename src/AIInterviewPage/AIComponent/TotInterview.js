@@ -91,6 +91,8 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
     if (timeLeft > 0) {
       const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
       return () => clearInterval(timerId);
+    } else {
+      handleEndInterview(); // 시간이 0이 되면 handleEndInterview 실행
     }
   }, [timeLeft]);
 
@@ -103,14 +105,14 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
 
   const oneLetter = selectedType === '형식 없음' ? '없' : selectedType.charAt(0);
 
-  // 피드백 완료 후 다음 질문으로 이동
+  // 답변 완료 후 다음 질문으로 이동
   useEffect(() => {
     if (isAnswerCompleted) {
       setInterviewHistory(prev => [
         ...prev,
         {
           question: interviewData[1]?.questions[currentQuestionIndex],
-          answer: userAnswer
+          answer: userAnswer,
         }
       ]);
       setCurrentQuestionIndex(prev => prev + 1);
@@ -170,7 +172,7 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
     };
 
     try {
-      await axios.post('http://localhost:4000/api/interviews/save', interviewDetails, {
+      await axios.post('http://localhost:8080/api/interviews/save', interviewDetails, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -178,6 +180,11 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
       console.log('Mock interview details sent successfully');
     } catch (error) {
       console.error('Failed to send mock interview details', error);
+    }
+
+    // AI 피드백 제공
+    if (currentQuestionIndex > 0) {
+      setIsFeedbackComplete(true);
     }
   }, [userName, selectedType, selectedFeedback, interviewHistory, currentQuestionIndex]);
 
@@ -203,20 +210,6 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
           <div className="InterviewPlay-text-wrapper-2">{userName}</div>
         </div>
         <p className="InterviewPlay-p">{item.answer}</p>
-      </div>
-      <img
-        className="line-3"
-        alt="Line"
-        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
-      />
-      <div className="frame-72">
-        <div className="frame-73">
-          <div className="frame-75">
-            <div className="text-wrapper-59">3</div>
-          </div>
-          <div className="text-wrapper-57">치치폭폭 피드백 AI</div>
-        </div>
-        <p className="InterviewPlay-p">{item.feedback}</p>
       </div>
       <img
         className="line-3"
@@ -277,12 +270,14 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
       {!isAnswerCompleted ? (
         <button onClick={handleCompleteAnswer} className="InterviewPlay-complete">답변 완료</button>
       ) : (
-        <>
-          
-        </>
+        <img
+          className="line-3"
+          alt="Line"
+          src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
+        />
       )}
     </div>
-  ), [isSpeaking, userName, userAnswer, isAnswerCompleted, handleCompleteAnswer, currentQuestionIndex]);
+  ), [isSpeaking, userName, userAnswer, isAnswerCompleted, handleCompleteAnswer]);
 
   // 메인 렌더링
   return (
@@ -294,32 +289,18 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
             <>
               {renderCurrentQuestion()}
               {typingComplete && renderUserAnswer()}
-              <img
-                className="line-3"
-                  alt="Line"
-                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
-                />
-                <div className="frame-72">
-                  <div className="frame-73">
-                    <div className="frame-75">
-                      <div className="text-wrapper-59">3</div>
-                    </div>
-                    <div className="text-wrapper-57">치치폭폭 피드백 AI</div>
-                  </div>
-                  <TypingEffect 
-                    text={interviewData[1]?.feedback} 
-                    speed={100} 
-                    onComplete={() => {
-                      setIsFeedbackComplete(true);
-                  }} 
-                />
-              </div>
-              <img
-                className="line-3"
-                alt="Line"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/line-2.svg"
-              />
             </>
+          )}
+          {isInterviewEnded && isFeedbackComplete && (
+            <div className="frame-72">
+              <div className="frame-73">
+                <div className="frame-75">
+                  <div className="text-wrapper-59">3</div>
+                </div>
+                <div className="text-wrapper-57">치치폭폭 피드백 AI</div>
+              </div>
+              <p className="InterviewPlay-p">{interviewData[1]?.feedback}</p>
+            </div>
           )}
         </div>
       </div>
@@ -344,7 +325,7 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
         </div>
         {isInterviewEnded ? (
           <div className="frame-79">
-            <div className="text-wrapper-62">모의면접이 종료되었습니다.</div>
+            <div className="text-wrapper-62">면접이 종료되었습니다.</div>
           </div>
         ) : (
           <div className="InterviewPlay-frame-wrapper">
