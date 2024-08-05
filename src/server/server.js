@@ -1,13 +1,11 @@
 const express = require('express');
-// const jwt = require('../src/Backend/node_modules/jsonwebtoken');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
-// const cors = require('../src/Backend/node_modules/cors/lib');
 const cors = require('cors');
 
 const app = express();
-// const port = 4000;
-const port = 8080;
+const port = 4000;
+// const port = 8080;
 
 // 미들웨어 설정
 app.use(bodyParser.json());
