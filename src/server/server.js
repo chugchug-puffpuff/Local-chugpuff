@@ -1,10 +1,13 @@
 const express = require('express');
-const jwt = require('../src/Backend/node_modules/jsonwebtoken');
+// const jwt = require('../src/Backend/node_modules/jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
-const cors = require('../src/Backend/node_modules/cors/lib');
+// const cors = require('../src/Backend/node_modules/cors/lib');
+const cors = require('cors');
 
 const app = express();
-const port = 4000;
+// const port = 4000;
+const port = 8080;
 
 // 미들웨어 설정
 app.use(bodyParser.json());
@@ -14,21 +17,21 @@ app.use(cors());
 const users = [
   {
     "name": "아무개",
-    "userId": "asdf1111",
+    "id": "asdf1111",
     "password": "1234",
     "job": "IT 개발/데이터",
     "jobKeyword": "앱개발"
   },
   {
     "name": "홍길동",
-    "userId": "qwer1111",
+    "id": "qwer1111",
     "password": "1234",
     "job": "IT 개발/데이터",
     "jobKeyword": "머신러닝"
   },
   {
     "name": "테스트",
-    "userId": "abcd1111",
+    "id": "abcd1111",
     "password": "1234",
     "job": "IT 개발/데이터",
     "jobKeyword": "와이어샤크"
@@ -80,11 +83,11 @@ const interviewHistory = [
 
 // 로그인 엔드포인트
 app.post('/api/login', (req, res) => {
-  const { userId, password } = req.body;
-  const user = users.find(u => u.userId === userId && u.password === password);
+  const { id, password } = req.body;
+  const user = users.find(u => u.id === id && u.password === password);
 
   if (user) {
-    const token = jwt.sign({ userId: user.userId }, 'your_jwt_secret', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
     res.json({ token, name: user.name });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });

@@ -12,7 +12,7 @@ const InterviewHistoryBar = () => {
   useEffect(() => {
     const fetchInterviewData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/interviews');
+        const response = await axios.get('http://localhost:8080/api/interviews');
         const sortedDate = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
         setSortedInterviewData(sortedDate);
       } catch (error) {
@@ -36,7 +36,7 @@ const InterviewHistoryBar = () => {
 
   const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/interviews/${selectedInterviewId}`) // 백엔드에 삭제 요청
+      await axios.delete(`http://localhost:8080/api/interviews/${selectedInterviewId}`) // 백엔드에 삭제 요청
       setSortedInterviewData(prevData => prevData.filter(data => data.id !== selectedInterviewId)) // 삭제된 데이터 필터링
       setShowDeleteConfirmation(false)
     } catch (error) {

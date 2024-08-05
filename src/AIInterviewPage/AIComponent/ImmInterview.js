@@ -174,7 +174,7 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
     };
 
     try {
-      await axios.post('http://localhost:4000/api/interviews/save', interviewDetails, {
+      await axios.post('http://localhost:8080/api/interviews/save', interviewDetails, {
         headers: {
           'Content-Type': 'application/json',
         },

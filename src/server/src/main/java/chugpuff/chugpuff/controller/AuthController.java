@@ -23,7 +23,7 @@ public class AuthController {
     }
 
     // 로그인
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     @ResponseBody
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         String id = loginDTO.getId();
