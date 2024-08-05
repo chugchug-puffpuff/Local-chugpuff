@@ -5,21 +5,21 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setAuthenticate, setUserName }) => {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState('');
+  const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
 
   const loginUser = async (event) => {
     event.preventDefault(); // 기본 이벤트 방지
     try {
-      const response = await axios.post('http://localhost:4000/api/login', { userId, password });
+      const response = await axios.post('http://localhost:8080/api/login', { id, password });
       const { token, name } = response.data;
       localStorage.setItem('token', token);
-      localStorage.setItem('userId', userId); // 사용자 ID를 로컬 스토리지에 저장
+      localStorage.setItem('id', id); // 사용자 ID를 로컬 스토리지에 저장
       localStorage.setItem('userName', name); // 사용자 이름을 로컬 스토리지에 저장
       setAuthenticate(true); // 로그인 성공 시 인증 상태를 true로 변경
       setUserName(name);
-      navigate(`/${userId}`); // 메인 페이지로 이동
+      navigate(`/${id}`); // 메인 페이지로 이동
     } catch (error) {
       console.error('로그인 중 오류 발생:', error);
       setIsInvalid(true);
@@ -28,7 +28,7 @@ const Login = ({ setAuthenticate, setUserName }) => {
 
   // 아이디 입력 시 경고문구 제거
   const handleUserIdChange = (e) => {
-    setUserId(e.target.value);
+    setId(e.target.value);
     setIsInvalid(false);
   };
   
@@ -55,7 +55,7 @@ const Login = ({ setAuthenticate, setUserName }) => {
                 <input
                   type="text"
                   className={`Login-text-field-2 ${isInvalid ? 'Login-text-field-invalid' : ''}`}
-                  value={userId}
+                  value={id}
                   onChange={handleUserIdChange}
                 />
               </div>
