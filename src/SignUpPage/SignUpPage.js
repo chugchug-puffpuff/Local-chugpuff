@@ -13,12 +13,12 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     id: '',
     password: '',
     job: '',
-    keyword: '',
+    jobKeyword: '',
     // email: '',
     // emailCode: '',
-    isAdult: false,
-    isPrivacy: false,
-    isVoice: false,
+    isAbove15: false,
+    privacyPolicyAccepted: false,
+    recordingAccepted: false,
   });
 
   const [idCheckMessage, setIdCheckMessage] = useState('');
@@ -111,12 +111,12 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     if (!formData.id) newErrors.id = '아이디를 입력해주세요';
     if (!formData.password) newErrors.password = '비밀번호를 입력해주세요';
     if (selectedJob === '희망 직무') newErrors.job = '희망 직무를 선택해주세요';
-    if (selectedJobKeyword === '직무 키워드') newErrors.keyword = '직무 키워드를 선택해주세요';
+    if (selectedJobKeyword === '직무 키워드') newErrors.jobKeyword = '직무 키워드를 선택해주세요';
     // if (!formData.email) newErrors.email = '이메일을 입력해주세요';
     // if (!formData.emailCode) newErrors.emailCode = '인증번호를 입력해주세요';
-    if (!formData.isAdult) newErrors.isAdult = '만 15세 이상임을 확인해주세요';
-    if (!formData.isPrivacy) newErrors.isPrivacy = '개인정보 수집 및 이용에 동의해주세요';
-    if (!formData.isVoice) newErrors.isVoice = 'AI모의면접 진행 시 목소리 녹음에 동의해주세요';
+    if (!formData.isAbove15) newErrors.isAbove15 = '만 15세 이상임을 확인해주세요';
+    if (!formData.privacyPolicyAccepte) newErrors.privacyPolicyAccepte = '개인정보 수집 및 이용에 동의해주세요';
+    if (!formData.recordingAccepted) newErrors.recordingAccepted = 'AI모의면접 진행 시 목소리 녹음에 동의해주세요';
     if (!idCheckMessage || isDuplicate) newErrors.idCheck = '아이디 중복 확인을 해주세요';
 
     setErrors(newErrors);
@@ -128,10 +128,10 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
           id: formData.id,
           password: formData.password,
           job: formData.job,
-          keyword: formData.keyword,
-          isAdult: formData.isAdult,
-          isPrivacy: formData.isPrivacy,
-          isVoice: formData.isVoice,
+          jobKeyword: formData.jobKeyword,
+          isAbove15: formData.isAbove15,
+          privacyPolicyAccepted: formData.privacyPolicyAccepted,
+          recordingAccepted: formData.recordingAccepted,
         };
         
         const result = await registerUser(userData);
@@ -189,17 +189,17 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
     if (selectedJob !== '희망 직무') {
       setShowJobKeyword(!showJobKeyword);
     }
-    if (errors.keyword) {
-      setErrors({ ...errors, keyword: '' });
+    if (errors.jobKeyword) {
+      setErrors({ ...errors, jobKeyword: '' });
     }
   };
 
-  const selectJobKeyword = (keyword) => {
-    setSelectedJobKeyword(keyword);
-    setFormData({ ...formData, keyword });
+  const selectJobKeyword = (jobKeyword) => {
+    setSelectedJobKeyword(jobKeyword);
+    setFormData({ ...formData, jobKeyword });
     setShowJobKeyword(false);
-    if (errors.keyword) {
-      setErrors({ ...errors, keyword: '' });
+    if (errors.jobKeyword) {
+      setErrors({ ...errors, jobKeyword: '' });
     }
   };
 
@@ -286,7 +286,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                       {errors.job && <p className="SignUpPage-error-message">{errors.job}</p>}
                     </div>
                     <div className="SignUpPage-text-field-wrapper">
-                      <div className={`SignUpPage-text-field-5 ${errors.keyword ? 'SignUpPage-error' : ''}`} onClick={toggleJobKeyword}>
+                      <div className={`SignUpPage-text-field-5 ${errors.jobKeyword ? 'SignUpPage-error' : ''}`} onClick={toggleJobKeyword}>
                         <div className="SignUpPage-text-wrapper-2">{selectedJobKeyword}</div>
                         <img
                           className={showJobKeyword ? "SignUpPage-arrow-drop-up" : "SignUpPage-arrow-drop-down"}
@@ -296,14 +296,14 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                       </div>
                       {showJobKeyword && (
                         <div className="SignUpPage-frame-6">
-                          {jobKeywordList.map((keyword, index) => (
-                            <div key={index} className="SignUpPage-text-wrapper-3" onClick={() => selectJobKeyword(keyword)}>
-                              {keyword}
+                          {jobKeywordList.map((jobKeyword, index) => (
+                            <div key={index} className="SignUpPage-text-wrapper-3" onClick={() => selectJobKeyword(jobKeyword)}>
+                              {jobKeyword}
                             </div>
                           ))}
                         </div>
                       )}
-                      {errors.keyword && <p className="SignUpPage-error-message">{errors.keyword}</p>}
+                      {errors.jobKeyword && <p className="SignUpPage-error-message">{errors.jobKeyword}</p>}
                     </div>
                   </div>
                 </div>
@@ -359,12 +359,12 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 </p>
                 <input
                   type="checkbox"
-                  name="isAdult"
-                  checked={formData.isAdult}
+                  name="isAbove15"
+                  checked={formData.isAbove15}
                   onChange={handleChange}
                 />
               </div>
-              {errors.isAdult && <p className="SignUpPage-error-message-2">{errors.isAdult}</p>}
+              {errors.isAbove15 && <p className="SignUpPage-error-message-2">{errors.isAbove15}</p>}
               <div className="SignUpPage-check-box">
                 <p className="SignUpPage-p">
                   <span className="SignUpPage-span">[필수]</span>
@@ -372,12 +372,12 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 </p>
                 <input
                   type="checkbox"
-                  name="isPrivacy"
-                  checked={formData.isPrivacy}
+                  name="privacyPolicyAccepted"
+                  checked={formData.privacyPolicyAccepted}
                   onChange={handleChange}
                 />
               </div>
-              {errors.isPrivacy && <p className="SignUpPage-error-message-2">{errors.isPrivacy}</p>}
+              {errors.privacyPolicyAccepted && <p className="SignUpPage-error-message-2">{errors.privacyPolicyAccepted}</p>}
               <div className="SignUpPage-check-box">
                 <p className="SignUpPage-p">
                   <span className="SignUpPage-span">[필수]</span>
@@ -385,12 +385,12 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                 </p>
                 <input
                   type="checkbox"
-                  name="isVoice"
-                  checked={formData.isVoice}
+                  name="recordingAccepted"
+                  checked={formData.recordingAccepted}
                   onChange={handleChange}
                 />
               </div>
-              {errors.isVoice && <p className="SignUpPage-error-message-2">{errors.isVoice}</p>}
+              {errors.recordingAccepted && <p className="SignUpPage-error-message-2">{errors.recordingAccepted}</p>}
             </div>
             <div className="SignUpPage-frame-8">
               <div className="SignUpPage-frame-9">
