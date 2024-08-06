@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './SignUpPage.css';
-import NavBar from '../MainPage/MainComponent/NavBar';
-import { useNavigate } from 'react-router-dom';
-import userData from '../TestData/userData.json';
-import jobCode from '../TestData/jobCode.json';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import jobCode from '../TestData/jobCode.json';
+import userData from '../TestData/userData.json';
 
 const SignUpPage = ({ authenticate, setAuthenticate }) => {
   const [formData, setFormData] = useState({
