@@ -19,7 +19,7 @@ const Login = ({ setAuthenticate, setUserName }) => {
       localStorage.setItem('userName', name); // 사용자 이름을 로컬 스토리지에 저장
       setAuthenticate(true); // 로그인 성공 시 인증 상태를 true로 변경
       setUserName(name);
-      navigate(`/${id}`); // 메인 페이지로 이동
+      navigate(`/${id}`, { replace: true }); // 메인 페이지로 이동
     } catch (error) {
       console.error('로그인 중 오류 발생:', error);
       setIsInvalid(true);

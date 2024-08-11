@@ -119,7 +119,7 @@ public class MemberController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    // ID로 특정 회원 조회
+    // id로 특정 회원 조회
     @GetMapping("/username/{username}")
     public ResponseEntity<MemberDTO> getMemberByUsername(@PathVariable String username) {
         Optional<Member> optionalMember = memberService.getMemberByUsername(username);
