@@ -167,6 +167,7 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
       selectedType,
       selectedFeedback,
       interviewHistory,
+      feedback: interviewData[1]?.feedback,
       endTime: getCurrentFormattedTime(),
       currentQuestionIndex,
     };

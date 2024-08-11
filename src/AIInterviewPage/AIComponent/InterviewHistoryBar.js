@@ -12,7 +12,7 @@ const InterviewHistoryBar = () => {
   useEffect(() => {
     const fetchInterviewData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/interviews');
+        const response = await axios.get('http://localhost:8080/api/interviews');
         const sortedDate = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
         setSortedInterviewData(sortedDate);
       } catch (error) {
@@ -36,12 +36,16 @@ const InterviewHistoryBar = () => {
 
   const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/interviews/${selectedInterviewId}`) // 백엔드에 삭제 요청
-      setSortedInterviewData(prevData => prevData.filter(data => data.id !== selectedInterviewId)) // 삭제된 데이터 필터링
+      await axios.delete(`http://localhost:8080/api/interviews/${selectedInterviewId}`) // 백엔드에 삭제 요청
+      setSortedInterviewData(prevData => prevData.filter(data => data.interviewId !== selectedInterviewId)) // 삭제된 데이터 필터링
       setShowDeleteConfirmation(false)
     } catch (error) {
       console.error(`Failed to delete interview with id: ${selectedInterviewId}`, error)
     }
+  }
+
+  const goToAIInterviewHistory = (interviewId) => {
+    navigate(`/aiinterviewhistory/${interviewId}`, { state: { interviewId } });
   }
 
   return (
@@ -59,7 +63,7 @@ const InterviewHistoryBar = () => {
           <div className="InterviewHistoryBar-text-wrapper-2">면접 내역</div>
         </div>
         {sortedInterviewData.map(data => (
-          <div className="InterviewHistoryBar-frame-5" key={data.id}>
+          <div className="InterviewHistoryBar-frame-5" key={data.interviewId}>
             <div className="InterviewHistoryBar-date-and-icons">
               <div className="InterviewHistoryBar-text-wrapper-3">{data.date}</div>
               <div className="InterviewHistoryBar-frame-13">
@@ -67,11 +71,11 @@ const InterviewHistoryBar = () => {
                   className="InterviewHistoryBar-delete"
                   alt="삭제"
                   src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6698aa612be89236643e00e3/img/delete-forever@2x.png"
-                  onClick={() => handleDeleteClick(data.id)}
+                  onClick={() => handleDeleteClick(data.interviewId)}
                 />
               </div>
             </div>
-            <div className="InterviewHistoryBar-frame-6">
+            <div className="InterviewHistoryBar-frame-6" onClick={() => goToAIInterviewHistory(data.interviewId)}>
               <p className="InterviewHistoryBar-text-wrapper-4">{data.interviewHistory[0].question}</p>
             </div>
           </div>
