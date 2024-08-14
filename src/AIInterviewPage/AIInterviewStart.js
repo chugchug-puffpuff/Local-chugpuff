@@ -12,8 +12,11 @@ const AIInterviewStart = ({ authenticate, setAuthenticate, userName }) => {
 
   return (
     <div className="AIInterviewStart">
-      {/* <ImmInterview selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} /> */}
-      <TotInterview selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} />
+      {selectedFeedback === "전체 피드백" ? (
+        <TotInterview selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} />
+      ) : (
+        <ImmInterview selectedType={selectedType} selectedFeedback={selectedFeedback} userName={userName} />
+      )}
       <InterviewHistoryBar />
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
