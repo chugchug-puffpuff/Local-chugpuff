@@ -52,8 +52,8 @@ const InterviewHistoryBar = () => {
     <div className="InterviewHistoryBar-frame">
       <div className="InterviewHistoryBar-frame-2">
         <div className="InterviewHistoryBar-frame-3">
-          <div className="InterviewHistoryBar-frame-4">
-            <div className="InterviewHistoryBar-text-wrapper" onClick={goToAIInterview}>새로운 면접</div>
+          <div className="InterviewHistoryBar-frame-4" onClick={goToAIInterview}>
+            <div className="InterviewHistoryBar-text-wrapper">새로운 면접</div>
             <img
               className="InterviewHistoryBar-add"
               alt="Add"

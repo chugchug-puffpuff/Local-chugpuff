@@ -129,7 +129,8 @@
   background-color: var(--variable-collection-gray-1);
   border-radius: 12px;
   height: 48px;
-  position: relative;
+  position: absolute;
+  right: 0;
   width: 250px;
 }
 
@@ -144,4 +145,22 @@
   position: absolute;
   top: 11px;
   white-space: nowrap;
+}
+
+.EnterSelfIntroduction-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-circle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 48px;
+  width: 48px;
+  cursor: pointer;
 }

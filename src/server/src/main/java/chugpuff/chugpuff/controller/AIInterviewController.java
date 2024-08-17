@@ -12,13 +12,18 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-        import java.io.File;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 @RestController
@@ -59,11 +64,9 @@ public class AIInterviewController {
             throw new RuntimeException("Interview not found");
         }
 
-        // 사용자 정보를 출력하여 디버깅
         System.out.println("Logged in user: " + userDetails.getUsername());
         System.out.println("Interview owner user_id: " + aiInterview.getMember().getUser_id());
 
-        // 여기서는 검증을 하지 않지만 로그를 남깁니다.
         aiInterviewService.startInterview(AIInterviewNo);
     }
 
@@ -115,23 +118,45 @@ public class AIInterviewController {
                 .body(resource);
     }
 
-    // 음성 파일을 STT로 변환하여 텍스트로 반환하고 ChatGPT로 보내기
-    @PostMapping("/{AIInterviewNo}/process-audio-response")
-    public ResponseEntity<String> processAudioResponse(@PathVariable Long AIInterviewNo, @RequestParam("audioFile") FileSystemResource audioFile) {
-        String audioFilePath = audioFile.getPath();
-        String sttText = externalAPIService.callSTT(audioFilePath);
-
+    // 녹음을 중지하는 엔드포인트
+    @PostMapping("/{AIInterviewNo}/stop-recording")
+    public ResponseEntity<String> stopRecording(@PathVariable Long AIInterviewNo) {
         AIInterview aiInterview = aiInterviewService.getInterviewById(AIInterviewNo);
         if (aiInterview == null) {
             return ResponseEntity.badRequest().body("Interview not found");
         }
 
+        aiInterviewService.stopAudioCapture();
+
+        return ResponseEntity.ok("Recording stopped and saved.");
+    }
+
+    // 녹음된 파일을 STT로 변환하여 텍스트로 반환하고 ChatGPT로 보내기
+    @PostMapping("/{AIInterviewNo}/process-audio-response")
+    public ResponseEntity<String> processAudioResponse(@PathVariable Long AIInterviewNo, @RequestParam("audioFile") MultipartFile audioFile) {
+        AIInterview aiInterview = aiInterviewService.getInterviewById(AIInterviewNo);
+        if (aiInterview == null) {
+            return ResponseEntity.badRequest().body("Interview not found");
+        }
+
+        String audioFilePath = "captured_audio_" + AIInterviewNo + ".wav";
+        File file = new File(audioFilePath);
+        try (OutputStream os = new FileOutputStream(file)) {
+            os.write(audioFile.getBytes());
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to save audio file");
+        }
+
+        String sttText = externalAPIService.callSTT(audioFilePath);
+
         String feedback = aiInterviewService.getChatGPTFeedback(sttText, aiInterview);
 
-        // 필요한 경우 즉시 피드백을 저장합니다.
         if ("즉시 피드백".equals(aiInterview.getFeedbackType())) {
-            aiInterviewService.saveImmediateFeedback(aiInterview, "User's Question", sttText, feedback);
+            aiInterviewService.saveImmediateFeedback(aiInterview, aiInterviewService.getCurrentQuestion(), sttText, feedback);
         }
+
+        String nextQuestion = aiInterviewService.getChatGPTQuestion(aiInterview, aiInterviewService.getCurrentQuestion(), sttText);
+        aiInterviewService.handleInterviewProcess(aiInterview, nextQuestion);
 
         return ResponseEntity.ok(feedback);
     }

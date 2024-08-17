@@ -42,6 +42,31 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
   const latestQuestionRef = useRef(null);
   const [isInterviewEnded, setIsInterviewEnded] = useState(false);
 
+  // 인터뷰 종료 처리
+  const handleEndInterview = useCallback(async () => {
+    setIsInterviewEnded(true);
+
+    const interviewDetails = {
+      userName,
+      selectedType,
+      selectedFeedback,
+      interviewHistory,
+      endTime: getCurrentFormattedTime(),
+      currentQuestionIndex,
+    };
+
+    try {
+      await axios.post('http://localhost:8080/api/interviews/save', interviewDetails, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Mock interview details sent successfully');
+    } catch (error) {
+      console.error('Failed to send mock interview details', error);
+    }
+  }, [userName, selectedType, selectedFeedback, interviewHistory, currentQuestionIndex]);
+
   // 음성 인식 초기화(현재 사용하는 음성인식은 딜레이가 있음)
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -85,16 +110,6 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
       }, 500);
     }
   }, []);
-
-  // 타이머 설정
-  useEffect(() => {
-    if (timeLeft > 0) {
-      const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
-      return () => clearInterval(timerId);
-    } else {
-      handleEndInterview(); // 시간이 0이 되면 handleEndInterview 실행
-    }
-  }, [timeLeft]);
 
   // 시간 포맷
   const formatTime = useCallback((seconds) => {
@@ -160,30 +175,15 @@ const ImmInterview = ({ selectedType, selectedFeedback, userName }) => {
     return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
   };
 
-  // 인터뷰 종료 처리
-  const handleEndInterview = useCallback(async () => {
-    setIsInterviewEnded(true);
-
-    const interviewDetails = {
-      userName,
-      selectedType,
-      selectedFeedback,
-      interviewHistory,
-      endTime: getCurrentFormattedTime(),
-      currentQuestionIndex,
-    };
-
-    try {
-      await axios.post('http://localhost:4000/api/interviews/save', interviewDetails, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log('Mock interview details sent successfully');
-    } catch (error) {
-      console.error('Failed to send mock interview details', error);
+  // 타이머 설정
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+      return () => clearInterval(timerId);
+    } else {
+      handleEndInterview(); // 시간이 0이 되면 handleEndInterview 실행
     }
-  }, [userName, selectedType, selectedFeedback, interviewHistory, currentQuestionIndex]);
+  }, [timeLeft, handleEndInterview]);
 
   // 인터뷰 히스토리 아이템 렌더링 함수
   const renderHistoryItem = useCallback((item, index) => (

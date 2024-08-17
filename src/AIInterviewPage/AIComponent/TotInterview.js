@@ -42,6 +42,37 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
   const latestQuestionRef = useRef(null);
   const [isInterviewEnded, setIsInterviewEnded] = useState(false);
 
+  // 인터뷰 종료 처리
+  const handleEndInterview = useCallback(async () => {
+    setIsInterviewEnded(true);
+
+    const interviewDetails = {
+      userName,
+      selectedType,
+      selectedFeedback,
+      interviewHistory,
+      feedback: interviewData[1]?.feedback,
+      endTime: getCurrentFormattedTime(),
+      currentQuestionIndex,
+    };
+
+    try {
+      await axios.post('http://localhost:8080/api/interviews/save', interviewDetails, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Mock interview details sent successfully');
+    } catch (error) {
+      console.error('Failed to send mock interview details', error);
+    }
+
+    // AI 피드백 제공
+    if (currentQuestionIndex > 0) {
+      setIsFeedbackComplete(true);
+    }
+  }, [userName, selectedType, selectedFeedback, interviewHistory, currentQuestionIndex]);
+
   // 음성 인식 초기화(현재 사용하는 음성인식은 딜레이가 있음)
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -94,7 +125,7 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
     } else {
       handleEndInterview(); // 시간이 0이 되면 handleEndInterview 실행
     }
-  }, [timeLeft]);
+  }, [timeLeft, handleEndInterview]);
 
   // 시간 포맷
   const formatTime = useCallback((seconds) => {
@@ -157,37 +188,6 @@ const TotInterview = ({ selectedType, selectedFeedback, userName }) => {
     const seconds = String(now.getSeconds()).padStart(2, '0');
     return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
   };
-
-  // 인터뷰 종료 처리
-  const handleEndInterview = useCallback(async () => {
-    setIsInterviewEnded(true);
-
-    const interviewDetails = {
-      userName,
-      selectedType,
-      selectedFeedback,
-      interviewHistory,
-      feedback: interviewData[1]?.feedback,
-      endTime: getCurrentFormattedTime(),
-      currentQuestionIndex,
-    };
-
-    try {
-      await axios.post('http://localhost:8080/api/interviews/save', interviewDetails, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log('Mock interview details sent successfully');
-    } catch (error) {
-      console.error('Failed to send mock interview details', error);
-    }
-
-    // AI 피드백 제공
-    if (currentQuestionIndex > 0) {
-      setIsFeedbackComplete(true);
-    }
-  }, [userName, selectedType, selectedFeedback, interviewHistory, currentQuestionIndex]);
 
   // 인터뷰 히스토리 아이템 렌더링 함수
   const renderHistoryItem = useCallback((item, index) => (
