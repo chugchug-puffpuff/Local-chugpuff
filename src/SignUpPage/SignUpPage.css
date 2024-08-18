@@ -131,10 +131,10 @@ input::placeholder {
   border-color: var(--variable-collection-gray-3);
   border-radius: 12.5px;
   flex: 1;
-  flex-grow: 1;
   height: 58.35px;
   overflow: hidden;
   position: relative;
+  width: calc(100% - 120px);
 }
 
 .SignUpPage-text-field-3.SignUpPage-duplicate {
@@ -151,6 +151,7 @@ input::placeholder {
   overflow: hidden;
   padding: 17px 38px;
   position: relative;
+  margin-left: auto;
 }
 
 .SignUpPage-text-wrapper {

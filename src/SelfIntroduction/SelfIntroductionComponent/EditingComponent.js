@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-// 로딩 중 텍스트
+// 로딩 중 텍스트입니다.
 const TypingText = () => {
   const text = "답변 내용을 분석 중입니다";
   const [displayedText, setDisplayedText] = useState('');
@@ -34,7 +34,11 @@ const EditingComponent = ({ details }) => {
   const [loading, setLoading] = useState(true); // 로딩 상태
 
   useEffect(() => {
-    axios.get('/api/selfIntroduction/feedback')
+    axios.get('http://localhost:8080/api/selfIntroduction/feedback', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+      }
+    })
       .then(response => {
         setFeedback(response.data[0].es_feedback);
         setLoading(false); // 로딩 완료
@@ -47,7 +51,9 @@ const EditingComponent = ({ details }) => {
 
   const formattedText = feedback
     .replace(/\n\n/g, '\n\n&nbsp;\n\n')
-    .replace(/(\n#? )(.+?:)/g, '$1<span class="bold">$2</span>'); 
+    .replace(/(\n#? )(.+?:)/g, '$1<span class="bold">$2</span>')
+    .replace(/피드백:/g, '피드백')
+    .replace(/자기소개서:/g, '자기소개서');
 
   return (
     <div className="EditingComponent-frame-12">

@@ -37,9 +37,9 @@ const SeHistoryBar = () => {
     setShowDeleteConfirmation(true)
   }
 
-  const handleDeleteConfirm = async () => {
+  const handleDeleteConfirm = async ({es_no}) => {
     try {
-      await axios.delete(`http://localhost:8080/api/selfIntroduction/${selectedEsNo}`) // 백엔드에 삭제 요청
+      await axios.delete(`http://localhost:8080/api/selfIntroduction/${es_no}`) // 백엔드에 삭제 요청
       setSortedSelfIntroductionData(prevData => prevData.filter(data => data.es_no !== selectedEsNo)) // 삭제된 데이터 필터링
       setShowDeleteConfirmation(false)
     } catch (error) {

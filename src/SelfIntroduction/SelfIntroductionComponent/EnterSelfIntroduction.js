@@ -61,7 +61,11 @@ const EnterSelfIntroduction = () => {
     };
   
     try {
-      const response = await axios.post('http://localhost:8080/api/self-introduction/save', data);
+      const response = await axios.post('http://localhost:8080/api/selfIntroduction/feedback', data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+        }
+      });
       console.log('Response:', response.data);
       navigate('/editing-page', { state: { details: data.details } });
     } catch (error) {

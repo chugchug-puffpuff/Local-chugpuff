@@ -1,4 +1,4 @@
-.EditingComponent-frame-12 {
+.HistoryComponent-frame-12 {
   align-items: center;
   display: inline-flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   top: 176px;
 }
 
-.EditingComponent-frame-wrapper {
+.HistoryComponent-frame-wrapper {
   align-items: flex-end;
   border: 0.98px solid;
   border-color: var(--variable-collection-gray-3);
@@ -22,7 +22,7 @@
   width: 1000px;
 }
 
-.EditingComponent-frame-13 {
+.HistoryComponent-frame-13 {
   align-items: flex-start;
   align-self: stretch;
   display: flex;
@@ -32,7 +32,7 @@
   width: 100%;
 }
 
-.EditingComponent-frame-14 {
+.HistoryComponent-frame-14 {
   align-items: flex-end;
   display: flex;
   flex: 1;
@@ -42,7 +42,7 @@
   position: relative;
 }
 
-.EditingComponent-frame-15 {
+.HistoryComponent-frame-15 {
   align-items: flex-start;
   align-self: stretch;
   display: flex;
@@ -53,7 +53,7 @@
   width: 100%;
 }
 
-.EditingComponent-text-wrapper-7 {
+.HistoryComponent-text-wrapper-7 {
   align-self: stretch;
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
@@ -65,7 +65,7 @@
   position: relative;
 }
 
-.EditingComponent-text-wrapper-8 {
+.HistoryComponent-text-wrapper-8 {
   align-self: stretch;
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-Regular", Helvetica;
@@ -77,7 +77,7 @@
   
 }
 
-.EditingComponent-img {
+.HistoryComponent-img {
   height: 1px;
   margin-left: -40px;
   object-fit: cover;
@@ -85,30 +85,30 @@
   width: 904px;
 }
 
-.EditingComponent-bookmark-2 {
+.HistoryComponent-bookmark-2 {
   cursor: pointer;
   height: 40px;
   position: relative;
   width: 40px;
 }
 
-.bookmark {
+.HistoryComponent-bookmark {
   cursor: pointer;
   height: 40px;
   position: relative;
   width: 40px;
 }
 
-.EditingComponent-text-wrapper-8 h2 {
+.HistoryComponent-text-wrapper-8 h2 {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .bold {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 650;
 }

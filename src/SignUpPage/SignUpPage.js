@@ -225,11 +225,11 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                     </div>
                     <div className="SignUpPage-frame-3">
                       <input className={`SignUpPage-text-field-3 ${isDuplicate ? 'SignUpPage-duplicate' : ''} ${errors.id ? 'SignUpPage-error' : ''}`}
-                             type="text"
-                             name="id"
-                             value={formData.id}
-                             placeholder='4~20자리 / 영문, 숫자 조합'
-                             onChange={handleChange}
+                            type="text"
+                            name="id"
+                            value={formData.id}
+                            placeholder='4~20자리 / 영문, 숫자 조합'
+                            onChange={handleChange}
                       />
                       <div className="SignUpPage-div-wrapper">
                         <button type="button" onClick={checkDuplicateId} className="SignUpPage-text-wrapper">중복 확인</button>
