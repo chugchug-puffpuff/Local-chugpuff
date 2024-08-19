@@ -16,8 +16,8 @@ const SeHistoryPage = ({ authenticate, setAuthenticate, userName }) => {
 
   return (
     <div className="SeHistoryPage">
-      <HistoryComponent es_no={es_no} reloadHistory={reloadHistory} />
-      <SeHistoryBar />
+      {es_no && <HistoryComponent es_no={es_no} reload={reload} reloadHistory={reloadHistory} />}
+      <SeHistoryBar reload={reload} />
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
   );

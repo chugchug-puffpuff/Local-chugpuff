@@ -15,7 +15,7 @@ const EnterSelfIntroduction = () => {
 
   const handleAddItem = () => {
     const newItem = {
-      eS_qestion: '',
+      eS_question: '',
       eS_answer: '',
       questionRef: React.createRef(),
       answerRef: React.createRef(),
@@ -44,22 +44,22 @@ const EnterSelfIntroduction = () => {
     }
   };
 
-  const checkButtonActive = (eS_qestion, eS_answer) => {
-    const allQuestionsAnswered = eS_qestion.trim() !== '' && eS_answer.trim() !== '' && items.every(item => item.eS_qestion.trim() !== '' && item.eS_answer.trim() !== '');
+  const checkButtonActive = (eS_question, eS_answer) => {
+    const allQuestionsAnswered = eS_question.trim() !== '' && eS_answer.trim() !== '' && items.every(item => item.eS_question.trim() !== '' && item.eS_answer.trim() !== '');
     setIsButtonActive(allQuestionsAnswered);
   };
 
   const handleSubmit = async () => {
-    const data = {
-      details: [
-        { eS_qestion: questionValue, eS_answer: answerValue },
-        ...items.map(item => ({
-          eS_qestion: item.eS_qestion,
-          eS_answer: item.eS_answer
-        }))
-      ]
-    };
+    const data = [
+      { eS_question: questionValue, eS_answer: answerValue },
+      ...items.map(item => ({
+        eS_question: item.eS_question,
+        eS_answer: item.eS_answer
+      }))
+    ];
   
+    navigate('/editing-page', { state: { details: data } });
+
     try {
       const response = await axios.post('http://localhost:8080/api/selfIntroduction/feedback', data, {
         headers: {
@@ -67,7 +67,6 @@ const EnterSelfIntroduction = () => {
         }
       });
       console.log('Response:', response.data);
-      navigate('/editing-page', { state: { details: data.details } });
     } catch (error) {
       console.error('Error submitting data:', error);
     }
@@ -88,7 +87,7 @@ const EnterSelfIntroduction = () => {
           value={questionValue}
           onChange={handleQuestionChange}
           type="text"
-          name="eS_qestion"
+          name="eS_question"
           placeholder="질문 내용을 작성해주세요."
         />
       </div>
@@ -112,10 +111,10 @@ const EnterSelfIntroduction = () => {
           <textarea
             className="EnterSelfIntroduction-div"
             ref={item.questionRef}
-            value={item.eS_qestion}
+            value={item.eS_question}
             onChange={(e) => {
               const newItems = [...items];
-              newItems[index].eS_qestion = e.target.value;
+              newItems[index].eS_question = e.target.value;
               setItems(newItems);
               adjustTextareaHeight(item.questionRef.current);
               checkButtonActive(questionValue, answerValue);

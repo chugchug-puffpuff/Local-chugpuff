@@ -5,14 +5,23 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-const HistoryComponent = ({ es_no, reloadHistory }) => {
+const HistoryComponent = ({ es_no, reload, reloadHistory }) => {
   const [selfIntroductionData, setSelfIntroductionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSelfIntroductionData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/selfIntroduction/${es_no}`);
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('No token found');
+        }
+
+        const response = await axios.get(`http://localhost:8080/api/selfIntroduction/${es_no}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         setSelfIntroductionData(response.data);
       } catch (error) {
         console.error('Failed to fetch self introduction data', error);
@@ -23,14 +32,32 @@ const HistoryComponent = ({ es_no, reloadHistory }) => {
     if (es_no) {
       fetchSelfIntroductionData();
     }
-  }, [es_no]);
+  }, [es_no, reload]);
 
   const toggleSaveStatus = async () => {
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+  
+      const newSaveStatus = !selfIntroductionData.save;
+  
       await axios.post(`http://localhost:8080/api/selfIntroduction/save/${es_no}`, {
-        save: !selfIntroductionData.save,
+        save: newSaveStatus,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
-      reloadHistory();
+  
+      // 상태 업데이트
+      setSelfIntroductionData(prevData => ({
+        ...prevData,
+        save: newSaveStatus
+      }));
+  
+      reloadHistory(); // 상태 변경 후 reloadHistory 호출
     } catch (error) {
       console.error('Failed to update save status', error);
     }

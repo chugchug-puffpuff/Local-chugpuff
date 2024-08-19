@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import './EditingComponent.css'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import './EditingComponent.css';
+import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -34,19 +34,22 @@ const EditingComponent = ({ details }) => {
   const [loading, setLoading] = useState(true); // 로딩 상태
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/selfIntroduction/feedback', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
-      }
-    })
-      .then(response => {
+    const fetchFeedback = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/selfIntroduction/feedback', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+          }
+        });
         setFeedback(response.data[0].es_feedback);
         setLoading(false); // 로딩 완료
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching feedback:', error);
         setLoading(false); // 에러 발생 시 로딩 완료
-      });
+      }
+    };
+
+    fetchFeedback();
   }, []);
 
   const formattedText = feedback
@@ -60,10 +63,10 @@ const EditingComponent = ({ details }) => {
       <div className="EditingComponent-frame-wrapper">
         <div className="EditingComponent-frame-13">
           <div className="EditingComponent-frame-14">
-            {details.map((detail, index) => (
+            {details && details.map((detail, index) => (
               <div key={index} className="EditingComponent-frame-15">
                 <div className="EditingComponent-text-wrapper-7">자기소개서 문항 {index + 1}</div>
-                <p className="EditingComponent-text-wrapper-8">{detail.eS_qestion}</p>
+                <p className="EditingComponent-text-wrapper-8">{detail.eS_question}</p>
                 <div className="EditingComponent-text-wrapper-7">답변 {index + 1}</div>
                 <p className="EditingComponent-text-wrapper-8">{detail.eS_answer}</p>
               </div>
@@ -88,15 +91,10 @@ const EditingComponent = ({ details }) => {
               </p>
             </div>
           </div>
-          {/* <img
-            className="EditingComponent-bookmark-2"
-            alt="Bookmark"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6698aa612be89236643e00e3/img/bookmark@2x.png"
-          /> */}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EditingComponent
+export default EditingComponent;
