@@ -51,13 +51,26 @@ const HistoryComponent = ({ es_no, reload, reloadHistory }) => {
         }
       });
   
-      // 상태 업데이트
       setSelfIntroductionData(prevData => ({
         ...prevData,
         save: newSaveStatus
       }));
   
-      reloadHistory(); // 상태 변경 후 reloadHistory 호출
+      if (newSaveStatus) {
+        // Fetch saved data immediately like handleSavedClick
+        const response = await axios.get('http://localhost:8080/api/selfIntroduction/saved', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        if (Array.isArray(response.data)) {
+          reloadHistory(response.data);
+        } else {
+          reloadHistory([response.data]);
+        }
+      } else {
+        reloadHistory(); // Trigger reload without passing newSaveStatus
+      }
     } catch (error) {
       console.error('Failed to update save status', error);
     }

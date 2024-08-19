@@ -36,15 +36,26 @@ const EditingComponent = ({ details }) => {
   useEffect(() => {
     const fetchFeedback = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/selfIntroduction/feedback', {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('No token found');
+        }
+
+        const response = await axios.post('http://localhost:8080/api/selfIntroduction/feedback', {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+            'Authorization': `Bearer ${token}` // 인증 토큰 추가
           }
         });
-        setFeedback(response.data[0].es_feedback);
+        setFeedback(response.data.es_feedback);
         setLoading(false); // 로딩 완료
       } catch (error) {
-        console.error('Error fetching feedback:', error);
+        if (error.response && error.response.status === 401) {
+          // 토큰 갱신 로직 추가
+          console.error('Unauthorized: Token may be expired or invalid');
+          // 여기서 토큰 갱신 로직을 추가할 수 있습니다.
+        } else {
+          console.error('Error fetching feedback:', error);
+        }
         setLoading(false); // 에러 발생 시 로딩 완료
       }
     };
@@ -58,43 +69,43 @@ const EditingComponent = ({ details }) => {
     .replace(/피드백:/g, '피드백')
     .replace(/자기소개서:/g, '자기소개서');
 
-  return (
-    <div className="EditingComponent-frame-12">
-      <div className="EditingComponent-frame-wrapper">
-        <div className="EditingComponent-frame-13">
-          <div className="EditingComponent-frame-14">
-            {details && details.map((detail, index) => (
-              <div key={index} className="EditingComponent-frame-15">
-                <div className="EditingComponent-text-wrapper-7">자기소개서 문항 {index + 1}</div>
-                <p className="EditingComponent-text-wrapper-8">{detail.eS_question}</p>
-                <div className="EditingComponent-text-wrapper-7">답변 {index + 1}</div>
-                <p className="EditingComponent-text-wrapper-8">{detail.eS_answer}</p>
-              </div>
-            ))}
-            <img
-              className="EditingComponent-img"
-              alt="Line"
-              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6698aa612be89236643e00e3/img/line-2.png"
-            />
-            <div className="EditingComponent-frame-15">
-              <div className="EditingComponent-text-wrapper-7">피드백</div>
-              <p className="EditingComponent-text-wrapper-8">
+    return (
+      <div className="EditingComponent-frame-12">
+        <div className="EditingComponent-frame-wrapper">
+          <div className="EditingComponent-frame-13">
+            <div className="EditingComponent-frame-14">
+              {details && details.map((detail, index) => (
+                <div key={index} className="EditingComponent-frame-15">
+                  <div className="EditingComponent-text-wrapper-7">자기소개서 문항 {index + 1}</div>
+                  <p className="EditingComponent-text-wrapper-8">{detail.eS_question}</p>
+                  <div className="EditingComponent-text-wrapper-7">답변 {index + 1}</div>
+                  <p className="EditingComponent-text-wrapper-8">{detail.eS_answer}</p>
+                </div>
+              ))}
+              <img
+                className="EditingComponent-img"
+                alt="Line"
+                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6698aa612be89236643e00e3/img/line-2.png"
+              />
+              <div className="EditingComponent-frame-15">
+                <div className="EditingComponent-text-wrapper-7">피드백</div>
                 {loading ? <TypingText /> : (
-                  <ReactMarkdown 
-                    className="EditingComponent-text-wrapper-8" 
-                    remarkPlugins={[remarkGfm]} 
-                    rehypePlugins={[rehypeRaw]}
-                  >
-                    {formattedText}
-                  </ReactMarkdown>
+                  <div className="EditingComponent-text-wrapper-8">
+                    <ReactMarkdown 
+                      className="EditingComponent-text-wrapper-8" 
+                      remarkPlugins={[remarkGfm]} 
+                      rehypePlugins={[rehypeRaw]}
+                    >
+                      {formattedText}
+                    </ReactMarkdown>
+                  </div>
                 )}
-              </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default EditingComponent;

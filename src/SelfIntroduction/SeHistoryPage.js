@@ -9,15 +9,21 @@ const SeHistoryPage = ({ authenticate, setAuthenticate, userName }) => {
   const location = useLocation();
   const { es_no } = location.state || { es_no: null };
   const [reload, setReload] = useState(false);
+  const [isSavedClicked, setIsSavedClicked] = useState(false);
 
-  const reloadHistory = () => {
-    setReload(!reload);
+  const reloadHistory = (savedData) => {
+    if (savedData) {
+      setReload(!reload);
+      setIsSavedClicked(true);
+    } else {
+      setReload(!reload);
+    }
   };
 
   return (
     <div className="SeHistoryPage">
       {es_no && <HistoryComponent es_no={es_no} reload={reload} reloadHistory={reloadHistory} />}
-      <SeHistoryBar reload={reload} />
+      <SeHistoryBar reload={reload} isSavedClickedProp={isSavedClicked} />
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
   );

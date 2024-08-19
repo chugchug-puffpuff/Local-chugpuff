@@ -3,42 +3,37 @@ import './SeHistoryBar.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const SeHistoryBar = ({ reload }) => { // reload prop 추가
+const SeHistoryBar = ({ reload, isSavedClickedProp }) => {
   const [sortedSelfIntroductionData, setSortedSelfIntroductionData] = useState([]);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [selectedEsNo, setSelectedEsNo] = useState(null);
-  const [isSavedClicked, setIsSavedClicked] = useState(false);
+  const [isSavedClicked, setIsSavedClicked] = useState(isSavedClickedProp);
 
   const navigate = useNavigate();
   const goToSelfIntroduction = () => {
     navigate('/selfintroduction');
   };
 
-  // 서버에서 모든 자소서 내역 가져오기
   useEffect(() => {
     const fetchSelfIntroductionData = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/selfIntroduction/list', {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         });
-        console.log('Fetched data:', response.data); // 데이터 확인
-        response.data.forEach(item => {
-          console.log('Details:', item.details);
-        });
-        // save가 false인 데이터만 필터링하고 es_no를 기준으로 내림차순 정렬
         const filteredData = response.data.filter(item => !item.save);
         const sortedData = filteredData.sort((a, b) => b.es_no - a.es_no);
         setSortedSelfIntroductionData(sortedData);
+        setIsSavedClicked(isSavedClickedProp); // Set isSavedClicked based on prop
       } catch (error) {
         console.error('Failed to fetch self introduction data', error);
-        setSortedSelfIntroductionData([]); // 오류 발생 시 빈 배열로 설정
+        setSortedSelfIntroductionData([]);
       }
     };
 
     fetchSelfIntroductionData();
-  }, [reload]);
+  }, [reload, isSavedClickedProp]);
 
   const handleDeleteClick = (es_no) => {
     setSelectedEsNo(es_no);
@@ -49,10 +44,10 @@ const SeHistoryBar = ({ reload }) => { // reload prop 추가
     try {
       await axios.delete(`http://localhost:8080/api/selfIntroduction/${selectedEsNo}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
-      }); // 백엔드에 삭제 요청
-      setSortedSelfIntroductionData(prevData => prevData.filter(data => data.es_no !== selectedEsNo)); // 삭제된 데이터 필터링
+      });
+      setSortedSelfIntroductionData(prevData => prevData.filter(data => data.es_no !== selectedEsNo));
       setShowDeleteConfirmation(false);
     } catch (error) {
       console.error(`Failed to delete self introduction with id: ${selectedEsNo}`, error);
@@ -63,20 +58,18 @@ const SeHistoryBar = ({ reload }) => { // reload prop 추가
     try {
       const response = await axios.get('http://localhost:8080/api/selfIntroduction/saved', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      console.log('Saved data:', response.data); // 저장된 데이터 확인
       if (Array.isArray(response.data)) {
         setSortedSelfIntroductionData(response.data);
       } else {
-        // 응답 데이터가 객체인 경우 배열로 변환
         setSortedSelfIntroductionData([response.data]);
       }
       setIsSavedClicked(true);
     } catch (error) {
       console.error('Failed to fetch saved self introduction data', error);
-      setSortedSelfIntroductionData([]); // 오류 발생 시 빈 배열로 설정
+      setSortedSelfIntroductionData([]);
     }
   };
 
@@ -84,7 +77,7 @@ const SeHistoryBar = ({ reload }) => { // reload prop 추가
     try {
       const response = await axios.get('http://localhost:8080/api/selfIntroduction/list', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
       const filteredData = response.data.filter(item => !item.save);
@@ -93,7 +86,7 @@ const SeHistoryBar = ({ reload }) => { // reload prop 추가
       setIsSavedClicked(false);
     } catch (error) {
       console.error('Failed to fetch self introduction data', error);
-      setSortedSelfIntroductionData([]); // 오류 발생 시 빈 배열로 설정
+      setSortedSelfIntroductionData([]);
     }
   };
 
