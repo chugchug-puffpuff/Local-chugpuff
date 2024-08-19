@@ -1,0 +1,430 @@
+.element {
+  background-color: var(--variable-collection-gray4);
+  height: 1889px;
+  position: relative;
+  width: 1920px;
+}
+
+.element .frame {
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 16px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  left: 310px;
+  overflow: hidden;
+  padding: 42px 68px 56px;
+  position: absolute;
+  top: 225px;
+  width: 1230px;
+}
+
+.element .frame-2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: -34.21px;
+  margin-right: -34.21px;
+  position: relative;
+}
+
+.element .header {
+  align-items: center;
+  background-color: transparent;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  padding: 0px 0px 7.64px;
+  position: relative;
+}
+
+.element .img {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.element .atoms-mouth-instance {
+  background-color: unset !important;
+  border-radius: 7.64px !important;
+  flex: 0 0 auto !important;
+  height: 45.81px !important;
+  left: unset !important;
+  padding: 3.82px 15.27px !important;
+  top: unset !important;
+}
+
+.element .design-component-instance-node {
+  color: #000000 !important;
+  font-family: "Pretendard Variable-Regular", Helvetica !important;
+  font-size: 32px !important;
+  margin-top: -1.82px !important;
+}
+
+.element .frame-3 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+.element .frame-4 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+.element .frame-5 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  width: 100%;
+}
+
+.element .line {
+  align-self: stretch;
+  height: 1px;
+  margin-top: -1px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.element .line-2 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 1162.42px;
+}
+
+.element .design-component-instance-node-2 {
+  border-radius: 7.64px !important;
+  height: 45.81px !important;
+  left: unset !important;
+  top: unset !important;
+  width: 166.06px !important;
+}
+
+.element .design-component-instance-node-3 {
+  font-size: 21px !important;
+}
+
+.element .design-component-instance-node-4 {
+  border-radius: 7.64px !important;
+  height: 45.81px !important;
+  left: unset !important;
+  margin-left: -1.53e-5px !important;
+  top: unset !important;
+  width: 166.06px !important;
+}
+
+.element .design-component-instance-node-5 {
+  color: var(--variable-collection-main-black) !important;
+  font-size: 21px !important;
+}
+
+.element .line-3 {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.element .frame-6 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 29px;
+  position: relative;
+}
+
+.element .line-4 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 1162.42px;
+}
+
+.element .atoms-dey-number-instance {
+  color: var(--variable-collection-gray-2) !important;
+  font-size: 21px !important;
+}
+
+.element .frame-7 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-left: -1.53e-5px;
+  position: relative;
+  width: 166.06px;
+}
+
+.element .atoms-dey-number-2 {
+  border-radius: 7.64px !important;
+  height: 45.81px !important;
+  left: unset !important;
+  top: unset !important;
+  width: 45.81px !important;
+}
+
+.element .frame-8 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.element .text-wrapper-2 {
+  color: #000000;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .text-wrapper-3 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  color: var(--variable-collection-main-black);
+  display: -webkit-box;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  height: 77px;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  width: 160px;
+}
+
+.element .atoms-dey-number-3 {
+  color: var(--variable-collection-blue) !important;
+  font-size: 21px !important;
+}
+
+.element .line-5 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  width: 1162.42px;
+}
+
+.element .frame-9 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-left: 0px;
+  position: relative;
+  width: 166.06px;
+}
+
+.element .atoms-dey-number-4 {
+  border-radius: 7.64px !important;
+  height: 45.81px !important;
+  left: unset !important;
+  margin-left: 0px !important;
+  top: unset !important;
+  width: 166.06px !important;
+}
+
+.element .text-wrapper-4 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: #000000;
+  display: -webkit-box;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  width: 160px;
+}
+
+.element .frame-10 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 12px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 12px 28px;
+  position: relative;
+}
+
+.element .text-wrapper-5 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .p {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  left: 310px;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  position: absolute;
+  top: 175px;
+}
+
+.element .view {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px #0000000d;
+  height: 88px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 1920px;
+}
+
+.element .view-2 {
+  height: 88px;
+  left: 310px;
+  position: relative;
+  width: 1300px;
+}
+
+.element .navbar {
+  align-items: center;
+  display: flex;
+  gap: 32px;
+  height: 88px;
+  justify-content: center;
+  left: 221px;
+  padding: 3px 0px;
+  position: absolute;
+  top: 0;
+  width: 527px;
+}
+
+.element .text-wrapper-6 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .view-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 88px;
+  justify-content: center;
+  left: 0;
+  padding: 22px 0px;
+  position: absolute;
+  top: 0;
+  width: 152px;
+}
+
+.element .view-3 {
+  background-image: url(https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/--@2x.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 38px;
+  position: relative;
+  width: 145px;
+}
+
+.element .frame-wrapper {
+  align-items: center;
+  display: flex;
+  gap: 27px;
+  height: 88px;
+  justify-content: flex-end;
+  left: 1100px;
+  padding: 8px 0px;
+  position: absolute;
+  top: 0;
+  width: 200px;
+}
+
+.element .frame-11 {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  width: 96px;
+}
+
+.element .div-2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .span {
+  font-weight: 600;
+  letter-spacing: -0.12px;
+}
+
+.element .text-wrapper-7 {
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  letter-spacing: -0.12px;
+}
