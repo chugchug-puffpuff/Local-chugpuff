@@ -31,10 +31,13 @@ const EnterSelfIntroduction = () => {
   };
 
   const handleAnswerChange = (e) => {
-    setAnswerValue(e.target.value);
-    adjustTextareaHeight(answerRef.current);
-    setCharCount(e.target.value.length);
-    checkButtonActive(questionValue, e.target.value);
+    const value = e.target.value;
+    if (value.length <= 1000) {
+      setAnswerValue(value);
+      setCharCount(value.length);
+      adjustTextareaHeight(answerRef.current);
+      checkButtonActive(questionValue, value);
+    }
   };
 
   const adjustTextareaHeight = (textarea) => {
@@ -58,8 +61,6 @@ const EnterSelfIntroduction = () => {
       }))
     ];
   
-    navigate('/editing-page', { state: { details: data } });
-
     try {
       const response = await axios.post('http://localhost:8080/api/selfIntroduction/feedback', data, {
         headers: {
@@ -67,6 +68,7 @@ const EnterSelfIntroduction = () => {
         }
       });
       console.log('Response:', response.data);
+      navigate('/editing-page', { state: { details: data, es_feedback: response.data.es_feedback } });
     } catch (error) {
       console.error('Error submitting data:', error);
     }
@@ -130,11 +132,14 @@ const EnterSelfIntroduction = () => {
               ref={item.answerRef}
               value={item.eS_answer}
               onChange={(e) => {
-                const newItems = [...items];
-                newItems[index].eS_answer = e.target.value;
-                setItems(newItems);
-                adjustTextareaHeight(item.answerRef.current);
-                checkButtonActive(questionValue, answerValue);
+                const value = e.target.value;
+                if (value.length <= 1000) {
+                  const newItems = [...items];
+                  newItems[index].eS_answer = value;
+                  setItems(newItems);
+                  adjustTextareaHeight(item.answerRef.current);
+                  checkButtonActive(questionValue, value);
+                }
               }}
               name="eS_answer"
               placeholder="질문에 대한 답변을 작성해주세요."
