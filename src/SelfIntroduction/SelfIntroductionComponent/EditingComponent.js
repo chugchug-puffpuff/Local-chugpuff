@@ -1,37 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import './EditingComponent.css';
-import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-// 로딩 중 텍스트입니다.
-const TypingText = () => {
-  const text = "답변 내용을 분석 중입니다...";
-  const [displayedText, setDisplayedText] = useState('');
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setDisplayedText((prev) => prev + text[index]);
-      setIndex((prevIndex) => {
-        const newIndex = (prevIndex + 1) % text.length;
-        if (newIndex === 0) {
-          setDisplayedText('');
-        }
-        return newIndex;
-      });
-    }, 300);
-
-    return () => clearInterval(intervalId);
-  }, [index, text]);
-
-  return <div>{displayedText}</div>;
-};
-
 const EditingComponent = ({ details, es_feedback }) => {
-  const [feedback, setFeedback] = useState(es_feedback || '');
-  const [loading, setLoading] = useState(false); // 로딩 상태
+  const [feedback] = useState(es_feedback || '');
 
   const formattedText = feedback
     .replace(/\n\n/g, '\n\n&nbsp;\n\n')
@@ -59,17 +33,15 @@ const EditingComponent = ({ details, es_feedback }) => {
             />
             <div className="EditingComponent-frame-15">
               <div className="EditingComponent-text-wrapper-7">피드백</div>
-              {loading ? <TypingText /> : (
-                <div className="EditingComponent-text-wrapper-8">
-                  <ReactMarkdown 
-                    className="EditingComponent-text-wrapper-8" 
-                    remarkPlugins={[remarkGfm]} 
-                    rehypePlugins={[rehypeRaw]}
-                  >
-                    {formattedText}
-                  </ReactMarkdown>
-                </div>
-              )}
+              <div className="EditingComponent-text-wrapper-8">
+                <ReactMarkdown 
+                  className="EditingComponent-text-wrapper-8" 
+                  remarkPlugins={[remarkGfm]} 
+                  rehypePlugins={[rehypeRaw]}
+                >
+                  {formattedText}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         </div>

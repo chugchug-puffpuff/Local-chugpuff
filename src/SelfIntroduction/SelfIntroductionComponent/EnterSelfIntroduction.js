@@ -2,12 +2,37 @@ import React, { useState, useEffect, useRef } from 'react';
 import './EnterSelfIntroduction.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ScrollToTop from '../../Route/ScrollToTop.js';
+
+const TypingText = () => {
+  const text = "잠시만 기다려 주세요...";
+  const [displayedText, setDisplayedText] = useState('');
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setDisplayedText((prev) => prev + text[index]);
+      setIndex((prevIndex) => {
+        const newIndex = (prevIndex + 1) % text.length;
+        if (newIndex === 0) {
+          setDisplayedText(''); // 텍스트가 끝까지 출력되면 다시 빈 문자열로
+        }
+        return newIndex;
+      });
+    }, 300);
+
+    return () => clearInterval(intervalId);
+  }, [index, text]);
+
+  return <div className='EnterSelfIntroduction-TypingText'>{displayedText}</div>;
+};
 
 const EnterSelfIntroduction = () => {
   const [questionValue, setQuestionValue] = useState('');
   const [answerValue, setAnswerValue] = useState('');
   const [charCount, setCharCount] = useState(0);
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const questionRef = useRef(null);
   const answerRef = useRef(null);
   const [items, setItems] = useState([]);
@@ -53,6 +78,7 @@ const EnterSelfIntroduction = () => {
   };
 
   const handleSubmit = async () => {
+    setIsSubmitting(true);
     const data = [
       { eS_question: questionValue, eS_answer: answerValue },
       ...items.map(item => ({
@@ -71,6 +97,8 @@ const EnterSelfIntroduction = () => {
       navigate('/editing-page', { state: { details: data, es_feedback: response.data.es_feedback } });
     } catch (error) {
       console.error('Error submitting data:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -79,7 +107,23 @@ const EnterSelfIntroduction = () => {
     adjustTextareaHeight(answerRef.current);
   }, []);
 
-  return (
+  return isSubmitting ? (
+    <div>
+      <ScrollToTop />
+      <div className="EnterSelfIntroduction-frame-12">
+        <div className="EnterSelfIntroduction-frame-wrapper">
+          <div className="EnterSelfIntroduction-frame-13">
+            <div className="EnterSelfIntroduction-frame-14">
+              <div className="EnterSelfIntroduction-frame-15">
+                <TypingText />
+                <div className="EnterSelfIntroduction-text-wrapper-7">답변 내용을 분석 중입니다. 분량에 따라 몇 분의 시간이 소요될 수 있습니다.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
     <form className="EnterSelfIntroduction-view">
       <div className="EnterSelfIntroduction-frame">
         <div className="EnterSelfIntroduction-text-wrapper">자기소개서 문항 1</div>
@@ -159,6 +203,7 @@ const EnterSelfIntroduction = () => {
           <div className="EnterSelfIntroduction-text-wrapper-5">첨삭 받기</div>
         </div>
       </div>
+      {isSubmitting && <TypingText />}
     </form>
   );
 };

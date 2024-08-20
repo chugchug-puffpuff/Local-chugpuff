@@ -1,3 +1,81 @@
+.EnterSelfIntroduction-frame-12 {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+  left: 460px;
+  position: absolute;
+  top: 176px;
+}
+
+.EnterSelfIntroduction-frame-wrapper {
+  align-items: flex-end;
+  border: 0.98px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 15px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  padding: 36px 48px;
+  position: relative;
+  width: 1000px;
+}
+
+.EnterSelfIntroduction-frame-13 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.EnterSelfIntroduction-frame-14 {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 24px;
+  position: relative;
+}
+
+.EnterSelfIntroduction-frame-15 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.EnterSelfIntroduction-TypingText {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  margin-top: 30px;
+}
+
+.EnterSelfIntroduction-text-wrapper-7 {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  margin-bottom: 30px;
+}
+
 .EnterSelfIntroduction-view {
   align-items: flex-end;
   border: 0.98px solid;
