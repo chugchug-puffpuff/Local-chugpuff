@@ -20,6 +20,7 @@
   padding: 36px 48px;
   position: relative;
   width: 1000px;
+  height: 200px;
 }
 
 .EnterSelfIntroduction-frame-13 {
@@ -61,7 +62,8 @@
   letter-spacing: -0.6px;
   line-height: normal;
   position: relative;
-  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .EnterSelfIntroduction-text-wrapper-7 {
@@ -73,7 +75,8 @@
   letter-spacing: -0.6px;
   line-height: normal;
   position: relative;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .EnterSelfIntroduction-view {

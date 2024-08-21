@@ -13,13 +13,15 @@ const TypingText = () => {
     const intervalId = setInterval(() => {
       setDisplayedText((prev) => prev + text[index]);
       setIndex((prevIndex) => {
-        const newIndex = (prevIndex + 1) % text.length;
-        if (newIndex === 0) {
-          setDisplayedText(''); // 텍스트가 끝까지 출력되면 다시 빈 문자열로
+        const newIndex = prevIndex + 1;
+        if (newIndex === text.length) {
+          // 인덱스가 문자열 끝에 도달하면 다시 처음으로
+          setDisplayedText(''); // 빈 문자열로 초기화하지 않고 새로 시작
+          return 0;
         }
         return newIndex;
       });
-    }, 300);
+    }, 250);
 
     return () => clearInterval(intervalId);
   }, [index, text]);
@@ -115,8 +117,8 @@ const EnterSelfIntroduction = () => {
           <div className="EnterSelfIntroduction-frame-13">
             <div className="EnterSelfIntroduction-frame-14">
               <div className="EnterSelfIntroduction-frame-15">
-                <TypingText />
                 <div className="EnterSelfIntroduction-text-wrapper-7">답변 내용을 분석 중입니다. 분량에 따라 몇 분의 시간이 소요될 수 있습니다.</div>
+                <TypingText />
               </div>
             </div>
           </div>
