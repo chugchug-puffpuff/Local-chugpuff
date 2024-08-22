@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './RTPosts.css';
-import PopularPost from './RTPComponents/PopularPost';
+import PopularPostMain from './RTPComponents/PopularPostMain';
 import postData from '../../TestData/postData.json';
 
 const RTPosts = () => {
@@ -19,7 +19,7 @@ const RTPosts = () => {
       </div>
       <div className="RTPosts-frame-2">
         {sortedPostData.map((post, index) => (
-          <PopularPost
+          <PopularPostMain
             key={index}
             category={post.category}
             date={post.date}

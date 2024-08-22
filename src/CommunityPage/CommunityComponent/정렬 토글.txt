@@ -1,0 +1,24 @@
+<div className="frame">
+  <div className="div">
+    <div className="text-wrapper">인기순</div>
+    <img
+      className="img"
+      alt="Keyboard arrow up"
+      src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-up@2x.png"
+    />
+  </div>
+  <div className="frame-2">
+    <div className="frame-3">
+      <div className="text-wrapper">실시간 인기순</div>
+    </div>
+    <div className="frame-3">
+      <div className="text-wrapper">최신순</div>
+    </div>
+    <div className="frame-3">
+      <div className="text-wrapper">공감 많은 순</div>
+    </div>
+    <div className="frame-3">
+      <div className="text-wrapper">댓글 많은 순</div>
+    </div>
+  </div>
+</div>

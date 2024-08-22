@@ -1,0 +1,17 @@
+.CommunityPage {
+  background-color: #ffffff;
+  height: 2347px;
+  position: relative;
+  width: 1920px;
+}
+
+.CommunityPage-frame-4 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  left: 310px;
+  position: absolute;
+  top: 176px;
+  width: 1300px;
+}
