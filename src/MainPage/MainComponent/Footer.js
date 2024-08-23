@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="Footer-frame-wrapper">
         <div className="Footer-frame">
           <div className="Footer-text-wrapper">
-            회사소개&nbsp;&nbsp;|&nbsp;&nbsp;인재채용&nbsp;&nbsp;|&nbsp;&nbsp;제휴제안&nbsp;&nbsp;|&nbsp;&nbsp;이용약관&nbsp;&nbsp;|&nbsp;&nbsp;개인정보처리방침
+            Capstone Design&nbsp;&nbsp;|&nbsp;&nbsp;소프트웨어&서비스컴퓨팅전공&nbsp;&nbsp;|&nbsp;&nbsp;김도연 신은호 윤예지
           </div>
           <div className="Footer-text-wrapper-2">© 2024 AppFlight</div>
         </div>

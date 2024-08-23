@@ -11,10 +11,10 @@ const SeHistoryPage = ({ authenticate, setAuthenticate, userName }) => {
   const [reload, setReload] = useState(false);
   const [isSavedClicked, setIsSavedClicked] = useState(false);
 
-  const reloadHistory = (savedData) => {
+  const reloadHistory = (savedData, isSaved) => {
     if (savedData) {
       setReload(!reload);
-      setIsSavedClicked(true);
+      setIsSavedClicked(isSaved);
     } else {
       setReload(!reload);
     }

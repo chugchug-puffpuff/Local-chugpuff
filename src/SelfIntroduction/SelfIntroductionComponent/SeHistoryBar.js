@@ -25,15 +25,14 @@ const SeHistoryBar = ({ reload, isSavedClickedProp }) => {
         const filteredData = response.data.filter(item => !item.save);
         const sortedData = filteredData.sort((a, b) => b.es_no - a.es_no);
         setSortedSelfIntroductionData(sortedData);
-        setIsSavedClicked(isSavedClickedProp); // Set isSavedClicked based on prop
       } catch (error) {
         console.error('Failed to fetch self introduction data', error);
         setSortedSelfIntroductionData([]);
       }
     };
-
+  
     fetchSelfIntroductionData();
-  }, [reload, isSavedClickedProp]);
+  }, [reload]);
 
   const handleDeleteClick = (es_no) => {
     setSelectedEsNo(es_no);
@@ -138,7 +137,7 @@ const SeHistoryBar = ({ reload, isSavedClickedProp }) => {
             </div>
           ))
         ) : (
-          <div className="SeHistoryBar-no-data">저장된 자소서가 없습니다.</div>
+          <div className="SeHistoryBar-no-data">저장된 자기소개서가 없습니다.</div>
         )}
         {showDeleteConfirmation && (
           <div>

@@ -57,19 +57,18 @@ const HistoryComponent = ({ es_no, reload, reloadHistory }) => {
       }));
   
       if (newSaveStatus) {
-        // Fetch saved data immediately like handleSavedClick
         const response = await axios.get('http://localhost:8080/api/selfIntroduction/saved', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         });
         if (Array.isArray(response.data)) {
-          reloadHistory(response.data);
+          reloadHistory(response.data, true);
         } else {
-          reloadHistory([response.data]);
+          reloadHistory([response.data], true);
         }
       } else {
-        reloadHistory(); // Trigger reload without passing newSaveStatus
+        reloadHistory(null, false);
       }
     } catch (error) {
       console.error('Failed to update save status', error);

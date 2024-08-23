@@ -308,3 +308,12 @@
   white-space: nowrap;
   width: fit-content;
 }
+
+.SeHistoryBar-no-data {
+  color: var(--variable-collection-sub-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.42px;
+  line-height: normal;
+}
