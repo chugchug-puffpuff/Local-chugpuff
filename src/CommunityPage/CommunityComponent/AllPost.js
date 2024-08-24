@@ -52,7 +52,8 @@ const AllPost = () => {
   const postsPerPage = 8;
 
   useEffect(() => {
-    setPosts(postData);
+    const sortedPosts = [...postData].sort((a, b) => new Date(b.date) - new Date(a.date));
+    setPosts(sortedPosts);
   }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -87,11 +88,22 @@ const AllPost = () => {
 
   const filterByCategory = (category) => {
     setSelectedCategory(category);
+    setCurrentPage(1); // 페이지를 1로 초기화
+    let filteredPosts;
     if (category === '전체') {
-      setPosts(postData);
+      filteredPosts = postData;
     } else {
-      setPosts(postData.filter(post => post.category === category));
+      filteredPosts = postData.filter(post => post.category === category);
     }
+    // 현재 정렬 타입에 따라 정렬
+    if (sortType === '최신순') {
+      filteredPosts = filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (sortType === '인기순') {
+      filteredPosts = filteredPosts.sort((a, b) => b.favorites - a.favorites);
+    } else if (sortType === '댓글순') {
+      filteredPosts = filteredPosts.sort((a, b) => b.comments - a.comments);
+    }
+    setPosts(filteredPosts);
   };
 
   const frameWrapperHeight = 300 + currentPosts.length * 114 + (sortToggle ? 123 : 0);
