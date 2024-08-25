@@ -1,3 +1,4 @@
+// 게시글 작성 페이지
 import React, { useState, useEffect, useRef } from 'react';
 import "./PostRegister.css";
 import NavBar from "../MainPage/MainComponent/NavBar.js";
