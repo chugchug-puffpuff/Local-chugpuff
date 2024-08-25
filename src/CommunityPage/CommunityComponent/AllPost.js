@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AllPost.css';
 import postData from '../../TestData/postData.json';
 
@@ -50,6 +51,7 @@ const AllPost = () => {
   const [sortType, setSortType] = useState('최신순');
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const postsPerPage = 8;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const sortedPosts = [...postData].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -137,7 +139,7 @@ const AllPost = () => {
             <div className="AllPost-frame-18">
               <div className="AllPost-header">
                 <div className="AllPost-text-wrapper-8">전체 ({posts.length}건)</div>
-                <div className="AllPost-write-button">게시글 작성</div>
+                <div className="AllPost-write-button" onClick={() => navigate('/postregister')}>게시글 작성</div>
               </div>
               <div className="AllPost-frame-19">
                 <div className={`AllPost-frame-20 ${sortToggle ? 'active' : ''}`} onClick={sortToggleShow}>
@@ -204,4 +206,4 @@ const AllPost = () => {
   )
 }
 
-export default AllPost
+export default AllPost;
