@@ -63,6 +63,8 @@ const AllPost = () => {
   const [sortToggle, setSortToggle] = useState(false);
   const [sortType, setSortType] = useState('최신순');
   const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [noResults, setNoResults] = useState(false);
   const postsPerPage = 8;
   const navigate = useNavigate();
 
@@ -93,6 +95,31 @@ const AllPost = () => {
 
     fetchPosts();
   }, []);
+
+  // 검색 기능 엔드포인트
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/board/search?keyword=${searchKeyword}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      const formattedData = response.data.map(post => ({
+        boardTitle: post.boardTitle,
+        category: post.category.categoryName,
+        boardDate: post.boardDate,
+        commentCount: post.commentCount,
+        likes: post.likes
+      }));
+      // 검색하면 처음에는 최신순으로 정렬
+      const sortedData = formattedData.sort((a, b) => new Date(b.boardDate) - new Date(a.boardDate));
+      setFilteredPosts(sortedData);
+      setCurrentPage(1); // 검색 후 첫 페이지로 초기화
+      setNoResults(formattedData.length === 0); // 검색 결과 없음 상태 업데이트
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+  };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -182,7 +209,7 @@ const AllPost = () => {
                 <div className="AllPost-write-button" onClick={() => navigate('/postregister')}>게시글 작성</div>
               </div>
               <div className="AllPost-frame-19">
-                <div className={`AllPost-frame-20 ${sortToggle ? 'active' : ''}`} onClick={sortToggleShow}>
+                <div className={`AllPost-frame-20 ${sortToggle ? 'active' : ''}`} onClick={sortToggleShow} style={{ height: '43px' }}>
                   <div className="AllPost-text-wrapper">{sortType}</div>
                   <img
                     className="AllPost-img"
@@ -193,11 +220,19 @@ const AllPost = () => {
                   />
                 </div>
                 <div className="AllPost-frame-21">
-                  <div className="AllPost-text-wrapper">제목, 키워드 등</div>
+                  <input
+                    type="text"
+                    className="AllPost-text-wrapper search-input"
+                    placeholder="제목, 키워드 등"
+                    value={searchKeyword}
+                    onChange={(e) => setSearchKeyword(e.target.value)}
+                  />
                   <img
                     className="AllPost-img"
                     alt="Search"
                     src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c0b3f3875b7815aadd85/img/search@2x.png"
+                    style={{ filter: 'grayscale(1) brightness(0.2)' }}
+                    onClick={handleSearch}
                   />
                 </div>
               </div>
@@ -223,9 +258,13 @@ const AllPost = () => {
             </div>
             <div className="AllPost-frame-22">
               <div className="AllPost-frame-23">
-                {currentPosts.map((post, index) => (
+              {noResults ? (
+                <div className="AllPost-no-results">검색결과가 없습니다.</div>
+              ) : (
+                currentPosts.map((post, index) => (
                   <PostList key={index} {...post} />
-                ))}
+                ))
+              )}
               </div>
               <div className="AllPost-frame-27">
                 {[...Array(Math.ceil(filteredPosts.length / postsPerPage)).keys()].map(number => (
