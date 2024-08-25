@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./PopularPost.css";
 
-// 날짜 형식을 0000-00-00으로 슬라이싱
-const sliceDate = (dateString) => {
+// 날짜 형식을 0000-00-00 00:00:00으로 변환
+const formatDate = (dateString) => {
   const date = new Date(dateString);
   const datePart = date.toISOString().split('T')[0];
+  const timePart = date.toTimeString().split(' ')[0];
 
-  return `${datePart}`;  
+  return `${datePart} ${timePart}`;
 };
 
 // 개별 게시물
@@ -20,7 +21,7 @@ const PostList = ({ category, boardTitle, boardDate, commentCount, likes }) => (
     <div className="PopularPost-frame-7">
       <div className="PopularPost-frame-8">
         <p className="PopularPost-p">{boardTitle}</p>
-        <div className="PopularPost-text-wrapper-4">{sliceDate(boardDate)}</div>
+        <div className="PopularPost-text-wrapper-4">{formatDate(boardDate)}</div>
       </div>
       <div className="PopularPost-frame-9">
         <div className="PopularPost-frame-10">
