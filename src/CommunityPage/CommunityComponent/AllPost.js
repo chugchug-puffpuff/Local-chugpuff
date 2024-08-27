@@ -14,7 +14,7 @@ const formatDate = (dateString) => {
 };
 
 // 개별 게시물
-const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, likes }) => (
+const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, likes}) => (
   <div>
     <div className="AllPost-view-2">
       <div className="AllPost-frame-24">
@@ -30,7 +30,7 @@ const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, like
           <div className="AllPost-frame-9">
             <div className="AllPost-frame-10">
               <img
-                className="AllPost-img"
+                className="AllPost-comment"
                 alt="Sms"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/sms@2x.png"
               />
@@ -38,7 +38,7 @@ const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, like
             </div>
             <div className="AllPost-frame-10">
               <img
-                className="AllPost-img"
+                className="AllPost-like"
                 alt="Favorite"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/favorite@2x.png"
               />

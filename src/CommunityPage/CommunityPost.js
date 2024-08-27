@@ -12,9 +12,11 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
   const { boardNo } = useParams();
   const [post, setPost] = useState(null);
   const [userName, setUserName] = useState('');
+  const [isLiked, setIsLiked] = useState(() => {
+    return JSON.parse(localStorage.getItem(`isLiked_${boardNo}`)) || false;
+  });
 
   useEffect(() => {
-    // 특정 게시물을 조회 하는 엔드포인트
     const fetchPost = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/board/${boardNo}`, {
@@ -23,11 +25,12 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
           }
         });
         setPost(response.data);
+        setIsLiked(JSON.parse(localStorage.getItem(`isLiked_${boardNo}`)) || response.data.isLiked);
       } catch (error) {
         console.error('Error fetching post data:', error);
       }
     };
-    // 현재 로그인한 사용자의 이름을 가져오는 엔드포인트
+
     const fetchUserName = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -49,6 +52,25 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
     fetchPost();
     fetchUserName();
   }, [boardNo]);
+
+  const handleLikeClick = async () => {
+    try {
+      await axios.post(`http://localhost:8080/api/board/${boardNo}/like`, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+
+      setPost(prevPost => ({
+        ...prevPost,
+        likes: isLiked ? prevPost.likes - 1 : prevPost.likes + 1
+      }));
+      setIsLiked(!isLiked);
+      localStorage.setItem(`isLiked_${boardNo}`, JSON.stringify(!isLiked));
+    } catch (error) {
+      console.error('Error updating like status:', error);
+    }
+  };
 
   return (
     <div className="CommunityPost">
@@ -72,7 +94,36 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
                 alt="Line"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c247830accd7d866283e/img/line-17.png"
               />
-              <BoardComment />
+              <div className="CommunityPost-frame-7">
+                <div className="CommunityPost-frame-8">
+                  <div className="CommunityPost-frame-9">
+                    <img
+                      className={`CommunityPost-like ${isLiked ? 'liked' : ''}`}
+                      alt="Favorite"
+                      src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c247830accd7d866283e/img/favorite@2x.png"
+                      onClick={handleLikeClick}
+                    />
+                    <div className="CommunityPost-text-wrapper-5">좋아요</div>
+                    <div className="CommunityPost-text-wrapper-6">{post ? post.likes : 0}</div>
+                  </div>
+                </div>
+                <div className="CommunityPost-frame-9">
+                  <img
+                    className="CommunityPost-comment"
+                    alt="Sms"
+                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c247830accd7d866283e/img/sms@2x.png"
+                  />
+                  <div className="CommunityPost-text-wrapper-5">댓글</div>
+                  <div className="CommunityPost-text-wrapper-6">{post ? post.commentCount : 0}</div>
+                </div>
+              </div>
+              {post && (
+                <BoardComment
+                  boardNo={post.boardNo}
+                  comments={post.commentContents}
+                  storedUserName={userName}
+                />
+              )}
             </div>
             <div className="CommunityPost-frame-19" onClick={() => navigate('/community')}>
               <img

@@ -16,6 +16,18 @@
   width: 24px;
 }
 
+.AllPost-comment {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.AllPost-like {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
 .AllPost-div-2 {
   align-items: flex-start;
   display: flex;

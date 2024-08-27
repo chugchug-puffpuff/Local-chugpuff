@@ -27,65 +27,6 @@
   position: relative;
 }
 
-.BoardComment-frame-7 {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 12px;
-  position: relative;
-}
-
-.BoardComment-frame-8 {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 8px;
-  position: relative;
-}
-
-.BoardComment-frame-9 {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 4px;
-  position: relative;
-}
-
-.BoardComment-text-wrapper-5 {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  color: var(--variable-collection-gray-1);
-  display: -webkit-box;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  margin-top: -1px;
-  overflow: hidden;
-  position: relative;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.BoardComment-text-wrapper-6 {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  color: var(--variable-collection-gray-1);
-  display: -webkit-box;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: -0.48px;
-  line-height: normal;
-  overflow: hidden;
-  position: relative;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: fit-content;
-}
-
 .BoardComment-frame-10 {
   align-items: center;
   align-self: stretch;
@@ -112,7 +53,7 @@
 }
 
 .BoardComment-text-wrapper-7 {
-  color: var(--variable-collection-gray-1);
+  color: var(--variable-collection-main-black);
   flex: 1;
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 20px;
@@ -120,9 +61,12 @@
   letter-spacing: -0.6px;
   line-height: 30px;
   position: relative;
+  border: none;
+  outline: none;
 }
 
 .BoardComment-frame-12 {
+  cursor: pointer;
   align-items: center;
   background-color: var(--variable-collection-button-navy);
   border-radius: 12px;
