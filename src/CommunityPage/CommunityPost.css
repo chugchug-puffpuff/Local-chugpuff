@@ -1,36 +1,37 @@
-.element {
+.CommunityPost {
   background-color: var(--variable-collection-gray4);
   height: 2629px;
   position: relative;
   width: 1920px;
 }
 
-.element .overlap-group {
-  height: 1948px;
+.CommunityPost-overlap-group {
+  height: 1800px;
   left: 312px;
   position: absolute;
   top: 176px;
   width: 1296px;
 }
 
-.element .frame {
+.CommunityPost-frame {
   align-items: flex-end;
   display: inline-flex;
   flex-direction: column;
   gap: 12px;
-  height: 1948px;
+  height: 1800px;
   left: 0;
   position: absolute;
   top: 0;
 }
 
-.element .frame-wrapper {
+.CommunityPost-frame-wrapper {
   align-items: flex-end;
   background-color: #ffffff;
   border: 1px solid;
   border-color: var(--variable-collection-gray-3);
   border-radius: 16px;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   flex: 0 0 auto;
   gap: 10px;
   overflow: hidden;
@@ -38,7 +39,7 @@
   position: relative;
 }
 
-.element .div {
+.CommunityPost-div {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -47,483 +48,40 @@
   position: relative;
 }
 
-.element .frame-2 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 20px;
-  position: relative;
-  width: 100%;
-}
-
-.element .frame-3 {
-  align-items: center;
-  background-color: #0b7fff;
-  border-radius: 4px;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  padding: 4px 8px;
-  position: relative;
-}
-
-.element .text-wrapper {
-  color: var(--variable-collection-WHITE);
-  font-family: "Pretendard Variable-SemiBold", Helvetica;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.42px;
-  line-height: normal;
-  margin-top: -1px;
-  position: relative;
-  width: fit-content;
-}
-
-.element .frame-4 {
-  height: 109px;
-  position: relative;
-  width: 517px;
-}
-
-.element .frame-5 {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1176px;
-}
-
-.element .p {
-  color: var(--variable-collection-main-black);
-  font-family: "Pretendard Variable-SemiBold", Helvetica;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: -0.72px;
-  line-height: normal;
-  margin-top: -1px;
-  position: relative;
-  width: fit-content;
-}
-
-.element .text-wrapper-2 {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  color: var(--variable-collection-gray-2);
-  display: -webkit-box;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  overflow: hidden;
-  position: relative;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element .frame-6 {
-  align-items: center;
-  display: flex;
-  gap: 8px;
-  height: 24px;
-  left: 0;
-  position: absolute;
-  top: 85px;
-  width: 1176px;
-}
-
-.element .img {
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.element .text-wrapper-3 {
-  color: var(--variable-collection-gray-1);
-  flex: 1;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  margin-top: -1px;
-  position: relative;
-}
-
-.element .text-wrapper-4 {
-  color: var(--variable-collection-main-black);
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: 36px;
-  position: relative;
-  width: 1176px;
-}
-
-.element .line {
+.CommunityPost-line {
   height: 1px;
   object-fit: cover;
   position: relative;
   width: 1172px;
 }
 
-.element .frame-7 {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 12px;
-  position: relative;
-}
-
-.element .frame-8 {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 8px;
-  position: relative;
-}
-
-.element .frame-9 {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 4px;
-  position: relative;
-}
-
-.element .text-wrapper-5 {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  color: var(--variable-collection-gray-1);
-  display: -webkit-box;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  margin-top: -1px;
-  overflow: hidden;
-  position: relative;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element .text-wrapper-6 {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  color: var(--variable-collection-gray-1);
-  display: -webkit-box;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: -0.48px;
-  line-height: normal;
-  overflow: hidden;
-  position: relative;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element .frame-10 {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 40px;
-  position: relative;
-  width: 100%;
-}
-
-.element .frame-11 {
-  align-items: center;
-  align-self: stretch;
-  border: 1px solid;
-  border-color: var(--variable-collection-gray-3);
-  border-radius: 8px;
-  display: flex;
-  gap: 10px;
-  height: 76px;
-  padding: 8px 28px;
-  position: relative;
-  width: 100%;
-}
-
-.element .text-wrapper-7 {
-  color: var(--variable-collection-gray-1);
-  flex: 1;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: 30px;
-  position: relative;
-}
-
-.element .frame-12 {
-  align-items: center;
-  background-color: var(--variable-collection-button-navy);
-  border-radius: 12px;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  padding: 12px 28px;
-  position: relative;
-}
-
-.element .text-wrapper-8 {
-  color: var(--variable-collection-WHITE);
-  font-family: "Pretendard Variable-SemiBold", Helvetica;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  margin-top: -1px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element .frame-13 {
-  align-items: flex-start;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 24px;
-  position: relative;
-  width: 1120px;
-}
-
-.element .frame-14 {
-  align-items: flex-start;
-  align-self: stretch;
-  background-color: #ffffff;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  width: 100%;
-}
-
-.element .frame-15 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  gap: 12px;
-  position: relative;
-  width: 100%;
-}
-
-.element .frame-16 {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-grow: 1;
-  gap: 8px;
-  position: relative;
-}
-
-.element .text-wrapper-9 {
-  color: var(--variable-collection-main-black);
-  flex: 1;
-  font-family: "Pretendard Variable-SemiBold", Helvetica;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  margin-top: -1px;
-  position: relative;
-}
-
-.element .text-wrapper-10 {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  color: var(--variable-collection-gray-2);
-  display: -webkit-box;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  margin-top: -1px;
-  overflow: hidden;
-  position: relative;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element .frame-17 {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-}
-
-.element .text-wrapper-11 {
-  color: var(--variable-collection-main-black);
-  flex: 1;
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: 36px;
-  margin-top: -1px;
-  position: relative;
-}
-
-.element .edit {
-  height: 20px;
-  position: relative;
-  width: 20px;
-}
-
-.element .frame-18 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  width: 100%;
-}
-
-.element .text-wrapper-12 {
-  align-self: stretch;
-  color: var(--variable-collection-main-black);
-  font-family: "Pretendard Variable-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.6px;
-  line-height: 36px;
-  position: relative;
-}
-
-.element .frame-19 {
+.CommunityPost-frame-19 {
+  cursor: pointer;
   background-color: #ffffff;
   border: 1px solid;
   border-color: var(--variable-collection-button-navy);
   border-radius: 4px;
   height: 40px;
-  left: 591px;
-  position: absolute;
-  top: 1866px;
   width: 114px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto; /* 하단으로 밀어내기 */
+  align-self: center; /* 중앙 정렬 */
 }
 
-.element .format-list-bulleted {
+.CommunityPost-format-list-bulleted {
   height: 20px;
-  left: 16px;
-  position: absolute;
-  top: 10px;
   width: 20px;
 }
 
-.element .text-wrapper-13 {
+.CommunityPost-text-wrapper-13 {
   color: var(--variable-collection-button-navy);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 16px;
   font-weight: 400;
-  left: 40px;
   letter-spacing: -0.48px;
   line-height: 24px;
-  position: absolute;
-  top: 7px;
   white-space: nowrap;
-}
-
-.element .view {
-  background-color: #ffffff;
-  box-shadow: 0px 4px 10px #0000000d;
-  height: 88px;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 1920px;
-}
-
-.element .view-2 {
-  height: 88px;
-  left: 310px;
-  position: relative;
-  width: 1300px;
-}
-
-.element .div-2 {
-  align-items: center;
-  display: flex;
-  gap: 27px;
-  height: 88px;
-  justify-content: flex-end;
-  left: 1100px;
-  padding: 8px 4px;
-  position: absolute;
-  top: 0;
-  width: 200px;
-}
-
-.element .text-wrapper-14 {
-  color: var(--variable-collection-main-black);
-  font-family: "Pretendard Variable-SemiBold", Helvetica;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.6px;
-  line-height: normal;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element .navbar {
-  align-items: center;
-  display: flex;
-  gap: 32px;
-  height: 88px;
-  justify-content: center;
-  left: 221px;
-  padding: 3px 0px;
-  position: absolute;
-  top: 0;
-  width: 527px;
-}
-
-.element .view-wrapper {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: 88px;
-  justify-content: center;
-  left: 0;
-  padding: 22px 0px;
-  position: absolute;
-  top: 0;
-  width: 152px;
-}
-
-.element .view-3 {
-  background-image: url(https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/--@2x.png);
-  background-position: 50% 50%;
-  background-size: cover;
-  height: 38px;
-  position: relative;
-  width: 145px;
 }

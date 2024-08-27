@@ -16,6 +16,8 @@ import SeHistoryPage from './SelfIntroduction/SeHistoryPage.js';
 import EditingPage from './SelfIntroduction/EditingPage.js';
 import CommunityPage from './CommunityPage/CommunityPage.js';
 import PostRegister from './CommunityPage/PostRegister.js';
+import PostModify from './CommunityPage/PostModify.js';
+import CommunityPost from './CommunityPage/CommunityPost.js';
 
 function App() {
   const [authenticate, setAuthenticate] = useState(false);
@@ -54,6 +56,8 @@ function App() {
           <CommunityPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
         </PrivateRoute>} />
         <Route path="/postregister" element={<PostRegister authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/postmodify/:boardNo" element={<PostModify authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/communitypost/:boardNo" element={<CommunityPost authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/myactivities" element={<MyPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
       </Routes>
     </div>

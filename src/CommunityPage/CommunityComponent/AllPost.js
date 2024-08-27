@@ -1,6 +1,6 @@
 // 커뮤니티 메인 - 모든 게시글
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AllPost.css';
 
@@ -14,12 +14,14 @@ const formatDate = (dateString) => {
 };
 
 // 개별 게시물
-const PostList = ({ boardTitle, category, boardDate, commentCount, likes }) => (
+const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, likes }) => (
   <div>
     <div className="AllPost-view-2">
       <div className="AllPost-frame-24">
         <div className="AllPost-frame-8">
-          <p className="AllPost-text-wrapper-9">{boardTitle}</p>
+          <Link to={`/communitypost/${boardNo}`}>
+            <p className="AllPost-text-wrapper-9">{boardTitle}</p>
+          </Link>
           <div className={`AllPost-frame-${category === "정보공유" ? "25" : "26"}`}>
             <div className="AllPost-text-wrapper-3">{category}</div>
           </div>
@@ -78,6 +80,7 @@ const AllPost = () => {
           }
         });
         const formattedData = response.data.map(post => ({ // 호출한 데이터 매핑
+          boardNo: post.boardNo,
           boardTitle: post.boardTitle,
           category: post.category.categoryName,
           boardDate: post.boardDate,

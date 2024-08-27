@@ -1,6 +1,6 @@
-// 커뮤니티 메인 - 실시간 인기글
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import "./PopularPost.css";
 
 // 날짜 형식을 0000-00-00 00:00:00으로 변환
@@ -13,14 +13,16 @@ const formatDate = (dateString) => {
 };
 
 // 개별 게시물
-const PostList = ({ category, boardTitle, boardDate, commentCount, likes }) => (
+const PostList = ({ boardNo, category, boardTitle, boardDate, commentCount, likes }) => (
   <div className="PopularPost-view">
     <div className={`PopularPost-frame-${category === "정보공유" ? "6" : "11"}`}>
       <div className="PopularPost-text-wrapper-3">{category}</div>
     </div>
     <div className="PopularPost-frame-7">
       <div className="PopularPost-frame-8">
-        <p className="PopularPost-p">{boardTitle}</p>
+        <Link to={`/communitypost/${boardNo}`}>
+          <p className="PopularPost-p">{boardTitle}</p>
+        </Link>
         <div className="PopularPost-text-wrapper-4">{formatDate(boardDate)}</div>
       </div>
       <div className="PopularPost-frame-9">
@@ -59,6 +61,7 @@ const PopularPost = () => {
           }
         });
         const formattedData = response.data.map(post => ({ // 호출한 데이터 매핑
+          boardNo: post.boardNo,
           category: post.category.categoryName,
           boardTitle: post.boardTitle,
           boardDate: post.boardDate,
