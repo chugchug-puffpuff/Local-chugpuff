@@ -1,0 +1,332 @@
+.PostRegister {
+  background-color: var(--variable-collection-gray4);
+  height: 2629px;
+  position: relative;
+  width: 1920px;
+}
+
+.PostRegister-overlap-group {
+  height: 1948px;
+  left: 312px;
+  position: absolute;
+  top: 176px;
+  width: 1296px;
+}
+
+.PostRegister-frame {
+  align-items: flex-end;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 1948px;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.PostRegister-frame-wrapper {
+  align-items: flex-end;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 16px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  overflow: hidden;
+  padding: 48px 60px 130px;
+  position: relative;
+}
+
+.PostRegister-div {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+.PostRegister-frame-2 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+/* .PostRegister-frame-3 {
+  align-items: center;
+  background-color: #0b7fff;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 8px;
+  position: relative;
+} */
+
+.PostRegister-frame-3 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border: 1.04px solid;
+  border-color: var(--variable-collection-gray-2);
+  border-radius: 12px;
+  height: 58.34px;
+  position: relative;
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PostRegister-frame-3.active {
+  border-color: black; /* 변경된 부분 */
+  border-width: 2px;
+}
+
+.PostRegister-arrow-drop-up {
+  height: 35px;
+  right: 10px;
+  position: absolute;
+  top: 11px;
+  width: 35px;
+}
+
+.PostRegister-arrow-drop-down {
+  height: 35px;
+  right: 10px;
+  position: absolute;
+  top: 10px;
+  width: 35px;
+}
+
+.PostRegister-text-wrapper {
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+  left: -10px;
+}
+
+.PostRegister-frame-6 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px #0000000d;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 13px 55px 13px 55px;
+  position: relative;
+  width: 15%;
+  height: auto;
+}
+
+.PostRegister-text-wrapper-2 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 21px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.PostRegister-frame-4 {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+
+.PostRegister-frame-5 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 82%;
+}
+
+.PostRegister-text-field {
+  font-size: 22px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding: 10px;
+  align-self: stretch;
+  border: 1.04px solid;
+  border-color: var(--variable-collection-gray-2);
+  border-radius: 12.5px;
+  height: 58.35px;
+  position: relative;
+  width: 100%;
+  padding-left: 20px;
+}
+
+input::placeholder {
+  font-size: 20px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  color: var(--variable-collection-gray-2);
+  font-weight: 400;
+}
+
+.PostRegister-p {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.PostRegister-text-wrapper-4 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 36px;
+  position: relative;
+  width: 1176px;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.PostRegister-frame-12 {
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 10px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 28px;
+  position: relative;
+  margin-left: auto; /* 추가된 부분 */
+}
+
+.PostRegister-text-wrapper-8 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.PostRegister-footer {
+  display: flex; /* 추가된 부분 */
+  justify-content: space-between; /* 추가된 부분 */
+  width: 100%; /* 추가된 부분 */
+  margin-top: 20px; /* 추가된 부분 */
+}
+
+.PostRegister-frame-19 {
+  cursor: pointer;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: var(--variable-collection-button-navy);
+  border-radius: 10px;
+  display: inline-flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 28px;
+  position: relative;
+}
+
+.PostRegister-format-list-bulleted {
+  height: 20px;
+  left: 16px;
+  position: relative;
+  top: 12px;
+  width: 20px;
+}
+
+.PostRegister-text-wrapper-13 {
+  color: var(--variable-collection-button-navy);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.PostRegister-frame-18 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.PostRegister-div-2 {
+  align-items: flex-start;
+  align-self: stretch;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 22px;
+  border-radius: 12px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 80px;
+  padding: 20px 24px;
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+  resize: none;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.PostRegister-div-2::placeholder {
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 28.8px;
+  padding-bottom: 10px;
+}
+
+.PostRegister-error {
+  border: 2px solid red !important;
+}

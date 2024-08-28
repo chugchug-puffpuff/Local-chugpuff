@@ -13,8 +13,11 @@ import AIInterviewExecution from './AIInterviewPage/AIInterviewStart.js';
 import AIInterviewHistory from './AIInterviewPage/AIInterviewHistory.js';
 import SelfIntroductionPage from './SelfIntroduction/SelfIntroductionPage.js';
 import SeHistoryPage from './SelfIntroduction/SeHistoryPage.js';
-import CommunityPage from './CommunityPage/CommunityPage.js';
 import EditingPage from './SelfIntroduction/EditingPage.js';
+import CommunityPage from './CommunityPage/CommunityPage.js';
+import PostRegister from './CommunityPage/PostRegister.js';
+import PostModify from './CommunityPage/PostModify.js';
+import CommunityPost from './CommunityPage/CommunityPost.js';
 
 function App() {
   const [authenticate, setAuthenticate] = useState(false);
@@ -52,6 +55,9 @@ function App() {
         <Route path="/community" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName}>
           <CommunityPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
         </PrivateRoute>} />
+        <Route path="/postregister" element={<PostRegister authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/postmodify/:boardNo" element={<PostModify authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/communitypost/:boardNo" element={<CommunityPost authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/myactivities" element={<MyPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
       </Routes>
     </div>
