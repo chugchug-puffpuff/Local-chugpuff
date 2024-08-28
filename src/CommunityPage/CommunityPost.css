@@ -35,7 +35,7 @@
   flex: 0 0 auto;
   gap: 10px;
   overflow: hidden;
-  padding: 48px 60px 130px;
+  padding: 48px 60px 60px;
   position: relative;
 }
 
@@ -143,8 +143,8 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: auto; /* 하단으로 밀어내기 */
-  align-self: center; /* 중앙 정렬 */
+  align-self: center;
+  margin-top: 30px;
 }
 
 .CommunityPost-format-list-bulleted {

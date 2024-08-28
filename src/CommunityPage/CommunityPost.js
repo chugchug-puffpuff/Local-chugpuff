@@ -72,6 +72,13 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
     }
   };
 
+  const updateCommentCount = (newCount) => {
+    setPost(prevPost => ({
+      ...prevPost,
+      commentCount: newCount
+    }));
+  };
+
   return (
     <div className="CommunityPost">
       <div className="CommunityPost-overlap-group">
@@ -122,6 +129,7 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
                   boardNo={post.boardNo}
                   comments={post.commentContents}
                   storedUserName={userName}
+                  updateCommentCount={updateCommentCount}
                 />
               )}
             </div>
