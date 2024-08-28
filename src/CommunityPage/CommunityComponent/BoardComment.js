@@ -63,8 +63,6 @@ const BoardComment = ({ boardNo, storedUserName, updateCommentCount }) => {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-
-      console.log("response.data", response.data);
       
       const fetchedComments = response.data
         .map(comment => ({
