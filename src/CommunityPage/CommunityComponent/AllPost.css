@@ -1,0 +1,585 @@
+.AllPost-text-wrapper {
+  color: var(--variable-collection-gray-1);
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.AllPost-img {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.AllPost-div-2 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  width: 1300px;
+}
+
+.AllPost-text-wrapper-2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.AllPost-text-wrapper-3 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.42px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.AllPost-frame-8 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.AllPost-frame-9 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+}
+
+.AllPost-frame-10 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.AllPost-img-2 {
+  height: 18px;
+  position: relative;
+  width: 18px;
+}
+
+.AllPost-line {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.AllPost-frame-12 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 1300px;
+}
+
+.AllPost-frame-13 {
+  align-items: flex-start;
+  border-radius: 16px;
+  display: flex;
+  height: 72px;
+  position: relative;
+  width: 1300px;
+}
+
+.AllPost-frame-14.frame-selected {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 16px 0px 0px 0px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.AllPost-frame-14.frame-notSelected {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--variable-collection-gray4);
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 16px 0px 0px 0px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+
+.AllPost-frame-15.frame-selected {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.AllPost-frame-15.frame-notSelected {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--variable-collection-gray4);
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.AllPost-frame-16.frame-selected {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 0px 16px 0px 0px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.AllPost-frame-16.frame-notSelected {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--variable-collection-gray4);
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 0px 16px 0px 0px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.AllPost-text-wrapper-6.selected {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.AllPost-text-wrapper-6.notSelected {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.AllPost-frame-wrapper {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 0px 0px 16px 16px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  height: 1229px;
+  overflow: hidden;
+  position: relative;
+  width: 1300px;
+}
+
+.AllPost-frame-17 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  height: 1109px;
+  left: 112px;
+  position: relative;
+  top: 60px;
+  width: 1075px;
+}
+
+.AllPost-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.AllPost-frame-18 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 1px;
+  position: relative;
+  width: 100%;
+}
+
+.AllPost-write-button {
+  background-color: var(--variable-collection-main-black); /* 버튼 배경색 */
+  color: white; /* 버튼 텍스트 색상 */
+  border: none; /* 버튼 테두리 제거 */
+  padding: 8px 16px; /* 버튼 패딩 */
+  cursor: pointer; /* 커서 모양 변경 */
+  font-family: "Pretendard Variable-Regular", Helvetica; /* 폰트 설정 */
+  font-size: 16px; /* 폰트 크기 */
+  font-weight: 600; /* 폰트 두께 */
+  letter-spacing: -0.48px; /* 글자 간격 */
+  line-height: 24px; /* 줄 높이 */
+  border-radius: 8px; /* 버튼 모서리 둥글게 */
+}
+
+.AllPost-text-wrapper-8 {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  margin-bottom: 19px;
+}
+
+.AllPost-frame-19 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+  width: 618px;
+}
+
+.AllPost-frame-20 {
+  cursor: pointer;
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  display: flex;
+  gap: 10px;
+  padding: 8px 12px;
+  position: relative;
+  width: 140px;
+}
+
+.AllPost-frame-21 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  padding: 8px 12px;
+  position: relative;
+}
+
+.AllPost-frame-22 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 60px;
+  position: relative;
+  width: 100%;
+}
+
+.AllPost-frame-23 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.AllPost-view-2 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 14px;
+  position: relative;
+  width: 100%;
+}
+
+.AllPost-frame-24 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 16px;
+  position: relative;
+}
+
+.AllPost-text-wrapper-9 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-main-black);
+  display: -webkit-box;
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+}
+
+.AllPost-frame-25 {
+  align-items: center;
+  background-color: var(--variable-collection-safasdfafasdf);
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 8px;
+  position: relative;
+}
+
+.AllPost-text-wrapper-10 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-gray-1);
+  display: -webkit-box;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.AllPost-text-wrapper-11 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-gray-1);
+  display: -webkit-box;
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-align: right;
+  text-overflow: ellipsis;
+}
+
+.AllPost-frame-26 {
+  align-items: center;
+  background-color: var(--variable-collection-asdfasdfa);
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 8px;
+  position: relative;
+}
+
+.AllPost-frame-27 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+}
+
+.AllPost-frame-28 {
+  cursor: pointer;
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 12px;
+  position: relative;
+}
+
+.active {
+  border: 1px solid;
+  border-color: var(--variable-collection-main-black);
+}
+
+.AllPost-text-wrapper-12 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.AllPost-frame-29 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 12px;
+  position: relative;
+  width: 33px;
+}
+
+.AllPost-text-wrapper-13 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  width: 9px;
+}
+
+.AllPost-text-wrapper-14 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-left: -2px;
+  margin-right: -2px;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.AllPost-text-wrapper {
+  color: var(--variable-collection-gray-1);
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.AllPost-frame-2 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  margin-top: -1px;
+  padding: 2px 0px;
+  position: relative;
+}
+
+.AllPost-frame-3 {
+  cursor: pointer;
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 8px 12px;
+  position: relative;
+  width: 138px;
+}

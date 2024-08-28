@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './EditingComponent.css';
-import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
+<<<<<<< HEAD
 // 로딩 중 텍스트입니다.
 const TypingText = () => {
   const text = "답변 내용을 분석 중입니다";
@@ -85,6 +85,10 @@ const EditingComponent = ({ details }) => {
       fetchFeedback(); // esNo가 설정된 후 피드백 불러오기 실행
     }
   }, [esNo]);
+=======
+const EditingComponent = ({ details, es_feedback }) => {
+  const [feedback] = useState(es_feedback || '');
+>>>>>>> 4466b3cdd319aadaa95f9c87eea0b45a584de711
 
   const formattedText = feedback
     .replace(/\n\n/g, '\n\n&nbsp;\n\n')
@@ -103,6 +107,26 @@ const EditingComponent = ({ details }) => {
                 <p className="EditingComponent-text-wrapper-8">{detail.eS_question}</p>
                 <div className="EditingComponent-text-wrapper-7">답변 {index + 1}</div>
                 <p className="EditingComponent-text-wrapper-8">{detail.eS_answer}</p>
+<<<<<<< HEAD
+=======
+              </div>
+            ))}
+            <img
+              className="EditingComponent-img"
+              alt="Line"
+              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6698aa612be89236643e00e3/img/line-2.png"
+            />
+            <div className="EditingComponent-frame-15">
+              <div className="EditingComponent-text-wrapper-7">피드백</div>
+              <div className="EditingComponent-text-wrapper-8">
+                <ReactMarkdown 
+                  className="EditingComponent-text-wrapper-8" 
+                  remarkPlugins={[remarkGfm]} 
+                  rehypePlugins={[rehypeRaw]}
+                >
+                  {formattedText}
+                </ReactMarkdown>
+>>>>>>> 4466b3cdd319aadaa95f9c87eea0b45a584de711
               </div>
             ))}
             <button onClick={handleSubmit}>제출하기</button> {/* 제출 버튼 추가 */}
