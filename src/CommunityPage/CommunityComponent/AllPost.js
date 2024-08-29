@@ -108,6 +108,7 @@ const AllPost = () => {
         }
       });
       const formattedData = response.data.map(post => ({
+        boardNo: post.boardNo,
         boardTitle: post.boardTitle,
         category: post.category.categoryName,
         boardDate: post.boardDate,
