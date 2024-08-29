@@ -108,6 +108,7 @@ const AllPost = () => {
         }
       });
       const formattedData = response.data.map(post => ({
+        boardNo: post.boardNo,
         boardTitle: post.boardTitle,
         category: post.category.categoryName,
         boardDate: post.boardDate,
@@ -130,7 +131,7 @@ const AllPost = () => {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ // 페이지 이동시 스크롤 이동
+    window.scrollTo({ // 페이지 이동시 중앙으로 스크롤 이동
       top: 600,
       behavior: 'smooth'
     });
