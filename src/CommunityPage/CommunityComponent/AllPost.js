@@ -137,6 +137,7 @@ const AllPost = () => {
     });
   };
 
+  // 정렬 토글
   const sortToggleShow = () => {
     setSortToggle(!sortToggle);
   };
