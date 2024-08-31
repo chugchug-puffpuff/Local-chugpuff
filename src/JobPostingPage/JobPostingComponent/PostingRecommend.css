@@ -1,0 +1,197 @@
+.PostingRecommend-frame {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  width: 1300px;
+  padding-top: 150px;
+}
+
+.PostingRecommend-text-wrapper {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.PostingRecommend-div {
+  cursor: pointer;
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.PostingRecommend-frame-7 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 33px;
+  margin: 20px auto; /* Center the frame and add margin */
+  width: 1300px;
+}
+
+.PostingRecommend-group {
+  height: 361px;
+  position: relative;
+  width: 300px;
+}
+
+.PostingRecommend-overlap-group {
+  height: 361px;
+  position: relative;
+}
+
+.PostingRecommend-image {
+  height: 221px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 300px;
+}
+
+.PostingRecommend-frame-8 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 194px;
+  left: 0;
+  overflow: hidden;
+  padding: 32px;
+  position: absolute;
+  top: 167px;
+  width: 300px;
+}
+
+.PostingRecommend-text-wrapper-5 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.PostingRecommend-frame-9 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 231px;
+}
+
+.PostingRecommend-frame-10 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-right: -11px;
+  position: relative;
+}
+
+.PostingRecommend-text-wrapper-6 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 30px;
+  margin-top: -1px;
+  position: relative;
+  width: 242px;
+}
+
+.PostingRecommend-frame-11 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: absolute;
+  width: 231px;
+  top: 85px;
+}
+
+.PostingRecommend-frame-12 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+}
+
+.PostingRecommend-grade-wrapper {
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+.PostingRecommend-grade {
+  height: 40px;
+  left: -8px;
+  position: absolute;
+  top: -8px;
+  width: 40px;
+}
+
+.PostingRecommend-frame-13 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.PostingRecommend-text-wrapper-7 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 21px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.PostingRecommend-text-wrapper-8 {
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 21px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.PostingRecommend-image-2 {
+  height: 221px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 300px;
+}

@@ -14,6 +14,7 @@ import AIInterviewHistory from './AIInterviewPage/AIInterviewHistory.js';
 import SelfIntroductionPage from './SelfIntroduction/SelfIntroductionPage.js';
 import SeHistoryPage from './SelfIntroduction/SeHistoryPage.js';
 import EditingPage from './SelfIntroduction/EditingPage.js';
+import JobPostingMain from './JobPostingPage/JobPostingMain.js';
 import CommunityPage from './CommunityPage/CommunityPage.js';
 import PostRegister from './CommunityPage/PostRegister.js';
 import PostModify from './CommunityPage/PostModify.js';
@@ -52,6 +53,9 @@ function App() {
         </PrivateRoute>} />
         <Route path="/editing-page" element={<EditingPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/selfintroductionhistory/:es_no" element={<SeHistoryPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/jobposting" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName}>
+          <JobPostingMain authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
+        </PrivateRoute>} />
         <Route path="/community" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName}>
           <CommunityPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
         </PrivateRoute>} />

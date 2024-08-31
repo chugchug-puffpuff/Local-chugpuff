@@ -63,6 +63,13 @@ const NavBar = ({ authenticate  }) => {
       navigate('/login', { state: { from: '/selfintroduction' } });
     }
   };
+  const goToJobPosting = () => {
+    if (authenticate) {
+      navigate('/jobposting');
+    } else {
+      navigate('/login', { state: { from: '/jobposting' } });
+    }
+  }
   const goToCommunity = () => {
     if (authenticate) {
       navigate('/community');
@@ -121,7 +128,7 @@ const NavBar = ({ authenticate  }) => {
             <div className="NavBar-frame-2">
               <div className="NavBar-text-wrapper-4" onClick={goToAIInterview}>AI 모의면접</div>
               <div className="NavBar-text-wrapper-4" onClick={goToSelfIntroduction}>자기소개서 첨삭</div>
-              <div className="NavBar-text-wrapper-4">취업공고</div>
+              <div className="NavBar-text-wrapper-4" onClick={goToJobPosting}>취업공고</div>
               <div className="NavBar-text-wrapper-4" onClick={goToCommunity}>커뮤니티</div>
               <div className="NavBar-text-wrapper-4">캘린더</div>
             </div>

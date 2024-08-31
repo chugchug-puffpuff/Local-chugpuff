@@ -133,7 +133,8 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
                 />
               )}
             </div>
-            <div className="CommunityPost-frame-19" onClick={() => navigate('/community')}>
+            <div 
+              className="CommunityPost-frame-19"onClick={() => navigate('/community')}>
               <img
                 className="CommunityPost-format-list-bulleted"
                 alt="Format list bulleted"

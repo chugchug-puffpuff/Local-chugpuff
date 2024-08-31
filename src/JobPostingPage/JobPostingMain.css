@@ -1,0 +1,15 @@
+.JobPostingMain {
+  background-color: var(--variable-collection-WHITE);
+  position: relative;
+  width: 1920px;
+  height: auto;
+}
+
+.JobPostingMain-line {
+  height: 1px;
+  object-fit: cover;
+  width: 1300px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+}

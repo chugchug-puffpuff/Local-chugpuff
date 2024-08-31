@@ -1,0 +1,101 @@
+.JobPostingList-frame-wrapper {
+  margin: 20px auto;
+  width: 1300px;
+  padding-bottom: 100px;
+}
+
+.JobPostingList-frame-2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  width: 1300px;
+}
+
+.JobPostingList-frame-3 {
+  align-items: flex-end;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 1250px;
+}
+
+.JobPostingList-text-wrapper-2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  height: 29px;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: 32px;
+}
+
+.JobPostingList-text-wrapper-3 {
+  color: var(--variable-collection-main-black);
+  flex: 1;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.JobPostingList-frame-4 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 1300px;
+}
+
+.JobPostingList-frame-5 {
+  align-items: center;
+  background-color: var(--variable-collection-WHITE);
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12px;
+  display: flex;
+  gap: 4px;
+  padding: 12px 28px;
+  position: relative;
+  width: 634px;
+}
+
+.JobPostingList-img {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.JobPostingList-text-wrapper-4 {
+  color: var(--variable-collection-main-black);
+  flex: 1;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: 30px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.JobPostingList-frame-6 {
+  align-items: center;
+  background-color: var(--variable-collection-WHITE);
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12px;
+  display: flex;
+  gap: 8px;
+  padding: 12px 28px;
+  position: relative;
+  width: 634px;
+}
