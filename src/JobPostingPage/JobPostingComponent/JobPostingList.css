@@ -57,6 +57,7 @@
 }
 
 .JobPostingList-frame-5 {
+  cursor: pointer;
   align-items: center;
   background-color: var(--variable-collection-WHITE);
   border: 1px solid;
@@ -67,6 +68,7 @@
   padding: 12px 28px;
   position: relative;
   width: 634px;
+  z-index: 100;
 }
 
 .JobPostingList-img {
@@ -88,6 +90,7 @@
 }
 
 .JobPostingList-frame-6 {
+  cursor: pointer;
   align-items: center;
   background-color: var(--variable-collection-WHITE);
   border: 1px solid;
@@ -98,4 +101,210 @@
   padding: 12px 28px;
   position: relative;
   width: 634px;
+  z-index: 100;
+}
+
+.JobPostingList-frame-7 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  background-color: var(--variable-collection-WHITE);
+  border-radius: 12px;
+  display: flex;
+  height: 180px;
+  justify-content: space-between;
+  position: relative;
+  width: 634px;
+  margin-top: -20px;
+}
+
+.JobPostingList-frame-8 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 248px;
+  margin-top: 15px;
+  max-height: 163px;
+  overflow-y: auto;
+}
+.JobPostingList-frame-8::-webkit-scrollbar {
+  width: 8px;
+}
+.JobPostingList-frame-8::-webkit-scrollbar-thumb {
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 10px;
+}
+.JobPostingList-frame-8::-webkit-scrollbar-track {
+  background-color: none;
+}
+.JobPostingList-frame-8::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+
+.JobPostingList-frame-9 {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: var(--variable-collection-mint);
+  border-radius: 12px;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 4px 0px 4px 28px;
+  position: relative;
+  width: 100%;
+}
+
+.JobPostingList-text-wrapper-5 {
+  cursor: pointer;
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.JobPostingList-frame-10 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 4px 0px 4px 28px;
+  position: relative;
+  width: 100%;
+}
+
+.JobPostingList-text-wrapper-6 {
+  cursor: pointer;
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.JobPostingList-frame-13 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  height: 180px;
+  justify-content: center;
+  position: relative;
+}
+
+.JobPostingList-p {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 21px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+  margin-top: 15px;
+}
+
+.JobPostingList-toggle-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.JobPostingList-frame-14 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 386px;
+  margin-top: 15px;
+  max-height: 163px;
+  overflow-y: auto;
+}
+.JobPostingList-frame-14::-webkit-scrollbar {
+  width: 8px;
+}
+.JobPostingList-frame-14::-webkit-scrollbar-thumb {
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 10px;
+}
+.JobPostingList-frame-14::-webkit-scrollbar-track {
+  background-color: none;
+}
+.JobPostingList-frame-14::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+
+.frame-4 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  height: 29px;
+  position: relative;
+}
+
+.frame-5 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 0px 2px 0px 8px;
+  position: relative;
+}
+
+.frame-6 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.text-wrapper-3 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.45px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.chevron-right {
+  height: 24px;
+  margin-left: -4px;
+  position: relative;
+  width: 24px;
+}
+
+.text-wrapper-4 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.45px;
+  line-height: normal;
+  margin-left: -4px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
 }
