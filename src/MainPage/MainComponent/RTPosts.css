@@ -21,6 +21,7 @@
 }
 
 .RTPosts-div {
+  cursor: pointer;
   color: var(--variable-collection-gray-2);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 20px;

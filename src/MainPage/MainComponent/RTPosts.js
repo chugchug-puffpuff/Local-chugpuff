@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RTPosts.css';
 import PopularPostMain from './RTPComponents/PopularPostMain';
 import postData from '../../TestData/postData.json';
 
 const RTPosts = () => {
+  const navigate = useNavigate();
   const [sortedPostData, setSortedPostData] = useState([]);
 
   useEffect(() => {
@@ -15,7 +17,7 @@ const RTPosts = () => {
     <div>
       <div className="RTPosts-frame">
         <div className="RTPosts-text-wrapper">실시간 인기글</div>
-        <div className="RTPosts-div">더보기</div>
+        <div className="RTPosts-div" onClick={() => navigate('/community')}>더보기</div>
       </div>
       <div className="RTPosts-frame-2">
         {sortedPostData.map((post, index) => (
