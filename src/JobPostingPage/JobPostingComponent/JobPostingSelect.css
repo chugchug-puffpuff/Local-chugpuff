@@ -1,10 +1,10 @@
-.JobPostingList-frame-wrapper {
+.JobPostingSelect-frame-wrapper {
   margin: 20px auto;
   width: 1300px;
   padding-bottom: 100px;
 }
 
-.JobPostingList-frame-2 {
+.JobPostingSelect-frame-2 {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -13,16 +13,16 @@
   width: 1300px;
 }
 
-.JobPostingList-frame-3 {
+.JobPostingSelect-frame-3 {
   align-items: flex-end;
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
   position: relative;
-  width: 1250px;
+  width: 1300px;
 }
 
-.JobPostingList-text-wrapper-2 {
+.JobPostingSelect-text-wrapper-2 {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 24px;
@@ -35,7 +35,7 @@
   width: 32px;
 }
 
-.JobPostingList-text-wrapper-3 {
+.JobPostingSelect-text-wrapper-3 {
   color: var(--variable-collection-main-black);
   flex: 1;
   font-family: "Pretendard Variable-SemiBold", Helvetica;
@@ -47,7 +47,7 @@
   position: relative;
 }
 
-.JobPostingList-frame-4 {
+.JobPostingSelect-frame-4 {
   align-items: flex-start;
   display: flex;
   flex: 0 0 auto;
@@ -56,7 +56,7 @@
   width: 1300px;
 }
 
-.JobPostingList-frame-5 {
+.JobPostingSelect-frame-5 {
   cursor: pointer;
   align-items: center;
   background-color: var(--variable-collection-WHITE);
@@ -71,13 +71,13 @@
   z-index: 100;
 }
 
-.JobPostingList-img {
+.JobPostingSelect-img {
   height: 24px;
   position: relative;
   width: 24px;
 }
 
-.JobPostingList-text-wrapper-4 {
+.JobPostingSelect-text-wrapper-4 {
   color: var(--variable-collection-main-black);
   flex: 1;
   font-family: "Pretendard Variable-SemiBold", Helvetica;
@@ -89,7 +89,7 @@
   position: relative;
 }
 
-.JobPostingList-frame-6 {
+.JobPostingSelect-frame-6 {
   cursor: pointer;
   align-items: center;
   background-color: var(--variable-collection-WHITE);
@@ -104,7 +104,7 @@
   z-index: 100;
 }
 
-.JobPostingList-frame-7 {
+.JobPostingSelect-frame-7 {
   align-items: flex-start;
   border: 1px solid;
   border-color: var(--variable-collection-gray-3);
@@ -118,7 +118,7 @@
   margin-top: -20px;
 }
 
-.JobPostingList-frame-8 {
+.JobPostingSelect-frame-8 {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -128,21 +128,21 @@
   max-height: 163px;
   overflow-y: auto;
 }
-.JobPostingList-frame-8::-webkit-scrollbar {
+.JobPostingSelect-frame-8::-webkit-scrollbar {
   width: 8px;
 }
-.JobPostingList-frame-8::-webkit-scrollbar-thumb {
+.JobPostingSelect-frame-8::-webkit-scrollbar-thumb {
   background-color: var(--variable-collection-gray-3);
   border-radius: 10px;
 }
-.JobPostingList-frame-8::-webkit-scrollbar-track {
+.JobPostingSelect-frame-8::-webkit-scrollbar-track {
   background-color: none;
 }
-.JobPostingList-frame-8::-webkit-scrollbar-thumb:hover {
+.JobPostingSelect-frame-8::-webkit-scrollbar-thumb:hover {
   background: #666666;
 }
 
-.JobPostingList-frame-9 {
+.JobPostingSelect-frame-9 {
   align-items: flex-start;
   align-self: stretch;
   background-color: var(--variable-collection-mint);
@@ -155,7 +155,7 @@
   width: 100%;
 }
 
-.JobPostingList-text-wrapper-5 {
+.JobPostingSelect-text-wrapper-5 {
   cursor: pointer;
   color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
@@ -169,7 +169,7 @@
   width: fit-content;
 }
 
-.JobPostingList-frame-10 {
+.JobPostingSelect-frame-10 {
   align-items: flex-start;
   align-self: stretch;
   display: flex;
@@ -180,7 +180,7 @@
   width: 100%;
 }
 
-.JobPostingList-text-wrapper-6 {
+.JobPostingSelect-text-wrapper-6 {
   cursor: pointer;
   color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-Regular", Helvetica;
@@ -194,7 +194,7 @@
   width: fit-content;
 }
 
-.JobPostingList-frame-13 {
+.JobPostingSelect-frame-13 {
   align-items: center;
   display: flex;
   flex: 1;
@@ -205,7 +205,7 @@
   position: relative;
 }
 
-.JobPostingList-p {
+.JobPostingSelect-p {
   color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 14px;
@@ -218,7 +218,7 @@
   margin-top: 15px;
 }
 
-.JobPostingList-toggle-wrapper {
+.JobPostingSelect-toggle-wrapper {
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
@@ -227,7 +227,7 @@
   position: relative;
 }
 
-.JobPostingList-frame-14 {
+.JobPostingSelect-frame-14 {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -237,21 +237,21 @@
   max-height: 163px;
   overflow-y: auto;
 }
-.JobPostingList-frame-14::-webkit-scrollbar {
+.JobPostingSelect-frame-14::-webkit-scrollbar {
   width: 8px;
 }
-.JobPostingList-frame-14::-webkit-scrollbar-thumb {
+.JobPostingSelect-frame-14::-webkit-scrollbar-thumb {
   background-color: var(--variable-collection-gray-3);
   border-radius: 10px;
 }
-.JobPostingList-frame-14::-webkit-scrollbar-track {
+.JobPostingSelect-frame-14::-webkit-scrollbar-track {
   background-color: none;
 }
-.JobPostingList-frame-14::-webkit-scrollbar-thumb:hover {
+.JobPostingSelect-frame-14::-webkit-scrollbar-thumb:hover {
   background: #666666;
 }
 
-.frame-4 {
+.JobPostingSelect-frame-20 {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -260,7 +260,7 @@
   position: relative;
 }
 
-.frame-5 {
+.JobPostingSelect-frame-21 {
   align-items: center;
   background-color: var(--variable-collection-button-navy);
   border-radius: 4px;
@@ -270,14 +270,14 @@
   position: relative;
 }
 
-.frame-6 {
+.JobPostingSelect-frame-22 {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
   position: relative;
 }
 
-.text-wrapper-3 {
+.JobPostingSelect-text-wrapper-10 {
   color: var(--variable-collection-WHITE);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 15px;
@@ -289,14 +289,14 @@
   width: fit-content;
 }
 
-.chevron-right {
+.JobPostingSelect-chevron-right {
   height: 24px;
   margin-left: -4px;
   position: relative;
   width: 24px;
 }
 
-.text-wrapper-4 {
+.JobPostingSelect-text-wrapper-11 {
   color: var(--variable-collection-WHITE);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
   font-size: 15px;
