@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './JobPostingSelect.css';
 import axios from 'axios';
 
-const JobPostingSelect = () => {
+const JobPostingSelect = ({ setJobPostingListActive, setSelectedDetailRegion, setSelectedJobKeyword }) => {
   const [regionToggle, setRegionToggle] = useState(false);
   const [jobToggle, setJobToggle] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState(null);
-  const [selectedDetailRegion, setSelectedDetailRegion] = useState(null);
+  const [selectedDetailRegion, setSelectedDetailRegionState] = useState(null);
   const [selectedJob, setSelectedJob] = useState(null);
-  const [selectedJobKeyword, setSelectedJobKeyword] = useState(null);
+  const [selectedJobKeyword, setSelectedJobKeywordState] = useState(null);
   const [detailRegions, setDetailRegions] = useState([]);
   const [jobKeywords, setJobKeywords] = useState([]);
 
@@ -72,24 +72,34 @@ const JobPostingSelect = () => {
 
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
-    setSelectedDetailRegion(null); // 지역을 다시 선택할 경우 상세지역 초기화
+    setSelectedDetailRegionState(null); // 지역을 다시 선택할 경우 상세지역 초기화
   };
 
   const handleDetailRegionClick = (detailRegion) => {
-    setSelectedDetailRegion(detailRegion);
+    setSelectedDetailRegionState(detailRegion);
+    setSelectedDetailRegion(detailRegion); // 부모 컴포넌트에 전달
   };
 
   const handleJobClick = (job) => {
     setSelectedJob(job);
-    setSelectedJobKeyword(null); // 직무를 다시 선택할 경우 직무키워드 초기화
+    setSelectedJobKeywordState(null); // 직무를 다시 선택할 경우 직무키워드 초기화
   };
 
   const handlejobKeywordClick = (jobKeyword) => {
-    setSelectedJobKeyword(jobKeyword);
+    setSelectedJobKeywordState(jobKeyword);
+    setSelectedJobKeyword(jobKeyword); // 부모 컴포넌트에 전달
   };
 
+  // 카테고리가 모두 선택이 완료되었다는 것을 알리기 위한 상태 저장(리스트를 띄우기 위해)
+  useEffect(() => {
+    if (selectedRegion && selectedDetailRegion && selectedJob && selectedJobKeyword) {
+      setJobPostingListActive(true);
+    } else {
+      setJobPostingListActive(false);
+    }
+  }, [selectedRegion, selectedDetailRegion, selectedJob, selectedJobKeyword]);
+
   return (
-    <div className="JobPostingSelect-frame-wrapper">
       <div className="JobPostingSelect-frame-2">
         <div className="JobPostingSelect-frame-3">
           <div className="JobPostingSelect-text-wrapper-2">📝</div>
@@ -107,9 +117,14 @@ const JobPostingSelect = () => {
                 <div className="JobPostingSelect-text-wrapper-11">{selectedDetailRegion}</div>
               </div>
               <img
-                className="JobPostingSelect-img"
+                className="JobPostingSelect-close"
                 alt="Close small"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/close-small@2x.png"
+                onClick={() => {
+                  setSelectedRegion(null);
+                  setSelectedDetailRegionState(null);
+                  setSelectedDetailRegion(null); // 부모 컴포넌트에 전달
+                }}
               />
             </div>
           )}
@@ -125,9 +140,14 @@ const JobPostingSelect = () => {
                 <div className="JobPostingSelect-text-wrapper-11">{selectedJobKeyword}</div>
               </div>
               <img
-                className="JobPostingSelect-img"
+                className="JobPostingSelect-close"
                 alt="Close small"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/close-small@2x.png"
+                onClick={() => {
+                  setSelectedJob(null);
+                  setSelectedJobKeywordState(null);
+                  setSelectedJobKeyword(null); // 부모 컴포넌트에 전달
+                }}
               />
             </div>
           )}
@@ -230,7 +250,6 @@ const JobPostingSelect = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

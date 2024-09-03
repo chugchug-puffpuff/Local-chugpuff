@@ -1,9 +1,3 @@
-.JobPostingSelect-frame-wrapper {
-  margin: 20px auto;
-  width: 1300px;
-  padding-bottom: 100px;
-}
-
 .JobPostingSelect-frame-2 {
   align-items: flex-start;
   display: flex;
@@ -69,6 +63,13 @@
   position: relative;
   width: 634px;
   z-index: 100;
+}
+
+.JobPostingSelect-close {
+  cursor: pointer;
+  height: 24px;
+  position: relative;
+  width: 24px;
 }
 
 .JobPostingSelect-img {
@@ -232,7 +233,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 386px;
+  width: 384px;
   margin-top: 15px;
   max-height: 163px;
   overflow-y: auto;

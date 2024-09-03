@@ -13,3 +13,9 @@
   display: flex;
   justify-content: center;
 }
+
+.JobPostingMain-frame-wrapper {
+  margin: 20px auto;
+  width: 1300px;
+  padding-bottom: 100px;
+}
