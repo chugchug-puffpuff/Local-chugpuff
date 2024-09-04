@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './JobPostingList.css'
+import axios from 'axios';
 
-const JobPosting = ({ company, title, scrapCounts, commentCounts, experience, education, location, employmentType, dateRange }) => (
+const JobPosting = ({ company, title, experience, education, location, employmentType, dateRange }) => (
   <div className="JobPostingList-frame-23">
     <div className="JobPostingList-frame-24">
       <div className="JobPostingList-text-wrapper-10">{company}</div>
@@ -15,11 +16,6 @@ const JobPosting = ({ company, title, scrapCounts, commentCounts, experience, ed
           <div className="JobPostingList-frame-29">
             <div className="JobPostingList-frame-30">
               <div className="JobPostingList-text-wrapper-12">{experience}</div>
-              <img
-                className="JobPostingList-img"
-                alt="Arrow upward alt"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/arrow-upward-alt@2x.png"
-              />
             </div>
             <div className="JobPostingList-frame-30">
               <div className="JobPostingList-text-wrapper-12">{education}</div>
@@ -38,7 +34,8 @@ const JobPosting = ({ company, title, scrapCounts, commentCounts, experience, ed
               alt="scrap"
               src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
             />
-            <div className="JobPostingList-scrapCounts">{scrapCounts}</div>
+            {/* <div className="JobPostingList-scrapCounts">{scrapCounts}</div> */}
+            <div className="JobPostingList-scrapCounts">30</div>
           </div>
           <div className="JobPostingList-comment-wrapper">
             <img
@@ -46,7 +43,8 @@ const JobPosting = ({ company, title, scrapCounts, commentCounts, experience, ed
               alt="comment"
               src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c247830accd7d866283e/img/sms@2x.png"
             />
-            <div className="JobPostingList-commentCounts">{commentCounts}</div>
+            {/* <div className="JobPostingList-commentCounts">{commentCounts}</div> */}
+            <div className="JobPostingList-commentCounts">20</div>
           </div>
         </div>
       </div>
@@ -58,46 +56,74 @@ const JobPosting = ({ company, title, scrapCounts, commentCounts, experience, ed
 );
 
 const JobPostingList = ({ detailRegion, jobKeyword }) => {
-  const postings = [
-    {
-      company: "(주)엔미디어플랫폼",
-      title: "Nexon Company window application 개발 엔지니어 모집",
-      scrapCounts: 20,
-      commentCounts: 10,
-      experience: "3년 경력",
-      education: "학력 무관",
-      location: "서울 강남구",
-      employmentType: "정규직",
-      dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
-    },
-    {
-      company: "(주)엔미디어플랫폼",
-      title: "Nexon Company window application 개발 엔지니어 모집",
-      scrapCounts: 20,
-      commentCounts: 10,
-      experience: "3년 경력",
-      education: "학력 무관",
-      location: "서울 강남구",
-      employmentType: "정규직",
-      dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
-    },
-    {
-      company: "(주)엔미디어플랫폼",
-      title: "Nexon Company window application 개발 엔지니어 모집",
-      scrapCounts: 20,
-      commentCounts: 10,
-      experience: "3년 경력",
-      education: "학력 무관",
-      location: "서울 강남구",
-      employmentType: "정규직",
-      dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
-    }
-  ];
+  // const postings = [
+  //   {
+  //     company: "(주)엔미디어플랫폼",
+  //     title: "Nexon Company window application 개발 엔지니어 모집",
+  //     scrapCounts: 20,
+  //     commentCounts: 10,
+  //     experience: "3년 경력",
+  //     education: "학력 무관",
+  //     location: "서울 강남구",
+  //     employmentType: "정규직",
+  //     dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
+  //   },
+  //   {
+  //     company: "(주)엔미디어플랫폼",
+  //     title: "Nexon Company window application 개발 엔지니어 모집",
+  //     scrapCounts: 20,
+  //     commentCounts: 10,
+  //     experience: "3년 경력",
+  //     education: "학력 무관",
+  //     location: "서울 강남구",
+  //     employmentType: "정규직",
+  //     dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
+  //   },
+  //   {
+  //     company: "(주)엔미디어플랫폼",
+  //     title: "Nexon Company window application 개발 엔지니어 모집",
+  //     scrapCounts: 20,
+  //     commentCounts: 10,
+  //     experience: "3년 경력",
+  //     education: "학력 무관",
+  //     location: "서울 강남구",
+  //     employmentType: "정규직",
+  //     dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
+  //   }
+  // ];
+
+  const [postings, setPostings] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/job-postings?regionName=${detailRegion}&jobName=${jobKeyword}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const jobs = response.data.jobs.job.map(job => ({
+          company: job.company.detail.name,
+          title: job.position.title,
+          experience: job.position['experience-level'].name,
+          education: job.position['required-education-level'].name,
+          location: job.position.location.name,
+          employmentType: job.position['job-type'].name,
+          dateRange: `등록 ${new Date(job['opening-timestamp'] * 1000).toLocaleDateString()} ~ 마감 ${new Date(job['expiration-timestamp'] * 1000).toLocaleDateString()}`
+        }));
+        setPostings(jobs);
+      } catch (error) {
+        console.error('Error fetching job postings:', error);
+      }
+    };
+
+    fetchData();
+  }, [detailRegion, jobKeyword]);
 
   return (
     <div className="JobPostingList-frame-18">
       <div className="JobPostingList-div">
-        <div className="JobPostingList-text-wrapper-8">전체 (3,020건)</div>
+        <div className="JobPostingList-text-wrapper-8">전체 ({postings.length}건)</div>
         <div className="JobPostingList-frame-19">
           <div className="JobPostingList-frame-20">
             <div className="JobPostingList-text-wrapper-9">추천순</div>
