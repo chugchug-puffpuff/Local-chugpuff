@@ -56,42 +56,6 @@ const JobPosting = ({ company, title, experience, education, location, employmen
 );
 
 const JobPostingList = ({ detailRegion, jobKeyword }) => {
-  // const postings = [
-  //   {
-  //     company: "(주)엔미디어플랫폼",
-  //     title: "Nexon Company window application 개발 엔지니어 모집",
-  //     scrapCounts: 20,
-  //     commentCounts: 10,
-  //     experience: "3년 경력",
-  //     education: "학력 무관",
-  //     location: "서울 강남구",
-  //     employmentType: "정규직",
-  //     dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
-  //   },
-  //   {
-  //     company: "(주)엔미디어플랫폼",
-  //     title: "Nexon Company window application 개발 엔지니어 모집",
-  //     scrapCounts: 20,
-  //     commentCounts: 10,
-  //     experience: "3년 경력",
-  //     education: "학력 무관",
-  //     location: "서울 강남구",
-  //     employmentType: "정규직",
-  //     dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
-  //   },
-  //   {
-  //     company: "(주)엔미디어플랫폼",
-  //     title: "Nexon Company window application 개발 엔지니어 모집",
-  //     scrapCounts: 20,
-  //     commentCounts: 10,
-  //     experience: "3년 경력",
-  //     education: "학력 무관",
-  //     location: "서울 강남구",
-  //     employmentType: "정규직",
-  //     dateRange: "등록 10/3(월) ~ 마감 11/20(수)"
-  //   }
-  // ];
-
   const [postings, setPostings] = useState([]);
 
   useEffect(() => {

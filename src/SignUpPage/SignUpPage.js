@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './SignUpPage.css';
 import NavBar from '../MainPage/MainComponent/NavBar';
 import { useNavigate } from 'react-router-dom';
-//import userData from '../TestData/userData.json';
-import jobCode from '../TestData/jobCode.json';
 import axios from 'axios';
 
 const SignUpPage = ({ authenticate, setAuthenticate }) => {
@@ -23,7 +21,6 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   const [errors, setErrors] = useState({});
   const [idCheckMessage, setIdCheckMessage] = useState('');
   const [isDuplicate, setIsDuplicate] = useState(false);
-  const [jobList, setJobList] = useState([]);
   const [jobKeywordList, setJobKeywordList] = useState([]);
   const [selectedJob, setSelectedJob] = useState('희망 직무');
   const [selectedJobKeyword, setSelectedJobKeyword] = useState('직무 키워드');
@@ -31,12 +28,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
   const [showJobKeyword, setShowJobKeyword] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
-
-  // 컴포넌트 마운트 시 직무 리스트 초기화
-  useEffect(() => {
-    const uniqueJobs = [...new Set(jobCode.map(job => job.jobName))];
-    setJobList(uniqueJobs);
-  }, []);
+  const jobList = ["기획·전략", "마케팅·홍보·조사", "회계·세무·재무", "인사·노무·HRD", "총무·법무·사무", "IT개발·데이터", "디자인", "영업·판매·무역", "고객상담·TM", "구매·자재·물류", "상품기획·MD", "운전·운송·배송", "서비스", "생산", "건설·건축", "의료", "연구·R&D", "교육", "미디어·문화·스포츠", "금융·보험", "공공·복지"];
 
   // 사용자 등록을 위한 API 호출
   const registerUser = async (userData) => {
@@ -169,13 +161,19 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
       setErrors({ ...errors, job: '' });
     }
   };
-
-  const selectJob = (job) => {
+  
+  const selectJob = async (job) => {
     setSelectedJob(job);
     setFormData({ ...formData, job });
     setShowJob(false);
-    const keywords = jobCode.filter(item => item.jobName === job).map(item => item.jobKeywordName);
-    setJobKeywordList(keywords);
+    // 직무키워드 엔드포인트
+    try {
+      const response = await axios.get(`http://localhost:8080/api/job-postings/job-names?jobMidName=${job}`);
+      setJobKeywordList(response.data);
+    } catch (error) {
+      console.error('직무 키워드 로드 에러:', error);
+    }
+
     if (errors.job) {
       setErrors({ ...errors, job: '' });
     }

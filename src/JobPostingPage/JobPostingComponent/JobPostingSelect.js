@@ -56,11 +56,7 @@ const JobPostingSelect = ({ setJobPostingListActive, setSelectedDetailRegion, se
   // 직무 목록을 반환하는 엔드포인트
   useEffect(() => {
     if (selectedJob) {
-      axios.get(`http://localhost:8080/api/job-postings/job-names?jobMidName=${selectedJob}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+      axios.get(`http://localhost:8080/api/job-postings/job-names?jobMidName=${selectedJob}`)
         .then(response => {
           setJobKeywords(response.data);
         })
