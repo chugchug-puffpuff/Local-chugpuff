@@ -1,122 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './PostingRecommend.css'
-
-const jobRecommendations = [
-  {
-    company: "(주)그레이고",
-    position: "패션 마케터 과/차장급 (5-12년) 경력직",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-1@2x.png",
-    grade: 50,
-    daysLeft: 12
-  },
-  {
-    company: "㈜보스반도체",
-    position: "SOC RTL design Engineer",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-2@2x.png",
-    grade: 12,
-    daysLeft: 6
-  },
-  {
-    company: "㈜와이오엘",
-    position: "포워딩 영업 경력 모집",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-1-1@2x.png",
-    grade: 23,
-    daysLeft: 21
-  },
-  {
-    company: "(주)비글즈",
-    position: "AI NLP Engineer 경력 채용",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-2-1@2x.png",
-    grade: 9,
-    daysLeft: 7
-  },
-  {
-    company: "(주)그레이고",
-    position: "패션 마케터 과/차장급 (5-12년) 경력직",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-1@2x.png",
-    grade: 50,
-    daysLeft: 12
-  },
-  {
-    company: "㈜보스반도체",
-    position: "SOC RTL design Engineer",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-2@2x.png",
-    grade: 12,
-    daysLeft: 6
-  },
-  {
-    company: "㈜와이오엘",
-    position: "포워딩 영업 경력 모집",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-1-1@2x.png",
-    grade: 23,
-    daysLeft: 21
-  },
-  {
-    company: "(주)비글즈",
-    position: "AI NLP Engineer 경력 채용",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-2-1@2x.png",
-    grade: 9,
-    daysLeft: 7
-  },{
-    company: "(주)그레이고",
-    position: "패션 마케터 과/차장급 (5-12년) 경력직",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-1@2x.png",
-    grade: 50,
-    daysLeft: 12
-  },
-  {
-    company: "㈜보스반도체",
-    position: "SOC RTL design Engineer",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-2@2x.png",
-    grade: 12,
-    daysLeft: 6
-  },
-  {
-    company: "㈜와이오엘",
-    position: "포워딩 영업 경력 모집",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-1-1@2x.png",
-    grade: 23,
-    daysLeft: 21
-  },
-  {
-    company: "(주)비글즈",
-    position: "AI NLP Engineer 경력 채용",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-2-1@2x.png",
-    grade: 9,
-    daysLeft: 7
-  },{
-    company: "(주)그레이고",
-    position: "패션 마케터 과/차장급 (5-12년) 경력직",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-1@2x.png",
-    grade: 50,
-    daysLeft: 12
-  },
-  {
-    company: "㈜보스반도체",
-    position: "SOC RTL design Engineer",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-2@2x.png",
-    grade: 12,
-    daysLeft: 6
-  },
-  {
-    company: "㈜와이오엘",
-    position: "포워딩 영업 경력 모집",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-1-1@2x.png",
-    grade: 23,
-    daysLeft: 21
-  },
-  {
-    company: "(주)비글즈",
-    position: "AI NLP Engineer 경력 채용",
-    image: "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-2-1@2x.png",
-    grade: 9,
-    daysLeft: 7
-  }
-];
+import axios from 'axios';
 
 const PostingRecommend = () => {
   const [showMore, setShowMore] = useState(false);
-  const displayedRecommendations = showMore ? jobRecommendations.slice(0, 12) : jobRecommendations.slice(0, 4);
+  const [postRecommend, setPostRecommend] = useState([]);
+  const displayedRecommendations = showMore ? postRecommend.slice(0, 8) : postRecommend.slice(0, 4);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/job-postings/recommendations", {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const jobRecommendations = response.data.jobs.job.map(job => {
+          const expirationTimestamp = job['expiration-timestamp'] * 1000;
+          const currentTime = new Date().getTime();
+          const timeDifference = expirationTimestamp - currentTime;
+          const expirationDay = `D-${Math.ceil(timeDifference / (1000 * 60 * 60 * 24))}`;
+
+          return {
+            company: job.company.detail.name,
+            title: job.position.title,
+            expirationDay: expirationDay,
+          };
+        });
+        setPostRecommend(jobRecommendations);
+      } catch (error) {
+        console.error('Error fetching job postings:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -133,13 +51,13 @@ const PostingRecommend = () => {
               <img
                 className="PostingRecommend-image"
                 alt="Image"
-                src={job.image}
+                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-2-1@2x.png"
               />
               <div className="PostingRecommend-frame-8">
                 <div className="PostingRecommend-text-wrapper-5">{job.company}</div>
                 <div className="PostingRecommend-frame-9">
                   <div className="PostingRecommend-frame-10">
-                    <p className="PostingRecommend-text-wrapper-6">{job.position}</p>
+                    <p className="PostingRecommend-text-wrapper-6">{job.title}</p>
                   </div>
                   <div className="PostingRecommend-frame-11">
                     <div className="PostingRecommend-frame-12">
@@ -151,10 +69,10 @@ const PostingRecommend = () => {
                         />
                       </div>
                       <div className="PostingRecommend-frame-13">
-                        <div className="PostingRecommend-text-wrapper-7">{job.grade}</div>
+                        <div className="PostingRecommend-text-wrapper-7">30</div>
                       </div>
                     </div>
-                    <div className="PostingRecommend-text-wrapper-8">D-{job.daysLeft}</div>
+                    <div className="PostingRecommend-text-wrapper-8">{job.expirationDay}</div>
                   </div>
                 </div>
               </div>
