@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './JobPostingSelect.css';
 import axios from 'axios';
 
-const JobPostingSelect = ({ setJobPostingListActive, setSelectedDetailRegion, setSelectedJobKeyword }) => {
+const JobPostingSelect = ({ setSelectedDetailRegion, setSelectedJobKeyword }) => {
   const [regionToggle, setRegionToggle] = useState(false);
   const [jobToggle, setJobToggle] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [selectedDetailRegion, setSelectedDetailRegionState] = useState(null);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [selectedJobKeyword, setSelectedJobKeywordState] = useState(null);
+  const [selectedRegion, setSelectedRegion] = useState('');
+  const [selectedDetailRegion, setSelectedDetailRegionState] = useState('');
+  const [selectedJob, setSelectedJob] = useState('');
+  const [selectedJobKeyword, setSelectedJobKeywordState] = useState('');
   const [detailRegions, setDetailRegions] = useState([]);
   const [jobKeywords, setJobKeywords] = useState([]);
 
@@ -56,7 +56,8 @@ const JobPostingSelect = ({ setJobPostingListActive, setSelectedDetailRegion, se
   // 직무 목록을 반환하는 엔드포인트
   useEffect(() => {
     if (selectedJob) {
-      axios.get(`http://localhost:8080/api/job-postings/job-names?jobMidName=${selectedJob}`)
+      const encodedJob = encodeURIComponent(selectedJob);
+      axios.get(`http://localhost:8080/api/job-postings/job-names?jobMidName=${encodedJob}`)
         .then(response => {
           setJobKeywords(response.data);
         })
@@ -85,15 +86,6 @@ const JobPostingSelect = ({ setJobPostingListActive, setSelectedDetailRegion, se
     setSelectedJobKeywordState(jobKeyword);
     setSelectedJobKeyword(jobKeyword); // 부모 컴포넌트에 전달
   };
-
-  // 카테고리가 모두 선택이 완료되었다는 것을 알리기 위한 상태 저장(리스트를 띄우기 위해)
-  useEffect(() => {
-    if (selectedRegion && selectedDetailRegion && selectedJob && selectedJobKeyword) {
-      setJobPostingListActive(true);
-    } else {
-      setJobPostingListActive(false);
-    }
-  }, [selectedRegion, selectedDetailRegion, selectedJob, selectedJobKeyword]);
 
   return (
       <div className="JobPostingSelect-frame-2">

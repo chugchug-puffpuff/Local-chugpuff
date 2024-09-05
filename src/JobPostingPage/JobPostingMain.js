@@ -6,7 +6,6 @@ import JobPostingList from "./JobPostingComponent/JobPostingList.js";
 import NavBar from "../MainPage/MainComponent/NavBar.js";
 
 const JobPostingMain = ({ authenticate, setAuthenticate, userName }) => {
-  const [jobPostingListActive, setJobPostingListActive] = useState(false);
   const [selectedDetailRegion, setSelectedDetailRegion] = useState(null);
   const [selectedJobKeyword, setSelectedJobKeyword] = useState(null);
 
@@ -20,11 +19,10 @@ const JobPostingMain = ({ authenticate, setAuthenticate, userName }) => {
       />
       <div className="JobPostingMain-frame-wrapper">
         <JobPostingSelect 
-          setJobPostingListActive={setJobPostingListActive} 
           setSelectedDetailRegion={setSelectedDetailRegion}
           setSelectedJobKeyword={setSelectedJobKeyword}
         />
-        {jobPostingListActive && <JobPostingList detailRegion={selectedDetailRegion} jobKeyword={selectedJobKeyword} />}
+        <JobPostingList detailRegion={selectedDetailRegion} jobKeyword={selectedJobKeyword} />
       </div>
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
