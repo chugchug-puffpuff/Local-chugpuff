@@ -15,6 +15,7 @@ import SelfIntroductionPage from './SelfIntroduction/SelfIntroductionPage.js';
 import SeHistoryPage from './SelfIntroduction/SeHistoryPage.js';
 import EditingPage from './SelfIntroduction/EditingPage.js';
 import JobPostingMain from './JobPostingPage/JobPostingMain.js';
+import RecruitInfoPage from './JobPostingPage/RecruitInfoPage.js';
 import CommunityPage from './CommunityPage/CommunityPage.js';
 import PostRegister from './CommunityPage/PostRegister.js';
 import PostModify from './CommunityPage/PostModify.js';
@@ -56,6 +57,7 @@ function App() {
         <Route path="/jobposting" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName}>
           <JobPostingMain authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
         </PrivateRoute>} />
+        <Route path="/recruitinfo/:jobId" element={<RecruitInfoPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/community" element={<PrivateRoute authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName}>
           <CommunityPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
         </PrivateRoute>} />

@@ -1,0 +1,39 @@
+.RecruitInfoPage {
+  background-color: var(--variable-collection-gray4);
+  height: 3722px;
+  position: relative;
+  width: 100%;
+}
+
+.RecruitInfoPage-frame {
+  align-items: flex-end;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  left: 310px;
+  position: absolute;
+  top: 174px;
+}
+
+.RecruitInfoPage-div {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 16px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 60px;
+  padding: 48px 60px 40px;
+  position: relative;
+  width: 1300px;
+}
+
+.RecruitInfoPage-line-2 {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}

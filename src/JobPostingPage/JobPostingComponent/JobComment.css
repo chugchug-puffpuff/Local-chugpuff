@@ -1,0 +1,590 @@
+.element {
+  background-color: var(--variable-collection-gray4);
+  height: 3622px;
+  position: relative;
+  width: 1920px;
+}
+
+.element .frame {
+  align-items: flex-end;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  left: 310px;
+  position: absolute;
+  top: 174px;
+}
+
+.element .div {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 16px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 60px;
+  padding: 48px 60px 110px;
+  position: relative;
+  width: 1300px;
+}
+
+.element .frame-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  margin-right: -120px;
+  position: relative;
+}
+
+.element .text-wrapper {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.element .frame-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+.element .frame-4 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
+
+.element .frame-5 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.element .frame-6 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.element .text-wrapper-2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.element .img {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.element .frame-7 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.element .p {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-main-black);
+  display: -webkit-box;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  width: fit-content;
+}
+
+.element .grade {
+  height: 27px;
+  position: relative;
+  width: 27px;
+}
+
+.element .line {
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 1300px;
+}
+
+.element .frame-8 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 20px 20px;
+  position: relative;
+}
+
+.element .frame-9 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.element .text-wrapper-3 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .text-wrapper-4 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  height: 24px;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: 892px;
+}
+
+.element .frame-10 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 12px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 28px;
+  position: relative;
+}
+
+.element .text-wrapper-5 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .rectangle {
+  align-self: stretch;
+  background-color: #d9d9d9;
+  height: 933px;
+  position: relative;
+  width: 100%;
+}
+
+.element .frame-11 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 42px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 54px 48px;
+  position: relative;
+}
+
+.element .image {
+  height: 206px;
+  object-fit: cover;
+  position: relative;
+  width: 531px;
+}
+
+.element .text-wrapper-6 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .frame-12 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+.element .text-wrapper-7 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.element .text-wrapper-8 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .frame-13 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 80px;
+  position: relative;
+}
+
+.element .frame-14 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 30px;
+  position: relative;
+}
+
+.element .frame-15 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.element .text-wrapper-9 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 30px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .text-wrapper-10 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 30px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .frame-16 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.element .text-wrapper-11 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 30px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .line-2 {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.element .frame-17 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  width: 1176px;
+}
+
+.element .div-2 {
+  align-self: stretch;
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 30px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.element .span {
+  font-weight: 700;
+  letter-spacing: -0.12px;
+}
+
+.element .text-wrapper-12 {
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  letter-spacing: -0.12px;
+}
+
+.element .frame-18 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  width: 1120px;
+}
+
+.element .frame-19 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.element .frame-20 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.element .frame-21 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 8px;
+  position: relative;
+}
+
+.element .text-wrapper-13 {
+  color: var(--variable-collection-gray-1);
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.element .text-wrapper-14 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-gray-2);
+  display: -webkit-box;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .text-wrapper-15 {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 36px;
+  position: relative;
+}
+
+.element .frame-22 {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-button-navy);
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  padding: 8px 16px;
+  position: relative;
+}
+
+.element .format-list-bulleted {
+  height: 20px;
+  position: relative;
+  width: 20px;
+}
+
+.element .text-wrapper-16 {
+  color: var(--variable-collection-button-navy);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .view {
+  background-color: var(--variable-collection-WHITE);
+  box-shadow: 0px 4px 10px #0000000d;
+  height: 88px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 1920px;
+}
+
+.element .view-2 {
+  height: 88px;
+  left: 310px;
+  position: relative;
+  width: 1300px;
+}
+
+.element .div-3 {
+  align-items: center;
+  display: flex;
+  gap: 27px;
+  height: 88px;
+  justify-content: flex-end;
+  left: 1100px;
+  padding: 8px 4px;
+  position: absolute;
+  top: 0;
+  width: 200px;
+}
+
+.element .text-wrapper-17 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element .navbar {
+  align-items: center;
+  display: flex;
+  gap: 32px;
+  height: 88px;
+  justify-content: center;
+  left: 221px;
+  padding: 3px 0px;
+  position: absolute;
+  top: 0;
+  width: 527px;
+}
+
+.element .view-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 88px;
+  justify-content: center;
+  left: 0;
+  padding: 22px 0px;
+  position: absolute;
+  top: 0;
+  width: 152px;
+}
+
+.element .view-3 {
+  background-image: url(https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/--@2x.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 38px;
+  position: relative;
+  width: 145px;
+}
