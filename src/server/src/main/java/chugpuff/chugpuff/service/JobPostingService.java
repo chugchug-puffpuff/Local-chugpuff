@@ -58,7 +58,9 @@ public class JobPostingService {
     //공고 조회 및 필터링
     public String getJobPostings(String regionName, String jobMidName, String jobName, String sortBy) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(API_URL)
-                .queryParam("access-key", accessKey);
+                .queryParam("access-key", accessKey)
+                .queryParam("count", 110);
+
 
         List<LocationCode> locationCodes = locationCodeRepository.findByRegionName(regionName);
 
@@ -84,8 +86,8 @@ public class JobPostingService {
         return restTemplate.getForObject(url, String.class);
     }
 
-    //키워드 검색
-    public String getJobPostingsByKeywords(String keywords, String sortBy) {
+    // 키워드 검색 + 필터링
+    public String getJobPostingsByKeywords(String keywords, String regionName, String jobName, String sortBy) {
         String encodedKeywords;
         try {
             encodedKeywords = URLEncoder.encode(keywords, StandardCharsets.UTF_8.toString());
@@ -97,8 +99,33 @@ public class JobPostingService {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(API_URL)
                 .queryParam("access-key", accessKey)
                 .queryParam("keywords", encodedKeywords)
-                .queryParam("count", 1000);
+                .queryParam("count", 110);
 
+        // 지역 필터 추가
+        if (regionName != null && !regionName.isEmpty()) {
+            List<LocationCode> locationCodes = locationCodeRepository.findByRegionName(regionName);
+            if (locationCodes != null && !locationCodes.isEmpty()) {
+                for (LocationCode locationCode : locationCodes) {
+                    builder.queryParam("loc_cd", locationCode.getLocCd());
+                    logger.info("Added Location Code: " + locationCode.getLocCd());
+                }
+            } else {
+                logger.warning("No location codes found for region: " + regionName);
+            }
+        }
+
+        // 직무 필터 추가
+        if (jobName != null && !jobName.isEmpty()) {
+            JobCode jobCode = jobCodeRepository.findByJobName(jobName);
+            if (jobCode != null) {
+                builder.queryParam("job_cd", jobCode.getJobCd());
+                logger.info("Added Job Code: " + jobCode.getJobCd());
+            } else {
+                logger.warning("No job code found for jobName: " + jobName);
+            }
+        }
+
+        // 정렬 옵션 추가
         if (sortBy != null && !sortBy.isEmpty()) {
             builder.queryParam("sort", sortBy);
         }
@@ -141,7 +168,8 @@ public class JobPostingService {
         String jobKeyword = member.getJobKeyword();
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(API_URL)
-                .queryParam("access-key", accessKey);
+                .queryParam("access-key", accessKey)
+                .queryParam("count", 110);
 
 
         if (jobKeyword != null && !jobKeyword.isEmpty()) {
@@ -301,4 +329,3 @@ public class JobPostingService {
                 .collect(Collectors.toList());
     }
 }
-
