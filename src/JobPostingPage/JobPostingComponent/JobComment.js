@@ -47,130 +47,130 @@ const Comment = ({ username, date, content, storedUserName, onDelete, onEdit }) 
 );
 
 const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
-  // const [comment, setComment] = useState('');
-  // const [comments, setComments] = useState([]);
-  // const [showDeleteModal, setShowDeleteModal] = useState(false);
-  // const [commentToDelete, setCommentToDelete] = useState(null);
-  // const [showEditModal, setShowEditModal] = useState(false);
-  // const [commentToEdit, setCommentToEdit] = useState(null);
-  // const [editedContent, setEditedContent] = useState('');
+  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [commentToEdit, setCommentToEdit] = useState(null);
+  const [editedContent, setEditedContent] = useState('');
 
-  // // 댓글 조회 엔드포인트
-  // const fetchComments = useCallback(async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:8080/api/comment/board/${boardNo}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('token')}`
-  //       }
-  //     });
+  // 댓글 조회 엔드포인트
+  const fetchComments = useCallback(async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/comment/board/${boardNo}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       
-  //     const fetchedComments = response.data
-  //       .map(comment => ({
-  //         bcNo: comment.bcNo,
-  //         username: comment.memberName,
-  //         date: comment.bcDate,
-  //         content: comment.bcContent,
-  //       }));
-  //     setComments(fetchedComments);
-  //     updateCommentCount(fetchedComments.length);
-  //   } catch (error) {
-  //     if (error.response && error.response.status === 401) {
-  //       console.error('Unauthorized: Please check your token.');
-  //     } else {
-  //       console.error('Error fetching comments:', error);
-  //     }
-  //   }
-  // }, [boardNo, updateCommentCount]);
+      const fetchedComments = response.data
+        .map(comment => ({
+          bcNo: comment.bcNo,
+          username: comment.memberName,
+          date: comment.bcDate,
+          content: comment.bcContent,
+        }));
+      setComments(fetchedComments);
+      updateCommentCount(fetchedComments.length);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.error('Unauthorized: Please check your token.');
+      } else {
+        console.error('Error fetching comments:', error);
+      }
+    }
+  }, [boardNo, updateCommentCount]);
 
-  // useEffect(() => {
-  //   fetchComments();
-  // }, [boardNo, fetchComments]);
+  useEffect(() => {
+    fetchComments();
+  }, [boardNo, fetchComments]);
 
-  // const handleCommentChange = (e) => {
-  //   setComment(e.target.value);
-  // };
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
 
-  // // 댓글 작성 엔드포인트
-  // const handleCommentSubmit = async () => {
-  //   try {
-  //     const response = await axios.post(`http://localhost:8080/api/comment?boardNo=${boardNo}`, {
-  //       bcContent: comment,
-  //     }, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('token')}`
-  //       }
-  //     });
-  //     console.log('Comment submitted:', response.data);
-  //     setComment(''); // 댓글 제출 후 입력 필드 초기화
+  // 댓글 작성 엔드포인트
+  const handleCommentSubmit = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8080/api/comment?boardNo=${boardNo}`, {
+        bcContent: comment,
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      console.log('Comment submitted:', response.data);
+      setComment(''); // 댓글 제출 후 입력 필드 초기화
 
-  //     // 댓글 목록을 다시 가져오기 위해 fetchComments 함수 호출
-  //     fetchComments();
-  //   } catch (error) {
-  //     console.error('Error submitting comment:', error);
-  //   }
-  // };
+      // 댓글 목록을 다시 가져오기 위해 fetchComments 함수 호출
+      fetchComments();
+    } catch (error) {
+      console.error('Error submitting comment:', error);
+    }
+  };
 
-  // const handleDeleteClick = (comment) => {
-  //   setCommentToDelete(comment);
-  //   setShowDeleteModal(true);
-  // };
+  const handleDeleteClick = (comment) => {
+    setCommentToDelete(comment);
+    setShowDeleteModal(true);
+  };
 
-  // const handleCancelClick = () => {
-  //   setShowDeleteModal(false);
-  //   setCommentToDelete(null);
-  // };
+  const handleCancelClick = () => {
+    setShowDeleteModal(false);
+    setCommentToDelete(null);
+  };
 
-  // // 댓글 삭제 엔드포인트
-  // const handleConfirmDeleteClick = async () => {
-  //   try {
-  //     await axios.delete(`http://localhost:8080/api/comment/${commentToDelete.bcNo}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('token')}`
-  //       }
-  //     });
-  //     setComments(comments.filter(c => c !== commentToDelete));
-  //     setShowDeleteModal(false);
-  //     setCommentToDelete(null);
-  //     updateCommentCount(comments.length - 1);
-  //   } catch (error) {
-  //     console.error('Error deleting comment:', error);
-  //   }
-  // };
+  // 댓글 삭제 엔드포인트
+  const handleConfirmDeleteClick = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/api/comment/${commentToDelete.bcNo}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setComments(comments.filter(c => c !== commentToDelete));
+      setShowDeleteModal(false);
+      setCommentToDelete(null);
+      updateCommentCount(comments.length - 1);
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  };
 
-  // const handleEditClick = (comment) => {
-  //   setCommentToEdit(comment);
-  //   setEditedContent(comment.content);
-  //   setShowEditModal(true);
-  // };
+  const handleEditClick = (comment) => {
+    setCommentToEdit(comment);
+    setEditedContent(comment.content);
+    setShowEditModal(true);
+  };
 
-  // const handleEditChange = (e) => {
-  //   setEditedContent(e.target.value);
-  // };
+  const handleEditChange = (e) => {
+    setEditedContent(e.target.value);
+  };
 
-  // // 댓글 수정 엔드포인트
-  // const handleConfirmEditClick = async () => {
-  //   try {
-  //     await axios.put(`http://localhost:8080/api/comment/${commentToEdit.bcNo}`, {
-  //       bcContent: editedContent,
-  //     }, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('token')}`
-  //       }
-  //     });
-  //     setComments(comments.map(c => c.bcNo === commentToEdit.bcNo ? { ...c, content: editedContent } : c));
-  //     setShowEditModal(false);
-  //     setCommentToEdit(null);
-  //     setEditedContent('');
-  //   } catch (error) {
-  //     console.error('Error editing comment:', error);
-  //   }
-  // };
+  // 댓글 수정 엔드포인트
+  const handleConfirmEditClick = async () => {
+    try {
+      await axios.put(`http://localhost:8080/api/comment/${commentToEdit.bcNo}`, {
+        bcContent: editedContent,
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setComments(comments.map(c => c.bcNo === commentToEdit.bcNo ? { ...c, content: editedContent } : c));
+      setShowEditModal(false);
+      setCommentToEdit(null);
+      setEditedContent('');
+    } catch (error) {
+      console.error('Error editing comment:', error);
+    }
+  };
 
-  // const handleCancelEditClick = () => {
-  //   setShowEditModal(false);
-  //   setCommentToEdit(null);
-  //   setEditedContent('');
-  // };
+  const handleCancelEditClick = () => {
+    setShowEditModal(false);
+    setCommentToEdit(null);
+    setEditedContent('');
+  };
 
   return (
     <div className="frame-17">
