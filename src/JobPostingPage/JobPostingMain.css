@@ -1,7 +1,7 @@
 .JobPostingMain {
   background-color: var(--variable-collection-WHITE);
   position: relative;
-  width: 1920px;
+  width: 100%;
   height: auto;
 }
 
