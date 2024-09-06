@@ -6,7 +6,7 @@ import axios from 'axios';
 const PostingRecommend = () => {
   const [showMore, setShowMore] = useState(false);
   const [postRecommend, setPostRecommend] = useState([]);
-  const displayedRecommendations = showMore ? postRecommend.slice(0, 8) : postRecommend.slice(0, 4);
+  const displayedRecommendations = showMore ? postRecommend.slice(0, 12) : postRecommend.slice(0, 4);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -21,7 +21,7 @@ const formatTimeStampWithDay = (timestamp) => {
   return `${formattedDate.replace(',', '')}`;
 }
 
-const RecruitInfo = ({ jobInfo }) => {
+const RecruitInfo = ({ jobInfo, commentCount }) => {
   if (!jobInfo || jobInfo.length === 0) {
     return <div>Loading...</div>;
   }
@@ -63,7 +63,7 @@ const RecruitInfo = ({ jobInfo }) => {
                   alt="comment"
                   src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c247830accd7d866283e/img/sms@2x.png"
                 />
-                <div className="RecruitInfo-commentCounts">댓글 20</div>
+                <div className="RecruitInfo-commentCounts">댓글 {commentCount}</div>
               </div>
             </div>
           </div>

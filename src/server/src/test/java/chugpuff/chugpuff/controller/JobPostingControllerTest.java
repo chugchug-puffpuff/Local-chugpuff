@@ -84,7 +84,7 @@ public class JobPostingControllerTest {
     @Test
     @WithMockUser(username = "user", roles = {"USER"})
     public void testGetJobPostingsByKeywords() throws Exception {
-        when(jobPostingService.getJobPostingsByKeywords(anyString(), anyString())).thenReturn("test response");
+        when(jobPostingService.getJobPostingsByKeywords(anyString(), anyString(), anyString(), anyString())).thenReturn("test response");
 
         mockMvc.perform(get("/api/job-postings/search")
                         .param("keywords", "풀스택")

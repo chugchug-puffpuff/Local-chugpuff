@@ -11,7 +11,7 @@ const formatDate = (dateString) => {
   return `${datePart} ${timePart}`;
 };
 
-const Comment = ({ username, date, content, storedUserName, onDelete, onEdit }) => (
+const Comment = ({ username, date, comment, storedUserName, onDelete, onEdit }) => (
   <div className="BoardComment-frame-18">
     <div className="BoardComment-frame-15">
       <div className="BoardComment-frame-16">
@@ -25,8 +25,8 @@ const Comment = ({ username, date, content, storedUserName, onDelete, onEdit }) 
       <div className="BoardComment-text-wrapper-10">{formatDate(date)}</div>
     </div>
     <div className="BoardComment-content-icons">
-      <div className="BoardComment-text-wrapper-12">{content}</div>
-      {/* {storedUserName === username && (
+      <div className="BoardComment-text-wrapper-12">{comment}</div>
+      {storedUserName === username && (
         <div className="BoardComment-icons">
           <img
             className="BoardComment-edit"
@@ -41,12 +41,12 @@ const Comment = ({ username, date, content, storedUserName, onDelete, onEdit }) 
             onClick={onDelete}
           />
         </div>
-      )} */}
+      )}
     </div>
   </div>
 );
 
-const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
+const JobComment = ({ company, jobId, storedUserName, updateCommentCount }) => {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -58,7 +58,7 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
   // 댓글 조회 엔드포인트
   const fetchComments = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/comment/board/${boardNo}`, {
+      const response = await axios.get(`http://localhost:8080/api/job-postings/${jobId}/comments`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -66,10 +66,10 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
       
       const fetchedComments = response.data
         .map(comment => ({
-          bcNo: comment.bcNo,
-          username: comment.memberName,
-          date: comment.bcDate,
-          content: comment.bcContent,
+          id: comment.id,
+          username: comment.member.name,
+          date: comment.createdAt,
+          comment: comment.comment,
         }));
       setComments(fetchedComments);
       updateCommentCount(fetchedComments.length);
@@ -80,11 +80,11 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
         console.error('Error fetching comments:', error);
       }
     }
-  }, [boardNo, updateCommentCount]);
+  }, [jobId, updateCommentCount]);
 
   useEffect(() => {
     fetchComments();
-  }, [boardNo, fetchComments]);
+  }, [jobId, fetchComments]);
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
@@ -93,8 +93,8 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
   // 댓글 작성 엔드포인트
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/comment?boardNo=${boardNo}`, {
-        bcContent: comment,
+      const response = await axios.post(`http://localhost:8080/api/job-postings/${jobId}/comments`, {
+        comment: comment,
       }, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -123,7 +123,7 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
   // 댓글 삭제 엔드포인트
   const handleConfirmDeleteClick = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/comment/${commentToDelete.bcNo}`, {
+      await axios.delete(`http://localhost:8080/api/job-postings/comments/${commentToDelete.id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -139,7 +139,7 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
 
   const handleEditClick = (comment) => {
     setCommentToEdit(comment);
-    setEditedContent(comment.content);
+    setEditedContent(comment.comment);
     setShowEditModal(true);
   };
 
@@ -150,14 +150,14 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
   // 댓글 수정 엔드포인트
   const handleConfirmEditClick = async () => {
     try {
-      await axios.put(`http://localhost:8080/api/comment/${commentToEdit.bcNo}`, {
-        bcContent: editedContent,
+      await axios.put(`http://localhost:8080/api/job-postings/comments/${commentToEdit.id}`, {
+        comment: editedContent,
       }, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      setComments(comments.map(c => c.bcNo === commentToEdit.bcNo ? { ...c, content: editedContent } : c));
+      setComments(comments.map(c => c.id === commentToEdit.id ? { ...c, comment: editedContent } : c));
       setShowEditModal(false);
       setCommentToEdit(null);
       setEditedContent('');
@@ -173,10 +173,10 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
   };
 
   return (
-    <div className="frame-17">
-      <p className="div-2">
-        <span className="span">(주)그레이고</span>
-        <span className="text-wrapper-12"> 경력자가 남긴 댓글을 확인해보세요!</span>
+    <div className="JobComment-frame-17">
+      <p className="JobComment-div-2">
+        <span className="JobComment-span">{company}</span>
+        <span className="JobComment-text-wrapper-12"> 경력자가 남긴 댓글을 확인해보세요!</span>
       </p>
       <div className="BoardComment-frame-10">
         <div className="BoardComment-frame-11">
@@ -185,7 +185,7 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
             className="BoardComment-text-wrapper-7"
             value={comment}
             onChange={handleCommentChange}
-            placeholder="지원자에게 도움을 주는 댓글을 남겨주세요."
+            placeholder="지원자에게 도움이 되는 댓글을 남겨주세요."
           />
           <div className="BoardComment-frame-12" onClick={handleCommentSubmit}>
             <div className="BoardComment-text-wrapper-8">등록</div>
@@ -193,11 +193,11 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
         </div>
         <div className="BoardComment-frame-13">
           {comments.map((comment, index) => (
-            <Comment key={index} {...comment} storedUserName={storedUserName} bcNo={comment.bcNo} onDelete={() => handleDeleteClick(comment)} onEdit={() => handleEditClick(comment)} />
+            <Comment key={index} {...comment} storedUserName={storedUserName} id={comment.id} onDelete={() => handleDeleteClick(comment)} onEdit={() => handleEditClick(comment)} />
           ))}
         </div>
       </div>
-      {/* {showDeleteModal && (
+      {showDeleteModal && (
         <div className="BoardComment-frame-78">
           <div className="BoardComment-frame-79">
             <div className="BoardComment-frame-80">
@@ -239,7 +239,7 @@ const JobComment = ({ boardNo, storedUserName, updateCommentCount }) => {
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   )
 }
