@@ -7,7 +7,7 @@ import NavBar from "../MainPage/MainComponent/NavBar.js";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const RecruitInfoPage = ({ authenticate, setAuthenticate }) => {
+const RecruitInfoPage = ({ authenticate, setAuthenticate, setCommentCountInMain }) => {
   const navigate = useNavigate();
   const { jobId } = useParams();
   const [jobInfo, setJobInfo] = useState(null);
@@ -70,6 +70,7 @@ const RecruitInfoPage = ({ authenticate, setAuthenticate }) => {
 
   const updateCommentCount = (newCount) => {
     setCommentCount(newCount);
+    setCommentCountInMain(newCount); // JobPostingMain의 상태 업데이트
   };
 
   return (

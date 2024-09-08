@@ -449,3 +449,18 @@
   position: relative;
   width: 33px;
 }
+
+.JobPostingList-text-wrapper-16 {
+  cursor: pointer;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
