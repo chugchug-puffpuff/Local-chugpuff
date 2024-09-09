@@ -10,7 +10,6 @@ import RecruitInfoPage from "./RecruitInfoPage.js";
 const JobPostingMain = ({ authenticate, setAuthenticate, userName }) => {
   const [selectedDetailRegion, setSelectedDetailRegion] = useState(null);
   const [selectedJobKeyword, setSelectedJobKeyword] = useState(null);
-  const [commentCount, setCommentCount] = useState(0); // 댓글 수 상태
 
   return (
     <div className="JobPostingMain">
@@ -31,7 +30,6 @@ const JobPostingMain = ({ authenticate, setAuthenticate, userName }) => {
               <JobPostingList 
                 detailRegion={selectedDetailRegion} 
                 jobKeyword={selectedJobKeyword} 
-                commentCount={commentCount}
               />
             </div>
           </div>
@@ -40,8 +38,7 @@ const JobPostingMain = ({ authenticate, setAuthenticate, userName }) => {
           <RecruitInfoPage 
             authenticate={authenticate} 
             setAuthenticate={setAuthenticate} 
-            userName={userName} 
-            setCommentCountInMain={setCommentCount}
+            userName={userName}
           />
         } />
       </Routes>

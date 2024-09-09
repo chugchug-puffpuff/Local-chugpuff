@@ -51,7 +51,7 @@ const JobPosting = ({ jobId, company, title, experience, education, location, em
   </div>
 );
 
-const JobPostingList = ({ detailRegion, jobKeyword, commentCount }) => {
+const JobPostingList = ({ detailRegion, jobKeyword }) => {
   const [postings, setPostings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
@@ -67,7 +67,20 @@ const JobPostingList = ({ detailRegion, jobKeyword, commentCount }) => {
     setSortType(type);
     setSortToggle(false);
   };
-
+  const fetchCommentsCount = async (jobId) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/job-postings/${jobId}/comments`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      return response.data.length;
+    } catch (error) {
+      console.error('Error fetching comments count:', error);
+      return 0;
+    }
+  };
+  
   const fetchJobs = async (url) => {
     try {
       const response = await axios.get(url, {
@@ -75,16 +88,20 @@ const JobPostingList = ({ detailRegion, jobKeyword, commentCount }) => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      const jobs = response.data.jobs.job.map(job => ({
-        jobId: job.id,
-        company: job.company.detail.name,
-        title: job.position.title,
-        experience: job.position['experience-level'].name,
-        education: job.position['required-education-level'].name,
-        location: job.position.location.name,
-        employmentType: job.position['job-type'].name,
-        dateRange: `등록 ${new Date(job['opening-timestamp'] * 1000).toLocaleDateString()} ~ 마감 ${new Date(job['expiration-timestamp'] * 1000).toLocaleDateString()}`,
-        url: job.url
+      const jobs = await Promise.all(response.data.jobs.job.map(async job => {
+        const commentCount = await fetchCommentsCount(job.id);
+        return {
+          jobId: job.id,
+          company: job.company.detail.name,
+          title: job.position.title,
+          experience: job.position['experience-level'].name,
+          education: job.position['required-education-level'].name,
+          location: job.position.location.name,
+          employmentType: job.position['job-type'].name,
+          dateRange: `등록 ${new Date(job['opening-timestamp'] * 1000).toLocaleDateString()} ~ 마감 ${new Date(job['expiration-timestamp'] * 1000).toLocaleDateString()}`,
+          url: job.url,
+          commentCount: commentCount
+        };
       }));
       setPostings(jobs);
       setCurrentPage(1);
@@ -214,7 +231,7 @@ const JobPostingList = ({ detailRegion, jobKeyword, commentCount }) => {
       <div className="JobPostingList-frame-22">
         {currentPosts.map((posting, index) => (
           <React.Fragment key={index}>
-            <JobPosting {...posting} commentCount={commentCount} />
+            <JobPosting {...posting} />
             <img
               className="JobPostingList-line-2"
               alt="Line"

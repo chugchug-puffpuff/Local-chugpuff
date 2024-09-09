@@ -100,7 +100,6 @@ const JobComment = ({ company, jobId, storedUserName, updateCommentCount }) => {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      console.log('Comment submitted:', response.data);
       setComment(''); // 댓글 제출 후 입력 필드 초기화
 
       // 댓글 목록을 다시 가져오기 위해 fetchComments 함수 호출
