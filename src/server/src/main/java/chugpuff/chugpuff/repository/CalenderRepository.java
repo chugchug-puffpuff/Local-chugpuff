@@ -12,4 +12,8 @@ public interface CalenderRepository extends JpaRepository<Calender, Long> {
 
     // Scrap을 기준으로 캘린더 항목을 찾는 메서드 추가
     List<Calender> findByScrap(Scrap scrap);
+
+    //마감기한 D-1 스크랩 공고 조회
+    List<Calender> findByMemberAndMemoDate(Member member, String memoDate);
 }
+

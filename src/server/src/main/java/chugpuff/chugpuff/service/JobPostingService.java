@@ -56,7 +56,7 @@ public class JobPostingService {
     private JobPostingCommentRepository jobPostingCommentRepository;
 
     //공고 조회 및 필터링
-    public String getJobPostings(String regionName, String jobMidName, String jobName, String sortBy) {
+    public String getJobPostings(String regionName, String jobName, String sort) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(API_URL)
                 .queryParam("access-key", accessKey)
                 .queryParam("count", 110);
@@ -70,15 +70,14 @@ public class JobPostingService {
             }
         }
 
-        List<JobCode> jobCodes = jobCodeRepository.findByJobMidName(jobMidName);
+        JobCode jobCode = jobCodeRepository.findByJobName(jobName);
 
-        for (JobCode jobCode : jobCodes) {
-            builder.queryParam("job_mid_cd", jobCode.getJobMidCd())
-                    .queryParam("job_cd", jobCode.getJobCd());
+        if (jobCode != null) {
+            builder.queryParam("job_cd", jobCode.getJobCd());
         }
 
-        if (sortBy != null && !sortBy.isEmpty()) {
-            builder.queryParam("sort", sortBy);
+        if (sort != null && !sort.isEmpty()) {
+            builder.queryParam("sort", sort);
         }
 
         String url = builder.toUriString();
@@ -87,7 +86,7 @@ public class JobPostingService {
     }
 
     // 키워드 검색 + 필터링
-    public String getJobPostingsByKeywords(String keywords, String regionName, String jobName, String sortBy) {
+    public String getJobPostingsByKeywords(String keywords, String regionName, String jobName, String sort) {
         String encodedKeywords;
         try {
             encodedKeywords = URLEncoder.encode(keywords, StandardCharsets.UTF_8.toString());
@@ -126,8 +125,8 @@ public class JobPostingService {
         }
 
         // 정렬 옵션 추가
-        if (sortBy != null && !sortBy.isEmpty()) {
-            builder.queryParam("sort", sortBy);
+        if (sort != null && !sort.isEmpty()) {
+            builder.queryParam("sort", sort);
         }
 
         URI uri = builder.build(true).toUri();
@@ -301,12 +300,9 @@ public class JobPostingService {
     //스크랩순 정렬
     public List<String> getJobPostingsSortedByScrapCount() {
         List<Object[]> jobIdsWithScrapCount = scrapRepository.findJobIdsOrderByScrapCount();
-
-        List<String> sortedJobDetails = jobIdsWithScrapCount.stream()
+        return jobIdsWithScrapCount.stream()
                 .map(jobIdWithCount -> getJobDetails((String) jobIdWithCount[0]))
                 .collect(Collectors.toList());
-
-        return sortedJobDetails;
     }
 
     //2차 근무지 지역명 조회
