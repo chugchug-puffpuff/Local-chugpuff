@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './RecruitInfo.css'
+import axios from 'axios';
 
 // 게시일 포맷팅
 const formatPostingDate = (timestamp) => {
@@ -22,6 +23,24 @@ const formatTimeStampWithDay = (timestamp) => {
 }
 
 const RecruitInfo = ({ jobInfo, commentCount }) => {
+  const [scrapCount, setScrapCount] = useState(0);
+
+  // 스크랩 수 가져오기
+  useEffect(() => {
+    const fetchScrapCount = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/job-postings/${jobInfo[0].jobId}/scrap-count`);
+        setScrapCount(response.data.scrapCount);
+      } catch (error) {
+        console.error('Error fetching scrap count:', error);
+      }
+    };
+
+    if (jobInfo && jobInfo.length > 0) {
+      fetchScrapCount();
+    }
+  }, [jobInfo]);
+
   if (!jobInfo || jobInfo.length === 0) {
     return <div>Loading...</div>;
   }
@@ -55,7 +74,7 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
                   alt="scrap"
                   src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
                 />
-                <div className="RecruitInfo-scrapCounts">스크랩 30</div>
+                <div className="RecruitInfo-scrapCounts">스크랩 {scrapCount}</div>
               </div>
               <div className="RecruitInfo-comment-wrapper">
                 <img

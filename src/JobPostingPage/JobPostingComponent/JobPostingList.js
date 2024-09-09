@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './JobPostingList.css'
 import axios from 'axios';
 
-const JobPosting = ({ jobId, company, title, experience, education, location, employmentType, dateRange, url, commentCount }) => (
+const JobPosting = ({ jobId, company, title, experience, education, location, employmentType, dateRange, url, commentCount, scrapCount }) => (
   <div className="JobPostingList-frame-23">
     <div className="JobPostingList-frame-24">
       <div className="JobPostingList-text-wrapper-10">{company}</div>
@@ -31,8 +31,7 @@ const JobPosting = ({ jobId, company, title, experience, education, location, em
               alt="scrap"
               src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
             />
-            {/* <div className="JobPostingList-scrapCounts">{scrapCounts}</div> */}
-            <div className="JobPostingList-scrapCounts">30</div>
+            <div className="JobPostingList-scrapCounts">{scrapCount}</div>
           </div>
           <div className="JobPostingList-comment-wrapper">
             <img
@@ -81,6 +80,20 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
     }
   };
   
+  const fetchScrapCount = async (jobId) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/job-postings/${jobId}/scrap-count`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      return response.data.scrapCount || 0;
+    } catch (error) {
+      console.error('Error fetching scrap count:', error);
+      return 0;
+    }
+  };
+
   const fetchJobs = async (url) => {
     try {
       const response = await axios.get(url, {
@@ -90,6 +103,7 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
       });
       const jobs = await Promise.all(response.data.jobs.job.map(async job => {
         const commentCount = await fetchCommentsCount(job.id);
+        const scrapCount = await fetchScrapCount(job.id);
         return {
           jobId: job.id,
           company: job.company.detail.name,
@@ -100,7 +114,8 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
           employmentType: job.position['job-type'].name,
           dateRange: `등록 ${new Date(job['opening-timestamp'] * 1000).toLocaleDateString()} ~ 마감 ${new Date(job['expiration-timestamp'] * 1000).toLocaleDateString()}`,
           url: job.url,
-          commentCount: commentCount
+          commentCount: commentCount,
+          scrapCount: scrapCount
         };
       }));
       setPostings(jobs);
