@@ -128,26 +128,26 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
   useEffect(() => {
     let selectedType;
     if (sortType === '최신순') {
-      selectedType = 'posting-date';
+      selectedType = 'pa';
     } else if (sortType === '마감순') {
-      selectedType = 'expiration-date';
-    } else if (sortType === '스크랩순') {
-      selectedType = 'scrap-count';
+      selectedType = 'da';
+    } else if (sortType === '조회순') {
+      selectedType = 'rc';
     }
-    const url = `http://localhost:8080/api/job-postings?jobName=${jobKeyword}&regionName=${detailRegion}&sortBy=${selectedType}`;
+    const url = `http://localhost:8080/api/job-postings?jobName=${jobKeyword}&regionName=${detailRegion}&sort=${selectedType}`;
     fetchJobs(url);
   }, [detailRegion, jobKeyword, sortType]);
 
   const handleSearch = async () => {
     let selectedType;
     if (sortType === '최신순') {
-      selectedType = 'posting-date';
+      selectedType = 'pa';
     } else if (sortType === '마감순') {
-      selectedType = 'expiration-date';
-    } else if (sortType === '스크랩순') {
-      selectedType = 'scrap-count';
+      selectedType = 'da';
+    } else if (sortType === '조회순') {
+      selectedType = 'rc';
     }
-    const url = `http://localhost:8080/api/job-postings/search?jobName=${jobKeyword}&regionName=${detailRegion}&keywords=${searchKeyword}&sortBy=${selectedType}`;
+    const url = `http://localhost:8080/api/job-postings/search?jobName=${jobKeyword}&regionName=${detailRegion}&keywords=${searchKeyword}&sort=${selectedType}`;
     fetchJobs(url);
   };
 
@@ -230,9 +230,9 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
                 <div className="JobPostingList-toggle-text-wrapper">최신순</div>
               </div>
             )}
-            {sortType !== '스크랩순' && (
-              <div className="JobPostingList-toggle-frame-2" onClick={() => sortPosts('스크랩순')}>
-                <div className="JobPostingList-toggle-text-wrapper">스크랩순</div>
+            {sortType !== '조회순' && (
+              <div className="JobPostingList-toggle-frame-2" onClick={() => sortPosts('조회순')}>
+                <div className="JobPostingList-toggle-text-wrapper">조회순</div>
               </div>
             )}
             {sortType !== '마감순' && (
