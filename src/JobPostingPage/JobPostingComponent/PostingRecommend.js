@@ -16,19 +16,27 @@ const PostingRecommend = () => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         });
-        const jobRecommendations = response.data.jobs.job.map(job => {
+        const jobRecommendations = await Promise.all(response.data.jobs.job.map(async job => {
           const expirationTimestamp = job['expiration-timestamp'] * 1000;
           const currentTime = new Date().getTime();
           const timeDifference = expirationTimestamp - currentTime;
           const expirationDay = `D-${Math.ceil(timeDifference / (1000 * 60 * 60 * 24))}`;
+
+          // Fetch scrap count
+          const scrapResponse = await axios.get(`http://localhost:8080/api/job-postings/${job.id}/scrap-count`, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          });
 
           return {
             jobId: job.id,
             company: job.company.detail.name,
             title: job.position.title,
             expirationDay: expirationDay,
+            scrapCount: scrapResponse.data.scrapCount || 0
           };
-        });
+        }));
         setPostRecommend(jobRecommendations);
       } catch (error) {
         console.error('Error fetching job postings:', error);
@@ -72,7 +80,7 @@ const PostingRecommend = () => {
                           />
                         </div>
                         <div className="PostingRecommend-frame-13">
-                          <div className="PostingRecommend-text-wrapper-7">30</div>
+                          <div className="PostingRecommend-text-wrapper-7">{job.scrapCount}</div>
                         </div>
                       </div>
                       <div className="PostingRecommend-text-wrapper-8">{job.expirationDay}</div>

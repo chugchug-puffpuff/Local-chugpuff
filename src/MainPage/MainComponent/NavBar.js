@@ -3,7 +3,7 @@ import './NavBar.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NavBar = ({ authenticate  }) => {
+const NavBar = ({ authenticate, setActiveComponent }) => {
   const navigate = useNavigate()
   const [showUserInfo, setShowUserInfo] = useState(false)
   const [userName, setUserName] = useState('')
@@ -77,9 +77,10 @@ const NavBar = ({ authenticate  }) => {
       navigate('/login', { state: { from: '/community' } });
     }
   }
-  const goToMyActivities = () => {
-    navigate('/myactivities')
-  }
+  const goToMyActivities = (component) => {
+    navigate(`/myactivities/${component}`);
+    setShowUserInfo(false)
+  };
 
   const toggleUserInfo = () => {
     setShowUserInfo(!showUserInfo)
@@ -105,11 +106,11 @@ const NavBar = ({ authenticate  }) => {
                     </button>
                     {showUserInfo && (
                         <div className="NavBar-view-2">
-                          <div className="NavBar-text-wrapper-3">내 정보 변경</div>
-                          <div className="NavBar-text-wrapper-3">스크랩한 공고</div>
-                          <div className="NavBar-text-wrapper-3" onClick={goToMyActivities}>내가 작성한 게시물</div>
-                          <div className="NavBar-text-wrapper-3">내가 작성한 댓글</div>
-                          <div className="NavBar-text-wrapper-3">좋아요 누른 게시물</div>
+                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('editInformation')}>내 정보 변경</div>
+                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myScrap')}>스크랩한 공고</div>
+                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myBoard')}>내가 작성한 게시물</div>
+                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myComment')}>내가 작성한 댓글</div>
+                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myLiked')}>좋아요 누른 게시물</div>
                         </div>
                     )}
                     <img

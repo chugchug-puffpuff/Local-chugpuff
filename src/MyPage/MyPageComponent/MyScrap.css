@@ -1,0 +1,357 @@
+.MyScrap-text-wrapper {
+  color: var(--variable-collection-gray-1);
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.MyScrap-img {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.MyScrap-frame-3 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  margin-top: -1px;
+  padding: 2px 0px;
+  position: relative;
+}
+
+.MyScrap-frame-4 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 8px 12px;
+  position: relative;
+  width: 140px;
+}
+
+.MyScrap-text-wrapper-2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  left: 382px;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  position: absolute;
+  top: 175px;
+  width: 1228px;
+}
+
+.MyScrap-frame-wrapper {
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 16px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  left: 382px;
+  overflow: hidden;
+  padding: 60px 68px 80px;
+  position: absolute;
+  top: 223px;
+  width: 1228px;
+}
+
+.MyScrap-frame-5 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.MyScrap-frame-6 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-text-wrapper-3 {
+  color: var(--variable-collection-main-black);
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.MyScrap-frame-7 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+.MyScrap-frame-8 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-frame-9 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-text-wrapper-4 {
+  color: var(--variable-collection-main-black);
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 30px;
+  position: relative;
+}
+
+.MyScrap-frame-10 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  display: flex;
+  gap: 10px;
+  padding: 8px 12px;
+  position: relative;
+  width: 140px;
+}
+
+.MyScrap-line {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-frame-11 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-frame-12 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 40px;
+  position: relative;
+  width: 1087px;
+}
+
+.MyScrap-frame-13 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 12px;
+  position: relative;
+}
+
+.MyScrap-frame-14 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-frame-15 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.MyScrap-text-wrapper-5 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.MyScrap-p {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-left: -20px;
+  margin-top: -1px;
+  position: relative;
+  text-align: right;
+  width: 839px;
+}
+
+.MyScrap-frame-16 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-frame-17 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 839px;
+}
+
+.MyScrap-frame-18 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.MyScrap-text-wrapper-6 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-main-black);
+  display: -webkit-box;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  width: fit-content;
+}
+
+.MyScrap-grade {
+  height: 27px;
+  position: relative;
+  width: 27px;
+}
+
+.MyScrap-frame-19 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 20px 20px;
+  position: relative;
+}
+
+.MyScrap-frame-20 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.MyScrap-text-wrapper-7 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.MyScrap-frame-21 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 12px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 28px;
+  position: relative;
+}
+
+.MyScrap-text-wrapper-8 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.MyScrap-frame-22 {
+  align-items: center;
+  background-color: var(--variable-collection-gray-1);
+  border-radius: 12px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 28px;
+  position: relative;
+}

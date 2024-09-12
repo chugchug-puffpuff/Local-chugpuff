@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './JobPostingList.css'
 import axios from 'axios';
+import Pagination from '../../Route/Pagination';
 
 const JobPosting = ({ jobId, company, title, experience, education, location, employmentType, dateRange, url, commentCount, scrapCount }) => (
   <div className="JobPostingList-frame-23">
@@ -153,44 +154,10 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
 
   // 페이지네이션
   const totalPages = Math.ceil(postings.length / postsPerPage);
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
-
-  const renderPageNumbers = () => {
-    const maxPageNumbersToShow = 5;
-    const startPage = Math.max(1, currentPage - Math.floor(maxPageNumbersToShow / 2));
-    const endPage = Math.min(totalPages, startPage + maxPageNumbersToShow - 1);
-  
-    const pages = [];
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
-        <div
-          key={i}
-          onClick={() => {
-            setCurrentPage(i);
-            window.scrollTo({
-              top: 550,
-              behavior: 'smooth'
-            });
-          }}
-          className={`JobPostingList-frame-34 ${currentPage === i ? 'active' : ''}`}
-        >
-          <div className="JobPostingList-text-wrapper-15">{i}</div>
-        </div>
-      );
-    }
-    return pages;
-  };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = postings.slice(indexOfFirstPost, indexOfLastPost);
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   return (
     <div className="JobPostingList-frame-18">
@@ -255,25 +222,7 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
           </React.Fragment>
         ))}
       </div>
-      <div className="JobPostingList-frame-32">
-        {currentPage > 1 && (
-          <div className="JobPostingList-text-wrapper-16"
-            onClick={() => paginate(currentPage - 1)}
-            style={{ visibility: currentPage > 1 ? 'visible' : 'hidden' }}
-          >
-            이전
-          </div>
-        )}
-        {renderPageNumbers()}
-        {currentPage < totalPages && (
-          <div className="JobPostingList-text-wrapper-16"
-            onClick={() => paginate(currentPage + 1)}
-            style={{ visibility: currentPage < totalPages ? 'visible' : 'hidden' }}
-          >
-            다음
-          </div>
-        )}
-      </div>
+      <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} scrollTop={550} />
     </div>
   )
 }

@@ -12,7 +12,7 @@ const InfoSquare = ({ jobInfo }) => {
     <div className="InfoSquare-frame-11" onClick={() => window.open(job.infoUrl, '_blank')}>
       <img
         className="InfoSquare-image"
-        alt="Image"
+        alt="기업 로고"
         src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/image-2.png"
       />
       <div className="InfoSquare-frame-5">

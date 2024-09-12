@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AllPost.css';
+import Pagination from '../../Route/Pagination.js';
 
 // 날짜 형식을 0000-00-00 00:00:00으로 변환
 const formatDate = (dateString) => {
@@ -125,17 +126,10 @@ const AllPost = () => {
     }
   };
 
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ // 페이지 이동시 중앙으로 스크롤 이동
-      top: 600,
-      behavior: 'smooth'
-    });
-  };
 
   // 정렬 토글
   const sortToggleShow = () => {
@@ -271,17 +265,7 @@ const AllPost = () => {
                 ))
               )}
               </div>
-              <div className="AllPost-frame-27">
-                {[...Array(Math.ceil(filteredPosts.length / postsPerPage)).keys()].map(number => (
-                  <div
-                    key={number + 1}
-                    className={`AllPost-frame-28 ${currentPage === number + 1 ? 'active' : ''}`}
-                    onClick={() => paginate(number + 1)}
-                  >
-                    <div className="AllPost-text-wrapper-12">{number + 1}</div>
-                  </div>
-                ))}
-              </div>
+              <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} scrollTop={730} />
             </div>
           </div>
         </div>

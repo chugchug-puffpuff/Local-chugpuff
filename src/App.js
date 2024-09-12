@@ -64,7 +64,7 @@ function App() {
         <Route path="/postregister" element={<PostRegister authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/postmodify/:boardNo" element={<PostModify authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
         <Route path="/communitypost/:boardNo" element={<CommunityPost authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
-        <Route path="/myactivities" element={<MyPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
+        <Route path="/myactivities/:component" element={<MyPage authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />} />
       </Routes>
     </div>
   );

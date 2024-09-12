@@ -1,0 +1,344 @@
+.MyBoard-frame {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  left: 382px;
+  position: absolute;
+  top: 176px;
+  width: 1228px;
+}
+
+.MyBoard-text-wrapper {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.MyBoard-div {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-frame-2 {
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 16px;
+  display: flex;
+  height: 72px;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-div-wrapper {
+  align-items: center;
+  align-self: stretch;
+  background-color: #ffffff;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 16px 0px 0px 0px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.MyBoard-text-wrapper-2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.MyBoard-frame-3 {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--variable-collection-gray4);
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.MyBoard-text-wrapper-3 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.MyBoard-frame-4 {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--variable-collection-gray4);
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 0px 16px 0px 0px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.MyBoard-frame-wrapper {
+  align-items: center;
+  align-self: stretch;
+  background-color: #ffffff;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 0px 0px 16px 16px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px 68px 100px;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-frame-5 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 40px;
+  position: relative;
+}
+
+.MyBoard-frame-6 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-text-wrapper-4 {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.MyBoard-frame-7 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 60px;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-frame-8 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-view {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 14px;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-frame-9 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 16px;
+  position: relative;
+}
+
+.MyBoard-frame-10 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-p {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-main-black);
+  display: -webkit-box;
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+}
+
+.MyBoard-frame-11 {
+  align-items: center;
+  background-color: #0b7fff;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 8px;
+  position: relative;
+}
+
+.MyBoard-text-wrapper-5 {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.42px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.MyBoard-frame-12 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+}
+
+.MyBoard-frame-13 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.MyBoard-img {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.MyBoard-text-wrapper-6 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-gray-1);
+  display: -webkit-box;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.MyBoard-text-wrapper-7 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--variable-collection-gray-1);
+  display: -webkit-box;
+  flex: 1;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  overflow: hidden;
+  position: relative;
+  text-align: right;
+  text-overflow: ellipsis;
+}
+
+.MyBoard-line {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.MyBoard-frame-14 {
+  align-items: center;
+  background-color: #001065;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 8px;
+  position: relative;
+}

@@ -13,14 +13,6 @@ export const Element = () => {
             src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-up@2x.png"
           />
         </div>
-        <div className="frame-3">
-          <div className="frame-4">
-            <div className="text-wrapper">최신순</div>
-          </div>
-          <div className="frame-4">
-            <div className="text-wrapper">마감 임박순</div>
-          </div>
-        </div>
       </div>
       <div className="text-wrapper-2">스크랩한 공고</div>
       <div className="frame-wrapper">
