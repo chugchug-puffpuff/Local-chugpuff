@@ -31,6 +31,7 @@ public class Calender {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "scrap_id", referencedColumnName = "id")
     private Scrap scrap;
+
 }
 
 

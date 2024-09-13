@@ -126,6 +126,12 @@ public class BoardController {
         return ResponseEntity.ok().build();
     }
 
+    // 토큰을 통해 인증된 사용자가 좋아요한 게시글 조회
+    @GetMapping("/liked")
+    public List<Board> getBoardsLikedByAuthenticatedUser(Authentication authentication) {
+        return boardService.findBoardsLikedByAuthenticatedUser(authentication);
+    }
+
     //게시글 검색
     @GetMapping("/search")
     public ResponseEntity<List<BoardDTO>> searchBoards(
