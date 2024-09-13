@@ -45,11 +45,6 @@ const MyScrap = () => {
                   <div className="MyScrap-frame-14">
                     <div className="MyScrap-frame-15">
                       <div className="MyScrap-text-wrapper-5">(주)엔미디어플랫폼</div>
-                      <img
-                        className="MyScrap-img"
-                        alt="Favorite"
-                        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/favorite@2x.png"
-                      />
                     </div>
                     <p className="MyScrap-p">등록 10/3(월) ~ 마감 11/20(수)</p>
                   </div>
@@ -102,11 +97,6 @@ const MyScrap = () => {
                   <div className="MyScrap-frame-14">
                     <div className="MyScrap-frame-15">
                       <div className="MyScrap-text-wrapper-5">(주)엔미디어플랫폼</div>
-                      <img
-                        className="MyScrap-img"
-                        alt="Favorite"
-                        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/favorite@2x.png"
-                      />
                     </div>
                     <p className="MyScrap-p">등록 10/3(월) ~ 마감 10/25(금)</p>
                   </div>
@@ -114,11 +104,6 @@ const MyScrap = () => {
                     <div className="MyScrap-frame-17">
                       <div className="MyScrap-frame-18">
                         <p className="MyScrap-text-wrapper-6">Nexon Company window application 개발 엔지니어 모집</p>
-                        <img
-                          className="MyScrap-grade"
-                          alt="Grade"
-                          src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/grade@2x.png"
-                        />
                       </div>
                       <div className="MyScrap-frame-19">
                         <div className="MyScrap-frame-20">
@@ -159,11 +144,6 @@ const MyScrap = () => {
                   <div className="MyScrap-frame-14">
                     <div className="MyScrap-frame-15">
                       <div className="MyScrap-text-wrapper-5">(주)엔미디어플랫폼</div>
-                      <img
-                        className="MyScrap-img"
-                        alt="Favorite"
-                        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/favorite@2x.png"
-                      />
                     </div>
                     <p className="MyScrap-p">등록 10/3(월) ~ 마감 10/25(금)</p>
                   </div>
@@ -171,11 +151,6 @@ const MyScrap = () => {
                     <div className="MyScrap-frame-17">
                       <div className="MyScrap-frame-18">
                         <p className="MyScrap-text-wrapper-6">Nexon Company window application 개발 엔지니어 모집</p>
-                        <img
-                          className="MyScrap-grade"
-                          alt="Grade"
-                          src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/grade@2x.png"
-                        />
                       </div>
                       <div className="frame-19">
                         <div className="MyScrap-frame-20">

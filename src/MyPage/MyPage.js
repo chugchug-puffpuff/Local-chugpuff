@@ -11,7 +11,7 @@ import MyLiked from "./MyPageComponent/MyLiked";
 
 export const MyPage = ({ authenticate, setAuthenticate, userName }) => {
   const { component } = useParams();
-  const activeComponent = component || 'myBoard';
+  const activeComponent = component;
 
   return (
     <div className="MyPage">
