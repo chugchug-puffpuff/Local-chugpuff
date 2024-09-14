@@ -1,0 +1,67 @@
+.RTAnnouncements-frame {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 995px;
+  position: absolute;
+  top: 884px;
+  width: 615px;
+}
+
+.RTAnnouncements-text-wrapper {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.RTAnnouncements-text-wrapper-2 {
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.RTAnnouncements-overlap-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.RTAnnouncements-overlap {
+  width: 300px;
+  height: 361px;
+}
+
+.RTAnnouncements-overlap-1 {
+  position: absolute;
+  top: 933px;
+  left: 995px;
+}
+
+.RTAnnouncements-overlap-2 {
+  position: absolute;
+  top: 933px;
+  left: 1310px;
+}
+
+.RTAnnouncements-overlap-3 {
+  position: absolute;
+  top: 1314px;
+  left: 995px;
+}
+
+.RTAnnouncements-overlap-4 {
+  position: absolute;
+  top: 1314px;
+  left: 1310px;
+}

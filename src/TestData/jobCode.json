@@ -1,0 +1,158 @@
+[
+  {
+    "jobParentCode": "2",
+    "jobName": "IT개발/데이터",
+    "jobCode": "2229",
+    "jobKeywordName": "SQA"
+  },
+  {
+    "jobParentCode": "2",
+    "jobName": "IT개발/데이터",
+    "jobCode": "2239",
+    "jobKeywordName": "보안관제"
+  },
+  {
+    "jobParentCode": "2",
+    "jobName": "IT개발/데이터",
+    "jobCode": "2246",
+    "jobKeywordName": "BI 엔지니어"
+  },
+  {
+    "jobParentCode": "2",
+    "jobName": "IT개발/데이터",
+    "jobCode": "2247",
+    "jobKeywordName": "개발PM"
+  },
+  {
+    "jobParentCode": "2",
+    "jobName": "IT개발/데이터",
+    "jobCode": "2248",
+    "jobKeywordName": "데이터 사이언티스트"
+  },
+  {
+    "jobParentCode": "15",
+    "jobName": "디자인",
+    "jobCode": "2222",
+    "jobKeywordName": "인테리어"
+  },
+  {
+    "jobParentCode": "15",
+    "jobName": "디자인",
+    "jobCode": "1475",
+    "jobKeywordName": "가구디자인"
+  },
+  {
+    "jobParentCode": "15",
+    "jobName": "디자인",
+    "jobCode": "1530",
+    "jobKeywordName": "2D디자인"
+  },
+  {
+    "jobParentCode": "15",
+    "jobName": "디자인",
+    "jobCode": "1593",
+    "jobKeywordName": "3DMax"
+  },
+  {
+    "jobParentCode": "15",
+    "jobName": "디자인",
+    "jobCode": "1476",
+    "jobKeywordName": "건축디자인"
+  },
+  {
+    "jobParentCode": "8",
+    "jobName": "영업/판매/무역",
+    "jobCode": "2203",
+    "jobKeywordName": "영업"
+  },
+  {
+    "jobParentCode": "8",
+    "jobName": "영업/판매/무역",
+    "jobCode": "2208",
+    "jobKeywordName": "영업기획"
+  },
+  {
+    "jobParentCode": "8",
+    "jobName": "영업/판매/무역",
+    "jobCode": "2241",
+    "jobKeywordName": "보안솔루션영업"
+  },
+  {
+    "jobParentCode": "8",
+    "jobName": "영업/판매/무역",
+    "jobCode": "689",
+    "jobKeywordName": "관세사"
+  },
+  {
+    "jobParentCode": "8",
+    "jobName": "영업/판매/무역",
+    "jobCode": "754",
+    "jobKeywordName": "B2B"
+  },
+  {
+    "jobParentCode": "21",
+    "jobName": "고객상담/TM",
+    "jobCode": "1980",
+    "jobKeywordName": "게시판관리"
+  },
+  {
+    "jobParentCode": "21",
+    "jobName": "고객상담/TM",
+    "jobCode": "1972",
+    "jobKeywordName": "상담원"
+  },
+  {
+    "jobParentCode": "21",
+    "jobName": "고객상담/TM",
+    "jobCode": "1981",
+    "jobKeywordName": "고객관리"
+  },
+  {
+    "jobParentCode": "21",
+    "jobName": "고객상담/TM",
+    "jobCode": "1973",
+    "jobKeywordName": "아웃바운드"
+  },
+  {
+    "jobParentCode": "21",
+    "jobName": "고객상담/TM",
+    "jobCode": "1974",
+    "jobKeywordName": "이미지컨설턴트"
+  },
+  {
+    "jobParentCode": "18",
+    "jobName": "구매/자재/물류",
+    "jobCode": "2227",
+    "jobKeywordName": "구매"
+  },
+  {
+    "jobParentCode": "18",
+    "jobName": "구매/자재/물류",
+    "jobCode": "2212",
+    "jobKeywordName": "품질관리"
+  },
+  {
+    "jobParentCode": "18",
+    "jobName": "구매/자재/물류",
+    "jobCode": "1764",
+    "jobKeywordName": "3PL운영"
+  },
+  {
+    "jobParentCode": "18",
+    "jobName": "구매/자재/물류",
+    "jobCode": "1750",
+    "jobKeywordName": "구매관리"
+  },
+  {
+    "jobParentCode": "18",
+    "jobName": "구매/자재/물류",
+    "jobCode": "1751",
+    "jobKeywordName": "물류관리"
+  },
+  {
+    "jobParentCode": "999",
+    "jobName": "끝입니당",
+    "jobCode": "9999",
+    "jobKeywordName": "끝입니당22"
+  }
+]

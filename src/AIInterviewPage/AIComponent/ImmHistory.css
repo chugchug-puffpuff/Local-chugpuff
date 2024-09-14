@@ -1,0 +1,234 @@
+.ImmHistory-overlap-group-4 {
+  height: 759px;
+  left: 460px;
+  position: absolute;
+  top: 75px;
+  width: 1000px;
+}
+
+.ImmHistory-frame-70 {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  left: 68px;
+  position: absolute;
+  top: 0;
+  width: 864px;
+  margin-top: 200px;
+}
+
+.ImmHistory-frame-71 {
+  align-items: flex-end;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.ImmHistory-frame-72 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.ImmHistory-frame-73 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.ImmHistory-frame-74 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 177.08px;
+  display: flex;
+  flex-direction: column;
+  gap: 11.81px;
+  height: 24px;
+  justify-content: center;
+  padding: 4.72px 7.08px;
+  position: relative;
+  width: 24px;
+}
+
+.ImmHistory-text-wrapper-56 {
+  color: #ffffff;
+  font-family: "Pretendard Variable-Bold", Helvetica;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  margin-left: -0.58px;
+  margin-right: -0.58px;
+  margin-top: -1.6px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.ImmHistory-text-wrapper-57 {
+  color: var(--variable-collection-main-black);
+  flex: 1;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  position: relative;
+}
+
+.ImmHistory-text-wrapper-58 {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  line-height: 28.8px;
+  position: relative;
+}
+
+.ImmHistory-account-circle-4 {
+  height: 24px;
+  margin-left: -13396px;
+  margin-top: -5385px;
+  position: relative;
+  width: 24px;
+}
+
+.ImmHistory-account-circle-5 {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.ImmHistory-line-3 {
+  height: 1px;
+  object-fit: cover;
+  position: relative;
+  width: 864px;
+}
+
+.ImmHistory-frame-75 {
+  background: linear-gradient(180deg, rgb(234, 255, 246) 0%, rgb(99, 241, 215) 100%);
+  border-radius: 177.08px;
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.ImmHistory-text-wrapper-59 {
+  color: transparent;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-size: 14.2px;
+  font-weight: 500;
+  left: 6px;
+  letter-spacing: -0.43px;
+  line-height: normal;
+  position: absolute;
+  top: 6px;
+  white-space: nowrap;
+}
+
+.ImmHistory-text-wrapper-60 {
+  align-self: stretch;
+  color: #000000;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 28.8px;
+  position: relative;
+}
+
+.ImmHistory-frame-76 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  /* box-shadow: 0px 20px 4px #ffffff99; */
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  left: 460px;
+  padding: 50px 0px 0px;
+  position: fixed; 
+  top: 78px; 
+  margin-bottom: 20px;
+}
+
+.ImmHistory-frame-77 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+}
+
+.ImmHistory-frame-78 {
+  align-items: center;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  height: 32px;
+  justify-content: center;
+  padding: 4px 16px;
+  position: relative;
+}
+
+.ImmHistory-check-6 {
+  height: 6.62px;
+  position: relative;
+  width: 9.01px;
+}
+
+.ImmHistory-text-wrapper-61 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.ImmHistory-frame-79 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 28px;
+  position: relative;
+  width: 1000px;
+}
+
+.ImmHistory-text-wrapper-62 {
+  align-self: stretch;
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}

@@ -1,0 +1,25 @@
+{
+  "short_name": "치치폭폭",
+  "name": "취업준비 뽀개고 뽀개자",
+  "icons": [
+    {
+      "src": "chichipokpokLogo.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "chichipokpokLogo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "chichipokpokLogo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,203 @@
+.Login-content-wrapper {
+  background-color: #ffffff;
+  height: 992px;
+  left: 1021px;
+  position: absolute;
+  top: 44px;
+  width: 687px;
+}
+
+.Login-content {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 24px;
+  left: 97px;
+  position: relative;
+  top: 323px;
+}
+
+.Login-frame {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.Login-frame-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.Login-text-field {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4.17px;
+  position: relative;
+  width: 492.87px;
+}
+
+.Login-frame-2 {
+  align-self: stretch;
+  height: 28.13px;
+  position: relative;
+  width: 100%;
+}
+
+.Login-label {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: -1px;
+}
+
+.Login-text-field-2 {
+  font-size: 22px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding: 10px;
+  align-self: stretch;
+  border: 1.04px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12.5px;
+  height: 58.35px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.Login-text-field-invalid {
+  align-self: stretch;
+  border: 2px solid;
+  border-color: #ff0000;
+  border-radius: 12.5px;
+  height: 58.35px;
+  position: relative;
+  width: 100%;
+}
+
+.Login-visibility-off {
+  height: 24px;
+  left: 448px;
+  position: absolute;
+  top: 17px;
+  width: 24px;
+}
+
+.Login-check-box {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+}
+
+.Login-check-box-2 {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.Login-i-want-to-receive {
+  color: var(--variable-collection-sub-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16.7px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.Login-error-message {
+  color: #ff0000;
+  font-family: "Poppins", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+  text-align: center; /* 가운데 정렬 */
+  display: block; /* 블록 요소로 설정 */
+  margin: 0 auto; /* 좌우 마진을 자동으로 설정하여 가운데 정렬 */
+}
+
+.Login-frame-3 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.Login-frame-4 {
+  cursor: pointer;
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--variable-collection-sub-black);
+  border-radius: 500px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  padding: 16px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.Login-sign-up {
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  width: fit-content;
+}
+
+.Login-div {
+  color: #666666;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.Login-text-wrapper {
+  color: #333333;
+}
+
+.Login-text-wrapper-2 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  color: #333333;
+  text-decoration: underline;
+}

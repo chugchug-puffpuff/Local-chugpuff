@@ -1,0 +1,166 @@
+.EnterSelfIntroduction-view {
+  align-items: flex-end;
+  border: 0.98px solid;
+  border-color: var(--variable-collection-gray-2);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  left: 460px;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 36px 48px;
+  position: absolute;
+  top: 176px;
+  width: 1000px;
+}
+.EnterSelfIntroduction-view::-webkit-scrollbar {
+  width: 8px;
+}
+.EnterSelfIntroduction-view::-webkit-scrollbar-thumb {
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 10px;
+}
+.EnterSelfIntroduction-view::-webkit-scrollbar-track {
+  background-color: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.EnterSelfIntroduction-view::-webkit-scrollbar-thumb:hover {
+  background: #666666; 
+}
+
+.EnterSelfIntroduction-view-2 {
+  background-color: var(--variable-collection-gray-3);
+  cursor: not-allowed;
+}
+
+.EnterSelfIntroduction-view-2.active {
+  background-color: var(--variable-collection-button-navy);
+  cursor: pointer;
+}
+
+.EnterSelfIntroduction-frame {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.EnterSelfIntroduction-text-wrapper {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.EnterSelfIntroduction-div {
+  align-items: flex-start;
+  align-self: stretch;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 18px;
+  border-radius: 12px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 80px;
+  padding: 20px 24px;
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  overflow: hidden;
+  resize: none;
+}
+
+.EnterSelfIntroduction-div::placeholder {
+  color: var(--variable-collection-gray-2);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 28.8px;
+  padding-bottom: 10px;
+}
+
+.EnterSelfIntroduction-text-wrapper-3 {
+  align-self: stretch;
+  color: transparent;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 11.7px;
+  font-weight: 400;
+  letter-spacing: -0.35px;
+  line-height: normal;
+  position: relative;
+}
+
+.EnterSelfIntroduction-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.EnterSelfIntroduction-text-wrapper-4 {
+  position: absolute;
+  bottom: 13px;
+  left: 22px;
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  background-color: white;
+  padding: 5px;
+}
+
+.EnterSelfIntroduction-div {
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.EnterSelfIntroduction-view-2 {
+  background-color: var(--variable-collection-gray-1);
+  border-radius: 12px;
+  height: 48px;
+  position: absolute;
+  right: 0;
+  width: 250px;
+}
+
+.EnterSelfIntroduction-text-wrapper-5 {
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  left: 89px;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  position: absolute;
+  top: 11px;
+  white-space: nowrap;
+}
+
+.EnterSelfIntroduction-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-circle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 48px;
+  width: 48px;
+  cursor: pointer;
+}

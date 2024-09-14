@@ -1,0 +1,105 @@
+.EditingComponent-frame-12 {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+  left: 460px;
+  position: absolute;
+  top: 176px;
+}
+
+.EditingComponent-frame-wrapper {
+  align-items: flex-end;
+  border: 0.98px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 15px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  padding: 36px 48px;
+  position: relative;
+  width: 1000px;
+}
+
+.EditingComponent-frame-13 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.EditingComponent-frame-14 {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 24px;
+  position: relative;
+}
+
+.EditingComponent-frame-15 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.EditingComponent-text-wrapper-7 {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.EditingComponent-text-wrapper-8 {
+  align-self: stretch;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 28.8px;
+  position: relative;
+}
+
+.EditingComponent-img {
+  height: 1px;
+  margin-left: -40px;
+  object-fit: cover;
+  position: relative;
+  width: 904px;
+}
+
+.EditingComponent-bookmark-2 {
+  height: 40px;
+  position: relative;
+  width: 40px;
+}
+
+.EditingComponent-text-wrapper-8 h2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bold {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 650;
+}
