@@ -3,7 +3,7 @@ import './NavBar.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NavBar = ({ authenticate, setActiveComponent }) => {
+const NavBar = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate()
   const [showUserInfo, setShowUserInfo] = useState(false)
   const [userName, setUserName] = useState('')
@@ -86,6 +86,17 @@ const NavBar = ({ authenticate, setActiveComponent }) => {
     setShowUserInfo(!showUserInfo)
   }
 
+  const handleLogout = async () => {
+    try {
+      // JWT 토큰 삭제
+      localStorage.removeItem("token");
+      setAuthenticate(false);
+      navigate("/"); // 메인 페이지로 이동
+    } catch (error) {
+      console.error("로그아웃 중 오류 발생:", error);
+    }
+  };
+
   return (
       <div>
         <div className="NavBar-view-wrapper">
@@ -111,6 +122,7 @@ const NavBar = ({ authenticate, setActiveComponent }) => {
                           <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myBoard')}>내가 작성한 게시물</div>
                           <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myComment')}>내가 작성한 댓글</div>
                           <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myLiked')}>좋아요 누른 게시물</div>
+                          <div className="NavBar-text-wrapper-3" onClick={handleLogout}>로그아웃</div>
                         </div>
                     )}
                     <img
