@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './MyBoard.css'
-import { useNavigate } from 'react-router-dom'
-// import Pagination from '../../Route/Pagination.js';
+import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios';
+import Pagination from '../../Route/Pagination.js';
 
-const Post = ({ title, category, comments, likes, date }) => (
+// 날짜 형식을 0000-00-00 00:00:00으로 변환
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const datePart = date.toISOString().split('T')[0];
+  const timePart = date.toTimeString().split(' ')[0];
+
+  return `${datePart} ${timePart}`;
+};
+
+// 개별 게시물
+const Board = ({ boardNo, boardTitle, category, boardDate, commentCount, likes}) => (
   <div className="MyBoard-view">
     <div className="MyBoard-frame-9">
       <div className="MyBoard-frame-10">
-        <p className="MyBoard-p">{title}</p>
+        <Link to={`/communitypost/${boardNo}`}>
+          <p className="MyBoard-p">{boardTitle}</p>
+        </Link>
         <div className={category === "정보공유" ? "MyBoard-frame-11" : "MyBoard-frame-14"}>
           <div className="MyBoard-text-wrapper-5">{category}</div>
         </div>
@@ -20,7 +33,7 @@ const Post = ({ title, category, comments, likes, date }) => (
               alt="Sms"
               src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/sms@2x.png"
             />
-            <div className="MyBoard-text-wrapper-6">{comments}</div>
+            <div className="MyBoard-text-wrapper-6">{commentCount}</div>
           </div>
           <div className="MyBoard-frame-13">
             <img
@@ -31,77 +44,51 @@ const Post = ({ title, category, comments, likes, date }) => (
             <div className="MyBoard-text-wrapper-6">{likes}</div>
           </div>
         </div>
-        <div className="MyBoard-text-wrapper-7">{date}</div>
+        <div className="MyBoard-text-wrapper-7">{formatDate(boardDate)}</div>
       </div>
     </div>
   </div>
 )
 
 const MyBoard = () => {
-  
-  const posts = [
-    {
-      title: '이직 결정 전 고려해야 할 사항들 - 현직자 경험담 공유',
-      category: '정보공유',
-      comments: 15,
-      likes: 15,
-      date: '2024.05.07',
-    },
-    {
-      title: '이직 결정 전 고려해야 할 사항들 - 현직자 경험담',
-      category: '취업고민',
-      comments: 20,
-      likes: 20,
-      date: '2024.05.08',
-    },
-    {
-      title: '면접 시 주의사항',
-      category: '정보공유',
-      comments: 30,
-      likes: 17,
-      date: '2024.05.10',
-    },
-    {
-      title: '모두들 취업 화이팅 하세요!',
-      category: '취업고민',
-      comments: 10,
-      likes: 17,
-      date: '2024.05.11',
-    },
-    {
-      title: '면접 시 주의사항',
-      category: '정보공유',
-      comments: 30,
-      likes: 20,
-      date: '2024.05.10',
-    },
-    {
-      title: '모두들 취업 화이팅 하세요!',
-      category: '취업고민',
-      comments: 10,
-      likes: 17,
-      date: '2024.05.11',
-    },
-    {
-      title: '면접 시 주의사항',
-      category: '정보공유',
-      comments: 30,
-      likes: 17,
-      date: '2024.05.10',
-    },
-    {
-      title: '모두들 취업 화이팅 하세요!',
-      category: '취업고민',
-      comments: 10,
-      likes: 17,
-      date: '2024.05.11',
-    }
-  ]
+  const [boards, setBoards] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const navigate = useNavigate()
   const goToMyActivities = (component) => {
     navigate(`/myactivities/${component}`);
   };
+
+  useEffect(() => {
+    const fetchBoards = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/board/user', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const mappingData = response.data.map(board => ({ // 호출한 데이터 매핑
+          boardNo: board.boardNo,
+          boardTitle: board.boardTitle,
+          category: board.category.categoryName,
+          boardDate: board.boardDate,
+          commentCount: board.commentCount,
+          likes: board.likes
+        }));
+        setBoards(mappingData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchBoards();
+  }, []);
+
+  const postsPerPage = 5;
+  const totalPages = Math.ceil(boards.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentBoards = boards.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div className="MyBoard-frame">
@@ -121,14 +108,14 @@ const MyBoard = () => {
         <div className="MyBoard-frame-wrapper">
           <div className="MyBoard-frame-5">
             <div className="MyBoard-frame-6">
-              <div className="MyBoard-text-wrapper-4">전체 (4건)</div>
+              <div className="MyBoard-text-wrapper-4">전체 ({boards.length}건)</div>
             </div>
             <div className="MyBoard-frame-7">
               <div className="MyBoard-frame-8">
-                {posts.map((post, index) => (
+                {currentBoards.map((board, index) => (
                   <React.Fragment key={index}>
-                    <Post {...post} />
-                    {index < posts.length - 1 && (
+                    <Board {...board} />
+                    {index < currentBoards.length - 1 && (
                       <img
                         className="MyBoard-line"
                         alt="Line"
@@ -138,7 +125,7 @@ const MyBoard = () => {
                   </React.Fragment>
                 ))}
               </div>
-              {/* <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} scrollTop={0} /> */}
+              <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} scrollTop={0} />
             </div>
           </div>
         </div>
