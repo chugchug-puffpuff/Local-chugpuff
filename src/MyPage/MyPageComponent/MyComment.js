@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './MyComment.css'
 import { useNavigate } from 'react-router-dom'
 // import Pagination from '../../Route/Pagination.js';
@@ -38,6 +38,8 @@ const Post = ({ title, category, comments, likes, date }) => (
 )
 
 const MyComment = () => {
+  const [selectedComment, setSelectedComment] = useState('post');
+
   const posts = [
     {
       title: '이직 결정 전 고려해야 할 사항들 - 현직자 경험담 공유',
@@ -97,9 +99,14 @@ const MyComment = () => {
     }
   ]
 
+  // 탭 이동
   const navigate = useNavigate()
   const goToMyActivities = (component) => {
     navigate(`/myactivities/${component}`);
+  };
+
+  const handleCommentClick = (type) => {
+    setSelectedComment(type);
   };
 
   return (
@@ -120,7 +127,18 @@ const MyComment = () => {
         <div className="MyComment-frame-wrapper">
           <div className="MyComment-frame-5">
             <div className="MyComment-frame-6">
-              <div className="MyComment-text-wrapper-4">전체 (2건)</div>
+              <div
+                className={`${selectedComment === 'post' ? 'selected-comments' : 'MyComment-text-wrapper-4'}`}
+                onClick={() => handleCommentClick('post')}
+              >
+                게시글 댓글 (2건)
+              </div>
+              <div
+                className={`${selectedComment === 'job' ? 'selected-comments' : 'MyComment-text-wrapper-4'}`}
+                onClick={() => handleCommentClick('job')}
+              >
+                취업공고 댓글 (2건)
+              </div>
             </div>
             <div className="MyComment-frame-7">
               <div className="MyComment-frame-8">

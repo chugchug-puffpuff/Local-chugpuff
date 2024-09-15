@@ -154,15 +154,15 @@
   align-self: stretch;
   display: flex;
   flex: 0 0 auto;
-  flex-direction: column;
   gap: 20px;
   position: relative;
   width: 100%;
 }
 
 .MyComment-text-wrapper-4 {
+  cursor: pointer;
   align-self: stretch;
-  color: var(--variable-collection-main-black);
+  color: var(--variable-collection-gray-1);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 24px;
   font-weight: 400;
@@ -170,6 +170,21 @@
   line-height: normal;
   margin-top: -1px;
   position: relative;
+  margin-right: 30px;
+}
+
+.selected-comments {
+  cursor: pointer;
+  align-self: stretch;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  margin-right: 30px;
+  font-weight: 600;
+  color: var(--variable-collection-main-black);
 }
 
 .MyComment-frame-7 {
