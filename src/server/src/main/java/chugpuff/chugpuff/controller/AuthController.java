@@ -35,7 +35,7 @@ public class AuthController {
 
             if (member != null) {
                 String token = JwtUtil.generateToken(id);
-                System.out.println("Generated token: " + token); // 토큰 확인
+
                 return ResponseEntity.ok().body(Map.of("token", token));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect username or password.");

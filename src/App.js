@@ -33,8 +33,7 @@ function App() {
       setAuthenticate(true);
       setUserName(storedUserName);
     }
-    console.log("로그인 여부", authenticate);
-  }, [authenticate]);
+  }, []);
 
   return (
     <div>

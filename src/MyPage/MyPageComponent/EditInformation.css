@@ -68,7 +68,8 @@
   border: 1px solid;
   border-color: var(--variable-collection-gray-2);
   border-radius: 16px;
-  padding: 20px
+  padding: 20px;
+  height: 550px;
 }
 
 .EditInformation-label-wrapper {
@@ -193,7 +194,8 @@
   border: 1px solid;
   border-color: var(--variable-collection-gray-2);
   border-radius: 16px;
-  padding: 20px
+  padding: 20px;
+  height: 550px;
 }
 
 .EditInformation-frame-8 {
@@ -310,34 +312,8 @@
   width: fit-content;
 }
 
-/* .EditInformation-frame-13 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  gap: 12px;
-  position: relative;
-  width: 100%;
-} */
-
 .EditInformation-frame-13 {
-  align-items: center;
-  background-color: var(--variable-collection-sub-black);
-  border-radius: 500px;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 10px;
-  justify-content: center;
-  padding: 16px 0px;
-  position: relative;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 20px;
-}
-
-.EditInformation-frame-14 {
+  cursor: pointer;
   align-items: center;
   background-color: var(--variable-collection-sub-black);
   border-radius: 500px;
@@ -351,7 +327,27 @@
   position: absolute;
   width: 50%;
   left: 25%;
-  top: 79%;
+  top: 82%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.EditInformation-frame-14 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-sub-black);
+  border-radius: 500px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  padding: 16px 0px;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 82%;
   margin: 0 auto;
   margin-top: 20px;
 }
@@ -370,6 +366,7 @@
 }
 
 .EditInformation-frame-15 {
+  cursor: pointer;
   align-items: center;
   background-color: #cd5757;
   border-radius: 500px;
@@ -397,4 +394,43 @@
   position: relative;
   text-align: center;
   width: fit-content;
+}
+
+.error-message {
+  color: red;
+  margin-left: 15px;
+}
+
+.jobAndKeywordSelect-frame {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px #0000000d;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 64px 16px 20px;
+  position: relative;
+  width: 244px;
+  height: 200px;
+  overflow-y: scroll;
+  margin-top: -5px;
+}
+
+.jobAndKeywordSelect-frame::-webkit-scrollbar {
+  width: 8px;
+}
+.jobAndKeywordSelect-frame::-webkit-scrollbar-thumb {
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 10px;
+}
+.jobAndKeywordSelect-frame::-webkit-scrollbar-track {
+  background-color: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.jobAndKeywordSelect-frame::-webkit-scrollbar-thumb:hover {
+  background: #666666; /* hover 시 thumb 배경색 */
 }

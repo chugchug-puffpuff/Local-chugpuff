@@ -516,6 +516,7 @@ input::placeholder {
 }
 
 .SignUpPage-frame-12 {
+  cursor: pointer;
   align-items: center;
   background-color: var(--variable-collection-gray-3);
   border-radius: 8px;
@@ -530,7 +531,6 @@ input::placeholder {
 .SignUpPage-text-wrapper-9 {
   background-color: transparent;
   border: none;
-  cursor: pointer;
   padding: 0;
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;

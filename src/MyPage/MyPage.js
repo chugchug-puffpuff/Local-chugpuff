@@ -16,7 +16,7 @@ export const MyPage = ({ authenticate, setAuthenticate, userName }) => {
   return (
     <div className="MyPage">
       <MyInfoBar setAuthenticate={setAuthenticate} userName={userName} />
-      {activeComponent === 'editInformation' && <EditInformation />}
+      {activeComponent === 'editInformation' && <EditInformation setAuthenticate={setAuthenticate}/>}
       {activeComponent === 'myScrap' && <MyScrap />}
       {activeComponent === 'myBoard' && <MyBoard />}
       {activeComponent === 'myComment' && <MyComment />}
