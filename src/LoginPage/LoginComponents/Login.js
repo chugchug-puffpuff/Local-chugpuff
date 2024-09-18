@@ -17,6 +17,7 @@ const Login = ({ setAuthenticate, setUserName }) => {
       localStorage.setItem('token', token);
       localStorage.setItem('id', id); // 사용자 ID를 로컬 스토리지에 저장
       localStorage.setItem('userName', name); // 사용자 이름을 로컬 스토리지에 저장
+      localStorage.setItem('password', password); // 사용자 비밀번호를 로컬 스토리지에 저장
       // 사용자 정보를 가져오는 엔드포인트
       const userResponse = await axios.get(`http://localhost:8080/api/members/username/${id}`, {
         headers: { Authorization: `Bearer ${token}` }

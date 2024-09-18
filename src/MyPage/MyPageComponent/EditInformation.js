@@ -20,7 +20,9 @@ const EditInformation = ({setAuthenticate}) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState(false);
   const [jobKeywordConfirmation, setJobKeywordConfirmation] = useState(false);
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
-
+  const [showWithdrawSuccess, setShowWithdrawSuccess] = useState(false);
+  const [showWithdrawFail, setShowWithdrawFail] = useState(false);
+  const [withdrawPassword, setWithdrawPassword] = useState('');
   useEffect(() => {
     const fetchJobKeywords = async () => {
       try {
@@ -103,6 +105,7 @@ const EditInformation = ({setAuthenticate}) => {
     if (!formData.currentPassword) newErrors.currentPassword = '현재 비밀번호를 입력해주세요';
     if (!formData.newPassword) newErrors.newPassword = '새로운 비밀번호를 입력해주세요';
     if (!formData.confirmPassword) newErrors.confirmPassword = '새로운 비밀번호 확인을 입력해주세요';
+    if (formData.currentPassword === formData.newPassword && formData.newPassword === formData.confirmPassword) newErrors.samePassword = '현재 비밀번호와 동일한 비밀번호입니다.';
 
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) {
@@ -111,10 +114,6 @@ const EditInformation = ({setAuthenticate}) => {
     
     const user_id = localStorage.getItem('user_id');
     const { currentPassword, newPassword, confirmPassword } = formData;
-
-    if (currentPassword === newPassword && newPassword === confirmPassword) {
-      setErrors({ samePassword: '현재 비밀번호와 동일한 비밀번호입니다.' });
-    }
 
     try {
       await axios.put(`http://localhost:8080/api/members/${user_id}/password?oldPassword=${currentPassword}`, {
@@ -196,6 +195,28 @@ const EditInformation = ({setAuthenticate}) => {
       setJobKeywordConfirmation(true);
     } catch (error) {
       console.error('직무 및 직무 키워드 변경 에러:', error);
+    }
+  };
+
+  const handleWithdraw = async () => {
+    const storedPassword = localStorage.getItem('password');
+    const user_id = localStorage.getItem('user_id');
+    setShowDeleteAccount(false)
+
+    if (withdrawPassword === storedPassword) {
+      try {
+        await axios.delete(`http://localhost:8080/api/members/${user_id}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setShowWithdrawSuccess(true);
+    } catch (error) {
+      console.error('계정 탈퇴 에러:', error);
+      setShowWithdrawFail(true);
+    }
+    } else {
+      setShowWithdrawFail(true);
     }
   };
 
@@ -364,18 +385,53 @@ const EditInformation = ({setAuthenticate}) => {
               <div className="SignUpPage-text-wrapper-7">치치폭폭 계정 탈퇴</div>
               <p className="SignUpPage-text-wrapper-8">현재 비밀번호를 입력해주세요.</p>
               <div className="SignUpPage-frame-11">
-                <input className="SignUpPage-text-field-2"
+                <input
+                  className="SignUpPage-text-field-2"
                   type="password"
-                  name="currentPassword"
-                  value={formData.currentPassword}
+                  value={withdrawPassword}
+                  onChange={(e) => setWithdrawPassword(e.target.value)}
                 />
               </div>
               <div className="InterviewHistoryBar-frame-81">
                 <div className="InterviewHistoryBar-frame-82" onClick={() => setShowDeleteAccount(false)}>
                   <div className="InterviewHistoryBar-text-wrapper-62">취소</div>
                 </div>
-                <div className="InterviewHistoryBar-frame-83">
+                <div className="InterviewHistoryBar-frame-83" onClick={handleWithdraw}>
                   <div className="InterviewHistoryBar-text-wrapper-63">탈퇴</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showWithdrawSuccess && (
+        <div className="SignUpPage-confirmation-overlay">
+          <div className="SignUpPage-confirmation-box">
+            <div className="SignUpPage-frame-10">
+              <div className="SignUpPage-text-wrapper-7">탈퇴 완료</div>
+              <p className="SignUpPage-text-wrapper-8">치치폭폭 계정이 성공적으로 탈퇴되었습니다.</p>
+              <div className="SignUpPage-frame-11">
+                <div className="SignUpPage-frame-12" onClick={() => {
+                  setShowWithdrawSuccess(false);
+                  setAuthenticate(false);
+                  navigate('/');
+                }}>
+                  <div className="SignUpPage-text-wrapper-9">확인</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showWithdrawFail && (
+        <div className="SignUpPage-confirmation-overlay">
+          <div className="SignUpPage-confirmation-box">
+            <div className="SignUpPage-frame-10">
+              <div className="SignUpPage-text-wrapper-7">탈퇴 실패</div>
+              <p className="SignUpPage-text-wrapper-8">비밀번호가 일치하지 않습니다.</p>
+              <div className="SignUpPage-frame-11">
+                <div className="SignUpPage-frame-12" onClick={() => setShowWithdrawFail(false)}>
+                  <div className="SignUpPage-text-wrapper-9">확인</div>
                 </div>
               </div>
             </div>
