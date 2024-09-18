@@ -102,7 +102,8 @@ const MyBoard = () => {
   const totalPages = Math.ceil(boards.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentBoards = boards.slice(indexOfFirstPost, indexOfLastPost);
+  const sortedBoards = [...boards].sort((a, b) => new Date(b.boardDate) - new Date(a.boardDate));
+  const currentBoards = sortedBoards.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div className="MyBoard-frame">

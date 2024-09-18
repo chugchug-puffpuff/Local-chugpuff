@@ -63,7 +63,7 @@ const MyComment = () => {
         };
 
         const commentResponse = await axios.get('http://localhost:8080/api/comment/user', config);
-        const boardNos = commentResponse.data.map(comment => comment.boardNo);
+        const boardNos = [...new Set(commentResponse.data.map(comment => comment.boardNo))];
 
         const boardPromises = boardNos.map(boardNo => 
           axios.get(`http://localhost:8080/api/board/${boardNo}`, config)
@@ -115,7 +115,8 @@ const MyComment = () => {
   const totalPages = Math.ceil(posts.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const sortedPosts = [...posts].sort((a, b) => new Date(b.boardDate) - new Date(a.boardDate));
+  const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div className="MyComment-frame">

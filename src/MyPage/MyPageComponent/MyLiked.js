@@ -74,6 +74,7 @@ const MyLiked = () => {
           commentCount: post.commentCount,
           likes: post.likes
         }));
+        formattedData.sort((a, b) => new Date(b.boardDate) - new Date(a.boardDate));
         setLikedPosts(formattedData);
       } catch (error) {
         console.error('Error fetching data:', error);
