@@ -14,7 +14,7 @@ const formatDate = (dateString) => {
 };
 
 // 개별 게시물
-const Board = ({ boardNo, boardTitle, category, boardDate, commentCount, likes}) => (
+const Board = ({ boardNo, boardTitle, category, boardDate, commentCount, likes, liked}) => (
   <div className="MyBoard-view">
     <div className="MyBoard-frame-9">
       <div className="MyBoard-frame-10">
@@ -37,7 +37,7 @@ const Board = ({ boardNo, boardTitle, category, boardDate, commentCount, likes})
           </div>
           <div className="MyBoard-frame-13">
             <img
-              className="MyBoard-img"
+              className={`MyBoard-img ${liked ? 'liked' : ''}`}
               alt="Favorite"
               src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/favorite@2x.png"
             />
@@ -52,13 +52,14 @@ const Board = ({ boardNo, boardTitle, category, boardDate, commentCount, likes})
 
 const MyBoard = () => {
   const [boards, setBoards] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const navigate = useNavigate()
   const goToMyActivities = (component) => {
     navigate(`/myactivities/${component}`);
   };
-
+  // 사용자가 작성한 게시글 호출
   useEffect(() => {
     const fetchBoards = async () => {
       try {
@@ -81,7 +82,20 @@ const MyBoard = () => {
       }
     };
 
+    const fetchLikedPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/board/liked', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setLikedPosts(response.data.map(post => post.boardNo));
+      } catch (error) {
+        console.error('Error fetching liked posts:', error);
+      }
+    };
     fetchBoards();
+    fetchLikedPosts();
   }, []);
 
   const postsPerPage = 5;
@@ -114,7 +128,7 @@ const MyBoard = () => {
               <div className="MyBoard-frame-8">
                 {currentBoards.map((board, index) => (
                   <React.Fragment key={index}>
-                    <Board {...board} />
+                    <Board {...board} liked={likedPosts.includes(board.boardNo)} />
                     {index < currentBoards.length - 1 && (
                       <img
                         className="MyBoard-line"
