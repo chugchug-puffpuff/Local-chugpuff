@@ -618,4 +618,6 @@
   padding-left: 5px;
 }
 
-
+.AllPost-like.liked {
+  filter: invert(29%) sepia(96%) saturate(7481%) hue-rotate(357deg) brightness(102%) contrast(107%);
+}

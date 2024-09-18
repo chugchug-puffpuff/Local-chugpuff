@@ -238,7 +238,7 @@
 }
 
 .scraped {
-  filter: sepia(100%) saturate(250%) hue-rotate(30deg) brightness(140%) contrast(95%);
+  filter: sepia(90%) saturate(250%) hue-rotate(30deg) brightness(140%) contrast(90%);
 }
 
 .RecruitInfo-scrapCounts {

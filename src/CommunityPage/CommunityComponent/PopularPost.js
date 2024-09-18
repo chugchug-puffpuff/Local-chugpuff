@@ -13,7 +13,7 @@ const formatDate = (dateString) => {
 };
 
 // 개별 게시물
-const PostList = ({ boardNo, category, boardTitle, boardDate, commentCount, likes }) => (
+const PostList = ({ boardNo, category, boardTitle, boardDate, commentCount, likes, liked }) => (
   <div className="PopularPost-view">
     <div className={`PopularPost-frame-${category === "정보공유" ? "6" : "11"}`}>
       <div className="PopularPost-text-wrapper-3">{category}</div>
@@ -36,7 +36,7 @@ const PostList = ({ boardNo, category, boardTitle, boardDate, commentCount, like
         </div>
         <div className="PopularPost-frame-10">
           <img
-            className="PopularPost-img-2"
+            className={`PopularPost-img-2 ${liked ? 'liked' : ''}`}
             alt="Favorite"
             src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c0b3f3875b7815aadd85/img/favorite@2x.png"
           />
@@ -50,6 +50,7 @@ const PostList = ({ boardNo, category, boardTitle, boardDate, commentCount, like
 // 메인 랜더링
 const PopularPost = () => {
   const [posts, setPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
 
   // 게시글 좋아요 순 조회 엔드포인트로 데이터 호출
   useEffect(() => {
@@ -60,7 +61,7 @@ const PopularPost = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         });
-        const formattedData = response.data.map(post => ({ // 호출한 데이터 매핑
+        const formattedData = response.data.map(post => ({
           boardNo: post.boardNo,
           category: post.category.categoryName,
           boardTitle: post.boardTitle,
@@ -74,7 +75,21 @@ const PopularPost = () => {
       }
     };
 
+    const fetchLikedPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/board/liked', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setLikedPosts(response.data.map(post => post.boardNo));
+      } catch (error) {
+        console.error('Error fetching liked posts:', error);
+      }
+    };
+
     fetchPosts();
+    fetchLikedPosts();
   }, []);
 
   return (
@@ -86,7 +101,7 @@ const PopularPost = () => {
           .slice(0, 6)
           .map((post, index) => (
             <React.Fragment key={index}>
-              <PostList {...post} />
+              <PostList {...post} liked={likedPosts.includes(post.boardNo)} />
               {index < 5 && (
                 <img
                   className="PopularPost-line"

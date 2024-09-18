@@ -245,3 +245,7 @@
   padding: 4px 8px;
   position: relative;
 }
+
+.PopularPost-img-2.liked {
+  filter: invert(29%) sepia(96%) saturate(7481%) hue-rotate(357deg) brightness(102%) contrast(107%);
+}

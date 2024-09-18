@@ -15,7 +15,7 @@ const formatDate = (dateString) => {
 };
 
 // 개별 게시물
-const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, likes}) => (
+const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, likes, liked}) => (
   <div>
     <div className="AllPost-view-2">
       <div className="AllPost-frame-24">
@@ -39,7 +39,7 @@ const PostList = ({ boardNo, boardTitle, category, boardDate, commentCount, like
             </div>
             <div className="AllPost-frame-10">
               <img
-                className="AllPost-like"
+                className={`AllPost-like ${liked ? 'liked' : ''}`}
                 alt="Favorite"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/favorite@2x.png"
               />
@@ -68,6 +68,7 @@ const AllPost = () => {
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [noResults, setNoResults] = useState(false);
+  const [likedPosts, setLikedPosts] = useState([]);
   const postsPerPage = 8;
   const navigate = useNavigate();
 
@@ -97,7 +98,21 @@ const AllPost = () => {
       }
     };
 
+    const fetchLikedPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/board/liked', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setLikedPosts(response.data.map(post => post.boardNo));
+      } catch (error) {
+        console.error('Error fetching liked posts:', error);
+      }
+    };
+
     fetchPosts();
+    fetchLikedPosts();
   }, []);
 
   // 검색 기능 엔드포인트
@@ -261,7 +276,7 @@ const AllPost = () => {
                 <div className="AllPost-no-results">검색결과가 없습니다.</div>
               ) : (
                 currentPosts.map((post, index) => (
-                  <PostList key={index} {...post} />
+                  <PostList key={index} {...post} liked={likedPosts.includes(post.boardNo)}/>
                 ))
               )}
               </div>
