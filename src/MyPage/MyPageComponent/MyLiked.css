@@ -287,6 +287,10 @@
   width: 24px;
 }
 
+.liked {
+  filter: invert(29%) sepia(96%) saturate(7481%) hue-rotate(357deg) brightness(102%) contrast(107%);
+}
+
 .MyLiked-text-wrapper-6 {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
