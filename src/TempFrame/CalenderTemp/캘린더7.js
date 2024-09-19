@@ -3,7 +3,7 @@ import { AtomsDeyNumber } from "../../components/AtomsDeyNumber";
 import { AtomsMouth } from "../../components/AtomsMouth";
 import { AtomsWeekDey } from "../../components/AtomsWeekDey";
 import "./style.css";
-
+//
 export const Element = () => {
   return (
     <div className="element">
