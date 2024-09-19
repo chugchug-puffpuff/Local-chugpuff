@@ -1,0 +1,169 @@
+.rbc-toolbar {
+  display: flex;
+  justify-content: space-between; /* 양쪽 끝에 요소 배치 */
+  align-items: center; /* 수직 중앙 정렬 */
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.rbc-btn-group {
+  position: relative;
+  left: 0;
+}
+
+.rbc-toolbar-label {
+  display: flex; /* 플렉스 박스로 설정 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  flex: 1; /* 가운데 요소가 가능한 공간을 모두 차지하도록 설정 */
+}
+
+.rbc-toolbar-img {
+  cursor: pointer;
+  width: 24px;
+  position: relative;
+  height: 24px;
+  margin: 0 10px;
+}
+
+.rbc-toolbar-text {
+  color: #000000;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 32px;
+  margin-top: -1.82px;
+}
+
+.Calendar-text-wrapper {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  left: 310px;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  position: absolute;
+  top: 175px;
+}
+
+.Calendar-frame {
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--variable-collection-gray-3);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: 16px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  left: 310px;
+  overflow: hidden;
+  padding: 42px 30px 56px;
+  position: absolute;
+  top: 227px;
+  width: 1230px;
+}
+
+.calendar-container {
+  width: 1300px;
+  text-align: center;
+}
+
+.add-event-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-event-button:hover {
+  background-color: #0056b3;
+}
+
+.day-cell {
+  position: relative;
+}
+
+.day-cell .rbc-event {
+  background-color: #f0f8ff; /* 이벤트 배경색 */
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.Calendar-add-frame {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 12px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 12px 28px;
+  position: relative;
+  margin-top: 40px;
+}
+
+.Calendar-add-text {
+  color: var(--variable-collection-WHITE);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.rbc-day-bg,
+.rbc-row-bg,
+.rbc-month-row,
+.rbc-header,
+.rbc-row.rbc-month-header,
+.rbc-month-view {
+  border: none; /* 테두리 제거 */
+}
+
+.rbc-day-bg,
+.rbc-row-bg,
+.rbc-day,
+.rbc-date-cell,
+.rbc-month-row,
+.rbc-day-slot {
+  border: none !important; /* 내부 테두리 제거 */
+}
+
+.rbc-header {
+  border: none !important; /* 요일 부분 테두리 제거 */
+}
+
+.blue-text {
+  color: blue; /* 파란색 텍스트 */
+}
+
+/* 추가: 요일 헤더에 대한 스타일 */
+.rbc-header {
+  color: black; /* 기본 색상 */
+}
+
+.rbc-header .blue-text {
+  color: blue; /* 요일 헤더에서 파란색 */
+}
+
+/* 날짜 셀 스타일 */
+.day-cell {
+  color: black; /* 기본 날짜 색상 */
+}
+
+.day-cell.blue-text {
+  color: blue; /* 주말 날짜는 파란색으로 설정 */
+}
+

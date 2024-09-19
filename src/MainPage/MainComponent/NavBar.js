@@ -77,6 +77,13 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
       navigate('/login', { state: { from: '/community' } });
     }
   }
+  const goToCalendar = () => {
+    if (authenticate) {
+      navigate('/calender');
+    } else {
+      navigate('/login', { state: { from: '/calender' } });
+    }
+  }
   const goToMyActivities = (component) => {
     navigate(`/myactivities/${component}`);
     setShowUserInfo(false)
@@ -143,7 +150,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
               <div className="NavBar-text-wrapper-4" onClick={goToSelfIntroduction}>자기소개서 첨삭</div>
               <div className="NavBar-text-wrapper-4" onClick={goToJobPosting}>취업공고</div>
               <div className="NavBar-text-wrapper-4" onClick={goToCommunity}>커뮤니티</div>
-              <div className="NavBar-text-wrapper-4">캘린더</div>
+              <div className="NavBar-text-wrapper-4" onClick={goToCalendar}>캘린더</div>
             </div>
             <div className="NavBar-view-3">
               <button className="NavBar-view-4" onClick={goToMain}/>

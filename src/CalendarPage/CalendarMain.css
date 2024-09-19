@@ -1,0 +1,6 @@
+.element {
+  background-color: var(--variable-collection-gray4);
+  height: 1889px;
+  position: relative;
+  width: 100%;
+}
