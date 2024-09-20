@@ -25,27 +25,40 @@ const formatTimeStampWithDay = (timestamp) => {
 const RecruitInfo = ({ jobInfo, commentCount }) => {
   const [scrapCount, setScrapCount] = useState(0);
   const [isScraped, setIsScraped] = useState(false);
-
+  // 스크랩 수 가져오기
   useEffect(() => {
-    if (jobInfo && jobInfo.length > 0) {
-      const fetchScrapCount = async () => {
-        try {
-          const response = await axios.get(`http://localhost:8080/api/job-postings/${jobInfo[0].jobId}/scrap-count`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-          });
-          setScrapCount(response.data);
-        } catch (error) {
-          console.error('Error fetching scrap count:', error);
-        }
-      };
-      fetchScrapCount();
-
-      const savedIsScraped = JSON.parse(localStorage.getItem(`isScraped_${jobInfo[0].jobId}`));
-      if (savedIsScraped !== null) {
-        setIsScraped(savedIsScraped);
+    const fetchScrapCount = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/job-postings/${jobInfo[0].jobId}/scrap-count`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setScrapCount(response.data);
+      } catch (error) {
+        console.error('Error fetching scrap count:', error);
       }
+    };
+    // 스크랩 여부 확인
+    const checkIfScraped = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/job-postings/scraps', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const data = response.data;
+        const jobs = JSON.parse(data).jobs.job;
+        const isJobScraped = jobs.some(job => job.id === jobInfo[0].jobId);
+        setIsScraped(isJobScraped);
+      } catch (error) {
+        console.error('Error checking if job is scraped:', error);
+      }
+    };
+
+    if (jobInfo && jobInfo.length > 0) {
+      fetchScrapCount();
+      checkIfScraped();
     }
   }, [jobInfo]);
 
@@ -69,9 +82,15 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
         }
       });
       setScrapCount(response.data);
-      const newIsScraped = !isScraped;
-      setIsScraped(newIsScraped);
-      localStorage.setItem(`isScraped_${jobInfo[0].jobId}`, JSON.stringify(newIsScraped));
+      // 스크랩 상태 업데이트
+      const scrapStatusResponse = await axios.get('http://localhost:8080/api/job-postings/scraps', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      const data = scrapStatusResponse.data;
+      const jobs = JSON.parse(data).jobs.job;
+      const isJobScraped = jobs.some(job => job.id === jobInfo[0].jobId);
     } catch (error) {
       console.error('Error posting scrap:', error);
     }
