@@ -66,13 +66,13 @@ const MyScrap = () => {
                 />
                 <div className="MyScrap-text-wrapper-4">선택한 공고 삭제</div>
               </div> */}
-              <img
+              {/* <img
                 className="MyScrap-line"
                 alt="Line"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/line-2.png"
-              />
+              /> */}
             </div>
-            {currentJobs.map(job => (
+            {currentJobs.map((job, index) => (
               <div key={job.jobId} className="MyScrap-frame-11">
                 <div className="MyScrap-frame-12">
                   {/* <img
@@ -113,11 +113,13 @@ const MyScrap = () => {
                     </div>
                   </div>
                 </div>
-                <img
-                  className="MyScrap-line"
-                  alt="Line"
-                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/line-2.png"
-                />
+                {index < currentJobs.length - 1 && (
+                  <img
+                    className="MyScrap-line"
+                    alt="Line"
+                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/line-2.png"
+                  />
+                )}
               </div>
             ))}
           </div>

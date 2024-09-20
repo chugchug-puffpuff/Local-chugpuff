@@ -111,6 +111,7 @@
   flex-direction: column;
   gap: 25px;
   position: relative;
+  margin-bottom: 30px;
 }
 
 .MyScrap-frame-8 {
@@ -170,7 +171,7 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  gap: 40px;
+  gap: 25px;
   position: relative;
   width: 100%;
 }
@@ -274,7 +275,7 @@
   display: -webkit-box;
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 24px;
-  font-weight: 550;
+  font-weight: 400;
   letter-spacing: -0.72px;
   line-height: normal;
   margin-top: -1px;
