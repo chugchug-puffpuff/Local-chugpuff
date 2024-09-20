@@ -273,6 +273,10 @@
   width: 32px;
 }
 
+.scraped {
+  filter: sepia(90%) saturate(250%) hue-rotate(30deg) brightness(140%) contrast(90%);
+}
+
 .JobPostingList-scrapCounts {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;

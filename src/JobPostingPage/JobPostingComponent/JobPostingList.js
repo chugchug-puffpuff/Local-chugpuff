@@ -4,7 +4,7 @@ import './JobPostingList.css'
 import axios from 'axios';
 import Pagination from '../../Route/Pagination';
 
-const JobPosting = ({ jobId, company, title, experience, education, location, employmentType, dateRange, url, commentCount, scrapCount }) => (
+const JobPosting = ({ jobId, company, title, experience, education, location, employmentType, dateRange, url, commentCount, scrapCount, scraped }) => (
   <div className="JobPostingList-frame-23">
     <div className="JobPostingList-frame-24">
       <div className="JobPostingList-text-wrapper-10">{company}</div>
@@ -28,7 +28,7 @@ const JobPosting = ({ jobId, company, title, experience, education, location, em
         <div className="JobPostingList-scrapAndComment">
           <div className="JobPostingList-scrap-wrapper">
             <img
-              className="JobPostingList-scrap"
+              className={`JobPostingList-scrap ${scraped ? 'scraped' : ''}`}
               alt="scrap"
               src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
             />
@@ -58,6 +58,7 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
   const [sortToggle, setSortToggle] = useState(false);
   const [sortType, setSortType] = useState('최신순');
   const [searchKeyword, setSearchKeyword] = useState('');
+  const [scrapedJobs, setScrapedJobs] = useState([]);
 
   const sortToggleShow = () => {
     setSortToggle(!sortToggle);
@@ -88,7 +89,7 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      return response.data.scrapCount || 0;
+      return response.data || 0;
     } catch (error) {
       console.error('Error fetching scrap count:', error);
       return 0;
@@ -152,6 +153,25 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
     fetchJobs(url);
   };
 
+  // 스크랩한 공고 목록 가져온 다음 리스트에 스크랩한 공고 표시
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/job-postings/scraps', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(response => {
+      try {
+        const parsedData = response.data.map(item => JSON.parse(item)); // 개별 파싱
+        const allJobs = parsedData.flatMap(data => data.jobs.job); // job 배열 병합
+        const filteredJobs = allJobs.filter(job => job.id); // id가 있는 job 필터링
+        setScrapedJobs(filteredJobs.map(job => job.id));
+      } catch (error) {
+        console.error('Error fetching job postings:', error);
+      }
+    });
+  }, []);
+
   // 페이지네이션
   const totalPages = Math.ceil(postings.length / postsPerPage);
 
@@ -213,7 +233,7 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
       <div className="JobPostingList-frame-22">
         {currentPosts.map((posting, index) => (
           <React.Fragment key={index}>
-            <JobPosting {...posting} />
+            <JobPosting {...posting} scraped={scrapedJobs.includes(posting.jobId)} />
             <img
               className="JobPostingList-line-2"
               alt="Line"

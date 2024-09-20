@@ -67,7 +67,7 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 6px;
   height: 194px;
   left: 0;
   overflow: hidden;
@@ -145,11 +145,15 @@
 }
 
 .PostingRecommend-grade {
-  height: 40px;
+  height: 32px;
   left: -6px;
   position: absolute;
   top: -10px;
-  width: 40px;
+  width: 32px;
+}
+
+.scraped {
+  filter: sepia(90%) saturate(250%) hue-rotate(30deg) brightness(140%) contrast(90%);
 }
 
 .PostingRecommend-frame-13 {
@@ -158,6 +162,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   gap: 10px;
+  margin-left: 2px;
   position: relative;
 }
 

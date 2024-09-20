@@ -6,6 +6,7 @@ import axios from 'axios';
 const PostingRecommend = () => {
   const [showMore, setShowMore] = useState(false);
   const [postRecommend, setPostRecommend] = useState([]);
+  const [scrapedJobs, setScrapedJobs] = useState([]);
   const displayedRecommendations = showMore ? postRecommend.slice(0, 12) : postRecommend.slice(0, 4);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const PostingRecommend = () => {
           const timeDifference = expirationTimestamp - currentTime;
           const expirationDay = `D-${Math.ceil(timeDifference / (1000 * 60 * 60 * 24))}`;
 
-          // Fetch scrap count
+          // 스크랩 수 불러오기
           const scrapResponse = await axios.get(`http://localhost:8080/api/job-postings/${job.id}/scrap-count`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -34,7 +35,7 @@ const PostingRecommend = () => {
             company: job.company.detail.name,
             title: job.position.title,
             expirationDay: expirationDay,
-            scrapCount: scrapResponse.data.scrapCount || 0
+            scrapCount: scrapResponse.data || 0
           };
         }));
         setPostRecommend(jobRecommendations);
@@ -44,6 +45,25 @@ const PostingRecommend = () => {
     };
 
     fetchData();
+  }, []);
+
+  // 스크랩한 공고 목록 가져온 다음 리스트에 스크랩한 공고 표시
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/job-postings/scraps', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(response => {
+      try {
+        const parsedData = response.data.map(item => JSON.parse(item)); // 개별 파싱
+        const allJobs = parsedData.flatMap(data => data.jobs.job); // job 배열 병합
+        const filteredJobs = allJobs.filter(job => job.id); // id가 있는 job 필터링
+        setScrapedJobs(filteredJobs.map(job => job.id));
+      } catch (error) {
+        console.error('Error fetching job postings:', error);
+      }
+    });
   }, []);
 
   return (
@@ -74,9 +94,9 @@ const PostingRecommend = () => {
                       <div className="PostingRecommend-frame-12">
                         <div className="PostingRecommend-grade-wrapper">
                           <img
-                            className="PostingRecommend-grade"
-                            alt="Grade"
-                            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade-11@2x.png"
+                            className={`PostingRecommend-grade ${scrapedJobs.includes(job.jobId) ? 'scraped' : ''}`}
+                            alt="scrap"
+                            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
                           />
                         </div>
                         <div className="PostingRecommend-frame-13">
