@@ -192,6 +192,8 @@ const EditInformation = ({setAuthenticate}) => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
+      localStorage.setItem('job', selectedJob);
+      localStorage.setItem('jobKeyword', selectedJobKeyword);
       setJobKeywordConfirmation(true);
     } catch (error) {
       console.error('직무 및 직무 키워드 변경 에러:', error);
