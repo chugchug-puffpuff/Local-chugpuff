@@ -3,7 +3,7 @@
   justify-content: space-between; /* 양쪽 끝에 요소 배치 */
   align-items: center; /* 수직 중앙 정렬 */
   position: relative;
-  margin-bottom: 30px;
+  padding-bottom: 40px;
 }
 
 .rbc-btn-group {
@@ -31,6 +31,40 @@
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 32px;
   margin-top: -1.82px;
+}
+
+.rbc-row.rbc-month-header {
+  margin-bottom: 40px;
+}
+
+.Calendar-line-1 {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  top: -15px;
+  left: 0px;
+}
+
+.Calendar-line-2 {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  top: 35px;
+  left: 0px;
+}
+
+.Calendar-line-3 {
+  align-self: stretch;
+  height: 1px;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  top: 1120px;
+  left: 0px;
 }
 
 .Calendar-text-wrapper {
@@ -68,7 +102,7 @@
 }
 
 .calendar-container {
-  width: 1300px;
+  width: 100%;
   text-align: center;
 }
 
@@ -107,7 +141,7 @@
   justify-content: flex-end;
   padding: 12px 28px;
   position: relative;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .Calendar-add-text {
@@ -129,7 +163,7 @@
 .rbc-header,
 .rbc-row.rbc-month-header,
 .rbc-month-view {
-  border: none; /* 테두리 제거 */
+  border: none !important; /* 테두리 제거 */
 }
 
 .rbc-day-bg,
@@ -145,25 +179,77 @@
   border: none !important; /* 요일 부분 테두리 제거 */
 }
 
-.blue-text {
-  color: blue; /* 파란색 텍스트 */
+.Calendar-daysText {
+  font-size: 21px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-weight: 400;
 }
 
-/* 추가: 요일 헤더에 대한 스타일 */
-.rbc-header {
-  color: black; /* 기본 색상 */
-}
-
-.rbc-header .blue-text {
-  color: blue; /* 요일 헤더에서 파란색 */
+.blueText {
+  color: var(--variable-collection-blue);
 }
 
 /* 날짜 셀 스타일 */
-.day-cell {
-  color: black; /* 기본 날짜 색상 */
+.rbc-date-cell {
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  height: 80px; /* 셀 높이 조정 */
+  margin-left: 5px;
 }
 
-.day-cell.blue-text {
-  color: blue; /* 주말 날짜는 파란색으로 설정 */
+.rbc-button-link {
+  cursor: default;
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: normal;
+}
+/* 일요일과 토요일 색상 변경 */
+.rbc-date-cell:nth-child(1) .rbc-button-link,  
+.rbc-date-cell:nth-child(7) .rbc-button-link { 
+  color: var(--variable-collection-blue) !important;
+}
+/* 오늘 날짜 스타일 */
+.rbc-date-cell.rbc-now .rbc-button-link {
+  background-color: var(--variable-collection-main-black) !important;
+  color: var(--variable-collection-WHITE) !important;
+  border-radius: 7.64px;
+  width: 45.81px; 
+  height: 45.81px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+/* 현재 달이 아닌 날짜를 회색으로 설정 */
+.rbc-date-cell.rbc-off-range .rbc-button-link {
+  color: var(--variable-collection-gray-2) !important;
 }
 
+/* .rbc-date-cell:hover {
+  cursor: pointer;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  height: 80px;
+} */
+
+.rbc-day-bg {
+  background: none; /* 배경 제거 */
+  box-shadow: none; /* 그림자 제거 */
+}
+
+/* .rbc-day-bg:hover {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 210px;
+  position: relative;
+  width: 165px;
+} */

@@ -5,7 +5,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './CalendarComponent.css';
 
 const localizer = momentLocalizer(moment);
-
+// 캘린더 상단 커스텀
 const CustomToolbar = (toolbar) => {
   const goToBack = () => {
     toolbar.onNavigate('PREV');
@@ -26,9 +26,9 @@ const CustomToolbar = (toolbar) => {
 
   return (
     <div className="rbc-toolbar">
-      <span className="rbc-btn-group">
+      {/* <span className="rbc-btn-group">
         <button type="button" onClick={goToToday}>Today</button>
-      </span>
+      </span> */}
       <span className="rbc-toolbar-label">
         <img
           className="rbc-toolbar-img"
@@ -50,6 +50,35 @@ const CustomToolbar = (toolbar) => {
   );
 };
 
+// 캘린더 요일 커스텀
+const CustomHeader = ({ label }) => {
+  const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+  const isWeekend = weekDays.indexOf(label) === 0 || weekDays.indexOf(label) === 6; // 일요일(0) 또는 토요일(6)
+
+  return (
+    <div>
+      <img
+        className="Calendar-line-1"
+        alt="Line"
+        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d9a0c1b9ea800c79d994/img/line-4.png"
+      />
+      <div className={`Calendar-daysText ${isWeekend ? 'blueText' : ''}`}>
+        {label}
+      </div>
+      <img
+        className="Calendar-line-2"
+        alt="Line"
+        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d9a0c1b9ea800c79d994/img/line-4.png"
+      />
+      <img
+        className="Calendar-line-3"
+        alt="Line"
+        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d9a0c1b9ea800c79d994/img/line-4.png"
+      />
+    </div>
+  );
+};
+
 const CalendarComponent = () => {
   const [events, setEvents] = useState([
     { start: new Date(2024, 9, 2), end: new Date(2024, 9, 2), title: '(주)네이처헬스\nwindow explanation 개발' },
@@ -59,12 +88,16 @@ const CalendarComponent = () => {
     // 추가 이벤트를 여기에 정의
   ]);
 
-  const handleSelectSlot = ({ start, end }) => {
-    const title = window.prompt('일정을 추가하세요');
-    if (title) {
-      setEvents([...events, { start, end, title }]);
-    }
-  };
+  // const handleSelectSlot = ({ start, end }) => {
+  //   const title = window.prompt('일정을 추가하세요');
+  //   if (title) {
+  //     setEvents([...events, { start, end, title }]);
+  //   }
+  // };
+
+  // const handleEventDelete = (eventToDelete) => {
+  //   setEvents(events.filter(event => event !== eventToDelete));
+  // };
 
   return (
     <div>
@@ -78,23 +111,25 @@ const CalendarComponent = () => {
             endAccessor="end"
             style={{ height: 1200 }}
             selectable
-            onSelectSlot={handleSelectSlot}
+            // onSelectSlot={handleSelectSlot}
+            // onSelectEvent={event => {
+            //   if (window.confirm(`Delete the schedule: ${event.title}?`)) {
+            //     handleEventDelete(event);
+            //   }
+            // }}
             views={['month']}
             defaultView="month"
-            components={{
-              toolbar: CustomToolbar,
-            }}
             formats={{
               monthHeaderFormat: (date, culture, localizer) =>
                 localizer.format(date, 'YYYY.MM', culture),
               weekdayFormat: (date, culture, localizer) =>
-                ['일', '월', '화', '수', '목', '금', '토'][date.getDay()]
+                ['일', '월', '화', '수', '목', '금', '토'][date.getDay()],
+              dayFormat: (date, culture, localizer) =>
+                localizer.format(date, 'D', culture)
             }}
-            dayPropGetter={(date) => {
-              const day = date.getDate();
-              return {
-                className: 'day-cell',
-              };
+            components={{
+              toolbar: CustomToolbar,
+              header: CustomHeader
             }}
           />
           <div className="Calendar-add-frame">

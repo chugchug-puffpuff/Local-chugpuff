@@ -217,6 +217,7 @@ const EditInformation = ({setAuthenticate}) => {
     }
     } else {
       setShowWithdrawFail(true);
+      setWithdrawPassword('')
     }
   };
 
