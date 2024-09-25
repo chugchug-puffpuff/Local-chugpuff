@@ -98,7 +98,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
       // JWT 토큰 삭제
       localStorage.removeItem("token");
       setAuthenticate(false);
-      navigate("/"); // 메인 페이지로 이동
+      window.location.href = "/"; // 메인 페이지로 이동
     } catch (error) {
       console.error("로그아웃 중 오류 발생:", error);
     }

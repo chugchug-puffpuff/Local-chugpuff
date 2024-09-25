@@ -1,5 +1,6 @@
 import React from 'react';
 import './PopularPostMain.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 // 날짜 형식을 0000-00-00 00:00:00으로 변환
 const formatDate = (dateString) => {
@@ -10,7 +11,16 @@ const formatDate = (dateString) => {
   return `${datePart} ${timePart}`;
 };
 
-const PopularPostMain = ({ boardNo, category, boardTitle, boardDate, commentCount, likes, liked }) => {
+const PopularPostMain = ({ authenticate, boardNo, category, boardTitle, boardDate, commentCount, likes, liked }) => {
+  const navigate = useNavigate();
+  
+  // 로그인하지 않은 상태에서 타이틀 클릭 시 로그인페이지로 이동
+  const handleLinkClick = (e) => {
+    if (!authenticate) {
+      e.preventDefault();
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="PopularPostMain-frame">
@@ -40,7 +50,9 @@ const PopularPostMain = ({ boardNo, category, boardTitle, boardDate, commentCoun
           <div className="PopularPostMain-text-wrapper-3">{formatDate(boardDate)}</div>
         </div>
       </div>
-      <p className="PopularPostMain-text-wrapper-4">{boardTitle}</p>
+      <Link to={`/communitypost/${boardNo}`} onClick={handleLinkClick}>
+        <p className="PopularPostMain-text-wrapper-4">{boardTitle}</p>
+      </Link>
     </div>
   );
 };

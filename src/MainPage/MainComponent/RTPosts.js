@@ -59,7 +59,7 @@ const RTPosts = ({ authenticate }) => {
           .slice(0, 7)
           .map((post, index) => (
             <React.Fragment key={index}>
-              <PopularPostMain {...post} liked={likedPosts.includes(post.boardNo)} />
+              <PopularPostMain {...post} liked={likedPosts.includes(post.boardNo)} authenticate={authenticate}/>
             </React.Fragment>
           ))}
       </div>

@@ -108,6 +108,7 @@
 }
 
 .PopularPostMain-text-wrapper-4 {
+  cursor: pointer;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   align-self: stretch;
