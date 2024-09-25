@@ -388,8 +388,8 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                     환영합니다^^
                   </p>
                   <div className="SignUpPage-frame-11">
-                    <div className="SignUpPage-frame-12" onClick={() => setShowConfirmation(false)}>
-                      <div className="SignUpPage-text-wrapper-9" onClick={goToLogin}>로그인 이동</div>
+                    <div className="SignUpPage-frame-12" onClick={() => { setShowConfirmation(false); goToLogin();}}>
+                      <div className="SignUpPage-text-wrapper-9">로그인 이동</div>
                     </div>
                   </div>
                 </div>
