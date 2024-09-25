@@ -134,3 +134,7 @@
   white-space: nowrap;
   width: fit-content;
 }
+
+.scraped {
+  filter: sepia(90%) saturate(250%) hue-rotate(30deg) brightness(140%) contrast(90%);
+}

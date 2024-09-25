@@ -11,7 +11,7 @@ const MainPage = ({ authenticate, setAuthenticate, userName }) => {
     <div className="MainPage">
       <MainBanner />
       <RTPosts authenticate={authenticate} />
-      <RTAnnouncements />
+      <RTAnnouncements authenticate={authenticate} />
       <Footer />
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>

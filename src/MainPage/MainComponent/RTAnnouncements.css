@@ -21,6 +21,7 @@
 }
 
 .RTAnnouncements-text-wrapper-2 {
+  cursor: pointer;
   color: var(--variable-collection-gray-2);
   font-family: "Pretendard Variable-Medium", Helvetica;
   font-size: 20px;
@@ -43,24 +44,28 @@
 }
 
 .RTAnnouncements-overlap-1 {
+  cursor: pointer;
   position: absolute;
   top: 933px;
   left: 995px;
 }
 
 .RTAnnouncements-overlap-2 {
+  cursor: pointer;
   position: absolute;
   top: 933px;
   left: 1310px;
 }
 
 .RTAnnouncements-overlap-3 {
+  cursor: pointer;
   position: absolute;
   top: 1314px;
   left: 995px;
 }
 
 .RTAnnouncements-overlap-4 {
+  cursor: pointer;
   position: absolute;
   top: 1314px;
   left: 1310px;
