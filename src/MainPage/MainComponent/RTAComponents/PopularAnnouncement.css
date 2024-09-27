@@ -74,8 +74,9 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
-  position: relative;
+  position: absolute;
   width: 231px;
+  top: 92px;
 }
 
 .PopularAnnouncement-frame-5 {
@@ -93,11 +94,15 @@
 }
 
 .PopularAnnouncement-grade {
-  height: 40px;
-  left: -8px;
+  height: 32px;
+  left: -6px;
   position: absolute;
-  top: -8px;
-  width: 40px;
+  top: -10px;
+  width: 32px;
+}
+
+.scraped {
+  filter: sepia(90%) saturate(250%) hue-rotate(30deg) brightness(140%) contrast(90%);
 }
 
 .PopularAnnouncement-frame-6 {
@@ -106,6 +111,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   gap: 10px;
+  margin-left: 2px;
   position: relative;
 }
 
@@ -133,8 +139,4 @@
   position: relative;
   white-space: nowrap;
   width: fit-content;
-}
-
-.scraped {
-  filter: sepia(90%) saturate(250%) hue-rotate(30deg) brightness(140%) contrast(90%);
 }

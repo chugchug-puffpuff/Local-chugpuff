@@ -32,8 +32,8 @@ const PopularAnnouncement = ({ authenticate, jobId, company, title, expirationDa
                 <div className="PopularAnnouncement-grade-wrapper">
                   <img 
                     className={`PopularAnnouncement-grade ${scraped ? 'scraped' : ''}`} 
-                    alt="스크랩 아이콘" 
-                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/grade@2x.png" />
+                    alt="scrap" 
+                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png" />
                 </div>
                 <div className="PopularAnnouncement-frame-6">
                   <div className="PopularAnnouncement-text-wrapper-3">{scrapCount}</div>
