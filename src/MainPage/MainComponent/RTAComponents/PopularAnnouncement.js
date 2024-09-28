@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './PopularAnnouncement.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const PopularAnnouncement = ({ authenticate, jobId, company, title, expirationDay, scrapCount, scraped }) => {
   const navigate = useNavigate();
-  
+  const [imageUrl, setImageUrl] = useState('https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/image-2.png');
+
+  useEffect(() => {
+    // 이미지 Url 가져오기
+    const fetchImage = async () => {
+      try {
+        const response = await axios.get(`https://api.bing.microsoft.com/v7.0/images/search?q=${title} 로고`, {
+          headers: { 'Ocp-Apim-Subscription-Key': '1e1ba0956772408883e8692f800bb01e' }
+        });
+        if (response.data.value && response.data.value.length > 0) {
+          setImageUrl(response.data.value[0].contentUrl);
+        }
+      } catch (error) {
+        console.error('Error fetching image from Bing API', error);
+      }
+    };
+
+    fetchImage();
+  }, [title]);
+
   // 로그인하지 않은 상태에서 클릭 시 로그인페이지로 이동
   const handleLinkClick = (e) => {
     if (!authenticate) {
@@ -19,7 +39,7 @@ const PopularAnnouncement = ({ authenticate, jobId, company, title, expirationDa
       <img 
         className="PopularAnnouncement-image" 
         alt="기업 이미지" 
-        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/image-1@2x.png"
+        src={imageUrl}
       />
         <div className="PopularAnnouncement-frame">
           <div className="PopularAnnouncement-text-wrapper">{company}</div>

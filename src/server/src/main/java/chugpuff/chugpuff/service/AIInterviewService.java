@@ -10,7 +10,11 @@ import chugpuff.chugpuff.repository.*;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -57,21 +61,59 @@ public class AIInterviewService {
     private TargetDataLine microphone;
 
     // AI 면접 생성 메서드
-    public AIInterview createInterview(AIInterview aiInterview) {
-        return aiInterviewRepository.save(aiInterview);
+    public ResponseEntity<?> createInterview(AIInterviewDTO aiInterviewDTO) {
+        Member member = memberService.getMemberByUser_id(aiInterviewDTO.getUser_id())
+                .orElseThrow(() -> new RuntimeException("Member not found"));
+
+        if ("자기소개서 면접".equals(aiInterviewDTO.getInterviewType())) {
+            String selfIntroduction = getSelfIntroductionContentForInterview(member);
+
+            if (selfIntroduction == null) {
+                return ResponseEntity.status(HttpStatus.OK).body("저장된 자기소개서가 없습니다.");
+            }
+        }
+
+        AIInterview aiInterview = new AIInterview();
+        aiInterview.setInterviewType(aiInterviewDTO.getInterviewType());
+        aiInterview.setFeedbackType(aiInterviewDTO.getFeedbackType());
+        aiInterview.setMember(member);
+
+        AIInterview createdInterview = aiInterviewRepository.save(aiInterview);
+
+        return ResponseEntity.ok(createdInterview);
+    }
+
+    // 자기소개서 내용을 가져오는 메서드
+    public String getSelfIntroductionContentForInterview(Member member) {
+        EditSelfIntroduction selfIntroduction = editSelfIntroductionRepository.findByMember(member).stream()
+                .filter(EditSelfIntroduction::isSave)
+                .findFirst()
+                .orElse(null);
+
+        if (selfIntroduction == null) {
+            return null;
+        }
+
+        List<EditSelfIntroductionDetails> detailsList = editSelfIntroductionDetailsRepository.findByEditSelfIntroduction(selfIntroduction);
+
+        StringBuilder selfIntroductionContent = new StringBuilder();
+        selfIntroductionContent.append("다음은 사용자 ").append(member.getName()).append("의 자기소개서입니다:\n");
+        for (EditSelfIntroductionDetails detail : detailsList) {
+            selfIntroductionContent.append("질문: ").append(detail.getES_question()).append("\n");
+            selfIntroductionContent.append("답변: ").append(detail.getES_answer()).append("\n");
+        }
+
+        return selfIntroductionContent.toString();
     }
 
     // 인터뷰 세션 초기화 및 첫 질문 생성 메서드
-    public String startInterview(AIInterview aiInterview, UserDetails userDetails) {
-        Member member = memberService.getMemberByUsername(userDetails.getUsername())
-                .orElseThrow(() -> new RuntimeException("Member not found"));
+    public String startInterview(AIInterview aiInterview) {
+        Member member = aiInterview.getMember();
 
         String chatPrompt = generateChatPrompt(aiInterview, member);
         String firstResponse = externalAPIService.callChatGPT(chatPrompt);
         currentQuestion = extractQuestionOrFeedbackFromResponse(firstResponse, false);
         interviewInProgress = true;
-
-        startInterviewTimer(aiInterview);
 
         return currentQuestion;
     }
@@ -94,10 +136,15 @@ public class AIInterviewService {
         String lastResponse = getLastUserResponse(aiInterview);
 
         Member member = aiInterview.getMember();
-        String selfIntroduction = getSelfIntroductionContentForInterview(member);
-        String nextQuestionPrompt = createQuestionPrompt(aiInterview, lastQuestion, lastResponse, selfIntroduction);
+        String selfIntroduction = "";
 
+        if ("자기소개서 면접".equals(aiInterview.getInterviewType())) {
+            selfIntroduction = getSelfIntroductionContentForInterview(member);
+        }
+
+        String nextQuestionPrompt = createQuestionPrompt(aiInterview, lastQuestion, lastResponse, selfIntroduction);
         String nextQuestionResponse = externalAPIService.callChatGPT(nextQuestionPrompt);
+
         String nextQuestion = extractQuestionOrFeedbackFromResponse(nextQuestionResponse, false);
 
         String ttsAudioUrl = externalAPIService.callTTS(nextQuestion);
@@ -255,18 +302,44 @@ public class AIInterviewService {
     // 질문 및 피드백을 위한 ChatGPT 프롬프트 생성 매서드
     private String generateChatPrompt(AIInterview aiInterview, Member member) {
         String chatPrompt;
+
         if ("인성 면접".equals(aiInterview.getInterviewType())) {
-            chatPrompt = "인성 면접을 시작합니다. 각 요구사항에 맞게 면접을 진행해주세요. 1. 질문을 하나씩 해주세요. 2. 면접의 주제는 '인성면접' 입니다. 3. 한글로 해주세요. 4. 존댓말로 해주세요.";
+            chatPrompt = "인성 면접을 시작합니다. 아래 형식을 반드시 따르세요.\n"
+                    + "형식: 질문: [질문 내용]\n"
+                    + "반드시 질문은 '질문: '으로 시작하고, 불필요한 내용(예: '알겠습니다' 등)은 포함하지 마세요. 예시: '질문: 인성 면접에서 가장 중요하게 생각하는 점은 무엇인가요?'\n"
+                    + "1. 질문은 반드시 '질문: '으로 시작해야 합니다.\n"
+                    + "2. 한 번에 하나의 질문만 해주세요.\n"
+                    + "3. 면접의 주제는 인성 면접입니다.\n"
+                    + "4. 한글로 작성해 주세요.\n"
+                    + "5. 반드시 '질문: '으로 시작하는 구조를 따르세요.\n"
+                    + "6. 질문은 반드시 존댓말로 작성해 주세요.\n";
         } else if ("직무 면접".equals(aiInterview.getInterviewType())) {
             String job = member.getJob();
             String jobKeyword = member.getJobKeyword();
-            chatPrompt = job + " 직무에 대한 면접을 " + jobKeyword + "에 중점을 두고 직무 면접을 시작합니다. 각 요구사항에 맞게 면접을 진행해주세요. 1. 질문을 하나씩 해주세요. 2. 면접의 주제는 " + job + " 직무의 " + jobKeyword + "입니다. 3. 한글로 해주세요. 4. 존댓말로 해주세요.";
+            chatPrompt = job + " 직무에 대한 면접을 " + jobKeyword + "에 중점을 두고 시작합니다. 반드시 아래 형식을 따르세요.\n"
+                    + "형식: 질문: [질문 내용]\n"
+                    + "반드시 질문은 '질문: '으로 시작하고, 불필요한 내용(예: '알겠습니다' 등)은 포함하지 마세요. 예시: '질문: 이 직무에서 중요한 기술은 무엇인가요?'\n"
+                    + "1. 질문은 반드시 '질문: '으로 시작해야 합니다.\n"
+                    + "2. 한 번에 하나의 질문만 해주세요.\n"
+                    + "3. 면접의 주제는 " + job + " 직무의 " + jobKeyword + "입니다.\n"
+                    + "4. 한글로 작성해 주세요.\n"
+                    + "5. 반드시 '질문: '으로 시작하는 구조를 따르세요.\n"
+                    + "6. 질문은 반드시 존댓말로 작성해 주세요.\n";
         } else if ("자기소개서 면접".equals(aiInterview.getInterviewType())) {
             String selfIntroductionContent = getSelfIntroductionContentForInterview(member);
-            chatPrompt = selfIntroductionContent + " 이 자기소개서를 기반으로 자기소개서 면접을 시작합니다. 각 요구사항에 맞게 면접을 진행해주세요. 1. 질문을 하나씩 해주세요. 2. 면접의 주제는 '자기소개서 면접' 입니다. 3. 한글로 해주세요. 4. 존댓말로 해주세요.";
+            chatPrompt = selfIntroductionContent + " 이 자기소개서를 기반으로 면접을 시작합니다. 반드시 아래 형식을 따르세요.\n"
+                    + "형식: 질문: [질문 내용]\n"
+                    + "반드시 질문은 '질문: '으로 시작하고, 불필요한 내용(예: '알겠습니다' 등)은 포함하지 마세요. 예시: '질문: 자기소개서를 작성하면서 가장 중요하게 생각한 점은 무엇인가요?'\n"
+                    + "1. 질문은 반드시 '질문: '으로 시작해야 합니다.\n"
+                    + "2. 한 번에 하나의 질문만 해주세요.\n"
+                    + "3. 면접의 주제는 '자기소개서 면접'입니다.\n"
+                    + "4. 한글로 작성해 주세요.\n"
+                    + "5. 반드시 '질문: '으로 시작하는 구조를 따르세요.\n"
+                    + "6. 질문은 반드시 존댓말로 작성해 주세요.\n";
         } else {
             throw new RuntimeException("Invalid interview type");
         }
+
         return chatPrompt;
     }
 
@@ -315,36 +388,19 @@ public class AIInterviewService {
 
     // 응답에서 질문 또는 피드백을 추출하는 메서드
     private String extractQuestionOrFeedbackFromResponse(String response, boolean isFeedback) {
-        if (response.startsWith("질문: ")) {
-            return response.substring("질문: ".length()).trim();
-        } else if (response.startsWith("피드백: ")) {
+        if (response.startsWith("피드백: ")) {
             if (isFeedback) {
                 return response.substring("피드백: ".length()).trim();
             } else {
                 throw new RuntimeException("Expected a question, but received feedback instead.");
             }
-        } else {
+        }
+        else {
+            if (!response.startsWith("질문: ")) {
+                return "질문: " + response.trim();
+            }
             return response.trim();
         }
-    }
-
-    // 자기소개서 내용을 불러오는 메서드
-    public String getSelfIntroductionContentForInterview(Member member) {
-        EditSelfIntroduction selfIntroduction = editSelfIntroductionRepository.findByMember(member).stream()
-                .filter(EditSelfIntroduction::isSave)
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("저장된 자기소개서를 찾을 수 없습니다."));
-
-        List<EditSelfIntroductionDetails> detailsList = editSelfIntroductionDetailsRepository.findByEditSelfIntroduction(selfIntroduction);
-
-        StringBuilder selfIntroductionContent = new StringBuilder();
-        selfIntroductionContent.append("다음은 사용자 ").append(member.getName()).append("의 자기소개서입니다:\n");
-        for (EditSelfIntroductionDetails detail : detailsList) {
-            selfIntroductionContent.append("질문: ").append(detail.getES_question()).append("\n");
-            selfIntroductionContent.append("답변: ").append(detail.getES_answer()).append("\n");
-        }
-
-        return selfIntroductionContent.toString();
     }
 
     // 면접 종료 메서드
@@ -401,7 +457,16 @@ public class AIInterviewService {
             allResponses.append(response.getF_answer()).append(" ");
         }
 
-        String fullFeedbackPrompt = "이 면접에서 다뤄진 모든 질문과 대답을 바탕으로 전체적인 피드백을 제공해주세요: " + allQuestions.toString() + allResponses.toString();
+        String fullFeedbackPrompt = "전체 피드백: \n"
+                + "이 면접에서 다뤄진 모든 질문과 대답을 바탕으로 전체적인 피드백을 제공해주세요.\n"
+                + "형식은 다음과 같습니다:\n"
+                + "1. [피드백 항목 1]\n"
+                + "2. [피드백 항목 2]\n"
+                + "3. [피드백 항목 3]\n"
+                + "반드시 3가지의 피드백 항목을 모두 제공해주세요."
+                + "그 후에 반드시 종합적인 피드백을 제공해 주세요.\n\n"
+                + "질문: " + allQuestions.toString() + "\n"
+                + "답변: " + allResponses.toString();
 
         String fullFeedback = externalAPIService.callChatGPT(fullFeedbackPrompt);
 

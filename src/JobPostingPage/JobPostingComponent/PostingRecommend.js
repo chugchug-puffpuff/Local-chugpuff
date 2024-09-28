@@ -30,12 +30,30 @@ const PostingRecommend = () => {
             }
           });
 
+          // 이미지 URL 가져오기
+          const fetchImage = async (title) => {
+            try {
+              const response = await axios.get(`https://api.bing.microsoft.com/v7.0/images/search?q=${title} 로고`, {
+                headers: { 'Ocp-Apim-Subscription-Key': '1e1ba0956772408883e8692f800bb01e' }
+              });
+              if (response.data.value && response.data.value.length > 0) {
+                return response.data.value[0].contentUrl;
+              }
+            } catch (error) {
+              console.error('Error fetching image from Bing API', error);
+            }
+            return 'https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/image-2.png';
+          };
+
+          const imageUrl = await fetchImage(job.position.title);
+
           return {
             jobId: job.id,
             company: job.company.detail.name,
             title: job.position.title,
             expirationDay: expirationDay,
-            scrapCount: scrapResponse.data || 0
+            scrapCount: scrapResponse.data || 0,
+            imageUrl: imageUrl
           };
         }));
         setPostRecommend(jobRecommendations);
@@ -81,8 +99,8 @@ const PostingRecommend = () => {
               <div className="PostingRecommend-overlap-group">
                 <img
                   className="PostingRecommend-image"
-                  alt="Image"
-                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/image-2-1@2x.png"
+                  alt="기업 이미지 로고"
+                  src={job.imageUrl}
                 />
                 <div className="PostingRecommend-frame-8">
                   <div className="PostingRecommend-text-wrapper-5">{job.company}</div>

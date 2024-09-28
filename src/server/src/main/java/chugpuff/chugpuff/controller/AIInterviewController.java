@@ -7,8 +7,6 @@ import chugpuff.chugpuff.service.AIInterviewService;
 import chugpuff.chugpuff.service.ExternalAPIService;
 import chugpuff.chugpuff.service.MemberService;
 import chugpuff.chugpuff.service.TimerService;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
@@ -46,26 +44,18 @@ public class AIInterviewController {
 
     // AI 면접 생성
     @PostMapping
-    public AIInterview createInterview(@RequestBody AIInterviewDTO aiInterviewDTO) {
-        Member member = memberService.getMemberByUser_id(aiInterviewDTO.getUser_id())
-                .orElseThrow(() -> new RuntimeException("Member not found"));
-
-        AIInterview aiInterview = new AIInterview();
-        aiInterview.setInterviewType(aiInterviewDTO.getInterviewType());
-        aiInterview.setFeedbackType(aiInterviewDTO.getFeedbackType());
-        aiInterview.setMember(member);
-
-        return aiInterviewService.createInterview(aiInterview);
+    public ResponseEntity<?> createInterview(@RequestBody AIInterviewDTO aiInterviewDTO) {
+        return aiInterviewService.createInterview(aiInterviewDTO);
     }
 
     // 모의면접 세션 초기화 및 첫 질문 생성
     @PostMapping("/{AIInterviewNo}/start")
-    public ResponseEntity<Map<String, String>> startInterview(@PathVariable Long AIInterviewNo, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<Map<String, String>> startInterview(@PathVariable Long AIInterviewNo) {
         AIInterview aiInterview = aiInterviewService.getInterviewById(AIInterviewNo);
         if (aiInterview == null) {
             return ResponseEntity.badRequest().body(null);
         }
-        String firstQuestion = aiInterviewService.startInterview(aiInterview, userDetails);
+        String firstQuestion = aiInterviewService.startInterview(aiInterview);
         String ttsAudioUrl = externalAPIService.callTTS(firstQuestion);
 
         Map<String, String> response = new HashMap<>();
@@ -98,7 +88,7 @@ public class AIInterviewController {
         }
 
         aiInterviewService.captureUserAudio();
-        return ResponseEntity.ok("Answer recording started.");
+        return ResponseEntity.ok("녹음 시작");
     }
 
     // 답변 녹음 완료
@@ -110,7 +100,7 @@ public class AIInterviewController {
         }
 
         aiInterviewService.stopAudioCapture();
-        return ResponseEntity.ok("Answer recording completed.");
+        return ResponseEntity.ok("녹음 완료");
     }
 
     // 녹음된 파일을 STT로 변환하여 텍스트로 반환
@@ -206,12 +196,4 @@ public class AIInterviewController {
     public List<AIInterview> getInterviewsByMember(@PathVariable String id) {
         return aiInterviewService.findByMemberId(id);
     }
-}
-
-@Getter
-@Setter
-class FeedbackRequest {
-    private String question;
-    private String answer;
-    private String feedback;
 }

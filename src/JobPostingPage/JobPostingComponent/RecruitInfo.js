@@ -25,6 +25,7 @@ const formatTimeStampWithDay = (timestamp) => {
 const RecruitInfo = ({ jobInfo, commentCount }) => {
   const [scrapCount, setScrapCount] = useState(0);
   const [isScraped, setIsScraped] = useState(false);
+  const [imageUrl, setImageUrl] = useState('https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/image-2.png');
 
   useEffect(() => {
     if (jobInfo && jobInfo.length > 0) {
@@ -46,6 +47,26 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
       if (savedIsScraped !== null) {
         setIsScraped(savedIsScraped);
       }
+    }
+  }, [jobInfo]);
+
+  useEffect(() => {
+    if (jobInfo && jobInfo.length > 0) {
+      const job = jobInfo[0];
+      const fetchImage = async () => {
+        try {
+          const response = await axios.get(`https://api.bing.microsoft.com/v7.0/images/search?q=${job.title} 로고`, {
+            headers: { 'Ocp-Apim-Subscription-Key': '1e1ba0956772408883e8692f800bb01e' }
+          });
+          if (response.data.value && response.data.value.length > 0) {
+            setImageUrl(response.data.value[0].contentUrl);
+          }
+        } catch (error) {
+          console.error('Error fetching image from Bing API', error);
+        }
+      };
+
+      fetchImage();
     }
   }, [jobInfo]);
 
@@ -124,8 +145,8 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
           />
           <img
             className="RecruitInfo-image"
-            alt="Image"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/image-2.png"
+            alt="기업 이미지 로고"
+            src={imageUrl}
           />
           <div className="RecruitInfo-frame-8">
             <div className="RecruitInfo-frame-9">
