@@ -9,6 +9,7 @@ import RecruitInfoPage from "./RecruitInfoPage.js";
 
 const JobPostingMain = ({ authenticate, setAuthenticate, userName }) => {
   const [selectedDetailRegion, setSelectedDetailRegion] = useState(null);
+  const [selectedJobMidname, setSelectedJobMidname] = useState(null);
   const [selectedJobKeyword, setSelectedJobKeyword] = useState(null);
 
   return (
@@ -25,10 +26,12 @@ const JobPostingMain = ({ authenticate, setAuthenticate, userName }) => {
             <div className="JobPostingMain-frame-wrapper">
               <JobPostingSelect 
                 setSelectedDetailRegion={setSelectedDetailRegion}
+                setSelectedJobMidname={setSelectedJobMidname}
                 setSelectedJobKeyword={setSelectedJobKeyword}
               />
               <JobPostingList 
                 detailRegion={selectedDetailRegion} 
+                jobMidname={selectedJobMidname}
                 jobKeyword={selectedJobKeyword} 
               />
             </div>

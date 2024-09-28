@@ -51,7 +51,7 @@ const JobPosting = ({ jobId, company, title, experience, education, location, em
   </div>
 );
 
-const JobPostingList = ({ detailRegion, jobKeyword }) => {
+const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
   const [postings, setPostings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
@@ -136,9 +136,9 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
     } else if (sortType === '조회순') {
       selectedType = 'rc';
     }
-    const url = `http://localhost:8080/api/job-postings?jobName=${jobKeyword}&regionName=${detailRegion}&sort=${selectedType}`;
+    const url = `http://localhost:8080/api/job-postings?jobMidname=${jobMidname}&jobName=${jobKeyword}&regionName=${detailRegion}&sort=${selectedType}`;
     fetchJobs(url);
-  }, [detailRegion, jobKeyword, sortType]);
+  }, [detailRegion, jobMidname, jobKeyword, sortType]);
 
   const handleSearch = async () => {
     let selectedType;
@@ -149,7 +149,7 @@ const JobPostingList = ({ detailRegion, jobKeyword }) => {
     } else if (sortType === '조회순') {
       selectedType = 'rc';
     }
-    const url = `http://localhost:8080/api/job-postings/search?jobName=${jobKeyword}&regionName=${detailRegion}&keywords=${searchKeyword}&sort=${selectedType}`;
+    const url = `http://localhost:8080/api/job-postings/search?jobMidname=${jobMidname}&jobName=${jobKeyword}&regionName=${detailRegion}&keywords=${searchKeyword}&sort=${selectedType}`;
     fetchJobs(url);
   };
 

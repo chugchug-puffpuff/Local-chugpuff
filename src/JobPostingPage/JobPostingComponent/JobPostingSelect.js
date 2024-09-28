@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './JobPostingSelect.css';
 import axios from 'axios';
 
-const JobPostingSelect = ({ setSelectedDetailRegion, setSelectedJobKeyword }) => {
+const JobPostingSelect = ({ setSelectedDetailRegion, setSelectedJobMidname, setSelectedJobKeyword }) => {
   const [regionToggle, setRegionToggle] = useState(false);
   const [jobToggle, setJobToggle] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('');
@@ -80,6 +80,7 @@ const JobPostingSelect = ({ setSelectedDetailRegion, setSelectedJobKeyword }) =>
   const handleJobClick = (job) => {
     setSelectedJob(job);
     setSelectedJobKeywordState(null); // 직무를 다시 선택할 경우 직무키워드 초기화
+    setSelectedJobMidname(job) // 부모 컴포넌트에 전달
   };
 
   const handlejobKeywordClick = (jobKeyword) => {
