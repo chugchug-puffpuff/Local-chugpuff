@@ -253,3 +253,152 @@
   position: relative;
   width: 165px;
 } */
+
+/* 여기서부터 모달창 CSS */
+.Schedule-frame-78 {
+  background-color: var(--variable-collection-main-black);
+  height: 1080px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 1920px;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.Schedule-frame-79 {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  left: 35%;
+  padding: 32px 24px 24px;
+  position: fixed;
+  top: 333px;
+  width: 30%;
+}
+
+.Schedule-frame-80 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+}
+
+.Schedule-text-wrapper-60 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.Schedule-dateAndSchedule {
+  text-align: center;
+  gap: 10px;
+}
+.Schedule-text-frame {
+  padding-bottom: 10px;
+}
+
+.Schedule-text-wrapper-61 {
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  color: var(--variable-collection-gray-1);
+  padding: 10px;
+  border-radius: 12.5px;
+  border: 1.04px solid;
+  border-color: var(--variable-collection-gray-3);
+  height: 58.35px;
+  position: relative;
+  text-align: center;
+  width: 85%;
+}
+
+.Schedule-text-field {
+  font-size: 22px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  padding: 10px;
+  align-self: stretch;
+  border: 1.04px solid;
+  border-color: var(--variable-collection-gray-3);
+  border-radius: 12.5px;
+  height: 58.35px;
+  position: relative;
+  width: 85%;
+}
+
+.Schedule-frame-81 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.Schedule-frame-82 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 75px;
+  position: relative;
+}
+
+.Schedule-text-wrapper-62 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.Schedule-frame-83 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-main-black);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 75px;
+  position: relative;
+}
+
+.Schedule-text-wrapper-63 {
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
