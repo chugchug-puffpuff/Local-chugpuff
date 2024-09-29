@@ -8,6 +8,7 @@ import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import ko from 'date-fns/locale/ko'; // 한국어 로케일 가져오기
 import './CalendarComponent.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 registerLocale('ko', ko); // 한국어 로케일 등록
 setDefaultLocale('ko'); // 기본 로케일을 한국어로 설정
@@ -88,12 +89,14 @@ const CustomHeader = ({ label }) => {
 };
 
 const CalendarComponent = () => {
-  const [addScheduleModal, setAddScheduleModal] = useState(false);
+  const [scheduleCheckModal, setScheduleCheckModal] = useState(false); // 일정 확인 모달창 상태
+  const [selectedEvent, setSelectedEvent] = useState(null); // 선택된 이벤트 상태 추가
+  const [addScheduleModal, setAddScheduleModal] = useState(false); // 일정 등록 모달창 상태
+  const [editScheduleModal, setEditScheduleModal] = useState(false); // 일정 수정 모달창 상태
   const [endDate, setEndDate] = useState(new Date());
   const [schedule, setSchedule] = useState('');
-  const [events, setEvents] = useState([
-    // { start: new Date(2024, 9, 9), end: new Date(2024, 9, 9), title: '(주)네이처헬스\nwindow explanation 개발' }
-  ]);
+  const [events, setEvents] = useState([]);
+
   // 일정 불러오기
   useEffect(() => {
     const fetchEvents = async () => {
@@ -105,9 +108,11 @@ const CalendarComponent = () => {
         });
         const data = await response.json();
         const mappedEvents = data.map(event => ({
+          memoNo: event.memoNo,
           start: new Date(event.memoDate), 
           end: new Date(event.memoDate),
-          title: event.memoContent
+          title: event.memoContent,
+          jobId: event.scrap?.jobId || null
         }));
         setEvents(mappedEvents);
       } catch (error) {
@@ -118,26 +123,116 @@ const CalendarComponent = () => {
     fetchEvents();
   }, []);
 
-  // const handleSelectSlot = ({ start, end }) => {
-  //   const title = window.prompt('일정을 추가하세요');
-  //   if (title) {
-  //     setEvents([...events, { start, end, title }]);
-  //   }
-  // };
+   // 일정 추가 함수
+  const handleAddEvent = async () => {
+    const newEvent = {
+      end: endDate,
+      title: schedule,
+    };
+  
+    try {
+      await axios.post('http://localhost:8080/api/calenders', {
+        memoDate: endDate.toISOString().split('T')[0],
+        memoContent: schedule,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setEvents([...events, newEvent]); // 일정 추가 후 바로 업데이트
+      setAddScheduleModal(false);
+      setSchedule('');
+      // 일정 추가 후 일정 다시 불러오기
+      const fetchEvents = async () => {
+        try {
+          const response = await fetch('http://localhost:8080/api/calenders', {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+          const data = await response.json();
+          const mappedEvents = data.map(event => ({
+            start: new Date(event.memoDate),
+            end: new Date(event.memoDate),
+            title: event.memoContent,
+            jobId: event.scrap?.jobId || null
+          }));
+          setEvents(mappedEvents);
+        } catch (error) {
+          console.error('Error fetching events:', error);
+        }
+      };
 
-  const handleEventDelete = (eventToDelete) => {
-    setEvents(events.filter(event => event !== eventToDelete));
+      fetchEvents();
+    } catch (error) {
+      console.error('Error adding event:', error);
+    }
   };
 
-   // 일정 추가 함수
-  const handleAddEvent = () => {
-    const newEvent = {
-        end: endDate,
-        title: '새 일정',
+  useEffect(() => {
+    if (editScheduleModal && selectedEvent) {
+      setEndDate(new Date(selectedEvent.end));
+    }
+  }, [editScheduleModal, selectedEvent]);
+
+  // 일정 수정 함수
+  const handleEditEvent = async () => {
+    const updatedEvent = {
+      memoDate: endDate.toISOString().split('T')[0],
+      memoContent: schedule,
     };
-    setEvents([...events, newEvent]);
-    setAddScheduleModal(false);
-    setSchedule('');
+  
+    try {
+      await axios.put(`http://localhost:8080/api/calenders/${selectedEvent.memoNo}`, updatedEvent, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+  
+      // 일정 수정 후 일정 다시 불러오기
+      const fetchEvents = async () => {
+        try {
+          const response = await fetch('http://localhost:8080/api/calenders', {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+          const data = await response.json();
+          const mappedEvents = data.map(event => ({
+            memoNo: event.memoNo,
+            start: new Date(event.memoDate),
+            end: new Date(event.memoDate),
+            title: event.memoContent,
+            jobId: event.scrap?.jobId || null
+          }));
+          setEvents(mappedEvents);
+        } catch (error) {
+          console.error('Error fetching events:', error);
+        }
+      };
+  
+      await fetchEvents(); // fetchEvents를 호출하여 상태 업데이트
+      setEditScheduleModal(false);
+      setScheduleCheckModal(false);
+      setSelectedEvent(null); // 선택된 이벤트 초기화
+    } catch (error) {
+      console.error('Error editing event:', error);
+    }
+  };
+
+  // 일정 삭제 함수
+  const handleDeleteEvent = async (eventToDelete) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/calenders/${eventToDelete.memoNo}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setEvents(events.filter(event => event !== eventToDelete)); // 일정 삭제 후 업데이트
+      setScheduleCheckModal(false);
+    } catch (error) {
+      console.error('Error deleting event:', error);
+    }
   };
 
   return (
@@ -152,11 +247,9 @@ const CalendarComponent = () => {
             endAccessor="end"
             style={{ height: 1200 }}
             selectable
-            //onSelectSlot={handleSelectSlot}
-            onSelectEvent={event => {
-              if (window.confirm(`Delete the schedule: ${event.title}?`)) {
-                handleEventDelete(event);
-              }
+            onSelectEvent={(event) => {
+              setSelectedEvent(event); 
+              setScheduleCheckModal(true);
             }}
             views={['month']}
             defaultView="month"
@@ -178,19 +271,59 @@ const CalendarComponent = () => {
           </div>
         </div>
       </div>
+      {/* 일정 확인 모달창 */}
+      {scheduleCheckModal && selectedEvent && (
+        <div className="Schedule-frame-78">
+          <div className="Schedule-frame-79">
+            <div className="Schedule-frame-80">
+              <div className="Schedule-textAndClose">
+                <div className="Schedule-text-wrapper-60">일정 확인</div>
+              </div>
+              <p className="Schedule-dateAndSchedule">
+                <div className="Schedule-text-wrapper-64">{selectedEvent.end.toLocaleDateString()}</div>
+                {selectedEvent.jobId && new Date(selectedEvent.end) >= new Date() ? (
+                  <Link to={`/recruitinfo/${selectedEvent.jobId}`}>
+                    <div className="Schedule-text-wrapper-65">{selectedEvent.title}</div>
+                  </Link>
+                ) : (
+                  <div className="Schedule-text-wrapper-64">{selectedEvent.title}</div>
+                )}
+              </p>
+            </div>
+            {!selectedEvent.jobId ? ( // 스크랩한 일정이 아니라면 3가지 버튼 모두 출력
+              <div className="Schedule-frame-81">
+                <div className="Schedule-frame-84" onClick={() => setScheduleCheckModal(false)}>
+                  <div className="Schedule-text-wrapper-62">닫기</div>
+                </div>
+                <div className="Schedule-frame-85" onClick={() => setEditScheduleModal(true)}>
+                  <div className="Schedule-text-wrapper-63">수정</div>
+                </div>
+                <div className="Schedule-frame-86" onClick={() => handleDeleteEvent(selectedEvent)}>
+                  <div className="Schedule-text-wrapper-62">삭제</div>
+                </div>
+              </div>
+            ) : ( // 스크랩한 일정이면 닫기 버튼만 출력
+              <div className="Schedule-frame-84" onClick={() => setScheduleCheckModal(false)}>
+                <div className="Schedule-text-wrapper-62">닫기</div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      {/* 일정 등록 모달창 */}
       {addScheduleModal && (
         <div className="Schedule-frame-78">
           <div className="Schedule-frame-79">
             <div className="Schedule-frame-80">
-              <div className="Schedule-text-wrapper-60">일정 추가</div>
+              <div className="Schedule-text-wrapper-60">일정 등록</div>
               <p className="Schedule-dateAndSchedule">
                 <div className='Schedule-text-frame'>
                   <DatePicker 
                     className="Schedule-text-wrapper-61" 
-                    selected={endDate} 
+                    selected={endDate || new Date()} 
                     onChange={date => setEndDate(date)}
                     locale="ko" // 한국어 로케일 설정
-                    dateFormat="YYYY/MM/dd" // 날짜 형식을 숫자로 설정
+                    dateFormat="yyyy/MM/dd" // 날짜 형식을 숫자로 설정
                   />
                 </div>
                 <input
@@ -207,7 +340,43 @@ const CalendarComponent = () => {
                 <div className="Schedule-text-wrapper-62">취소</div>
               </div>
               <div className="Schedule-frame-83" onClick={handleAddEvent}>
-                <div className="Schedule-text-wrapper-63">추가</div>
+                <div className="Schedule-text-wrapper-63">등록</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* 일정 수정 모달창 */}
+      {editScheduleModal && selectedEvent && (
+        <div className="Schedule-frame-78">
+          <div className="Schedule-frame-79">
+            <div className="Schedule-frame-80">
+              <div className="Schedule-text-wrapper-60">일정 수정</div>
+              <p className="Schedule-dateAndSchedule">
+                <div className='Schedule-text-frame'>
+                  <DatePicker 
+                    className="Schedule-text-wrapper-61" 
+                    selected={endDate || new Date(selectedEvent.end)}
+                    onChange={date => setEndDate(date)}
+                    locale="ko" // 한국어 로케일 설정
+                    dateFormat="yyyy/MM/dd" // 날짜 형식을 숫자로 설정
+                  />
+                </div>
+                <input
+                  className="Schedule-text-field"
+                  type="text"
+                  value={schedule || selectedEvent.title}
+                  placeholder='일정을 입력하세요'
+                  onChange={(e) => setSchedule(e.target.value)}
+                />
+              </p>
+            </div>
+            <div className="Schedule-frame-81">
+              <div className="Schedule-frame-82" onClick={() => setEditScheduleModal(false)}>
+                <div className="Schedule-text-wrapper-62">취소</div>
+              </div>
+              <div className="Schedule-frame-83" onClick={handleEditEvent}>
+                <div className="Schedule-text-wrapper-63">수정</div>
               </div>
             </div>
           </div>

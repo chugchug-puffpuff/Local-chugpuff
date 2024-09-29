@@ -227,32 +227,15 @@
   color: var(--variable-collection-gray-2) !important;
 }
 
-/* .rbc-date-cell:hover {
-  cursor: pointer;
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  background-color: var(--variable-collection-gray-3);
-  border-radius: 8px;
-  height: 80px;
-} */
-
 .rbc-day-bg {
   background: none; /* 배경 제거 */
   box-shadow: none; /* 그림자 제거 */
 }
 
-/* .rbc-day-bg:hover {
-  cursor: pointer;
-  align-items: center;
-  background-color: var(--variable-collection-gray-3);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  height: 210px;
-  position: relative;
-  width: 165px;
-} */
+/* 선택된 일정 파란색 배경 그대로 적용*/
+.rbc-selected {
+  background-color: #3174ad !important;
+}
 
 /* 여기서부터 모달창 CSS */
 .Schedule-frame-78 {
@@ -301,6 +284,7 @@
   margin-top: -1px;
   position: relative;
   width: fit-content;
+  margin: auto;
 }
 
 .Schedule-dateAndSchedule {
@@ -401,4 +385,72 @@
   position: relative;
   white-space: nowrap;
   width: fit-content;
+}
+
+.Schedule-text-wrapper-64 {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  color: var(--variable-collection-gray-1);
+  padding: 10px;
+  height: 45px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.Schedule-text-wrapper-65 {
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  color: var(--variable-collection-gray-1);
+  padding: 10px;
+  height: 45px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.Schedule-frame-84 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 60px;
+  position: relative;
+}
+
+.Schedule-frame-85 {
+  cursor: pointer;
+  align-items: center;
+  background-color: var(--variable-collection-main-black);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 60px;
+  position: relative;
+}
+
+.Schedule-frame-86 {
+  cursor: pointer;
+  align-items: center;
+  background-color: #cd5757;
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 60px;
+  position: relative;
 }
