@@ -24,9 +24,9 @@ const CustomToolbar = (toolbar) => {
     toolbar.onNavigate('NEXT');
   };
 
-  const goToToday = () => {
-    toolbar.onNavigate('TODAY');
-  };
+  // const goToToday = () => {
+  //   toolbar.onNavigate('TODAY');
+  // };
 
   const label = () => {
     const date = moment(toolbar.date);
