@@ -93,7 +93,7 @@ const JobComment = ({ company, jobId, storedUserName, updateCommentCount }) => {
   // 댓글 작성 엔드포인트
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/job-postings/${jobId}/comments`, {
+      await axios.post(`http://localhost:8080/api/job-postings/${jobId}/comments`, {
         comment: comment,
       }, {
         headers: {
