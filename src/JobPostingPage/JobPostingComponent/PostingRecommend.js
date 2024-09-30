@@ -8,6 +8,7 @@ const PostingRecommend = () => {
   const [postRecommend, setPostRecommend] = useState([]);
   const [scrapedJobs, setScrapedJobs] = useState([]);
   const displayedRecommendations = showMore ? postRecommend.slice(0, 12) : postRecommend.slice(0, 4);
+  const imageCache = {};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,12 +33,17 @@ const PostingRecommend = () => {
 
           // 이미지 URL 가져오기
           const fetchImage = async (title) => {
+            if (imageCache[title]) {
+              return imageCache[title];
+            }
             try {
               const response = await axios.get(`https://api.bing.microsoft.com/v7.0/images/search?q=${title} 로고`, {
                 headers: { 'Ocp-Apim-Subscription-Key': '1e1ba0956772408883e8692f800bb01e' }
               });
               if (response.data.value && response.data.value.length > 0) {
-                return response.data.value[0].contentUrl;
+                const imageUrl = response.data.value[0].contentUrl;
+                imageCache[title] = imageUrl;
+                return imageUrl;
               }
             } catch (error) {
               console.error('Error fetching image from Bing API', error);

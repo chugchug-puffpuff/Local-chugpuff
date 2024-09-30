@@ -183,38 +183,42 @@ const CalendarComponent = () => {
     };
   
     try {
-      await axios.put(`http://localhost:8080/api/calenders/${selectedEvent.memoNo}`, updatedEvent, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
+      if (selectedEvent && selectedEvent.memoNo) {
+        await axios.put(`http://localhost:8080/api/calenders/${selectedEvent.memoNo}`, updatedEvent, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
   
-      // 일정 수정 후 일정 다시 불러오기
-      const fetchEvents = async () => {
-        try {
-          const response = await fetch('http://localhost:8080/api/calenders', {
-            headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-          });
-          const data = await response.json();
-          const mappedEvents = data.map(event => ({
-            memoNo: event.memoNo,
-            start: new Date(event.memoDate),
-            end: new Date(event.memoDate),
-            title: event.memoContent,
-            jobId: event.scrap?.jobId || null
-          }));
-          setEvents(mappedEvents);
-        } catch (error) {
-          console.error('Error fetching events:', error);
-        }
-      };
-  
-      await fetchEvents(); // fetchEvents를 호출하여 상태 업데이트
-      setEditScheduleModal(false);
-      setScheduleCheckModal(false);
-      setSelectedEvent(null); // 선택된 이벤트 초기화
+        // 일정 수정 후 일정 다시 불러오기
+        const fetchEvents = async () => {
+          try {
+            const response = await fetch('http://localhost:8080/api/calenders', {
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+              }
+            });
+            const data = await response.json();
+            const mappedEvents = data.map(event => ({
+              memoNo: event.memoNo,
+              start: new Date(event.memoDate),
+              end: new Date(event.memoDate),
+              title: event.memoContent,
+              jobId: event.scrap?.jobId || null
+            }));
+            setEvents(mappedEvents);
+          } catch (error) {
+            console.error('Error fetching events:', error);
+          }
+        };
+    
+        await fetchEvents(); // fetchEvents를 호출하여 상태 업데이트
+        setEditScheduleModal(false);
+        setScheduleCheckModal(false);
+        setSelectedEvent(null); // 선택된 이벤트 초기화
+      } else {
+        console.error('Invalid event selected for editing');
+      }
     } catch (error) {
       console.error('Error editing event:', error);
     }
