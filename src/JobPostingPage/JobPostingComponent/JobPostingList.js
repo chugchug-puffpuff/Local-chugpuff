@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import './JobPostingList.css'
+import './JobPostingList.css';
 import axios from 'axios';
 import Pagination from '../../Route/Pagination';
 
@@ -68,7 +68,8 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
     setSortType(type);
     setSortToggle(false);
   };
-  const fetchCommentsCount = async (jobId) => {
+
+  const fetchCommentsCount = useCallback(async (jobId) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/job-postings/${jobId}/comments`, {
         headers: {
@@ -80,9 +81,9 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
       console.error('Error fetching comments count:', error);
       return 0;
     }
-  };
-  
-  const fetchScrapCount = async (jobId) => {
+  }, []);
+
+  const fetchScrapCount = useCallback(async (jobId) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/job-postings/${jobId}/scrap-count`, {
         headers: {
@@ -94,9 +95,9 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
       console.error('Error fetching scrap count:', error);
       return 0;
     }
-  };
+  }, []);
 
-  const fetchJobs = async (url) => {
+  const fetchJobs = useCallback(async (url) => {
     try {
       const response = await axios.get(url, {
         headers: {
@@ -125,7 +126,7 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
     } catch (error) {
       console.error('Error fetching job postings:', error);
     }
-  };
+  }, [fetchCommentsCount, fetchScrapCount]);
 
   useEffect(() => {
     let selectedType;
@@ -138,7 +139,7 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
     }
     const url = `http://localhost:8080/api/job-postings?jobMidname=${jobMidname}&jobName=${jobKeyword}&regionName=${detailRegion}&sort=${selectedType}`;
     fetchJobs(url);
-  }, [detailRegion, jobMidname, jobKeyword, sortType]);
+  }, [detailRegion, jobMidname, jobKeyword, sortType, fetchJobs]);
 
   const handleSearch = async () => {
     let selectedType;
@@ -244,7 +245,7 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
       </div>
       <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} scrollTop={550} />
     </div>
-  )
-}
+  );
+};
 
-export default JobPostingList
+export default JobPostingList;
