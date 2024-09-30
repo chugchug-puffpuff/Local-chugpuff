@@ -290,7 +290,15 @@ const CalendarComponent = () => {
                     <div className="Schedule-text-wrapper-65">{selectedEvent.title}</div>
                   </Link>
                 ) : (
-                  <div className="Schedule-text-wrapper-64">{selectedEvent.title}</div>
+                  <div 
+                    className="Schedule-text-wrapper-65" 
+                    onClick={() => {
+                      setScheduleCheckModal(false);
+                      alert('마감된 공고입니다');
+                    }}
+                  >
+                    {selectedEvent.title}
+                  </div>
                 )}
               </p>
             </div>
