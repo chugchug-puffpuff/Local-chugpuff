@@ -1,18 +1,14 @@
-import React from 'react'
-import './NavBar.css'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import './NavBar.css';
 
 const NavBar = ({ authenticate, setAuthenticate }) => {
-  const navigate = useNavigate()
-  const [showUserInfo, setShowUserInfo] = useState(false)
-  const [userName, setUserName] = useState('')
-
-  useEffect(() => {
-    if (authenticate) {
-      fetchUserName()
-    }
-  }, [authenticate])
+  const navigate = useNavigate();
+  const [showUserInfo, setShowUserInfo] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [alarmModal, setAlarmModal] = useState(false);
+  const [notifications, setNotifications] = useState([]);
 
   const fetchUserName = async () => {
     try {
@@ -38,24 +34,66 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
     } catch (error) {
       console.error('Failed to fetch user name:', error);
     }
-  }
+  };
+
+  const fetchNotifications = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.get('http://localhost:8080/api/calenders/notifications', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const notificationsData = response.data;
+      localStorage.setItem('notifications', JSON.stringify(notificationsData));
+      setNotifications(notificationsData);
+    } catch (error) {
+      console.error('Failed to fetch notifications:', error);
+    }
+  };
+
+  useEffect(() => {
+    const checkMidnight = () => {
+      const now = new Date();
+      const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0) - now;
+
+      setTimeout(() => {
+        localStorage.setItem('notifications', JSON.stringify([])); // 초기화
+        fetchNotifications().then(() => {
+          const updatedNotifications = JSON.parse(localStorage.getItem('notifications'));
+          setNotifications(updatedNotifications);
+        });
+        setInterval(() => {
+          localStorage.setItem('notifications', JSON.stringify([])); // 초기화
+          fetchNotifications().then(() => {
+            const updatedNotifications = JSON.parse(localStorage.getItem('notifications'));
+            setNotifications(updatedNotifications);
+          });
+        }, 24 * 60 * 60 * 1000); // 24시간마다 실행
+      }, msUntilMidnight);
+    };
+
+    if (authenticate) {
+      fetchUserName();
+      fetchNotifications();
+      checkMidnight();
+    }
+  }, [authenticate]);
 
   const goToMain = () => {
-    navigate('/')
-  }
+    navigate('/');
+  };
   const goToLogin = () => {
-    navigate('/login')
-  }
+    navigate('/login');
+  };
   const goToSignUp = () => {
-    navigate('/signup')
-  }
+    navigate('/signup');
+  };
   const goToAIInterview = () => {
     if (authenticate) {
       navigate('/aiinterview');
     } else {
       navigate('/login', { state: { from: '/aiinterview' } });
     }
-  }
+  };
   const goToSelfIntroduction = () => {
     if (authenticate) {
       navigate('/selfintroduction');
@@ -69,29 +107,37 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
     } else {
       navigate('/login', { state: { from: '/jobposting' } });
     }
-  }
+  };
   const goToCommunity = () => {
     if (authenticate) {
       navigate('/community');
     } else {
       navigate('/login', { state: { from: '/community' } });
     }
-  }
+  };
   const goToCalendar = () => {
     if (authenticate) {
       navigate('/calender');
     } else {
       navigate('/login', { state: { from: '/calender' } });
     }
-  }
+  };
   const goToMyActivities = (component) => {
     navigate(`/myactivities/${component}`);
-    setShowUserInfo(false)
+    setShowUserInfo(false);
   };
 
   const toggleUserInfo = () => {
-    setShowUserInfo(!showUserInfo)
-  }
+    setShowUserInfo(!showUserInfo);
+    setAlarmModal(false); // 알람 창이 떠있으면 닫기
+  };
+
+  const toggleAlarmInfo = () => {
+    if (notifications.length > 0) { // 마감 하루전인 공고가 있을때만 활성화
+      setAlarmModal(!alarmModal);
+    }
+    setShowUserInfo(false); // 정보 창이 떠있으면 닫기
+  };
 
   const handleLogout = async () => {
     try {
@@ -105,60 +151,78 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
   };
 
   return (
-      <div>
-        <div className="NavBar-view-wrapper">
-          <div className="NavBar-view">
-            <div className="NavBar-element">
-              {authenticate ? (
-                  <div className="NavBar-div">
-                    <button className="NavBar-frame" onClick={toggleUserInfo}>
-                      <p className="NavBar-div-2">
-                        <span className="NavBar-span">{userName}</span>
-                        <span className="NavBar-text-wrapper"> 님</span>
-                      </p>
-                      <img
-                          className="NavBar-arrow-drop"
-                          alt={showUserInfo ? "Arrow drop up" : "Arrow drop down"}
-                          src={showUserInfo ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668ccfaca48cce45c95d9d30/img/arrow-drop-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"}
-                      />
-                    </button>
-                    {showUserInfo && (
-                        <div className="NavBar-view-2">
-                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('editInformation')}>내 정보 변경</div>
-                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myScrap')}>스크랩한 공고</div>
-                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myBoard')}>내가 작성한 게시물</div>
-                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myComment')}>내가 작성한 댓글</div>
-                          <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myLiked')}>좋아요 누른 게시물</div>
-                          <div className="NavBar-text-wrapper-3" onClick={handleLogout}>로그아웃</div>
-                        </div>
-                    )}
-                    <img
-                        className="NavBar-notifications"
-                        alt="Notifications"
-                        src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/notifications@2x.png"
-                    />
+    <div>
+      <div className="NavBar-view-wrapper">
+        <div className="NavBar-view">
+          <div className="NavBar-element">
+            {authenticate ? (
+              <div className="NavBar-div">
+                <button className="NavBar-frame" onClick={toggleUserInfo}>
+                  <p className="NavBar-div-2">
+                    <span className="NavBar-span">{userName}</span>
+                    <span className="NavBar-text-wrapper"> 님</span>
+                  </p>
+                  <img
+                    className="NavBar-arrow-drop"
+                    alt={showUserInfo ? "Arrow drop up" : "Arrow drop down"}
+                    src={showUserInfo ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668ccfaca48cce45c95d9d30/img/arrow-drop-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"}
+                  />
+                </button>
+                {showUserInfo && (
+                  <div className="NavBar-view-2">
+                    <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('editInformation')}>내 정보 변경</div>
+                    <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myScrap')}>스크랩한 공고</div>
+                    <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myBoard')}>내가 작성한 게시물</div>
+                    <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myComment')}>내가 작성한 댓글</div>
+                    <div className="NavBar-text-wrapper-3" onClick={() => goToMyActivities('myLiked')}>좋아요 누른 게시물</div>
+                    <div className="NavBar-text-wrapper-3" onClick={handleLogout}>로그아웃</div>
                   </div>
-              ) : (
-                  <>
-                    <button className="NavBar-text-wrapper-4" onClick={goToLogin}>로그인</button>
-                    <button className="NavBar-text-wrapper-4" onClick={goToSignUp}>회원가입</button>
-                  </>
-              )}
-            </div>
-            <div className="NavBar-frame-2">
-              <div className="NavBar-text-wrapper-4" onClick={goToAIInterview}>AI 모의면접</div>
-              <div className="NavBar-text-wrapper-4" onClick={goToSelfIntroduction}>자기소개서 첨삭</div>
-              <div className="NavBar-text-wrapper-4" onClick={goToJobPosting}>취업공고</div>
-              <div className="NavBar-text-wrapper-4" onClick={goToCommunity}>커뮤니티</div>
-              <div className="NavBar-text-wrapper-4" onClick={goToCalendar}>캘린더</div>
-            </div>
-            <div className="NavBar-view-3">
-              <button className="NavBar-view-4" onClick={goToMain}/>
-            </div>
+                )}
+                <img
+                  className="NavBar-notifications"
+                  alt="Notifications"
+                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/notifications@2x.png"
+                  onClick={toggleAlarmInfo}
+                />
+                {notifications.length > 0 && <div className="NavBar-notification-badge"/>}
+                {alarmModal && (
+                  <div className="NavBar-view-5">
+                    <div className="NavBar-text-wrapper-16">알람</div>
+                    {notifications.map((notification, index) => (
+                      <div key={index} className="NavBar-frame-34">
+                        <div className="NavBar-text-wrapper-16">공고 마감 하루 전입니다.</div>
+                        <p className="NavBar-text-wrapper-17">{notification}</p>
+                        <img
+                          className="NavBar-line-4"
+                          alt="Line"
+                          src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/line-20@2x.png"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <button className="NavBar-text-wrapper-4" onClick={goToLogin}>로그인</button>
+                <button className="NavBar-text-wrapper-4" onClick={goToSignUp}>회원가입</button>
+              </>
+            )}
+          </div>
+          <div className="NavBar-frame-2">
+            <div className="NavBar-text-wrapper-4" onClick={goToAIInterview}>AI 모의면접</div>
+            <div className="NavBar-text-wrapper-4" onClick={goToSelfIntroduction}>자기소개서 첨삭</div>
+            <div className="NavBar-text-wrapper-4" onClick={goToJobPosting}>취업공고</div>
+            <div className="NavBar-text-wrapper-4" onClick={goToCommunity}>커뮤니티</div>
+            <div className="NavBar-text-wrapper-4" onClick={goToCalendar}>캘린더</div>
+          </div>
+          <div className="NavBar-view-3">
+            <button className="NavBar-view-4" onClick={goToMain}/>
           </div>
         </div>
       </div>
-  )
-}
+    </div>
+  );
+};
 
 export default NavBar;
