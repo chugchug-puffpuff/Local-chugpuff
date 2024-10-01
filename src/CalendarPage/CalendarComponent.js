@@ -172,6 +172,7 @@ const CalendarComponent = () => {
   useEffect(() => {
     if (editScheduleModal && selectedEvent) {
       setEndDate(new Date(selectedEvent.end));
+      setSchedule(selectedEvent.title);
     }
   }, [editScheduleModal, selectedEvent]);
 
@@ -377,7 +378,7 @@ const CalendarComponent = () => {
                 <input
                   className="Schedule-text-field"
                   type="text"
-                  value={schedule || selectedEvent.title}
+                  value={schedule !== null ? schedule : selectedEvent.title}
                   placeholder='일정을 입력하세요'
                   onChange={(e) => setSchedule(e.target.value)}
                 />
