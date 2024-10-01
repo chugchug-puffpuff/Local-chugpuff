@@ -192,11 +192,13 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                       <div key={index} className="NavBar-frame-34">
                         <div className="NavBar-text-wrapper-16">공고 마감 하루 전입니다.</div>
                         <p className="NavBar-text-wrapper-17">{notification}</p>
-                        <img
-                          className="NavBar-line-4"
-                          alt="Line"
-                          src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/line-20@2x.png"
-                        />
+                        {index < notifications.length - 1 && ( 
+                          <img
+                            className="NavBar-line-4"
+                            alt="Line"
+                            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2e3b54cbc5fc1778d008d/img/line-20@2x.png"
+                          />
+                        )}
                       </div>
                     ))}
                   </div>
