@@ -438,6 +438,19 @@ public class AIInterviewService {
         }
     }
 
+    // 녹음 파일 반환 메서드
+    public Map<String, String> completeAnswerRecordingWithAudioUrl(Long AIInterviewNo) {
+        stopAudioCapture();
+
+        String audioFilePath = "captured_audio.wav";
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "녹음 완료");
+        response.put("captured_audio_url", audioFilePath);
+
+        return response;
+    }
+
     // 전체 피드백 생성 및 저장 메서드
     public Map<String, String> generateFullFeedback(AIInterview aiInterview) {
         List<AIInterviewFF> responses = aiInterviewFFRepository.findByAiInterview(aiInterview);
@@ -457,14 +470,14 @@ public class AIInterviewService {
             allResponses.append(response.getF_answer()).append(" ");
         }
 
-        String fullFeedbackPrompt = "전체 피드백: \n"
-                + "이 면접에서 다뤄진 모든 질문과 대답을 바탕으로 전체적인 피드백을 제공해주세요.\n"
-                + "형식은 다음과 같습니다:\n"
-                + "1. [피드백 항목 1]\n"
-                + "2. [피드백 항목 2]\n"
-                + "3. [피드백 항목 3]\n"
-                + "반드시 3가지의 피드백 항목을 모두 제공해주세요."
-                + "그 후에 반드시 종합적인 피드백을 제공해 주세요.\n\n"
+        String fullFeedbackPrompt = "이 면접에서 다뤄진 모든 질문과 대답을 바탕으로 전체적인 피드백을 제공해주세요. 형식은 다음과 같습니다:\n"
+                + "전체 피드백:\n"
+                + "1. [피드백의 키워드]: [첫 번째 피드백 내용]\n"
+                + "2. [피드백의 키워드]: [두 번째 피드백 내용]\n"
+                + "3. [피드백의 키워드]: [세 번째 피드백 내용]\n"
+                + "종합적인 피드백: [전체적인 결론 및 추가 조언]\n"
+                + "반드시 3가지의 피드백 항목을 모두 제공해주세요.\n"
+                + "각 피드백은 '[피드백의 키워드]: [피드백]' 형식으로 제공해주세요. 반드시 3가지의 피드백 항목을 제공한 후 종합적인 피드백을 추가로 제공해주세요.\n\n"
                 + "질문: " + allQuestions.toString() + "\n"
                 + "답변: " + allResponses.toString();
 

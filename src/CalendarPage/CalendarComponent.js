@@ -14,6 +14,7 @@ registerLocale('ko', ko); // 한국어 로케일 등록
 setDefaultLocale('ko'); // 기본 로케일을 한국어로 설정
 
 const localizer = momentLocalizer(moment);
+
 // 캘린더 상단 커스텀
 const CustomToolbar = (toolbar) => {
   const goToBack = () => {
@@ -24,10 +25,6 @@ const CustomToolbar = (toolbar) => {
     toolbar.onNavigate('NEXT');
   };
 
-  // const goToToday = () => {
-  //   toolbar.onNavigate('TODAY');
-  // };
-
   const label = () => {
     const date = moment(toolbar.date);
     return <p className="rbc-toolbar-text">{date.format('YYYY.MM')}</p>;
@@ -35,9 +32,6 @@ const CustomToolbar = (toolbar) => {
 
   return (
     <div className="rbc-toolbar">
-      {/* <span className="rbc-btn-group">
-        <button type="button" onClick={goToToday}>Today</button>
-      </span> */}
       <span className="rbc-toolbar-label">
         <img
           className="rbc-toolbar-img"
@@ -123,7 +117,7 @@ const CalendarComponent = () => {
     fetchEvents();
   }, []);
 
-   // 일정 추가 함수
+  // 일정 추가 함수
   const handleAddEvent = async () => {
     const newEvent = {
       end: endDate,
@@ -142,6 +136,8 @@ const CalendarComponent = () => {
       setEvents([...events, newEvent]); // 일정 추가 후 바로 업데이트
       setAddScheduleModal(false);
       setSchedule('');
+      setSelectedEvent(newEvent); // 새로 추가된 이벤트를 선택된 이벤트로 설정
+
       // 일정 추가 후 일정 다시 불러오기
       const fetchEvents = async () => {
         try {
@@ -152,6 +148,7 @@ const CalendarComponent = () => {
           });
           const data = await response.json();
           const mappedEvents = data.map(event => ({
+            memoNo: event.memoNo,
             start: new Date(event.memoDate),
             end: new Date(event.memoDate),
             title: event.memoContent,

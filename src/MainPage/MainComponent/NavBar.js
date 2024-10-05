@@ -190,7 +190,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                     <div className="NavBar-text-wrapper-16">알람</div>
                     {notifications.map((notification, index) => (
                       <div key={index} className="NavBar-frame-34">
-                        <div className="NavBar-text-wrapper-16">공고 마감 하루 전입니다.</div>
+                        <div className="NavBar-text-wrapper-16">일정 하루 전입니다.</div>
                         <p className="NavBar-text-wrapper-17">{notification}</p>
                         {index < notifications.length - 1 && ( 
                           <img
