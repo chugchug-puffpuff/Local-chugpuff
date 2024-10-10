@@ -8,7 +8,11 @@ const TotHistory = ({ interviewId, userName }) => {
   useEffect(() => {
     const fetchInterviewData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/interviews/${interviewId}`);
+        const response = await axios.get(`http://localhost:8080/api/aiinterview/${interviewId}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
         setInterviewData(response.data);
       } catch (error) {
         console.error('Failed to fetch interview data', error);
@@ -22,8 +26,8 @@ const TotHistory = ({ interviewId, userName }) => {
     return <div>Loading...</div>;
   }
 
-  const { selectedType, selectedFeedback, interviewHistory, feedback } = interviewData;
-  const oneLetter = selectedType === '형식 없음' ? '없' : selectedType.charAt(0);
+  const { interviewType, feedbackType, overallFeedbacks, f_feedback } = interviewData;
+  const oneLetter = interviewType.charAt(0);
 
   const InterviewItem = ({ question, answer }) => (
     <div className="TotHistory-frame-71">
@@ -54,8 +58,11 @@ const TotHistory = ({ interviewId, userName }) => {
     <div className="TotHistory">
       <div className="TotHistory-overlap-group-4">
         <div className="TotHistory-frame-70">
-          {interviewHistory.map((history, index) => (
-            <InterviewItem key={index} question={history.question} answer={history.answer} />
+          {overallFeedbacks.map((feedback) => (
+            <InterviewItem 
+              key={feedback.aiinterviewFFNo} 
+              question={feedback.f_question} 
+              answer={feedback.f_answer} />
           ))}
           <img
             className="TotHistory-line-3"
@@ -69,7 +76,9 @@ const TotHistory = ({ interviewId, userName }) => {
               </div>
               <div className="TotHistory-text-wrapper-57">치치폭폭 피드백 AI</div>
             </div>
-            <p className="TotHistory-text-wrapper-60">{feedback}</p>
+            <p className="TotHistory-text-wrapper-60">
+              {f_feedback ? f_feedback : "피드백이 존재하지 않습니다."}
+            </p>
           </div>
         </div>
         <div className="TotHistory-frame-76">
@@ -80,7 +89,7 @@ const TotHistory = ({ interviewId, userName }) => {
                 alt="Check"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/check.svg"
               />
-              <div className="TotHistory-text-wrapper-61">{selectedType}</div>
+              <div className="TotHistory-text-wrapper-61">{interviewType}</div>
             </div>
             <div className="TotHistory-frame-78">
               <img
@@ -88,7 +97,7 @@ const TotHistory = ({ interviewId, userName }) => {
                 alt="Check"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/check-1.svg"
               />
-              <div className="TotHistory-text-wrapper-61">{selectedFeedback}</div>
+              <div className="TotHistory-text-wrapper-61">{feedbackType}</div>
             </div>
           </div>
           <div className="TotHistory-frame-79">

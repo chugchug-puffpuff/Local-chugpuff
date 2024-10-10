@@ -15,8 +15,12 @@ const AIInterviewHistory = ({ authenticate, setAuthenticate, userName }) => {
   useEffect(() => {
     const fetchInterviewData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/interviews/${interviewId}`);
-        setFeedbackType(response.data.selectedFeedback);
+        const response = await axios.get(`http://localhost:8080/api/ainterview/${interviewId}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setFeedbackType(response.data.feedbackType);
       } catch (error) {
         console.error('Failed to fetch interview data', error);
       }

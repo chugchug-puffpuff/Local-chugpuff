@@ -36,16 +36,10 @@ const InterviewSelect = ({ setCanStartInterview, setSelectedType, setSelectedFee
         </div>
         <div className="InterviewSelect-frame-3">
           <div
-            className={`InterviewSelect-frame-4 ${selectedType === '형식 없음' ? 'selected' : ''}`}
-            onClick={() => handleSelectType('형식 없음')}
+            className={`InterviewSelect-frame-4 ${selectedType === '자기소개서 면접' ? 'selected' : ''}`}
+            onClick={() => handleSelectType('자기소개서 면접')}
           >
-            <div className="InterviewSelect-text-wrapper-2">형식 없음</div>
-          </div>
-          <div
-            className={`InterviewSelect-frame-4 ${selectedType === '자기소개서 기반' ? 'selected' : ''}`}
-            onClick={() => handleSelectType('자기소개서 기반')}
-          >
-            <div className="InterviewSelect-text-wrapper-2">자기소개서 기반</div>
+            <div className="InterviewSelect-text-wrapper-2">자기소개서 면접</div>
           </div>
           <div
             className={`InterviewSelect-frame-4 ${selectedType === '인성 면접' ? 'selected' : ''}`}

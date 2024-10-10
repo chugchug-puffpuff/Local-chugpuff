@@ -8,7 +8,11 @@ const ImmHistory = ({ interviewId, userName }) => {
   useEffect(() => {
     const fetchInterviewData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/interviews/${interviewId}`);
+        const response = await axios.get(`http://localhost:8080/api/aiinterview/${interviewId}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
         setInterviewData(response.data);
       } catch (error) {
         console.error('Failed to fetch interview data', error);
@@ -22,8 +26,8 @@ const ImmHistory = ({ interviewId, userName }) => {
     return <div>Loading...</div>;
   }
 
-  const { selectedType, selectedFeedback, interviewHistory } = interviewData;
-  const oneLetter = selectedType === '형식 없음' ? '없' : selectedType.charAt(0);
+  const { interviewType, feedbackType, immediateFeedbacks } = interviewData;
+  const oneLetter = interviewType.charAt(0);
 
   const InterviewItem = ({ question, answer, feedback }) => (
     <div className="ImmHistory-frame-71">
@@ -73,8 +77,13 @@ const ImmHistory = ({ interviewId, userName }) => {
     <div className="ImmHistory">
       <div className="ImmHistory-overlap-group-4">
         <div className="ImmHistory-frame-70">
-          {interviewHistory.map((history, index) => (
-            <InterviewItem key={index} question={history.question} answer={history.answer} feedback={history.feedback} />
+          {immediateFeedbacks.map((history) => (
+            <InterviewItem 
+              key={history.aiinterviewIFNo} 
+              question={history.i_question} 
+              answer={history.i_answer} 
+              feedback={history.i_feedback} 
+            />
           ))}
         </div>
         <div className="ImmHistory-frame-76">
@@ -85,7 +94,7 @@ const ImmHistory = ({ interviewId, userName }) => {
                 alt="Check"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/check.svg"
               />
-              <div className="ImmHistory-text-wrapper-61">{selectedType}</div>
+              <div className="ImmHistory-text-wrapper-61">{interviewType}</div>
             </div>
             <div className="ImmHistory-frame-78">
               <img
@@ -93,7 +102,7 @@ const ImmHistory = ({ interviewId, userName }) => {
                 alt="Check"
                 src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668e413494e39f8125259743/img/check-1.svg"
               />
-              <div className="ImmHistory-text-wrapper-61">{selectedFeedback}</div>
+              <div className="ImmHistory-text-wrapper-61">{feedbackType}</div>
             </div>
           </div>
           <div className="ImmHistory-frame-79">

@@ -13,20 +13,20 @@ const Login = ({ setAuthenticate, setUserName }) => {
     event.preventDefault(); // 기본 이벤트 방지
     try {  // 로그인 엔드포인트
       const response = await axios.post('http://localhost:8080/api/login', { id, password });
-      const { token, name } = response.data;
+      const { token } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('id', id); // 사용자 ID를 로컬 스토리지에 저장
-      localStorage.setItem('userName', name); // 사용자 이름을 로컬 스토리지에 저장
       localStorage.setItem('password', password); // 사용자 비밀번호를 로컬 스토리지에 저장
       
       // 사용자 정보를 가져오는 엔드포인트
       const userResponse = await axios.get(`http://localhost:8080/api/members/username/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const { user_id, job, jobKeyword } = userResponse.data;
+      const { user_id, job, jobKeyword, name } = userResponse.data;
       localStorage.setItem('user_id', user_id); // user_id를 로컬 스토리지에 저장
       localStorage.setItem('job', job); // 직무를 로컬 스토리지에 저장
       localStorage.setItem('jobKeyword', jobKeyword); // 직무키워드를 로컬 스토리지에 저장
+      localStorage.setItem('userName', name); // 이름을 로컬 스토리지에 저장
 
       // 알림 정보를 가져오는 엔드포인트
       const notificationsResponse = await axios.get('http://localhost:8080/api/calenders/notifications', {
