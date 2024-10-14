@@ -89,7 +89,7 @@ public class CalenderController {
 
 
         return d1Deadlines.stream()
-                .map(calender -> "'" + calender.getMemoContent() + "' 일정이 하루 전입니다.")
+                .map(calender -> "'" + calender.getMemoContent() + "' 일정 하루 전입니다. 지금 바로 확인해 보세요!")
                 .collect(Collectors.toList());
     }
 }

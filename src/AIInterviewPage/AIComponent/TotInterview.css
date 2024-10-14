@@ -388,4 +388,44 @@
   position: relative;
 }
 
+.button-bar {
+  position: fixed;
+  top: 50%;
+  right: 200px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  background-color: var(--variable-collection-gray-3);
+  border-radius: 16px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 320px;
+  justify-content: center;
+  padding: 4px 16px;
+}
 
+.nav-button {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  cursor: not-allowed;
+  text-align: center;
+}
+
+.nav-button-2 {
+  background-color: var(--variable-collection-button-navy);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0;
+}

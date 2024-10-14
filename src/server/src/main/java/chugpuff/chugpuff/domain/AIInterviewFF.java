@@ -14,7 +14,7 @@ public class AIInterviewFF {
     private Long AIInterviewFFNo;
 
     @ManyToOne
-    @JoinColumn(name = "AIInterviewNo")
+    @JoinColumn(name = "AIInterviewNo", nullable = false)
     @JsonBackReference
     private AIInterview aiInterview;
 

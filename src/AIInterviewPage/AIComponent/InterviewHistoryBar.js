@@ -27,7 +27,7 @@ const InterviewHistoryBar = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      const sortedDate = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sortedDate = response.data.sort((a, b) => new Date(b.aiInterviewDate) - new Date(a.aiInterviewDate));
       setSortedInterviewData(sortedDate);
 
       // 각 인터뷰에 대한 질문 가져오기
@@ -42,7 +42,7 @@ const InterviewHistoryBar = () => {
           ? interviewData.immediateFeedbacks[0].i_question
           : interviewData.overallFeedbacks.length > 0
           ? interviewData.overallFeedbacks[0].f_question
-          : 'No question available';
+          : '저장된 내역이 없습니다.';
         setQuestions(prev => ({ ...prev, [interview.aiinterviewNo]: question }));
       });
     } catch (error) {
@@ -79,8 +79,8 @@ const InterviewHistoryBar = () => {
     }
   };
 
-  const goToAIInterviewHistory = (interviewId) => {
-    navigate(`/aiinterviewhistory/${interviewId}`, { state: { interviewId } });
+  const goToAIInterviewHistory = (interviewId, feedbackType) => {
+    navigate(`/aiinterviewhistory/${interviewId}`, { state: { interviewId, feedbackType } });
   };
 
   return (
@@ -111,7 +111,7 @@ const InterviewHistoryBar = () => {
                   />
                 </div>
               </div>
-              <div className="InterviewHistoryBar-frame-6" onClick={() => goToAIInterviewHistory(data.aiinterviewNo)}>
+              <div className="InterviewHistoryBar-frame-6" onClick={() => goToAIInterviewHistory(data.aiinterviewNo, data.feedbackType)}>
                 <p className="InterviewHistoryBar-text-wrapper-4">
                   {questions[data.aiinterviewNo] || data.interviewType}
                 </p>

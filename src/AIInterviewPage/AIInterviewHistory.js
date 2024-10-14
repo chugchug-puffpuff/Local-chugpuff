@@ -5,29 +5,17 @@ import InterviewHistoryBar from "./AIComponent/InterviewHistoryBar.js";
 import ImmHistory from "./AIComponent/ImmHistory.js";
 import TotHistory from "./AIComponent/TotHistory.js";
 import NavBar from "../MainPage/MainComponent/NavBar.js";
-import axios from 'axios';
 
 const AIInterviewHistory = ({ authenticate, setAuthenticate, userName }) => {
   const location = useLocation();
-  const { interviewId } = location.state || {};
+  const { interviewId, feedbackType: initialFeedbackType } = location.state || {};
   const [feedbackType, setFeedbackType] = useState(null);
 
   useEffect(() => {
-    const fetchInterviewData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8080/api/ainterview/${interviewId}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        setFeedbackType(response.data.feedbackType);
-      } catch (error) {
-        console.error('Failed to fetch interview data', error);
-      }
-    };
-
-    fetchInterviewData();
-  }, [interviewId]);
+    if (initialFeedbackType) {
+      setFeedbackType(initialFeedbackType);
+    }
+  }, [initialFeedbackType]);
 
   const handleFeedbackTypeChange = (type) => {
     setFeedbackType(type);

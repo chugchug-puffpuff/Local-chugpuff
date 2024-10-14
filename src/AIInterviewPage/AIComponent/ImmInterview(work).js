@@ -34,24 +34,22 @@ const TypingEffect = ({ text = '', speed, onComplete }) => {
 };
 
 const ImmInterview = ({ selectedType, selectedFeedback }) => {
-  const oneLetter = selectedType.charAt(0);
   const location = useLocation();
   const { aiinterviewNo } = location.state || {};
   const [timeLeft, setTimeLeft] = useState(1800); // 타이머 시간
-  const [ttsAudioUrl, setTtsAudioUrl] = useState(''); // tts파일 상태
   const [currentQuestion, setCurrentQuestion] = useState(''); // 현재 질문 저장
+  const [ttsAudioUrl, setTtsAudioUrl] = useState(''); // tts파일 상태
+  //const [audio, setAudio] = useState(null); // audio 상태 추가
+  const [typingComplete, setTypingComplete] = useState(false);
+  const [isQuestionTypingComplete, setIsQuestionTypingComplete] = useState(false); // 질문 타이핑 완료 상태
   const [userAnswer, setUserAnswer] = useState(''); // 사용자 답변 저장
+  const [isAnswerCompleted, setIsAnswerCompleted] = useState(false); // 답변 완료 상태
   const [currentFeedback, setCurrentFeedback] = useState('') // 피드백 저장
+  const [isFeedbackComplete, setIsFeedbackComplete] = useState(false); // 피드백 완료 상태
   const [storageQuestion, setStorageQuestion] = useState([]); // 질문 저장
   const [storageAnswer, setStorageAnswer] = useState([]); // 답변 저장
   const [storageFeedback, setStorageFeedback] = useState([]); // 피드백 저장
-  const [isConverted, setIsConverted] = useState(false); // 변환상태
   const [isInterviewEnded, setIsInterviewEnded] = useState(false); // 인터뷰 종료 상태
-  const [isQuestionTypingComplete, setIsQuestionTypingComplete] = useState(false); // 질문 타이핑 상태
-  const [isQuestionTypingCompleteB, setIsQuestionTypingCompleteB] = useState(false); // 질문 타이핑 상태에 따른 버튼상태
-  const [answerButton, setAnswerButton] = useState(false); 
-  const [feedbackShow, setFeedbackShow] = useState(false);
-  const [nextQuestion, setNextQuestion] = useState(false);
 
   // 시간 포맷
   const formatTime = useCallback((seconds) => {
@@ -61,91 +59,87 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
   }, []);
 
   // 모의면접 세션 초기화 및 첫 질문 생성
-  useEffect(() => {
-    const fetchFirstQuestion = async () => {
-      try {
-        const firstQuestionResponse = await axios.post(`http://localhost:8080/api/aiinterview/${aiinterviewNo}/start`, {}, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          }
-        });
-        const { question, ttsAudioUrl } = firstQuestionResponse.data;
-        setCurrentQuestion(question);
-        setTtsAudioUrl(ttsAudioUrl);
-        const audioInstance = new Audio(`/output.mp3?timestamp=${new Date().getTime()}`); // ttsAudioUrl을 사용하여 오디오 인스턴스 생성
+  const fetchFirstQuestion = async () => {
+    try {
+      const firstQuestionResponse = await axios.post(`http://localhost:8080/api/aiinterview/${aiinterviewNo}/start`, {}, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+      const { question, ttsAudioUrl } = firstQuestionResponse.data;
+      setCurrentQuestion(question);
+      setTtsAudioUrl(ttsAudioUrl);
+      const audioInstance = new Audio(`/output.mp3?timestamp=${new Date().getTime()}`); // ttsAudioUrl을 사용하여 오디오 인스턴스 생성
 
-        const playAudio = async () => {
-          try {
-            await audioInstance.play();
-            console.log('Audio is playing');
-          } catch (error) {
-            console.error('Failed to play audio', error);
-          }
-        };
-        playAudio();
-        setTimeout(() => {
-          setIsQuestionTypingComplete(true);
-          setIsQuestionTypingCompleteB(true);
-        }, question.length * 125);
-        console.log('첫 질문:', firstQuestionResponse.data)
-        
-      } catch (error) {
-        console.error('첫 번째 질문 요청 실패', error);
-      }
-    };
-    fetchFirstQuestion();
-  }, [aiinterviewNo]);
+      const playAudio = async () => {
+        try {
+          await audioInstance.play();
+          console.log('Audio is playing');
+        } catch (error) {
+          console.error('Failed to play audio', error);
+        }
+      };
+      playAudio();
+      console.log('질문x시간:', question.length*125)
+      setTimeout(() => sendAnswerStartRequest, question.length*125);
+    } catch (error) {
+      console.error('Failed to fetch first question', error);
+    }
+  };
 
   // 다음 질문 요청
   const fetchNextQuestion = async () => {
-    setNextQuestion(false);
+    //setIsFeedbackComplete(false);
+    //setTypingComplete(false);
+    setIsAnswerCompleted(false);
+    // 현재 질문, 답변, 피드백을 각각의 배열에 추가
+    setStorageQuestion(prev => [...prev, currentQuestion]);
+    setStorageAnswer(prev => [...prev, userAnswer]);
+    setStorageFeedback(prev => [...prev, currentFeedback]);
+    setCurrentQuestion("");
+    setUserAnswer(""); // 이전 답변 초기화
     try {
       const response = await axios.post(`http://localhost:8080/api/aiinterview/${aiinterviewNo}/next-question`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      setFeedbackShow(false);
-      setIsQuestionTypingComplete(false);
-      setCurrentQuestion("");
-      setUserAnswer(""); // 이전 답변 초기화
-      setIsConverted(false);
-      const { question, ttsAudioUrl } = response.data;
-      console.log('Fetched question:', response.data); // 응답 질문 로그
-      setCurrentQuestion(question);
-      setTtsAudioUrl(ttsAudioUrl);
-      const audio = new Audio(`/output.mp3?timestamp=${new Date().getTime()}`);
-      audio.play();
-      setTimeout(() => {
-        setIsQuestionTypingComplete(true);
-        setIsQuestionTypingCompleteB(true);
-      }, question.length * 125);
-      setCurrentFeedback(""); // 이전 피드백 초기화
+      const { question, ttsAudioUrl } = response.data || {};
+      console.log('Fetched question:', question); // 응답 질문 로그
 
+      if (question && ttsAudioUrl) {
+        setCurrentQuestion(question);
+        setTtsAudioUrl(ttsAudioUrl);
+        const audio = new Audio(`/output.mp3?timestamp=${new Date().getTime()}`);
+        audio.play();
+        setCurrentFeedback(''); // 이전 피드백 초기화
+        console.log('질문x시간:', question.length*125)
+        setTimeout(() => sendAnswerStartRequest, question.length*125);
+        console.log('다음 질문 요청이 성공적으로 전송되었습니다.');
+      } else {
+        console.error('응답 데이터가 올바르지 않습니다:', response.data);
+      }
     } catch (error) {
       console.error('다음 질문 요청 중 오류가 발생했습니다:', error);
     }
-  };
+  };  
 
   // 녹음 시작 
   const sendAnswerStartRequest = async () => {
-    setIsQuestionTypingCompleteB(false);
     try {
       await axios.post(`http://localhost:8080/api/aiinterview/${aiinterviewNo}/answer-start`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      console.log('답변 시작 요청이 성공적으로 전송되었습니다.');
-      setAnswerButton(true);
+      console.log('녹음을 시작합니다.');
     } catch (error) {
       console.error('답변 시작 요청 중 오류가 발생했습니다:', error);
     }
   };
-
+  
   // 답변 완료
   const handleCompleteAnswer = async () => {
-    setAnswerButton(false);
     try {
       const completeResponse = await axios.post(`http://localhost:8080/api/aiinterview/${aiinterviewNo}/answer-complete?timestamp=${new Date().getTime()}`, {}, {
         headers: {
@@ -153,22 +147,25 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
           'Cache-Control': 'no-cache'  // 캐시 방지 헤더 추가
         }
       });
+      
+      console.log('녹음을 완료했습니다.');
+      // 응답에서 캡처된 오디오 URL 추출
       console.log('data:', completeResponse.data)
+      setIsAnswerCompleted(true);
       convertAnswer();
     } catch (error) {
       console.error('답변완료 중 오류가 발생했습니다:', error);
     }
   };
 
-  // 변환 요청
+  // 답변 변환
   const convertAnswer = async () => {
-    console.log('변환요청');
-    const filePath = '/captured_audio.wav';
+    const filePath = '/captured_audio.wav'; // captured_audio_url을 사용하여 오디오 파일 가져오기
     const response = await fetch(filePath);
     const blob = await response.blob();
     const formData = new FormData();
-    formData.append('audioFile', blob, 'captured_audio.wav'); // Blob을 FormData에 추가
-  
+    formData.append('audioFile', blob); // Blob을 FormData에 추가
+
     // 전송할 데이터를 콘솔에 출력
     console.log('FormData to be sent:', formData);
     try {
@@ -182,17 +179,15 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
       const { answer } = convertResponse.data;
       console.log('answer', convertResponse.data)
       setUserAnswer(answer); 
-      setIsConverted(true);
-      setStorageAnswer(prev => [...prev, answer]);
       answerFeedback();
     } catch (error) {
       console.error('답변 변환 중 오류가 발생했습니다:', error);
     }
   };
-  
-  // 피드백 요청
+
   const answerFeedback = async () => {
     try {
+      // 피드백 생성 요청 보내기
       const feedbackResponse = await axios.post(`http://localhost:8080/api/aiinterview/${aiinterviewNo}/generate-feedback`, {}, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -200,19 +195,13 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
       });
   
       const { feedback, ttsAudioUrl } = feedbackResponse.data;
-      console.log('피드백:', feedbackResponse.data)
-      setFeedbackShow(true);
+      console.log('피드백이 반환되었습니다:', feedbackResponse.data);
       setCurrentFeedback(feedback);
       setTtsAudioUrl(ttsAudioUrl);
-      setStorageFeedback(prev => [...prev, feedback]);
       const audio = new Audio(`/output.mp3?timestamp=${new Date().getTime()}`);
       audio.play();
-      setStorageQuestion(prev => [...prev, currentQuestion]);
-      setTimeout(() => {
-        setNextQuestion(true);
-      }, feedback.length * 120);
     } catch (error) {
-      console.error('피드백 요청에 실패하였습니다:', error);
+      console.error('Failed to complete answer process', error);
     }
   };
 
@@ -231,6 +220,9 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
     }
   }, [aiinterviewNo]);
 
+  useEffect(() => {
+    fetchFirstQuestion();
+  }, [])
   // 타이머 설정
   useEffect(() => {
     if (timeLeft > 0) {
@@ -241,7 +233,9 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
     }
   }, [timeLeft, handleEndInterview]);
 
-  // 면접 종료 시 
+  const oneLetter = selectedType.charAt(0);
+
+  // 한 세트의 질문&답변&피드백이 모일 경우
   const renderHistoryItem = useCallback(() => {
     return storageQuestion.map((question, index) => (
       <div key={index} className="InterviewPlay-history-item">
@@ -301,10 +295,10 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
         <TypingEffect 
           text={currentQuestion} 
           speed={125} 
-          // onComplete={() => {
-          //   setIsQuestionTypingComplete(true);
-          //   setIsQuestionTypingCompleteB(true);
-          // }} 
+          onComplete={() => {
+            setTypingComplete(true)
+            //setIsQuestionTypingComplete(true);
+          }} 
         />
       </div>
     );
@@ -315,13 +309,13 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
     return (
       <div className="InterviewPlay-frame-2">
         <div className="InterviewPlay-frame-3">
-          {answerButton && ( // 질문 타이핑 상태가 true라면 파란 테두리 노출
+          {/* {isQuestionTypingComplete && ( // 질문 타이핑 상태가 true라면 파란 테두리 노출
             <img
               className="InterviewPlay-ellipse"
               alt="Ellipse"
               src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6690d46ff1077d330fbfb9e3/img/ellipse-1.svg"
             />
-          )}
+          )} */}
           <img
             className="InterviewPlay-account-circle"
             alt="Account circle"
@@ -329,13 +323,15 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
           />
           <div className="InterviewPlay-text-wrapper-2">{localStorage.getItem('userName')}</div>
         </div>
-        {answerButton ? (
+        {/* {isQuestionTypingComplete ? (
           <p className="InterviewPlay-p">목소리를 인식 중입니다.</p>
         ) : (
           <p className="InterviewPlay-p">{userAnswer}</p>
-        )}
-        {/* <p className="InterviewPlay-p">{userAnswer}</p> */}
-        {feedbackShow && (
+        )} */}
+        <p className="InterviewPlay-p">{userAnswer}</p>
+        {!isAnswerCompleted ? (
+          <button onClick={handleCompleteAnswer} className="InterviewPlay-complete">답변 완료</button>
+        ) : (
           <>
             <img
               className="line-3"
@@ -352,9 +348,10 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
               <TypingEffect 
                 text={currentFeedback} 
                 speed={125} 
-                // onComplete={() => {
-                //     setIsFeedbackComplete(true);
-                // }} 
+                onComplete={() => {
+                    //setIsFeedbackComplete(true);
+                    fetchNextQuestion();
+                }} 
               />
             </div>
             <img
@@ -366,18 +363,19 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
         )}
       </div>
     );
-  }, [userAnswer, currentFeedback, handleCompleteAnswer]);
+  // ), [isSpeaking, userName, userAnswer, isAnswerCompleted, handleCompleteAnswer, currentQuestionIndex]);
+  }, [isQuestionTypingComplete, isAnswerCompleted, userAnswer, currentFeedback, handleCompleteAnswer]);
 
   // 메인 렌더링
   return (
     <div className="InterviewPlay-overlap-group">
       <div className="InterviewPlay-frame">
         <div className="InterviewPlay-div">
-          {isInterviewEnded && storageQuestion.length > 0 && renderHistoryItem()} {/* storageQuestion에 요소가 있을 때만 렌더링 */}
+          {storageQuestion.length > 0 && renderHistoryItem()} {/* storageQuestion에 요소가 있을 때만 렌더링 */}
           {!isInterviewEnded && (
             <>
               {renderCurrentQuestion()}
-              {isQuestionTypingComplete && renderUserAnswer()}
+              {typingComplete && renderUserAnswer()}
             </>
           )}
         </div>
@@ -426,14 +424,6 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
           </div>
         )}
       </div>
-      {!isInterviewEnded && (
-        <div className="button-bar">
-          <button className={isQuestionTypingCompleteB ? "nav-button-2" : "nav-button"} onClick={sendAnswerStartRequest}>녹음 시작</button>
-          <button className={answerButton ? "nav-button-2" : "nav-button"} onClick={handleCompleteAnswer}>답변 완료</button>
-          <button className={nextQuestion ? "nav-button-2" : "nav-button"} onClick={fetchNextQuestion}>다음 질문</button>
-          <button className="nav-button-2" onClick={handleEndInterview}>면접 종료</button>
-        </div>
-      )}
     </div>
   );
 };
