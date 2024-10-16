@@ -20,12 +20,13 @@
 .InterviewStart-text-wrapper {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-SemiBold", Helvetica;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   height: 27px;
   letter-spacing: -0.48px;
   line-height: 24px;
   margin-top: -1px;
+  margin-bottom: 5px;
   position: relative;
   white-space: nowrap;
   width: 162px;
@@ -45,7 +46,7 @@
   left: 0;
   letter-spacing: -0.5px;
   line-height: 21px;
-  position: absolute;
+  position: relative;
   top: -1px;
   white-space: nowrap;
 }
@@ -58,8 +59,8 @@
   left: 0;
   letter-spacing: -0.5px;
   line-height: 21px;
-  position: absolute;
-  top: 30px;
+  position: relative;
+  top: 10px;
   white-space: nowrap;
 }
 
@@ -71,8 +72,21 @@
   left: 0;
   letter-spacing: -0.5px;
   line-height: 21px;
-  position: absolute;
-  top: 62px;
+  position: relative;
+  top: 20px;
+  width: 311px;
+}
+
+.InterviewStart-text-wrapper-6 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: -0.5px;
+  line-height: 21px;
+  position: relative;
+  top: 30px;
   width: 311px;
 }
 
@@ -84,6 +98,7 @@
   gap: 8px;
   position: relative;
   width: 312px;
+  top: 31px;
 }
 
 .InterviewStart-div-wrapper {

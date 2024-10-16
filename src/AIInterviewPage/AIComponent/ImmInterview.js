@@ -428,7 +428,7 @@ const ImmInterview = ({ selectedType, selectedFeedback }) => {
       </div>
       {!isInterviewEnded && (
         <div className="button-bar">
-          <button className={isQuestionTypingCompleteB ? "nav-button-2" : "nav-button"} onClick={sendAnswerStartRequest}>녹음 시작</button>
+          <button className={isQuestionTypingCompleteB ? "nav-button-2" : "nav-button"} onClick={sendAnswerStartRequest}>답변 시작</button>
           <button className={answerButton ? "nav-button-2" : "nav-button"} onClick={handleCompleteAnswer}>답변 완료</button>
           <button className={nextQuestion ? "nav-button-2" : "nav-button"} onClick={fetchNextQuestion}>다음 질문</button>
           <button className="nav-button-2" onClick={handleEndInterview}>면접 종료</button>
