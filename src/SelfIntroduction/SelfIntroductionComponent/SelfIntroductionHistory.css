@@ -1,0 +1,106 @@
+.SelfIntroductionHistory-frame-wrapper {
+  background-color: #ffffff;
+  border-color: var(--variable-collection-gray-3);
+  border-right-style: solid;
+  border-right-width: 1px;
+  height: 992px;
+  left: 0;
+  position: fixed;
+  top: 88px;
+  width: 310px;
+}
+
+.SelfIntroductionHistory-frame {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 16px;
+  left: 40px;
+  position: relative;
+  top: 36px;
+}
+
+.SelfIntroductionHistory-frame-2 {
+  align-items: center;
+  background-color: var(--variable-collection-button-navy);
+  border-radius: 120px;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  padding: 8px 50px;
+  position: relative;
+  width: 238px;
+}
+
+.SelfIntroductionHistory-text-wrapper {
+  color: #ffffff;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  margin-top: -0.5px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.SelfIntroductionHistory-add {
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+.SelfIntroductionHistory-frame-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.SelfIntroductionHistory-frame-4 {
+  align-items: center;
+  background-color: var(--variable-collection-mint);
+  border: 0.5px solid;
+  border-color: var(--variable-collection-gray-1);
+  border-radius: 12px 0px 0px 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 4px 12px;
+  position: relative;
+  width: 120px;
+}
+
+.SelfIntroductionHistory-check {
+  height: 6.62px;
+  position: relative;
+  width: 9.01px;
+}
+
+.SelfIntroductionHistory-text-wrapper-2 {
+  color: var(--variable-collection-gray-1);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  margin-top: -0.5px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.SelfIntroductionHistory-frame-5 {
+  align-items: center;
+  border: 0.5px solid;
+  border-color: var(--variable-collection-gray-1);
+  border-radius: 0px 12px 12px 0px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-left: -0.5px;
+  padding: 4px 12px;
+  position: relative;
+  width: 120px;
+}

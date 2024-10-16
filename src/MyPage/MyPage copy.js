@@ -1,46 +1,15 @@
 import React from "react";
-<<<<<<< HEAD
-import { useParams } from "react-router-dom";
 import "./MyPage.css";
 import NavBar from "../MainPage/MainComponent/NavBar";
-import MyInfoBar from "./MyPageComponent/MyInfoBar";
-import EditInformation from "./MyPageComponent/EditInformation";
-import MyScrap from "./MyPageComponent/MyScrap";
-import MyBoard from "./MyPageComponent/MyBoard";
-import MyComment from "./MyPageComponent/MyComment";
-import MyLiked from "./MyPageComponent/MyLiked";
-
-export const MyPage = ({ authenticate, setAuthenticate, userName }) => {
-  const { component } = useParams();
-  const activeComponent = component;
-
-  return (
-    <div className="MyPage">
-      <MyInfoBar setAuthenticate={setAuthenticate} userName={userName} />
-      {activeComponent === 'editInformation' && <EditInformation setAuthenticate={setAuthenticate}/>}
-      {activeComponent === 'myScrap' && <MyScrap />}
-      {activeComponent === 'myBoard' && <MyBoard />}
-      {activeComponent === 'myComment' && <MyComment />}
-      {activeComponent === 'myLiked' && <MyLiked />}
-=======
 import { useNavigate } from "react-router-dom";
-import "./MyPage.css";
-import NavBar from "../MainPage/MainComponent/NavBar";
 
 export const MyPage = ({ authenticate, setAuthenticate, userName }) => {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      // JWT 토큰 삭제
-      localStorage.removeItem("token");
-      setAuthenticate(false);
-      navigate("/"); // 메인 페이지로 이동
-    } catch (error) {
-      console.error("로그아웃 중 오류 발생:", error);
-    }
+  const handleLogout = () => {
+    setAuthenticate(false);
+    navigate('/');
   };
-
   return (
     <div className="element">
       <div className="frame">
@@ -181,16 +150,15 @@ export const MyPage = ({ authenticate, setAuthenticate, userName }) => {
             </div>
           </div>
         </div>
-        <div className="frame-24" onClick={handleLogout}>
+        <div className="frame-24">
           <img
             className="line-3"
             alt="Line"
             src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/line-18.svg"
           />
-          <div className="text-wrapper-13">로그아웃</div>
+          <div className="text-wrapper-13" onClick={handleLogout}>로그아웃</div>
         </div>
       </div>
->>>>>>> 11271f0c87401ec60fbd34241100d687da0405d4
       <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} userName={userName} />
     </div>
   );
