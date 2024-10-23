@@ -74,6 +74,7 @@
   letter-spacing: -0.48px;
   line-height: 28.8px;
   position: relative;
+  
 }
 
 .EditingComponent-img {
@@ -90,7 +91,7 @@
   width: 40px;
 }
 
-.EditingComponent-text-wrapper-8 h2 {
+.HistoryComponent-text-wrapper-8 h2 {
   color: var(--variable-collection-main-black);
   font-family: "Pretendard Variable-Regular", Helvetica;
   font-size: 18px;

@@ -22,26 +22,30 @@ const RecruitInfoPage = ({ authenticate, setAuthenticate }) => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         });
-        const jobInfoData = response.data.jobs.job.map(job => ({
-          jobId: job.id, // 공고 id
-          company: job.company.detail.name, // 기업명
-          title: job.position.title, // 제목
-          industry: job.position.industry.name, // 업종
-          location: job.position.location.name, // 지역
-          employmentType: job.position['job-type'].name, // 고용형태(정규직, 비정규직)
-          jobMidCode: job.position['job-mid-code'].name, // 직군
-          jobCode: job.position['job-code'].name, // 직무
-          experience: job.position['experience-level'].name, // 경력
-          education: job.position['required-education-level'].name, // 학력
-          salary: job.salary.name, // 연봉
-          postingDate: job['posting-timestamp'], // 게시일
-          openingDate: job['opening-timestamp'], // 접수 시작일
-          expirationDate: job['expiration-timestamp'], // 접수 종료일
-          closeType: job['close-type'].name, // 접수 마감 유형(상시, 수시 등등)
-          infoUrl: job.company.detail.href, // 상세 정보 URL
-          url: job.url // 지원 링크
-        }));
-        setJobInfo(jobInfoData);
+        if (response.data.code === 4) {
+          setJobInfo('Exceeded'); // api 요청횟수가 초과했을 경우의 상태 추가
+        } else {
+          const jobInfoData = response.data.jobs.job.map(job => ({
+            jobId: job.id, // 공고 id
+            company: job.company.detail.name, // 기업명
+            title: job.position.title, // 제목
+            industry: job.position.industry.name, // 업종
+            location: job.position.location.name, // 지역
+            employmentType: job.position['job-type'].name, // 고용형태(정규직, 비정규직)
+            jobMidCode: job.position['job-mid-code'].name, // 직군
+            jobCode: job.position['job-code'].name, // 직무
+            experience: job.position['experience-level'].name, // 경력
+            education: job.position['required-education-level'].name, // 학력
+            salary: job.salary.name, // 연봉
+            postingDate: job['posting-timestamp'], // 게시일
+            openingDate: job['opening-timestamp'], // 접수 시작일
+            expirationDate: job['expiration-timestamp'], // 접수 종료일
+            closeType: job['close-type'].name, // 접수 마감 유형(상시, 수시 등등)
+            infoUrl: job.company.detail.href, // 상세 정보 URL
+            url: job.url // 지원 링크
+          }));
+          setJobInfo(jobInfoData);
+        }
       } catch (error) {
         console.error('Error fetching job info:', error);
       }
@@ -76,19 +80,25 @@ const RecruitInfoPage = ({ authenticate, setAuthenticate }) => {
     <div className="RecruitInfoPage">
       <div className="RecruitInfoPage-frame">
         <div className="RecruitInfoPage-div">
-          <RecruitInfo jobInfo={jobInfo} commentCount={commentCount} />
-          <InfoSquare jobInfo={jobInfo} />
-          <img
-            className="RecruitInfoPage-line-2"
-            alt="Line"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/line-17.png"
-          />
-          <JobComment 
-            storedUserName={userName} 
-            company={jobInfo?.[0]?.company} 
-            jobId={jobInfo?.[0]?.jobId} 
-            updateCommentCount={updateCommentCount}
-          />
+          {jobInfo === 'Exceeded' ? (
+            <div className='RecruitInfoPage-over'>오늘 하루 이용가능한 사람인 API 요청 횟수를 초과했습니다.</div>
+          ) : (
+            <>
+              <RecruitInfo jobInfo={jobInfo} commentCount={commentCount} />
+              <InfoSquare jobInfo={jobInfo} />
+              <img
+                className="RecruitInfoPage-line-2"
+                alt="Line"
+                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/line-17.png"
+              />
+              <JobComment 
+                storedUserName={userName} 
+                company={jobInfo?.[0]?.company} 
+                jobId={jobInfo?.[0]?.jobId} 
+                updateCommentCount={updateCommentCount}
+              />
+            </>
+          )}
           <div className="CommunityPost-frame-19"onClick={() => navigate('/jobposting')}>
             <img
               className="CommunityPost-format-list-bulleted"

@@ -18,51 +18,55 @@ const PostingRecommend = () => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         });
-        const jobRecommendations = await Promise.all(response.data.jobs.job.map(async job => {
-          const expirationTimestamp = job['expiration-timestamp'] * 1000;
-          const currentTime = new Date().getTime();
-          const timeDifference = expirationTimestamp - currentTime;
-          const expirationDay = `D-${Math.ceil(timeDifference / (1000 * 60 * 60 * 24))}`;
+        if (response.data.code === 4) {
+          setPostRecommend([]); // api 요청횟수를 초과했을 때 목록을 비움
+        } else {
+          const jobRecommendations = await Promise.all(response.data.jobs.job.map(async job => {
+            const expirationTimestamp = job['expiration-timestamp'] * 1000;
+            const currentTime = new Date().getTime();
+            const timeDifference = expirationTimestamp - currentTime;
+            const expirationDay = `D-${Math.ceil(timeDifference / (1000 * 60 * 60 * 24))}`;
 
-          // 스크랩 수 불러오기
-          const scrapResponse = await axios.get(`http://localhost:8080/api/job-postings/${job.id}/scrap-count`, {
-            headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-          });
-
-          // 이미지 URL 가져오기
-          const fetchImage = async (title) => {
-            if (imageCache[title]) {
-              return imageCache[title];
-            }
-            try {
-              const response = await axios.get(`https://api.bing.microsoft.com/v7.0/images/search?q=${title} 로고`, {
-                headers: { 'Ocp-Apim-Subscription-Key': '1e1ba0956772408883e8692f800bb01e' }
-              });
-              if (response.data.value && response.data.value.length > 0) {
-                const imageUrl = response.data.value[0].contentUrl;
-                imageCache[title] = imageUrl;
-                return imageUrl;
+            // 스크랩 수 불러오기
+            const scrapResponse = await axios.get(`http://localhost:8080/api/job-postings/${job.id}/scrap-count`, {
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
               }
-            } catch (error) {
-              console.error('Error fetching image from Bing API', error);
-            }
-            return 'https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/image-2.png';
-          };
+            });
 
-          const imageUrl = await fetchImage(job.position.title);
+            // 이미지 URL 가져오기
+            const fetchImage = async (title) => {
+              if (imageCache[title]) {
+                return imageCache[title];
+              }
+              try {
+                const response = await axios.get(`https://api.bing.microsoft.com/v7.0/images/search?q=${title} 로고`, {
+                  headers: { 'Ocp-Apim-Subscription-Key': '1e1ba0956772408883e8692f800bb01e' }
+                });
+                if (response.data.value && response.data.value.length > 0) {
+                  const imageUrl = response.data.value[0].contentUrl;
+                  imageCache[title] = imageUrl;
+                  return imageUrl;
+                }
+              } catch (error) {
+                console.error('Error fetching image from Bing API', error);
+              }
+              return 'https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2d8cf4d8f7eb28bb7ce11/img/image-2.png';
+            };
 
-          return {
-            jobId: job.id,
-            company: job.company.detail.name,
-            title: job.position.title,
-            expirationDay: expirationDay,
-            scrapCount: scrapResponse.data || 0,
-            imageUrl: imageUrl
-          };
-        }));
-        setPostRecommend(jobRecommendations);
+            const imageUrl = await fetchImage(job.position.title);
+
+            return {
+              jobId: job.id,
+              company: job.company.detail.name,
+              title: job.position.title,
+              expirationDay: expirationDay,
+              scrapCount: scrapResponse.data || 0,
+              imageUrl: imageUrl
+            };
+          }));
+          setPostRecommend(jobRecommendations);
+        }
       } catch (error) {
         console.error('Error fetching job postings:', error);
       }
@@ -99,42 +103,46 @@ const PostingRecommend = () => {
         </div>
       </div>
       <div className="PostingRecommend-frame-7">
-        {displayedRecommendations.map((job, index) => (
-          <div className="PostingRecommend-group" key={index}>
-            <Link to={`/recruitinfo/${job.jobId}`}>
-              <div className="PostingRecommend-overlap-group">
-                <img
-                  className="PostingRecommend-image"
-                  alt="기업 이미지 로고"
-                  src={job.imageUrl}
-                />
-                <div className="PostingRecommend-frame-8">
-                  <div className="PostingRecommend-text-wrapper-5">{job.company}</div>
-                  <div className="PostingRecommend-frame-9">
-                    <div className="PostingRecommend-frame-10">
-                      <p className="PostingRecommend-text-wrapper-6">{job.title}</p>
-                    </div>
-                    <div className="PostingRecommend-frame-11">
-                      <div className="PostingRecommend-frame-12">
-                        <div className="PostingRecommend-grade-wrapper">
-                          <img
-                            className={`PostingRecommend-grade ${scrapedJobs.includes(job.jobId) ? 'scraped' : ''}`}
-                            alt="scrap"
-                            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
-                          />
-                        </div>
-                        <div className="PostingRecommend-frame-13">
-                          <div className="PostingRecommend-text-wrapper-7">{job.scrapCount}</div>
-                        </div>
+        {postRecommend.length === 0 ? (
+          <p className='PostingRecommend-over'>오늘 하루 이용가능한 사람인 API 요청 횟수를 초과했습니다.</p>
+        ) : (
+          displayedRecommendations.map((job, index) => (
+            <div className="PostingRecommend-group" key={index}>
+              <Link to={`/recruitinfo/${job.jobId}`}>
+                <div className="PostingRecommend-overlap-group">
+                  <img
+                    className="PostingRecommend-image"
+                    alt="기업 이미지 로고"
+                    src={job.imageUrl}
+                  />
+                  <div className="PostingRecommend-frame-8">
+                    <div className="PostingRecommend-text-wrapper-5">{job.company}</div>
+                    <div className="PostingRecommend-frame-9">
+                      <div className="PostingRecommend-frame-10">
+                        <p className="PostingRecommend-text-wrapper-6">{job.title}</p>
                       </div>
-                      <div className="PostingRecommend-text-wrapper-8">{job.expirationDay}</div>
+                      <div className="PostingRecommend-frame-11">
+                        <div className="PostingRecommend-frame-12">
+                          <div className="PostingRecommend-grade-wrapper">
+                            <img
+                              className={`PostingRecommend-grade ${scrapedJobs.includes(job.jobId) ? 'scraped' : ''}`}
+                              alt="scrap"
+                              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
+                            />
+                          </div>
+                          <div className="PostingRecommend-frame-13">
+                            <div className="PostingRecommend-text-wrapper-7">{job.scrapCount}</div>
+                          </div>
+                        </div>
+                        <div className="PostingRecommend-text-wrapper-8">{job.expirationDay}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))
+        )}
       </div>
     </div>
   )

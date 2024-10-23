@@ -468,3 +468,10 @@
   white-space: nowrap;
   width: fit-content;
 }
+
+.JobPostingList-over {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+}

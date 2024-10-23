@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import "./TotHistory.css";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 const TotHistory = ({ interviewId, userName }) => {
   const [interviewData, setInterviewData] = useState(null);
@@ -28,6 +31,13 @@ const TotHistory = ({ interviewId, userName }) => {
 
   const { interviewType, feedbackType, overallFeedbacks, f_feedback } = interviewData;
   const oneLetter = interviewType.charAt(0);
+
+  const formattedText = f_feedback
+    .replace(/전체 피드백:/g, '<span class="bold-1">전체 피드백</span>')
+    .replace(/전체피드백:/g, '<span class="bold-1">전체피드백</span>')
+    .replace(/(##.*?:)/g, '<span class="bold">$1</span>')
+    .replace(/##/g, '')
+    .replace(/(종합적인 피드백:)/g, '<span class="bold">$1</span>');
 
   const InterviewItem = ({ question, answer }) => (
     <div className="TotHistory-frame-71">
@@ -76,9 +86,17 @@ const TotHistory = ({ interviewId, userName }) => {
               </div>
               <div className="TotHistory-text-wrapper-57">치치폭폭 피드백 AI</div>
             </div>
-            <p className="TotHistory-text-wrapper-60">
-              {f_feedback ? f_feedback : "피드백이 존재하지 않습니다."}
-            </p>
+            {formattedText ? (
+              <ReactMarkdown
+                className="TotHistory-text-wrapper-60"
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+              >
+                {formattedText}
+              </ReactMarkdown>
+            ):(
+              <p className="TotHistory-text-wrapper-60">피드백이 존재하지 않습니다.</p>
+            )}
           </div>
         </div>
         <div className="TotHistory-frame-76">

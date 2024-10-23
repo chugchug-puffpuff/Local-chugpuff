@@ -11,43 +11,47 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate();
   const { boardNo } = useParams();
   const [post, setPost] = useState(null);
-  const userName = localStorage.getItem('userName');
-  const [isLiked, setIsLiked] = useState();
-  
+  const [userName, setUserName] = useState('');
+  const [isLiked, setIsLiked] = useState(() => {
+    return JSON.parse(localStorage.getItem(`isLiked_${boardNo}`)) || false;
+  });
+
   useEffect(() => {
-    const fetchData = async () => {
-      await fetchPost();
-      await fetchLikedPosts();
+    const fetchPost = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/board/${boardNo}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setPost(response.data);
+        setIsLiked(JSON.parse(localStorage.getItem(`isLiked_${boardNo}`)) || response.data.isLiked);
+      } catch (error) {
+        console.error('Error fetching post data:', error);
+      }
     };
-    fetchData();
+
+    const fetchUserName = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('id');
+
+        const response = await fetch(`http://localhost:8080/api/members/username/${userId}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        const data = await response.json();
+        setUserName(data.name);
+      } catch (error) {
+        console.error('Failed to fetch user name:', error);
+      }
+    };
+
+    fetchPost();
+    fetchUserName();
   }, [boardNo]);
-
-  const fetchPost = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/board/${boardNo}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      setPost(response.data);
-    } catch (error) {
-      console.error('Error fetching post:', error);
-    }
-  };
-
-  const fetchLikedPosts = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/board/liked', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      const likedBoardNos = response.data.map(post => post.boardNo);
-      setIsLiked(likedBoardNos.includes(parseInt(boardNo))); // boardNo를 사용하여 현재 게시물이 좋아요 상태인지 확인
-    } catch (error) {
-      console.error('Error fetching liked posts:', error);
-    }
-  };
 
   const handleLikeClick = async () => {
     try {
@@ -56,10 +60,15 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      await fetchPost(); // 좋아요 상태 변경 후 게시물 데이터 갱신
-      await fetchLikedPosts(); // 좋아요 목록 갱신
+
+      setPost(prevPost => ({
+        ...prevPost,
+        likes: isLiked ? prevPost.likes - 1 : prevPost.likes + 1
+      }));
+      setIsLiked(!isLiked);
+      localStorage.setItem(`isLiked_${boardNo}`, JSON.stringify(!isLiked));
     } catch (error) {
-      console.error('Error liking post:', error);
+      console.error('Error updating like status:', error);
     }
   };
 

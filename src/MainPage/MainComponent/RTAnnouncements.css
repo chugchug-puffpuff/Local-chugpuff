@@ -70,3 +70,13 @@
   top: 1314px;
   left: 1310px;
 }
+
+.RTAnnouncements-over {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 1000px;
+  top: 950px;
+  position: absolute;
+}

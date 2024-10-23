@@ -42,11 +42,7 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
         }
       };
       fetchScrapCount();
-
-      const savedIsScraped = JSON.parse(localStorage.getItem(`isScraped_${jobInfo[0].jobId}`));
-      if (savedIsScraped !== null) {
-        setIsScraped(savedIsScraped);
-      }
+      fetchScraped();
     }
   }, [jobInfo]);
 
@@ -90,13 +86,33 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
         }
       });
       setScrapCount(response.data);
-      const newIsScraped = !isScraped;
-      setIsScraped(newIsScraped);
-      localStorage.setItem(`isScraped_${jobInfo[0].jobId}`, JSON.stringify(newIsScraped));
+      await fetchScraped();
     } catch (error) {
       console.error('Error posting scrap:', error);
     }
   };
+
+  const fetchScraped = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/job-postings/scraps', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+  
+      const parsedData = response.data.map(item => JSON.parse(item)); // 개별 파싱
+      const allJobs = parsedData.flatMap(data => data.jobs.job); // job 배열 병합
+      const filteredJobs = allJobs.filter(job => job.id); // id가 있는 job 필터링
+      const mappedJobs = filteredJobs.map(job => ({scrapedJobId: job.id}));
+      if (mappedJobs.some(item => item.scrapedJobId === jobInfo[0].jobId)) {
+        setIsScraped(true);
+      } else {
+        setIsScraped(false);
+      }
+    } catch (error) {
+      console.error('Error fetching scraped jobs:', error);
+    }
+  }
 
   return (
     <div className="RecruitInfo-frame-2">

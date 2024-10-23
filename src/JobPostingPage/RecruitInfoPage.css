@@ -35,6 +35,12 @@
   height: 1px;
   object-fit: cover;
   position: relative;
-  width: 100%;
-  
+  width: 100%; 
+}
+
+.RecruitInfoPage-over {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
 }

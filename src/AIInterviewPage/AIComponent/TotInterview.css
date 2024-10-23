@@ -429,3 +429,24 @@
   cursor: pointer;
   margin-top: 0;
 }
+
+.InterviewPlay-p h2 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bold-1 {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.bold {
+  color: var(--variable-collection-main-black);
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 650;
+}

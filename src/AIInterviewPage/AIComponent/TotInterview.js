@@ -2,6 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './TotInterview.css';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 // 타이핑 효과
 const TypingEffect = ({ text = '', speed, onComplete }) => {
@@ -218,6 +221,13 @@ const TotInterview = ({ selectedType, selectedFeedback }) => {
     }
   }, [timeLeft, handleEndInterview]);
 
+  const formattedText = feedback
+    .replace(/전체 피드백:/g, '<span class="bold-1">전체 피드백</span>')
+    .replace(/전체피드백:/g, '<span class="bold-1">전체피드백</span>')
+    .replace(/(##.*?:)/g, '<span class="bold">$1</span>')
+    .replace(/##/g, '')
+    .replace(/(종합적인 피드백:)/g, '<span class="bold">$1</span>');
+
   // 한 세트의 질문&답변이 모일 경우
   const renderHistoryItem = useCallback(() => {
     return storageQuestion.map((question, index) => (
@@ -328,7 +338,13 @@ const TotInterview = ({ selectedType, selectedFeedback }) => {
                 <div className="text-wrapper-57">치치폭폭 피드백 AI</div>
               </div>
               {feedbackResponse ? (
-                <p className="InterviewPlay-p">{feedback}</p>
+                <ReactMarkdown
+                  className="InterviewPlay-p"
+                  remarkPlugins={[remarkGfm]} 
+                  rehypePlugins={[rehypeRaw]}
+                >
+                  {formattedText}
+                </ReactMarkdown>
               ):(
                 <p className="InterviewPlay-p">피드백 요청중입니다. 잠시만 기다려 주세요.</p>
               )}

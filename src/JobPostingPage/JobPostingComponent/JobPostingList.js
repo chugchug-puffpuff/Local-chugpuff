@@ -84,16 +84,18 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
   }, []);
 
   const fetchScrapCount = useCallback(async (jobId) => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/job-postings/${jobId}/scrap-count`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      return response.data || 0;
-    } catch (error) {
-      console.error('Error fetching scrap count:', error);
-      return 0;
+    if (jobId) {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/job-postings/${jobId}/scrap-count`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        return response.data || 0;
+      } catch (error) {
+        console.error('Error fetching scrap count:', error);
+        return 0;
+      }
     }
   }, []);
 
@@ -104,25 +106,29 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      const jobs = await Promise.all(response.data.jobs.job.map(async job => {
-        const commentCount = await fetchCommentsCount(job.id);
-        const scrapCount = await fetchScrapCount(job.id);
-        return {
-          jobId: job.id,
-          company: job.company.detail.name,
-          title: job.position.title,
-          experience: job.position['experience-level'].name,
-          education: job.position['required-education-level'].name,
-          location: job.position.location.name,
-          employmentType: job.position['job-type'].name,
-          dateRange: `등록 ${new Date(job['opening-timestamp'] * 1000).toLocaleDateString()} ~ 마감 ${new Date(job['expiration-timestamp'] * 1000).toLocaleDateString()}`,
-          url: job.url,
-          commentCount: commentCount,
-          scrapCount: scrapCount
-        };
-      }));
-      setPostings(jobs);
-      setCurrentPage(1);
+      if (response.data.code === 4) {
+        setPostings([]); // api 요청횟수를 초과했을 때 목록을 비움
+      } else {
+        const jobs = await Promise.all(response.data.jobs.job.map(async job => {
+          const commentCount = await fetchCommentsCount(job.id);
+          const scrapCount = await fetchScrapCount(job.id);
+          return {
+            jobId: job.id,
+            company: job.company.detail.name,
+            title: job.position.title,
+            experience: job.position['experience-level'].name,
+            education: job.position['required-education-level'].name,
+            location: job.position.location.name,
+            employmentType: job.position['job-type'].name,
+            dateRange: `등록 ${new Date(job['opening-timestamp'] * 1000).toLocaleDateString()} ~ 마감 ${new Date(job['expiration-timestamp'] * 1000).toLocaleDateString()}`,
+            url: job.url,
+            commentCount: commentCount,
+            scrapCount: scrapCount
+          };
+        }));
+        setPostings(jobs);
+        setCurrentPage(1);
+      }
     } catch (error) {
       console.error('Error fetching job postings:', error);
     }
@@ -164,7 +170,7 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
     .then(response => {
       try {
         const parsedData = response.data.map(item => JSON.parse(item)); // 개별 파싱
-        const allJobs = parsedData.flatMap(data => data.jobs.job); // job 배열 병합
+        const allJobs = parsedData.flatMap(data => data.jobs.job || []); // job 배열 병합
         const filteredJobs = allJobs.filter(job => job.id); // id가 있는 job 필터링
         setScrapedJobs(filteredJobs.map(job => job.id));
       } catch (error) {
@@ -232,16 +238,20 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
         )}
       </div>
       <div className="JobPostingList-frame-22">
-        {currentPosts.map((posting, index) => (
-          <React.Fragment key={index}>
-            <JobPosting {...posting} scraped={scrapedJobs.includes(posting.jobId)} />
-            <img
-              className="JobPostingList-line-2"
-              alt="Line"
-              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/line-2.png"
-            />
-          </React.Fragment>
-        ))}
+        {postings.length === 0 ? (
+          <p className='JobPostingList-over'>오늘 하루 이용가능한 사람인 API 요청 횟수를 초과했습니다.</p>
+        ) : (
+          currentPosts.map((posting, index) => (
+            <React.Fragment key={index}>
+              <JobPosting {...posting} scraped={scrapedJobs.includes(posting.jobId)} />
+              <img
+                className="JobPostingList-line-2"
+                alt="Line"
+                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/line-2.png"
+              />
+            </React.Fragment>
+          ))
+        )}
       </div>
       <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} scrollTop={550} />
     </div>
