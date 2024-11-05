@@ -1,5 +1,7 @@
 import React from 'react';
 import './PopularPost.css';
+import sms_icon from '../../../Icon/sms.png'
+import favorite_icon from '../../../Icon/favorite.png'
 
 const PopularPost = ({ category, comments, favorites, date, title }) => {
     const getCategoryClass = () => {
@@ -20,7 +22,7 @@ const PopularPost = ({ category, comments, favorites, date, title }) => {
               <img
                 className="PopularPost-img"
                 alt="댓글 아이콘"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/sms@2x.png"
+                src={sms_icon}
               />
               <div className="PopularPost-text-wrapper-2">{comments}</div>
             </div>
@@ -28,7 +30,7 @@ const PopularPost = ({ category, comments, favorites, date, title }) => {
               <img
                 className="PopularPost-img"
                 alt="좋아요 아이콘"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/666f93a3d0304f0ceff1aa35/img/favorite@2x.png"
+                src={favorite_icon}
               />
               <div className="PopularPost-text-wrapper-2">{favorites}</div>
             </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './RecruitInfo.css'
 import axios from 'axios';
+import grade_icon from '../../Icon/grade.png'
 
 // 게시일 포맷팅
 const formatPostingDate = (timestamp) => {
@@ -139,7 +140,7 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
                 <img
                   className={`RecruitInfo-scrap ${isScraped ? 'scraped' : ''}`}
                   alt="scrap"
-                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
+                  src={grade_icon}
                   onClick={handleScrapClick}
                 />
                 <div className="RecruitInfo-scrapCounts">스크랩 {scrapCount}</div>

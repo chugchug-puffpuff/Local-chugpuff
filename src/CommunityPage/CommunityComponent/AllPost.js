@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AllPost.css';
 import Pagination from '../../Route/Pagination.js';
+import keyboard_arrow_down_icon from '../../Icon/keyboard_arrow_down.png'
+import keyboard_arrow_up_icon from '../../Icon/keyboard_arrow_up.png'
 
 // 날짜 형식을 0000-00-00 00:00:00으로 변환
 const formatDate = (dateString) => {
@@ -228,9 +230,7 @@ const AllPost = () => {
                   <img
                     className="AllPost-img"
                     alt="Keyboard arrow down & up"
-                    src={sortToggle 
-                      ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-up@2x.png" 
-                      : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-down@2x.png"}
+                    src={sortToggle ? keyboard_arrow_up_icon : keyboard_arrow_down_icon}
                   />
                 </div>
                 <div className="AllPost-frame-21">

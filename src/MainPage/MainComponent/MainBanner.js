@@ -1,6 +1,7 @@
 import React from 'react';
 import './MainBanner.css';
 import { useNavigate } from 'react-router-dom';
+import banner_icon from '../../Icon/이미지.png';
 
 const MainBanner = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const MainBanner = () => {
           <img
             className="MainBanner-image"
             alt=""
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6672cc7b5445d7af1e4bee20/img/---.png"
+            src={banner_icon}
           />
           <div className="MainBanner-view-2">
             <div className="MainBanner-view-3">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PopularAnnouncement.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import grade_icon from '../../../Icon/grade.png'
 
 const PopularAnnouncement = ({ authenticate, jobId, company, title, expirationDay, scrapCount, scraped }) => {
   const navigate = useNavigate();
@@ -53,7 +54,8 @@ const PopularAnnouncement = ({ authenticate, jobId, company, title, expirationDa
                   <img 
                     className={`PopularAnnouncement-grade ${scraped ? 'scraped' : ''}`} 
                     alt="scrap" 
-                    src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png" />
+                    src={grade_icon}
+                  />  
                 </div>
                 <div className="PopularAnnouncement-frame-6">
                   <div className="PopularAnnouncement-text-wrapper-3">{scrapCount}</div>

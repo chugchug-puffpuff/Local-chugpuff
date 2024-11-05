@@ -3,6 +3,8 @@ import './MyCommentBoard.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Pagination from '../../../Route/Pagination.js';
+import sms_icon from '../../../Icon/sms.png'
+import favorite_icon from '../../../Icon/favorite.png'
 
 // 날짜 형식을 0000-00-00 00:00:00으로 변환
 const formatDate = (dateString) => {
@@ -30,7 +32,7 @@ const Post = ({ boardNo, boardTitle, category, boardDate, commentCount, likes, l
             <img
               className="MyComment-img"
               alt="Sms"
-              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/sms@2x.png"
+              src={sms_icon}
             />
             <div className="MyComment-text-wrapper-6">{commentCount}</div>
           </div>
@@ -38,7 +40,7 @@ const Post = ({ boardNo, boardTitle, category, boardDate, commentCount, likes, l
             <img
               className={`MyComment-img ${liked ? 'liked' : ''}`}
               alt="Favorite"
-              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/favorite@2x.png"
+              src={favorite_icon}
             />
             <div className="MyComment-text-wrapper-6">{likes}</div>
           </div>

@@ -3,6 +3,8 @@ import './SignUpPage.css';
 import NavBar from '../MainPage/MainComponent/NavBar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import arrow_drop_down_icon from '../Icon/arrow_drop_down.png';
+import arrow_drop_up_icon from '../Icon/arrow_drop_up.png';
 
 const SignUpPage = ({ authenticate, setAuthenticate }) => {
   // 폼 데이터 상태 관리
@@ -301,7 +303,7 @@ const SignUpPage = ({ authenticate, setAuthenticate }) => {
                           <img
                               className={showJob ? "SignUpPage-arrow-drop-up" : "SignUpPage-arrow-drop-down"}
                               alt={showJob ? "Arrow drop up" : "Arrow drop down"}
-                              src={showJob ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668ccfaca48cce45c95d9d30/img/arrow-drop-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"}
+                              src={showJob ? arrow_drop_up_icon : arrow_drop_down_icon}
                           />
                         </div>
                         {showJob && (

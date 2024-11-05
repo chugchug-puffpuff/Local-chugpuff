@@ -1,5 +1,14 @@
 import React from 'react'
 import './LoginImage.css'
+import vector_icon from '../../Icon/Vector.png'
+import vector2_icon from '../../Icon/Vector2.png'
+import vector3_icon from '../../Icon/Vector3.png'
+import vector4_icon from '../../Icon/Vector4.png'
+import border_color_icon from '../../Icon/border_color.png'
+import forum_icon from '../../Icon/forum.png'
+import business_messages_icon from '../../Icon/business_messages.png'
+import edit_document_icon from '../../Icon/edit_document.png'
+import mic_icon from '../../Icon/mic.png'
 
 const LoginImage = () => {
   return (
@@ -8,47 +17,47 @@ const LoginImage = () => {
           <img
             className="LoginImage-vector"
             alt="Vector"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/vector.svg"
+            src={vector_icon}
           />
           <img
             className="LoginImage-border-color"
             alt="Border color"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/border-color@2x.png"
+            src={border_color_icon}
           />
           <img
             className="LoginImage-forum"
             alt="Forum"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/forum@2x.png"
+            src={forum_icon}
           />
           <img
             className="LoginImage-business-messages"
             alt="Business messages"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/business-messages@2x.png"
+            src={business_messages_icon}
           />
           <img
             className="LoginImage-edit-document"
             alt="Edit document"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/edit-document@2x.png"
+            src={edit_document_icon}
           />
           <img
             className="LoginImage-mic"
             alt="Mic"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/mic@2x.png"
+            src={mic_icon}
           />
           <img
             className="LoginImage-vector-2"
             alt="Vector"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/vector-1.svg"
+            src={vector2_icon}
           />
           <img
             className="LoginImage-vector-3"
             alt="Vector"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/vector-2.svg"
+            src={vector3_icon}
           />
           <img
             className="LoginImage-vector-4"
             alt="Vector"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/667bde01f255dfa018f22f1a/img/vector-3.svg"
+            src={vector4_icon}
           />
         </div>
       </div>

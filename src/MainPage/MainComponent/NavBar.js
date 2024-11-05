@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './NavBar.css';
+import arrow_drop_down_icon from '../../Icon/arrow_drop_down.png';
+import arrow_drop_up_icon from '../../Icon/arrow_drop_up.png';
+import notification_icon from '../../Icon/notification.png';
 
 const NavBar = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate();
@@ -165,7 +168,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                   <img
                     className="NavBar-arrow-drop"
                     alt={showUserInfo ? "Arrow drop up" : "Arrow drop down"}
-                    src={showUserInfo ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668ccfaca48cce45c95d9d30/img/arrow-drop-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/668681f71fc2293e52abea39/img/arrow-drop-down@2x.png"}
+                    src={showUserInfo ? arrow_drop_up_icon : arrow_drop_down_icon}
                   />
                 </button>
                 {showUserInfo && (
@@ -181,7 +184,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                 <img
                   className="NavBar-notifications"
                   alt="Notifications"
-                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6688fccfcda281749136af44/img/notifications@2x.png"
+                  src={notification_icon}
                   onClick={toggleAlarmInfo}
                 />
                 {notifications.length > 0 && <div className="NavBar-notification-badge"/>}

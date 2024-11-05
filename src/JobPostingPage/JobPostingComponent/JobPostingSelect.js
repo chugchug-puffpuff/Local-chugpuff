@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import './JobPostingSelect.css';
 import axios from 'axios';
+import distance_icon from '../../Icon/distance.png'
+import keyboard_arrow_down_icon from '../../Icon/keyboard_arrow_down.png'
+import keyboard_arrow_up_icon from '../../Icon/keyboard_arrow_up.png'
 
 const JobPostingSelect = ({ setSelectedDetailRegion, setSelectedJobMidname, setSelectedJobKeyword }) => {
   const [regionToggle, setRegionToggle] = useState(false);
@@ -194,15 +197,15 @@ const JobPostingSelect = ({ setSelectedDetailRegion, setSelectedJobMidname, setS
           <div className="JobPostingSelect-toggle-wrapper">
             <div className="JobPostingSelect-frame-5" onClick={() => setRegionToggle(!regionToggle)}>
               <img
-                className="JobPostingSelect-img"
+                className="JobPostingSelect-distance"
                 alt="Distance"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/distance@2x.png"
+                src={distance_icon}
               />
               <div className="JobPostingSelect-text-wrapper-4">지역</div>
               <img
                 className="JobPostingSelect-img"
                 alt="Keyboard arrow down"
-                src={regionToggle ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-down@2x.png"}
+                src={regionToggle ? keyboard_arrow_up_icon : keyboard_arrow_down_icon}
               />
             </div>
             {regionToggle && (
@@ -249,7 +252,7 @@ const JobPostingSelect = ({ setSelectedDetailRegion, setSelectedJobMidname, setS
               <img
                 className="JobPostingSelect-img"
                 alt="Keyboard arrow down"
-                src={jobToggle ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-up@2x.png" : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-down@2x.png"}
+                src={jobToggle ? keyboard_arrow_up_icon : keyboard_arrow_down_icon}
               />
             </div>
             {jobToggle && (

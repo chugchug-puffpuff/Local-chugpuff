@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './PostingRecommend.css'
 import axios from 'axios';
+import grade_icon from '../../Icon/grade.png'
 
 const PostingRecommend = () => {
   const [showMore, setShowMore] = useState(false);
@@ -127,7 +128,7 @@ const PostingRecommend = () => {
                             <img
                               className={`PostingRecommend-grade ${scrapedJobs.includes(job.jobId) ? 'scraped' : ''}`}
                               alt="scrap"
-                              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
+                              src={grade_icon}
                             />
                           </div>
                           <div className="PostingRecommend-frame-13">

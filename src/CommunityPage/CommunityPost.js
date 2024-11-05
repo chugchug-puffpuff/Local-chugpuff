@@ -6,6 +6,7 @@ import NavBar from "../MainPage/MainComponent/NavBar.js";
 import Board from "./CommunityComponent/Board.js";
 import BoardComment from "./CommunityComponent/BoardComment.js";
 import { useNavigate } from "react-router-dom";
+import format_list_bulleted_icon from '../Icon/format_list_bulleted.png'
 
 const CommunityPost = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate();
@@ -129,7 +130,7 @@ const CommunityPost = ({ authenticate, setAuthenticate }) => {
               <img
                 className="CommunityPost-format-list-bulleted"
                 alt="Format list bulleted"
-                src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c247830accd7d866283e/img/format-list-bulleted@2x.png"
+                src={format_list_bulleted_icon}
               />
               <div className="CommunityPost-text-wrapper-13">목록 보기</div>
             </div>

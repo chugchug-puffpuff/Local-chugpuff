@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './JobPostingList.css';
 import axios from 'axios';
 import Pagination from '../../Route/Pagination';
+import keyboard_arrow_up_icon from '../../Icon/keyboard_arrow_up.png'
+import keyboard_arrow_down_icon from '../../Icon/keyboard_arrow_down.png'
+import grade_icon from '../../Icon/grade.png'
 
 const JobPosting = ({ jobId, company, title, experience, education, location, employmentType, dateRange, url, commentCount, scrapCount, scraped }) => (
   <div className="JobPostingList-frame-23">
@@ -30,7 +33,7 @@ const JobPosting = ({ jobId, company, title, experience, education, location, em
             <img
               className={`JobPostingList-scrap ${scraped ? 'scraped' : ''}`}
               alt="scrap"
-              src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/grade@2x.png"
+              src={grade_icon}
             />
             <div className="JobPostingList-scrapCounts">{scrapCount}</div>
           </div>
@@ -196,9 +199,7 @@ const JobPostingList = ({ detailRegion, jobMidname, jobKeyword }) => {
             <img
               className="JobPostingList-img"
               alt="arrow down & up"
-              src={sortToggle 
-                ? "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-up@2x.png" 
-                : "https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66ba069ad632e20f0c1152a0/img/keyboard-arrow-down@2x.png"}
+              src={sortToggle ? keyboard_arrow_up_icon : keyboard_arrow_down_icon}
             />
           </div>
           <div className="JobPostingList-frame-21">

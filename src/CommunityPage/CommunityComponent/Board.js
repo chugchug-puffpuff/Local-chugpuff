@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Board.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import edit_icon from '../../Icon/edit.png'
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -61,7 +62,7 @@ const Board = ({ boardNo, category, boardTitle, boardDate, memberName, boardCont
                 <img
                   className="edit"
                   alt="Edit"
-                  src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6698aa612be89236643e00e3/img/edit@2x.png"
+                  src={edit_icon}
                   onClick={() => navigate(`/postmodify/${boardNo}`)}
                 />
                 <img

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './JobComment.css'
 import axios from 'axios';
+import edit_icon from '../../Icon/edit.png'
 
 // 날짜 포맷팅 함수
 const formatDate = (dateString) => {
@@ -31,7 +32,7 @@ const Comment = ({ username, date, comment, storedUserName, onDelete, onEdit }) 
           <img
             className="BoardComment-edit"
             alt="Edit"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/6698aa612be89236643e00e3/img/edit@2x.png"
+            src={edit_icon}
             onClick={onEdit}
           />
           <img

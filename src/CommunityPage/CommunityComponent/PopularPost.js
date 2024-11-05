@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "./PopularPost.css";
+import favorite_icon from '../../Icon/favorite.png'
 
 // 날짜 형식을 0000-00-00 00:00:00으로 변환
 const formatDate = (dateString) => {
@@ -38,7 +39,7 @@ const PostList = ({ boardNo, category, boardTitle, boardDate, commentCount, like
           <img
             className={`PopularPost-img-2 ${liked ? 'liked' : ''}`}
             alt="Favorite"
-            src="https://cdn.animaapp.com/projects/666f9293d0304f0ceff1aa2f/releases/66c2c0b3f3875b7815aadd85/img/favorite@2x.png"
+            src={favorite_icon}
           />
           <div className="PopularPost-text-wrapper-5">{likes}</div>
         </div>
