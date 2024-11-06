@@ -53,7 +53,7 @@ const RecruitInfo = ({ jobInfo, commentCount }) => {
       const fetchImage = async () => {
         try {
           const response = await axios.get(`https://api.bing.microsoft.com/v7.0/images/search?q=${job.title} 로고`, {
-            headers: { 'Ocp-Apim-Subscription-Key': '1e1ba0956772408883e8692f800bb01e' }
+            headers: { 'Ocp-Apim-Subscription-Key': 'bc8c89569c734e4bb6f4397e67bc361f' }
           });
           if (response.data.value && response.data.value.length > 0) {
             setImageUrl(response.data.value[0].contentUrl);
