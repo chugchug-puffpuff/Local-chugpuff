@@ -147,6 +147,7 @@
   line-height: 36px;
   position: relative;
   width: 1176px;
+  white-space: pre-wrap;
 }
 
 .Board-frame-78 {
